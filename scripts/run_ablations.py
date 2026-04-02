@@ -53,6 +53,11 @@ def parse_args() -> argparse.Namespace:
         default=None,
         help="Comma-separated subset of keys, e.g. baseline,no_scaling,gap",
     )
+    p.add_argument(
+        "--no-merge",
+        action="store_true",
+        help="Do not load existing all_ablation_results.pt (default: merge for chained Slurm jobs)",
+    )
     p.add_argument("--seed", type=int, default=42)
     return p.parse_args()
 
@@ -152,6 +157,17 @@ def main() -> None:
         ablation_dir = default_output_dir(_REPO, "ablations")
     ablation_dir.mkdir(parents=True, exist_ok=True)
 
+    results_path = ablation_dir / "all_ablation_results.pt"
+    all_results: dict = {}
+    if not args.no_merge and results_path.is_file():
+        prev = torch.load(results_path, map_location="cpu", weights_only=False)
+        if isinstance(prev, dict):
+            all_results = dict(prev)
+            print(
+                f"Merged {len(all_results)} prior experiment(s) from {results_path.name} "
+                "(chained ablation job)"
+            )
+
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     print(f"Device: {device}")
     if device.type == "cuda":
@@ -162,7 +178,6 @@ def main() -> None:
         base_config, num_workers=args.num_workers
     )
 
-    all_results: dict = {}
     ae = args.ablation_epochs
 
     if _want("baseline", only):

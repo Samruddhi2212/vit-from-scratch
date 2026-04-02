@@ -10,7 +10,7 @@
 #SBATCH --output=logs/ablations-%j.out
 #SBATCH --error=logs/ablations-%j.err
 #SBATCH --mail-type=END,FAIL
-#SBATCH --mail-user=your.email@northeastern.edu
+#SBATCH --mail-user=patodia.pa@northeastern.edu
 #
 # Replace --mail-user with your real address (same idea as train_cifar10.sbatch).
 # Email is handled by Slurm only; it does not change training or GPU usage.
@@ -20,7 +20,11 @@
 # Ablations may not finish in one job; chunk with e.g.:
 #   python scripts/run_ablations.py --only baseline,gap --ablation-epochs 50
 #
-# Submit from repository root:
+# Explorer: full sweep usually exceeds one 8h job. Prefer one command on the login node:
+#   bash scripts/submit_ablations_chain.sh
+# That submits A -> B -> C (Slurm afterok); each step merges all_ablation_results.pt.
+#
+# Monolithic (single long GPU job — may TIMEOUT):
 #   mkdir -p logs && sbatch slurm/run_ablations.sbatch
 
 set -euo pipefail
