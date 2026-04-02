@@ -6,12 +6,14 @@
 #SBATCH --gres=gpu:v100-pcie:1
 #SBATCH --cpus-per-task=4
 #SBATCH --mem=16G
-#SBATCH --time=24:00:00
+#SBATCH --time=08:00:00
 #SBATCH --output=logs/ablations-%j.out
 #SBATCH --error=logs/ablations-%j.err
 #
-# Full ablation sweep needs many hours. If 24h exceeds your qos/partition
-# limit, lower --time or run chunks:  python scripts/run_ablations.py --only baseline,gap
+# Explorer gpu partition often caps walltime (e.g. 8h). If sbatch rejects --time,
+# run:  sinfo -o "%P %l"  and set --time below that max for "gpu".
+# Ablations may not finish in one job; chunk with e.g.:
+#   python scripts/run_ablations.py --only baseline,gap --ablation-epochs 50
 #
 # Submit from repository root:
 #   mkdir -p logs && sbatch slurm/run_ablations.sbatch
