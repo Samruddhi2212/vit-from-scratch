@@ -104,6 +104,13 @@ def set_lr(optimizer: torch.optim.Optimizer, lr: float):
         param_group['lr'] = lr
 
 
+def _state_dict_for_save(model: nn.Module) -> dict:
+    """Checkpoint weights without ``module.`` prefix (works with DataParallel)."""
+    if isinstance(model, nn.DataParallel):
+        return model.module.state_dict()
+    return model.state_dict()
+
+
 def train_one_epoch(
     model: nn.Module,
     train_loader: torch.utils.data.DataLoader,
@@ -350,7 +357,7 @@ def train(
             best_val_acc = val_acc
             checkpoint = {
                 'epoch': epoch,
-                'model_state_dict': model.state_dict(),
+                'model_state_dict': _state_dict_for_save(model),
                 'optimizer_state_dict': optimizer.state_dict(),
                 'val_acc': val_acc,
                 'val_loss': val_loss,
@@ -395,7 +402,10 @@ def load_checkpoint(
         device = torch.device('cpu')
     
     checkpoint = torch.load(checkpoint_path, map_location=device, weights_only=False)
-    model.load_state_dict(checkpoint['model_state_dict'])
+    state = checkpoint["model_state_dict"]
+    if state and any(k.startswith("module.") for k in state):
+        state = {k[7:] if k.startswith("module.") else k: v for k, v in state.items()}
+    model.load_state_dict(state)
     
     print(f"Loaded checkpoint from epoch {checkpoint['epoch']+1}")
     print(f"  Validation accuracy: {checkpoint['val_acc']:.2f}%")

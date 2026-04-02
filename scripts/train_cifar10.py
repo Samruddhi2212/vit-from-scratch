@@ -19,6 +19,7 @@ if str(_REPO) not in sys.path:
     sys.path.insert(0, str(_REPO))
 
 import torch
+import torch.nn as nn
 
 from configs.config import ViTConfig
 from models.vit import ViT
@@ -43,6 +44,11 @@ def parse_args() -> argparse.Namespace:
     p.add_argument("--experiment-name", type=str, default="vit_cifar10")
     p.add_argument("--no-plots", action="store_true", help="Skip matplotlib figures")
     p.add_argument("--seed", type=int, default=42, help="Torch RNG seed (DataLoader shuffle)")
+    p.add_argument(
+        "--data-parallel",
+        action="store_true",
+        help="Wrap model in nn.DataParallel when 2+ GPUs are visible (see slurm comments for Explorer limits)",
+    )
     return p.parse_args()
 
 
@@ -69,15 +75,24 @@ def main() -> None:
         config.batch_size = args.batch_size
 
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    n_gpu = torch.cuda.device_count() if device.type == "cuda" else 0
     print(f"Device: {device}")
     if device.type == "cuda":
-        print(f"  GPU: {torch.cuda.get_device_name(0)}")
+        print(f"  Visible GPUs: {n_gpu}")
+        for i in range(n_gpu):
+            print(f"    [{i}] {torch.cuda.get_device_name(i)}")
 
     train_loader, val_loader, test_loader = get_cifar10_loaders(
         config, num_workers=args.num_workers
     )
 
-    model = ViT(config)
+    model = ViT(config).to(device)
+    if args.data_parallel:
+        if n_gpu > 1:
+            model = nn.DataParallel(model)
+            print(f"Using nn.DataParallel across {n_gpu} GPUs.")
+        else:
+            print("Warning: --data-parallel ignored (need 2+ visible GPUs).")
     history = train(
         model=model,
         train_loader=train_loader,

@@ -10,14 +10,23 @@
 #SBATCH --output=logs/train-%j.out
 #SBATCH --error=logs/train-%j.err
 #
+# Optional email when job ends (uncomment and set your address):
+# #SBATCH --mail-type=END,FAIL
+# #SBATCH --mail-user=your.email@northeastern.edu
+#
 # Submit from the repository root:
 #   mkdir -p logs && sbatch slurm/train_cifar10.sbatch
 #
-# Explorer: batch jobs belong on partition "gpu", not "gpu-interactive"
-# (interactive is capped at ~1–2h and is for srun/OOD).
-# GPU types: https://rc.northeastern.edu/compute/ — edit --gres if v100-pcie
-# is unavailable (e.g. gpu:p100:1 or gpu:v100-sxm2:1 per cluster listing).
-# If time limit still fails:  sinfo -o "%P %l"  and stay under Max for "gpu".
+# Explorer notes:
+# - Batch jobs use partition "gpu", not "gpu-interactive" (short walltime cap).
+# - Standard "gpu" jobs are typically 1 GPU; requesting 2+ often fails unless you
+#   have multigpu / reservation access: https://rc-docs.northeastern.edu/en/explorer-main/gpus/multigpu-partition-access.html
+# - If you ARE allocated 2 GPUs on one node, add --data-parallel to the python line below.
+# - To request 2 GPUs (only if your account allows), try e.g.:
+#     #SBATCH --gres=gpu:v100-pcie:2
+#   and raise --cpus-per-task / --mem as needed.
+# - GPU types: https://rc.northeastern.edu/compute/
+# - Walltime:  sinfo -o "%P %l"
 
 set -euo pipefail
 cd "${SLURM_SUBMIT_DIR}"
