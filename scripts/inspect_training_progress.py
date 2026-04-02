@@ -1,8 +1,12 @@
 #!/usr/bin/env python3
 """Inspect a saved training history from train() (e.g. after reconnecting to HPC).
 
-Usage:
+On Explorer, run with the same env as training (system python on the login node has no torch):
+
+  module load anaconda3/2024.06 && source activate pytorch_env
   python scripts/inspect_training_progress.py outputs/train/checkpoints/vit_cifar10_history.pt
+
+Or:  conda run -n pytorch_env python scripts/inspect_training_progress.py PATH
 """
 
 from __future__ import annotations
@@ -11,10 +15,19 @@ import argparse
 import sys
 from pathlib import Path
 
-import torch
-
 
 def main() -> None:
+    try:
+        import torch
+    except ImportError:
+        print(
+            "PyTorch is not available in this Python.\n"
+            "On Explorer:  module load anaconda3/2024.06 && source activate pytorch_env\n"
+            "Then re-run this script.",
+            file=sys.stderr,
+        )
+        sys.exit(127)
+
     p = argparse.ArgumentParser()
     p.add_argument("history_pt", type=str, help="Path to *_history.pt")
     args = p.parse_args()
@@ -23,7 +36,6 @@ def main() -> None:
         print(f"Not found: {path}")
         sys.exit(1)
     h = torch.load(path, map_location="cpu", weights_only=False)
-    keys = ["train_loss", "val_loss", "train_acc", "val_acc"]
     n = len(h.get("train_loss", []))
     print(f"File: {path.resolve()}")
     print(f"Epochs completed (from train_loss length): {n}")
