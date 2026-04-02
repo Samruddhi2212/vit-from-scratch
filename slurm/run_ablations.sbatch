@@ -9,6 +9,11 @@
 #SBATCH --time=08:00:00
 #SBATCH --output=logs/ablations-%j.out
 #SBATCH --error=logs/ablations-%j.err
+#SBATCH --mail-type=END,FAIL
+#SBATCH --mail-user=your.email@northeastern.edu
+#
+# Replace --mail-user with your real address (same idea as train_cifar10.sbatch).
+# Email is handled by Slurm only; it does not change training or GPU usage.
 #
 # Explorer gpu partition often caps walltime (e.g. 8h). If sbatch rejects --time,
 # run:  sinfo -o "%P %l"  and set --time below that max for "gpu".

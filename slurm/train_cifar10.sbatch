@@ -9,10 +9,11 @@
 #SBATCH --time=08:00:00
 #SBATCH --output=logs/train-%j.out
 #SBATCH --error=logs/train-%j.err
+#SBATCH --mail-type=END,FAIL
+#SBATCH --mail-user=your.email@northeastern.edu
 #
-# Optional email when job ends (uncomment and set your address):
-# #SBATCH --mail-type=END,FAIL
-# #SBATCH --mail-user=your.email@northeastern.edu
+# Replace --mail-user with your real Northeastern email. Slurm sends mail only;
+# this does not affect the training process or GPU allocation.
 #
 # Submit from the repository root:
 #   mkdir -p logs && sbatch slurm/train_cifar10.sbatch
