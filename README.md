@@ -39,6 +39,10 @@ This is formulated as a supervised semantic segmentation problem.
 
 ---
 
+## 🏗️ System Architecture
+
+![AMB Architecture](architecture.png)
+
 ## 🧠 Mathematical Formulation
 
 ### 1️⃣ Patch Embedding
