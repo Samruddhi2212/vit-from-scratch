@@ -336,6 +336,202 @@ def full_evaluation(
 
 
 # ──────────────────────────────────────────────────────
+# CHANGE DETECTION METRICS (OSCD / Bi-temporal)
+# ──────────────────────────────────────────────────────
+
+def compute_change_detection_metrics(
+    pred_mask: torch.Tensor,
+    true_mask: torch.Tensor,
+    eps: float = 1e-8
+) -> dict:
+    """
+    Compute pixel-wise binary change detection metrics.
+
+    Treats every pixel as either "changed" (1) or "unchanged" (0).
+    All metrics are computed for the "changed" class, since that is the
+    class of interest and also the minority class (heavy imbalance).
+
+    Metric formulas
+    ---------------
+    - Precision  = TP / (TP + FP)          "of predicted changes, how many are real?"
+    - Recall     = TP / (TP + FN)          "of real changes, how many did we catch?"
+    - F1         = 2 * P * R / (P + R)     harmonic mean — the headline metric
+    - IoU        = TP / (TP + FP + FN)     overlap / union of change regions
+    - OA         = (TP + TN) / N           overall pixel accuracy (inflated by imbalance)
+    - Kappa      = (OA - Pe) / (1 - Pe)    chance-adjusted accuracy
+    - MCC        = (TP*TN - FP*FN) /       balanced metric, works with extreme imbalance
+                   sqrt((TP+FP)(TP+FN)(TN+FP)(TN+FN))
+
+    Args:
+        pred_mask: Binary predicted change mask, any shape, values in {0, 1}
+        true_mask: Binary ground truth change mask, same shape, values in {0, 1}
+        eps: Small constant to avoid division by zero
+
+    Returns:
+        metrics: Dict with keys: tp, fp, tn, fn, precision, recall,
+                 f1, iou, overall_accuracy, kappa, mcc
+    """
+    pred = pred_mask.bool().view(-1)
+    true = true_mask.bool().view(-1)
+
+    tp = (pred & true).sum().item()
+    fp = (pred & ~true).sum().item()
+    tn = (~pred & ~true).sum().item()
+    fn = (~pred & true).sum().item()
+    n  = tp + fp + tn + fn
+
+    precision = tp / (tp + fp + eps)
+    recall    = tp / (tp + fn + eps)
+    f1        = 2 * precision * recall / (precision + recall + eps)
+    iou       = tp / (tp + fp + fn + eps)
+    oa        = (tp + tn) / (n + eps)
+
+    # Cohen's Kappa
+    # Pe = expected agreement by chance
+    p_pred_pos = (tp + fp) / (n + eps)
+    p_true_pos = (tp + fn) / (n + eps)
+    p_pred_neg = (tn + fn) / (n + eps)
+    p_true_neg = (tn + fp) / (n + eps)
+    pe    = p_pred_pos * p_true_pos + p_pred_neg * p_true_neg
+    kappa = (oa - pe) / (1.0 - pe + eps)
+
+    # Matthews Correlation Coefficient
+    denom = ((tp + fp) * (tp + fn) * (tn + fp) * (tn + fn)) ** 0.5
+    mcc   = (tp * tn - fp * fn) / (denom + eps)
+
+    return {
+        'tp': tp, 'fp': fp, 'tn': tn, 'fn': fn,
+        'precision':        precision,
+        'recall':           recall,
+        'f1':               f1,
+        'iou':              iou,
+        'overall_accuracy': oa,
+        'kappa':            kappa,
+        'mcc':              mcc,
+    }
+
+
+@torch.no_grad()
+def evaluate_change_detection(
+    model: nn.Module,
+    data_loader: torch.utils.data.DataLoader,
+    device: torch.device,
+    threshold: float = 0.5,
+) -> dict:
+    """
+    Run change detection evaluation over a full dataset.
+
+    Expects the dataloader to yield (img1, img2, mask) triples, where
+    img1 and img2 are the two time-step images and mask is the binary
+    ground-truth change mask.
+
+    The model should accept (img1, img2) and return a logit or
+    probability map of shape [B, 1, H, W] or [B, H, W].  A sigmoid
+    is applied before thresholding, so raw logits are fine.
+
+    Metrics are accumulated globally (all pixels across all batches)
+    rather than averaged per image, which is standard for OSCD.
+
+    Args:
+        model:       Trained Siamese ViT (or any change detection model)
+        data_loader: OSCD-style loader yielding (img1, img2, mask)
+        device:      GPU/CPU device
+        threshold:   Sigmoid probability threshold for "changed" (default 0.5)
+
+    Returns:
+        metrics: Dict with all change detection metrics + raw TP/FP/TN/FN counts
+    """
+    model.eval()
+
+    total_tp = total_fp = total_tn = total_fn = 0
+
+    for batch in tqdm(data_loader, desc="Change detection eval", leave=False):
+        img1, img2, true_mask = batch
+        img1      = img1.to(device)
+        img2      = img2.to(device)
+        true_mask = true_mask.to(device)
+
+        logits = model(img1, img2)          # [B, 1, H, W] or [B, H, W]
+        probs  = torch.sigmoid(logits)
+        pred_mask = (probs >= threshold).long().squeeze(1)  # [B, H, W]
+        true_mask = true_mask.long()
+
+        pred_flat = pred_mask.bool().view(-1)
+        true_flat = true_mask.bool().view(-1)
+
+        total_tp += (pred_flat & true_flat).sum().item()
+        total_fp += (pred_flat & ~true_flat).sum().item()
+        total_tn += (~pred_flat & ~true_flat).sum().item()
+        total_fn += (~pred_flat & true_flat).sum().item()
+
+    # Compute all metrics directly from accumulated counts
+    eps = 1e-8
+    tp, fp, tn, fn = total_tp, total_fp, total_tn, total_fn
+    n = tp + fp + tn + fn
+
+    precision = tp / (tp + fp + eps)
+    recall    = tp / (tp + fn + eps)
+    f1        = 2 * precision * recall / (precision + recall + eps)
+    iou       = tp / (tp + fp + fn + eps)
+    oa        = (tp + tn) / (n + eps)
+
+    p_pred_pos = (tp + fp) / (n + eps)
+    p_true_pos = (tp + fn) / (n + eps)
+    p_pred_neg = (tn + fn) / (n + eps)
+    p_true_neg = (tn + fp) / (n + eps)
+    pe    = p_pred_pos * p_true_pos + p_pred_neg * p_true_neg
+    kappa = (oa - pe) / (1.0 - pe + eps)
+
+    denom = ((tp + fp) * (tp + fn) * (tn + fp) * (tn + fn)) ** 0.5
+    mcc   = (tp * tn - fp * fn) / (denom + eps)
+
+    return {
+        'tp': tp, 'fp': fp, 'tn': tn, 'fn': fn,
+        'precision':        precision,
+        'recall':           recall,
+        'f1':               f1,
+        'iou':              iou,
+        'overall_accuracy': oa,
+        'kappa':            kappa,
+        'mcc':              mcc,
+        'threshold':        threshold,
+        'total_pixels':     n,
+    }
+
+
+def print_change_detection_summary(metrics: dict):
+    """
+    Pretty-print change detection evaluation results.
+
+    Args:
+        metrics: Dict returned by evaluate_change_detection or
+                 compute_change_detection_metrics
+    """
+    print("=" * 50)
+    print("CHANGE DETECTION EVALUATION RESULTS")
+    print("=" * 50)
+
+    tp, fp, tn, fn = metrics['tp'], metrics['fp'], metrics['tn'], metrics['fn']
+    n = tp + fp + tn + fn
+    pct_changed = 100.0 * (tp + fn) / (n + 1e-8)
+
+    print(f"\nPixel Counts  (threshold={metrics.get('threshold', 'N/A')})")
+    print(f"  Total pixels : {n:>12,}")
+    print(f"  Changed (GT) : {tp + fn:>12,}  ({pct_changed:.1f}%)")
+    print(f"  TP / FP / TN / FN : {tp} / {fp} / {tn} / {fn}")
+
+    print(f"\nMetrics (for 'changed' class)")
+    print(f"  Precision        : {metrics['precision']:.4f}")
+    print(f"  Recall           : {metrics['recall']:.4f}")
+    print(f"  F1 Score         : {metrics['f1']:.4f}  ← headline metric")
+    print(f"  IoU / Jaccard    : {metrics['iou']:.4f}")
+    print(f"  Overall Accuracy : {metrics['overall_accuracy']:.4f}  (inflated by imbalance)")
+    print(f"  Kappa            : {metrics['kappa']:.4f}")
+    print(f"  MCC              : {metrics['mcc']:.4f}")
+    print("=" * 50)
+
+
+# ──────────────────────────────────────────────────────
 # TESTS
 # ──────────────────────────────────────────────────────
 if __name__ == "__main__":
@@ -392,3 +588,40 @@ if __name__ == "__main__":
     print(" Confusion matrix plot PASSED!")
     
     print("\n All evaluation tests PASSED!")
+
+    print()
+    print("=" * 60)
+    print("TEST 2: Change detection metrics with synthetic masks")
+    print("=" * 60)
+
+    # Simulate a 100x100 change mask where ~10% of pixels are "changed"
+    H, W = 100, 100
+    true_mask = (torch.rand(H, W) < 0.10).long()  # 10% change rate (realistic for OSCD)
+
+    # Perfect prediction
+    perfect_pred = true_mask.clone()
+    m = compute_change_detection_metrics(perfect_pred, true_mask)
+    assert abs(m['f1'] - 1.0) < 1e-4, "Perfect prediction should give F1=1.0"
+    assert abs(m['iou'] - 1.0) < 1e-4, "Perfect prediction should give IoU=1.0"
+    print("Perfect prediction: F1=1.00, IoU=1.00  PASSED")
+
+    # Predict all zeros (no change) — F1 should be 0
+    zero_pred = torch.zeros(H, W, dtype=torch.long)
+    m = compute_change_detection_metrics(zero_pred, true_mask)
+    assert m['f1'] < 0.01, "All-zero prediction should give F1~0"
+    print(f"All-zero prediction: F1={m['f1']:.4f}, OA={m['overall_accuracy']:.4f}  PASSED")
+
+    # Realistic model: 85% of true changes caught, 5% false alarm rate
+    noise    = (torch.rand(H, W) < 0.05).long()           # false positives
+    detected = (torch.rand(H, W) < 0.85).long() & true_mask  # true positives
+    realistic_pred = (detected | noise).long()
+    m = compute_change_detection_metrics(realistic_pred, true_mask)
+    print(f"Realistic model: Precision={m['precision']:.3f}, Recall={m['recall']:.3f}, "
+          f"F1={m['f1']:.3f}, IoU={m['iou']:.3f}, Kappa={m['kappa']:.3f}, MCC={m['mcc']:.3f}")
+    assert 0.0 < m['f1'] < 1.0, "Realistic F1 should be between 0 and 1"
+    assert 0.0 < m['kappa'] < 1.0, "Kappa should be positive for a decent model"
+    print(" Realistic prediction PASSED")
+
+    print_change_detection_summary({**m, 'threshold': 0.5, 'total_pixels': H * W})
+
+    print("\n All change detection tests PASSED!")
