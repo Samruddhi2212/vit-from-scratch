@@ -8,7 +8,7 @@
 #SBATCH --gres=gpu:1
 #SBATCH --cpus-per-task=8
 #SBATCH --mem=64GB
-#SBATCH --time=24:00:00
+#SBATCH --time=8:00:00
 #SBATCH --job-name=siamese_vit_cd
 #SBATCH --output=logs/train_%j.out
 #SBATCH --error=logs/train_%j.err
@@ -35,10 +35,10 @@ nvidia-smi
 echo ""
 
 # ── Navigate to project ───────────────────────────────────────
-cd /home/katoch.aa/ondemand/vit-from-scratch
+cd /home/katoch.aa/ondemand/vit-from-scratch-main
 
 # ── Paths ─────────────────────────────────────────────────────
-PROJECT_DIR="/home/katoch.aa/ondemand/vit-from-scratch"
+PROJECT_DIR="/home/katoch.aa/ondemand/vit-from-scratch-main"
 OSCD_IMAGES_DIR="$PROJECT_DIR/images"              # Sentinel-2 region folders
 OSCD_LABELS_DIR="$PROJECT_DIR/train_labels"        # change masks (cm/cm.png per region)
 PREPROCESSED_DIR="$PROJECT_DIR/oscd_preprocessed"  # intermediate .npy files
