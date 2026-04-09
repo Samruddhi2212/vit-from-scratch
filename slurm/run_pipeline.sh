@@ -26,7 +26,9 @@ module load anaconda3/2024.06
 
 # ── Activate environment ──────────────────────────────────────
 ENV_NAME="vit-cd"
-source activate $ENV_NAME
+CONDA_BASE=$(conda info --base)
+source "$CONDA_BASE/etc/profile.d/conda.sh"
+conda activate $ENV_NAME
 
 # ── GPU info ──────────────────────────────────────────────────
 echo ""
@@ -39,7 +41,7 @@ cd /home/katoch.aa/ondemand/vit-from-scratch-main
 
 # ── Paths ─────────────────────────────────────────────────────
 PROJECT_DIR="/home/katoch.aa/ondemand/vit-from-scratch-main"
-OSCD_IMAGES_DIR="$PROJECT_DIR/urban_train/images"              # Sentinel-2 region folders
+OSCD_IMAGES_DIR="$PROJECT_DIR/urban_train/images/Onera Satellite Change Detection dataset - Images"  # Sentinel-2 region folders
 OSCD_LABELS_DIR="$PROJECT_DIR/urban_train/train_labels"        # change masks (cm/cm.png per region)
 PREPROCESSED_DIR="$PROJECT_DIR/oscd_preprocessed"  # intermediate .npy files
 PATCHES_DIR="$PROJECT_DIR/processed_oscd"          # final 256×256 PNG patches
@@ -88,10 +90,11 @@ if [ -d "$PATCHES_DIR/train/A" ] && [ "$(ls -A $PATCHES_DIR/train/A 2>/dev/null)
 else
     echo "Running extract_patches.py ..."
     python scripts/extract_patches.py \
-        --input_dir  "$PREPROCESSED_DIR" \
-        --output_dir "$PATCHES_DIR" \
-        --patch_size 256 \
-        --stride     128
+        --preprocessed_dir "$PREPROCESSED_DIR" \
+        --images_dir       "$OSCD_IMAGES_DIR" \
+        --output_dir       "$PATCHES_DIR" \
+        --patch_size       256 \
+        --stride           128
 
     if [ $? -ne 0 ]; then
         echo "ERROR: Patch extraction failed. Exiting."

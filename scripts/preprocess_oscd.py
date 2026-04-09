@@ -64,12 +64,17 @@ def _reference_shape(img_dir: Path) -> tuple[int, int]:
 
 
 def stack_bands(img_dir: Path, target_h: int, target_w: int) -> np.ndarray:
-    """Stack all 13 bands into (H, W, 13) float32, resampled to 10m grid."""
+    """Stack all available bands into (H, W, C) float32, resampled to 10m grid.
+
+    Skips missing band files so regions with incomplete downloads still process.
+    """
     arrays = []
     for band in BAND_ORDER:
         tif = img_dir / f"{band}.tif"
+        if not tif.exists():
+            continue
         arrays.append(_load_and_resample_band(tif, target_h, target_w))
-    return np.stack(arrays, axis=-1)  # (H, W, 13)
+    return np.stack(arrays, axis=-1)  # (H, W, C)
 
 
 def load_mask(mask_path: Path, target_h: int, target_w: int) -> np.ndarray:
@@ -104,16 +109,19 @@ def process_region(
     # --- reference shape from 10m B04 band ---
     target_h, target_w = _reference_shape(imgs_1)
 
-    # --- stack all 13 bands ---
-    stack1 = stack_bands(imgs_1, target_h, target_w)  # (H, W, 13)
-    stack2 = stack_bands(imgs_2, target_h, target_w)
-
-    np.save(out_dir / "img1_all_bands.npy", stack1)
-    np.save(out_dir / "img2_all_bands.npy", stack2)
-
-    # --- RGB sub-stack [R=B04, G=B03, B=B02] ---
-    rgb1 = stack1[:, :, RGB_INDICES]  # (H, W, 3)
-    rgb2 = stack2[:, :, RGB_INDICES]
+    # --- RGB bands only [R=B04, G=B03, B=B02] ---
+    # Load the three RGB bands directly — avoids failures on regions
+    # where other bands (B07, B8A, etc.) are missing from the download.
+    rgb1 = np.stack([
+        _load_and_resample_band(imgs_1 / "B04.tif", target_h, target_w),
+        _load_and_resample_band(imgs_1 / "B03.tif", target_h, target_w),
+        _load_and_resample_band(imgs_1 / "B02.tif", target_h, target_w),
+    ], axis=-1)  # (H, W, 3)
+    rgb2 = np.stack([
+        _load_and_resample_band(imgs_2 / "B04.tif", target_h, target_w),
+        _load_and_resample_band(imgs_2 / "B03.tif", target_h, target_w),
+        _load_and_resample_band(imgs_2 / "B02.tif", target_h, target_w),
+    ], axis=-1)  # (H, W, 3)
 
     np.save(out_dir / "img1_rgb.npy", rgb1)
     np.save(out_dir / "img2_rgb.npy", rgb2)

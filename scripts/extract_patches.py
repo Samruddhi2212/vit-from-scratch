@@ -209,6 +209,9 @@ def main() -> None:
         tqdm.write(f"  [{split:5s}] {region} ...")
 
         region_dir = pre_root / region
+        if not (region_dir / "img1_rgb.npy").exists():
+            tqdm.write(f"         SKIP — no preprocessed data at {region_dir}")
+            continue
         img1 = np.load(region_dir / "img1_rgb.npy")
         img2 = np.load(region_dir / "img2_rgb.npy")
 
