@@ -270,6 +270,135 @@ class ViT(nn.Module):
         return cls_embedding
 
 
+# ──────────────────────────────────────────────────────────────────────────────
+# ViT ENCODER
+# Feature extractor for downstream tasks such as Siamese change detection.
+# No classification head — returns spatial patch token features.
+# ──────────────────────────────────────────────────────────────────────────────
+
+class ViTEncoder(nn.Module):
+    """
+    Complete Vision Transformer Encoder.
+
+    Stacks PatchEmbedding → N × TransformerEncoderBlock → LayerNorm and
+    returns either all patch tokens or just the CLS token.
+
+    Intended for use as a shared backbone in a Siamese network:
+        encoder = ViTEncoder()
+        feat1 = encoder(img1)   # (B, 256, 768)
+        feat2 = encoder(img2)   # (B, 256, 768)
+        # → feed feat1, feat2 to a change-detection decoder
+
+    Pipeline:
+        (B, 3, 256, 256)
+          → PatchEmbedding          → (B, 257, 768)   [256 patches + CLS]
+          → pos_drop                → (B, 257, 768)
+          → TransformerEncoderBlock × depth
+                                    → (B, 257, 768)
+          → LayerNorm               → (B, 257, 768)
+          → return x[:, 1:]         → (B, 256, 768)   [patch tokens only]
+             or x[:, 0]             → (B, 768)         [CLS token only]
+
+    Args:
+        img_size     : Input image size (square).           Default 256.
+        patch_size   : Patch side length.                   Default 16.
+        in_channels  : Input channels.                      Default 3.
+        embed_dim    : Token embedding dimension.           Default 768.
+        depth        : Number of Transformer blocks.        Default 12.
+        num_heads    : Attention heads per block.           Default 12.
+        mlp_ratio    : MLP hidden-dim expansion.            Default 4.0.
+        dropout      : Dropout after embedding and in MLP.  Default 0.1.
+        attn_dropout : Dropout inside attention weights.    Default 0.0.
+    """
+
+    def __init__(
+        self,
+        img_size: int = 256,
+        patch_size: int = 16,
+        in_channels: int = 3,
+        embed_dim: int = 768,
+        depth: int = 12,
+        num_heads: int = 12,
+        mlp_ratio: float = 4.0,
+        dropout: float = 0.1,
+        attn_dropout: float = 0.0,
+    ) -> None:
+        super().__init__()
+
+        self.patch_size  = patch_size
+        self.num_patches = (img_size // patch_size) ** 2   # 256 for 256/16
+
+        self.patch_embed = PatchEmbedding(
+            img_size=img_size,
+            patch_size=patch_size,
+            in_channels=in_channels,
+            embed_dim=embed_dim,
+            dropout=dropout,
+        )
+
+        self.blocks = nn.ModuleList([
+            TransformerEncoderBlock(
+                embed_dim=embed_dim,
+                num_heads=num_heads,
+                mlp_ratio=mlp_ratio,
+                dropout=dropout,
+                attn_dropout=attn_dropout,
+            )
+            for _ in range(depth)
+        ])
+
+        self.norm = nn.LayerNorm(embed_dim)
+
+        self.apply(self._init_weights)
+
+    # ------------------------------------------------------------------
+    def _init_weights(self, m: nn.Module) -> None:
+        if isinstance(m, nn.Linear):
+            nn.init.trunc_normal_(m.weight, std=0.02)
+            if m.bias is not None:
+                nn.init.zeros_(m.bias)
+        elif isinstance(m, nn.LayerNorm):
+            nn.init.ones_(m.weight)
+            nn.init.zeros_(m.bias)
+
+    # ------------------------------------------------------------------
+    def forward(
+        self, x: torch.Tensor, return_all_tokens: bool = True
+    ) -> torch.Tensor:
+        """
+        Args:
+            x                : (B, C, H, W)
+            return_all_tokens: True  → return patch tokens  (B, num_patches, embed_dim)
+                               False → return CLS token     (B, embed_dim)
+        Returns:
+            Patch features (B, 256, 768) or CLS feature (B, 768).
+        """
+        x = self.patch_embed(x)                 # (B, N+1, D)
+
+        for block in self.blocks:
+            x = block(x)                        # (B, N+1, D)
+
+        x = self.norm(x)                        # (B, N+1, D)
+
+        if return_all_tokens:
+            return x[:, 1:]                     # (B, N, D) — drop CLS
+        return x[:, 0]                          # (B, D)    — CLS only
+
+    # ------------------------------------------------------------------
+    def get_attention_maps(self, x: torch.Tensor) -> torch.Tensor:
+        """Return stacked attention weights from every block.
+
+        Returns:
+            (depth, B, num_heads, N+1, N+1)
+        """
+        x = self.patch_embed(x)
+        maps = []
+        for block in self.blocks:
+            x, attn = block.get_attention_weights(x)
+            maps.append(attn)
+        return torch.stack(maps)
+
+
 # ──────────────────────────────────────────────────────
 # TESTS
 # ──────────────────────────────────────────────────────
@@ -452,3 +581,53 @@ if __name__ == "__main__":
     print(f"  CIFAR-10 model:  {total_params:,} parameters")
     print(f"  EuroSAT model:   {eurosat_params:,} parameters")
     print(f"\nNext step: build the training pipeline (utils/training.py)")
+
+    # ──────────────────────────────────────────────
+    print("\n" + "=" * 60)
+    print("TEST 7: ViTEncoder — Shape & Parameter Summary")
+    print("=" * 60)
+
+    encoder = ViTEncoder(
+        img_size=256, patch_size=16, in_channels=3,
+        embed_dim=768, depth=12, num_heads=12,
+        mlp_ratio=4.0, dropout=0.1,
+    )
+
+    pe_p  = sum(p.numel() for p in encoder.patch_embed.parameters())
+    blk_p = sum(p.numel() for p in encoder.blocks.parameters())
+    ln_p  = sum(p.numel() for p in encoder.norm.parameters())
+    tot_p = sum(p.numel() for p in encoder.parameters())
+
+    print(f"Parameter breakdown:")
+    print(f"  PatchEmbedding           : {pe_p:>12,}  ({100*pe_p/tot_p:.1f}%)")
+    print(f"  TransformerBlocks × 12   : {blk_p:>12,}  ({100*blk_p/tot_p:.1f}%)")
+    print(f"    per block              : {blk_p//12:>12,}")
+    print(f"  Final LayerNorm          : {ln_p:>12,}  ({100*ln_p/tot_p:.1f}%)")
+    print(f"  {'─'*44}")
+    print(f"  Total                    : {tot_p:>12,}  (~{tot_p/1e6:.0f}M params)")
+
+    print(f"\nModel summary (shape at each stage):")
+    print(f"  Input                    : (B, 3, 256, 256)")
+    print(f"  After PatchEmbedding     : (B, {encoder.num_patches + 1}, 768)  "
+          f"← {encoder.num_patches} patches + 1 CLS")
+    print(f"  After each block         : (B, {encoder.num_patches + 1}, 768)  (unchanged)")
+    print(f"  After LayerNorm          : (B, {encoder.num_patches + 1}, 768)")
+    print(f"  Output (patch tokens)    : (B, {encoder.num_patches}, 768)  ← CLS dropped")
+    print(f"  Output (CLS token)       : (B, 768)")
+
+    x = torch.randn(2, 3, 256, 256)
+
+    with torch.no_grad():
+        patch_feats = encoder(x, return_all_tokens=True)
+        cls_feat    = encoder(x, return_all_tokens=False)
+        attn_maps   = encoder.get_attention_maps(x)
+
+    print(f"\nForward pass results:")
+    print(f"  Patch features : {tuple(patch_feats.shape)}")
+    print(f"  CLS feature    : {tuple(cls_feat.shape)}")
+    print(f"  Attention maps : {tuple(attn_maps.shape)}  (depth, B, heads, N, N)")
+
+    assert patch_feats.shape == (2, 256, 768)
+    assert cls_feat.shape    == (2, 768)
+    assert attn_maps.shape   == (12, 2, 12, 257, 257)
+    print("\n ViTEncoder tests PASSED!")
