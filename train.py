@@ -426,14 +426,19 @@ def main(argv=None) -> None:
         scheduler.step()
 
         # ── validate ───────────────────────────────────────────────────
-        val_loss, val_m = _validate(
-            model     = model,
-            loader    = loaders["val"],
-            criterion = criterion,
-            device    = device,
-        )
-
         lr_now = optimizer.param_groups[0]["lr"]
+        if len(loaders["val"].dataset) == 0:
+            logger.warning("Val split is empty — skipping validation this epoch.")
+            val_loss = float("nan")
+            val_m    = {k: float("nan") for k in ("f1","iou","precision","recall","kappa","accuracy")}
+        else:
+            val_loss, val_m = _validate(
+                model     = model,
+                loader    = loaders["val"],
+                criterion = criterion,
+                device    = device,
+            )
+
         logger.info(
             f"Epoch {epoch:03d}  "
             f"train_loss={train_loss:.4f}  val_loss={val_loss:.4f}  "

@@ -134,14 +134,15 @@ class OSCDDataset(Dataset):
 
         # collect file stems in sorted order so A / B / label are aligned
         a_dir = self.root / "A"
-        if not a_dir.exists():
-            raise FileNotFoundError(
-                f"A/ directory not found under {self.root}. "
-                "Run scripts/extract_patches.py first."
+        if not a_dir.exists() or not list(a_dir.glob("*.png")):
+            import warnings
+            warnings.warn(
+                f"No patches found for split '{split}' under {self.root}. "
+                "This split will be empty."
             )
+            self.stems = []
+            return
         self.stems = sorted(p.stem for p in a_dir.glob("*.png"))
-        if not self.stems:
-            raise ValueError(f"No PNG files found in {a_dir}")
 
     # ------------------------------------------------------------------
     def __len__(self) -> int:
