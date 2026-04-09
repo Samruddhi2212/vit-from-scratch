@@ -58,9 +58,9 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from configs.config import ViTConfig
 from models.patch_embedding import PatchEmbedding
 from models.transformer_block import (
-    TransformerBlock,
+    TransformerEncoderBlock,
     TransformerBlockPostNorm,
-    TransformerBlockNoResidual
+    TransformerBlockNoResidual,
 )
 from models.mlp import LayerNorm
 
@@ -111,25 +111,28 @@ class ViT(nn.Module):
         #
         # Choose block type based on ablation setting
         if block_type == "pre_norm":
-            BlockClass = TransformerBlock
+            self.blocks = nn.ModuleList([
+                TransformerEncoderBlock(
+                    embed_dim=config.d_model,
+                    num_heads=config.num_heads,
+                    mlp_ratio=config.ffn_hidden / config.d_model,
+                    dropout=config.dropout,
+                    attn_dropout=config.dropout if not use_scaling else 0.0,
+                )
+                for _ in range(config.num_layers)
+            ])
         elif block_type == "post_norm":
-            BlockClass = TransformerBlockPostNorm
+            self.blocks = nn.ModuleList([
+                TransformerBlockPostNorm(config)
+                for _ in range(config.num_layers)
+            ])
         elif block_type == "no_residual":
-            BlockClass = TransformerBlockNoResidual
+            self.blocks = nn.ModuleList([
+                TransformerBlockNoResidual(config)
+                for _ in range(config.num_layers)
+            ])
         else:
             raise ValueError(f"Unknown block_type: {block_type}")
-        
-        if block_type == "pre_norm":
-            # Only PreNorm block supports the use_scaling flag
-            self.blocks = nn.ModuleList([
-                BlockClass(config, use_scaling=use_scaling)
-                for _ in range(config.num_layers)
-            ])
-        else:
-            self.blocks = nn.ModuleList([
-                BlockClass(config)
-                for _ in range(config.num_layers)
-            ])
         
         # ─── 3. Final LayerNorm ───
         # Applied to the [CLS] token representation before classification
@@ -189,8 +192,9 @@ class ViT(nn.Module):
         # We don't store attention weights during normal forward pass
         # (saves memory during training). Use get_attention_maps() for visualization.
         for block in self.blocks:
-            x, _ = block(x)
-        
+            out = block(x)
+            x = out[0] if isinstance(out, tuple) else out
+
         # ─── Step 3: Extract representation for classification ───
         if self.use_cls_token:
             # Take the [CLS] token (index 0) — it has attended to all patches
@@ -232,7 +236,10 @@ class ViT(nn.Module):
         
         # Pass through blocks, collecting attention at each layer
         for block in self.blocks:
-            x, attn_weights = block(x)
+            if hasattr(block, "get_attention_weights"):
+                x, attn_weights = block.get_attention_weights(x)
+            else:
+                x, attn_weights = block(x)
             all_attention_weights.append(attn_weights)
         
         # Stack: list of [B, heads, N, N] → [layers, B, heads, N, N]
@@ -254,8 +261,9 @@ class ViT(nn.Module):
         x = self.patch_embed(x)
         
         for block in self.blocks:
-            x, _ = block(x)
-        
+            out = block(x)
+            x = out[0] if isinstance(out, tuple) else out
+
         # Extract [CLS] token and normalize
         cls_embedding = self.norm(x[:, 0])
         

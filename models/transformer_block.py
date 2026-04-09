@@ -1,97 +1,69 @@
 """
-Transformer Block for Vision Transformer.
+Transformer Encoder Block for Vision Transformer.
 
 This is the repeating unit of the ViT. The full model stacks N of these.
 Each block takes a sequence of tokens, lets them attend to each other
-(attention), then processes each token individually (MLP), with
-normalization and residual connections for stability.
+(MHSA), then processes each token independently (MLP), with
+Pre-LayerNorm and residual connections for stability.
 
 ═══════════════════════════════════════════════════════════
-ARCHITECTURE (Pre-Norm):
+ARCHITECTURE (Pre-LN / Pre-Norm):
 ═══════════════════════════════════════════════════════════
 
     Input x ─────────────────────────────┐
-         │                               │ (residual connection)
+         │                               │ (residual)
          ↓                               │
     LayerNorm                            │
          │                               │
          ↓                               │
-    Multi-Head Attention                 │
+    MHSA                                 │
          │                               │
-         ↓                               │
-    Dropout                              │
+      Dropout                            │
          │                               │
-         ↓                               │
-    ADD (x + attention output) ←─────────┘
-         │
-         │ = x'
+    x + attn_out  ◄──────────────────────┘
          │
     x' ──────────────────────────────────┐
-         │                               │ (residual connection)
+         │                               │ (residual)
          ↓                               │
     LayerNorm                            │
          │                               │
          ↓                               │
-    MLP (Feed-Forward Network)           │
+    MLP                                  │
          │                               │
-         ↓                               │
-    Dropout                              │
+      Dropout                            │
          │                               │
-         ↓                               │
-    ADD (x' + mlp output) ←──────────────┘
+    x' + mlp_out  ◄──────────────────────┘
          │
-         ↓
-    Output
+       Output
 
 ═══════════════════════════════════════════════════════════
-PRE-NORM vs POST-NORM — Important Design Choice
+PRE-NORM vs POST-NORM
 ═══════════════════════════════════════════════════════════
 
-Pre-Norm (what ViT uses):
-    output = x + Attention(LayerNorm(x))
-    
-Post-Norm (original transformer paper):
-    output = LayerNorm(x + Attention(x))
+Pre-Norm (used here):  output = x + Sublayer(LayerNorm(x))
+Post-Norm (original):  output = LayerNorm(x + Sublayer(x))
 
 WHY Pre-Norm is better for training stability:
+  With Pre-Norm the identity I always exists in the gradient path:
+    ∂output/∂x = I + ∂Sublayer/∂LayerNorm · ∂LayerNorm/∂x
+  Gradients can always flow directly through the skip connection.
 
-Consider the gradient flow through a residual connection:
-    ∂L/∂x = ∂L/∂output × ∂output/∂x
-
-Pre-Norm:  output = x + f(LayerNorm(x))
-    ∂output/∂x = I + ∂f/∂x × ∂LayerNorm/∂x
-    The identity matrix I guarantees a clean gradient path.
-    Gradients can always flow directly through the skip connection.
-
-Post-Norm: output = LayerNorm(x + f(x))
-    ∂output/∂x = ∂LayerNorm/∂input × (I + ∂f/∂x)
-    The LayerNorm Jacobian multiplies EVERYTHING, including the
-    skip connection. This can distort gradients and cause instability.
-
-In practice: Pre-Norm trains more stably, especially for deep models.
-The original transformer used Post-Norm, but ViT and most modern
-transformers use Pre-Norm.
+  With Post-Norm the LayerNorm Jacobian multiplies everything,
+  including the skip, which can distort gradients and cause
+  instability in deep models.
 
 ═══════════════════════════════════════════════════════════
 RESIDUAL CONNECTIONS — Why They're Essential
 ═══════════════════════════════════════════════════════════
 
-Without residual connections, in an L-layer network, the gradient is:
-    ∂L/∂x₁ = ∂L/∂xₗ × ∂xₗ/∂xₗ₋₁ × ... × ∂x₂/∂x₁
+Without residuals in an L-layer network:
+    ∂L/∂x₁ = product of L Jacobians → shrinks exponentially (vanishing grads)
 
-This is a product of L matrices. If any of these has eigenvalues < 1,
-the product shrinks exponentially → vanishing gradients.
-
-With residual connections: output = x + f(x)
+With residuals: output = x + f(x)
     ∂output/∂x = I + ∂f/∂x
-
-The "I" (identity) means gradients always have a direct path that
-doesn't shrink. A 6-layer ViT with residuals actually has 2⁶ = 64
-implicit gradient paths of different lengths (Veit et al., 2016).
-The network effectively acts as an ensemble of shallow networks.
-
-We'll verify this in our ablation study: removing residual connections
-should cause gradients to vanish and training to fail.
+    The identity I gives gradients a direct highway that never shrinks.
+    A 12-layer ViT with residuals has 2¹² = 4096 implicit gradient paths
+    (Veit et al., 2016) — effectively an ensemble of shallow networks.
 """
 
 import torch
@@ -102,287 +74,248 @@ import os
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from configs.config import ViTConfig
 from models.attention import MultiHeadAttention
-from models.mlp import LayerNorm, MLP
+from models.mlp import MLP
 
 
-class TransformerBlock(nn.Module):
+class TransformerEncoderBlock(nn.Module):
     """
-    A single transformer block (Pre-Norm variant).
+    Single Transformer Encoder Block (Pre-LN architecture).
 
-    The full ViT stacks num_layers of these sequentially.
+    Combines MHSA and MLP with Pre-LayerNorm and residual connections.
+
+    Args:
+        embed_dim   : Token embedding dimension.           Default 768.
+        num_heads   : Number of attention heads.           Default 12.
+        mlp_ratio   : MLP hidden-dim expansion factor.     Default 4.0.
+        dropout     : Dropout after attention and MLP.     Default 0.0.
+        attn_dropout: Dropout inside attention weights.    Default 0.0.
     """
 
-    def __init__(self, config: ViTConfig, use_scaling: bool = True):
+    def __init__(
+        self,
+        embed_dim: int = 768,
+        num_heads: int = 12,
+        mlp_ratio: float = 4.0,
+        dropout: float = 0.0,
+        attn_dropout: float = 0.0,
+    ) -> None:
         super().__init__()
 
-        self.norm1 = LayerNorm(config.d_model)
-        self.attention = MultiHeadAttention(
-            embed_dim=config.d_model,
-            num_heads=config.num_heads,
-            dropout=config.dropout,
-            use_scaling=use_scaling,
+        self.norm1 = nn.LayerNorm(embed_dim)
+        self.attn  = MultiHeadAttention(
+            embed_dim=embed_dim,
+            num_heads=num_heads,
+            dropout=attn_dropout,
         )
-        self.norm2 = LayerNorm(config.d_model)
-        self.mlp = MLP(
-            embed_dim=config.d_model,
-            mlp_ratio=config.ffn_hidden / config.d_model,
-            dropout=config.dropout,
+        self.drop1 = nn.Dropout(dropout)
+
+        self.norm2 = nn.LayerNorm(embed_dim)
+        self.mlp   = MLP(
+            embed_dim=embed_dim,
+            mlp_ratio=mlp_ratio,
+            dropout=dropout,
         )
-        self.dropout = nn.Dropout(config.dropout)
-    
-    def forward(
-        self, x: torch.Tensor
-    ) -> tuple[torch.Tensor, torch.Tensor]:
+        self.drop2 = nn.Dropout(dropout)
+
+    def forward(self, x: torch.Tensor) -> torch.Tensor:
         """
-        Forward pass through one transformer block.
-        
         Args:
-            x: Input tensor, shape [B, N, d_model]
-        
+            x: (B, N, embed_dim)
         Returns:
-            output: Transformed tensor, shape [B, N, d_model]
-            attn_weights: Attention matrix, shape [B, num_heads, N, N]
+            (B, N, embed_dim)
         """
-        # ─── Attention sub-block with residual connection ───
-        # 1. Save input for residual
-        residual = x
-        # 2. Normalize (Pre-Norm)
-        x = self.norm1(x)
-        # 3. Multi-head self-attention
-        x, attn_weights = self.attention(x)
-        # 4. Dropout
-        x = self.dropout(x)
-        # 5. Add residual (the key operation!)
-        x = residual + x
-        
-        # ─── MLP sub-block with residual connection ───
-        # Same pattern: save → normalize → transform → dropout → add
-        residual = x
-        x = self.norm2(x)
-        x = self.mlp(x)
-        x = self.dropout(x)
-        x = residual + x
-        
+        # Attention sub-block: Pre-LN + residual
+        attn_out, _ = self.attn(self.norm1(x))
+        x = x + self.drop1(attn_out)
+
+        # MLP sub-block: Pre-LN + residual
+        x = x + self.drop2(self.mlp(self.norm2(x)))
+
+        return x
+
+    def get_attention_weights(self, x: torch.Tensor) -> tuple[torch.Tensor, torch.Tensor]:
+        """Return (output, attn_weights) — useful for visualization / rollout.
+
+        Args:
+            x: (B, N, embed_dim)
+        Returns:
+            out         : (B, N, embed_dim)
+            attn_weights: (B, num_heads, N, N)
+        """
+        attn_out, attn_weights = self.attn(self.norm1(x))
+        x = x + self.drop1(attn_out)
+        x = x + self.drop2(self.mlp(self.norm2(x)))
         return x, attn_weights
 
 
+# ── Ablation variants (used by ViT for comparative experiments) ───────────────
+
 class TransformerBlockPostNorm(nn.Module):
-    """
-    Post-Norm variant — FOR ABLATION STUDY ONLY.
-    
-    The only difference: LayerNorm is applied AFTER the residual addition
-    instead of before the sublayer.
-    
+    """Post-Norm variant — FOR ABLATION STUDY ONLY.
+
     Pre-Norm:  x + Sublayer(LayerNorm(x))
-    Post-Norm: LayerNorm(x + Sublayer(x))
-    
+    Post-Norm: LayerNorm(x + Sublayer(x))   ← applied AFTER residual addition
+
     We expect this to train less stably than Pre-Norm.
     """
-    
+
     def __init__(self, config: ViTConfig):
         super().__init__()
-        self.norm1 = LayerNorm(config.d_model)
-        self.attention = MultiHeadAttention(
+        self.norm1 = nn.LayerNorm(config.d_model)
+        self.attn  = MultiHeadAttention(
             embed_dim=config.d_model,
             num_heads=config.num_heads,
             dropout=config.dropout,
         )
-        self.norm2 = LayerNorm(config.d_model)
-        self.mlp = MLP(
+        self.norm2 = nn.LayerNorm(config.d_model)
+        self.mlp   = MLP(
             embed_dim=config.d_model,
             mlp_ratio=config.ffn_hidden / config.d_model,
             dropout=config.dropout,
         )
         self.dropout = nn.Dropout(config.dropout)
 
-    def forward(
-        self, x: torch.Tensor
-    ) -> tuple[torch.Tensor, torch.Tensor]:
-        # Post-Norm: normalize AFTER residual addition
-        attn_output, attn_weights = self.attention(x)
-        x = self.norm1(x + self.dropout(attn_output))
-        
-        mlp_output = self.mlp(x)
-        x = self.norm2(x + self.dropout(mlp_output))
-        
+    def forward(self, x: torch.Tensor) -> tuple[torch.Tensor, torch.Tensor]:
+        attn_out, attn_weights = self.attn(x)
+        x = self.norm1(x + self.dropout(attn_out))
+        x = self.norm2(x + self.dropout(self.mlp(x)))
         return x, attn_weights
 
 
 class TransformerBlockNoResidual(nn.Module):
+    """No residual connections — FOR ABLATION STUDY ONLY.
+
+    Without residuals, gradients must flow through every layer sequentially.
+    For a deep model this should cause vanishing gradients and training failure.
     """
-    No residual connections — FOR ABLATION STUDY ONLY.
-    
-    Without residuals, gradients must flow through every layer
-    sequentially. For a 6-layer model, this should cause
-    vanishing gradients and training failure.
-    """
-    
+
     def __init__(self, config: ViTConfig):
         super().__init__()
-        self.norm1 = LayerNorm(config.d_model)
-        self.attention = MultiHeadAttention(
+        self.norm1 = nn.LayerNorm(config.d_model)
+        self.attn  = MultiHeadAttention(
             embed_dim=config.d_model,
             num_heads=config.num_heads,
             dropout=config.dropout,
         )
-        self.norm2 = LayerNorm(config.d_model)
-        self.mlp = MLP(
+        self.norm2 = nn.LayerNorm(config.d_model)
+        self.mlp   = MLP(
             embed_dim=config.d_model,
             mlp_ratio=config.ffn_hidden / config.d_model,
             dropout=config.dropout,
         )
         self.dropout = nn.Dropout(config.dropout)
 
-    def forward(
-        self, x: torch.Tensor
-    ) -> tuple[torch.Tensor, torch.Tensor]:
-        # NO residual connections — just sequential processing
-        x = self.norm1(x)
-        x, attn_weights = self.attention(x)
+    def forward(self, x: torch.Tensor) -> tuple[torch.Tensor, torch.Tensor]:
+        x, attn_weights = self.attn(self.norm1(x))
         x = self.dropout(x)
-        # Note: no "x = residual + x" here!
-        
-        x = self.norm2(x)
-        x = self.mlp(x)
+        x = self.mlp(self.norm2(x))
         x = self.dropout(x)
-        
         return x, attn_weights
 
 
 # ──────────────────────────────────────────────────────
-# TESTS
+# TESTS — python models/transformer_block.py
 # ──────────────────────────────────────────────────────
 if __name__ == "__main__":
-    config = ViTConfig()
-    
-    # ──────────────────────────────────────────────
+
+    # ── TEST 1: Shape & parameter count ──────────────────────────────────
     print("=" * 60)
-    print("TEST 1: TransformerBlock (Pre-Norm) — Shape & Forward Pass")
+    print("TEST 1: TransformerEncoderBlock (embed=768, heads=12)")
     print("=" * 60)
-    
-    block = TransformerBlock(config)
-    
-    # Count parameters
-    total_params = sum(p.numel() for p in block.parameters())
-    print(f"TransformerBlock parameters: {total_params:,}")
-    print(f"  - norm1 (LayerNorm):       {sum(p.numel() for p in block.norm1.parameters()):,}")
-    print(f"  - attention (MHA):         {sum(p.numel() for p in block.attention.parameters()):,}")
-    print(f"  - norm2 (LayerNorm):       {sum(p.numel() for p in block.norm2.parameters()):,}")
-    print(f"  - mlp (FFN):               {sum(p.numel() for p in block.mlp.parameters()):,}")
-    
-    # Forward pass
-    x = torch.randn(4, 65, 128)
-    output, attn_weights = block(x)
-    
-    print(f"\nInput shape:            {x.shape}")
-    print(f"Output shape:           {output.shape}")
-    print(f"Attention weights shape: {attn_weights.shape}")
-    
-    assert output.shape == x.shape, f"Shape mismatch: {output.shape}"
-    assert attn_weights.shape == (4, config.num_heads, 65, 65)
-    
-    print(" TransformerBlock shape test PASSED!")
-    
-    # ──────────────────────────────────────────────
+
+    block = TransformerEncoderBlock(embed_dim=768, num_heads=12, mlp_ratio=4.0, dropout=0.1)
+
+    total = sum(p.numel() for p in block.parameters())
+    print("Parameters:")
+    print(f"  norm1 (LN)  : {sum(p.numel() for p in block.norm1.parameters()):>10,}")
+    print(f"  attn  (MHSA): {sum(p.numel() for p in block.attn.parameters()):>10,}")
+    print(f"  norm2 (LN)  : {sum(p.numel() for p in block.norm2.parameters()):>10,}")
+    print(f"  mlp   (FFN) : {sum(p.numel() for p in block.mlp.parameters()):>10,}")
+    print(f"  Total       : {total:>10,}")
+
+    x   = torch.randn(2, 257, 768)
+    out = block(x)
+    print(f"\nInput  : {tuple(x.shape)}")
+    print(f"Output : {tuple(out.shape)}")
+    assert out.shape == x.shape, f"Shape mismatch: {out.shape}"
+    print(" Shape test PASSED!")
+
+    # ── TEST 2: Residual connection ───────────────────────────────────────
     print("\n" + "=" * 60)
-    print("TEST 2: Residual connection verification")
+    print("TEST 2: Residual connection")
     print("=" * 60)
-    
-    # The output should be CLOSE to the input (because of residual)
-    # but not identical (because attention and MLP modify it)
-    diff = (output - x).abs().mean().item()
-    print(f"Mean absolute difference from input: {diff:.4f}")
-    print(f"  (Should be small but non-zero — residual + small modifications)")
-    
-    assert diff > 0.001, "Output is too similar to input — block not computing!"
-    assert diff < 10.0, "Output is too different from input — residual may be broken!"
-    
-    print(" Residual connection test PASSED!")
-    
-    # ──────────────────────────────────────────────
+
+    diff = (out - x).abs().mean().item()
+    print(f"Mean |output - input|: {diff:.4f}  (non-zero = block is computing)")
+    assert 0.001 < diff < 10.0
+    print(" PASSED!")
+
+    # ── TEST 3: Attention weights via get_attention_weights ───────────────
     print("\n" + "=" * 60)
-    print("TEST 3: Gradient flow through the block")
+    print("TEST 3: get_attention_weights")
     print("=" * 60)
-    
+
+    out2, attn = block.get_attention_weights(x)
+    print(f"Output      : {tuple(out2.shape)}")
+    print(f"Attn weights: {tuple(attn.shape)}")
+    assert out2.shape  == (2, 257, 768)
+    assert attn.shape  == (2, 12, 257, 257)
+    assert torch.allclose(attn.sum(dim=-1), torch.ones(2, 12, 257), atol=1e-5)
+    print(" PASSED!")
+
+    # ── TEST 4: Gradient flow ─────────────────────────────────────────────
+    print("\n" + "=" * 60)
+    print("TEST 4: Gradient flow")
+    print("=" * 60)
+
     block.zero_grad()
-    x = torch.randn(4, 65, 128, requires_grad=True)
-    output, _ = block(x)
-    loss = output.sum()
-    loss.backward()
-    
-    # Check input gradient
-    assert x.grad is not None, "No gradient for input!"
-    input_grad_norm = x.grad.norm().item()
-    print(f"Input gradient norm: {input_grad_norm:.4f}")
-    
-    # Check all parameter gradients
-    all_ok = True
-    for name, param in block.named_parameters():
-        if param.grad is None:
-            print(f"   No gradient: {name}")
-            all_ok = False
-        elif torch.isnan(param.grad).any():
-            print(f"   NaN gradient: {name}")
-            all_ok = False
-    
-    if all_ok:
-        print("All parameters received valid gradients")
-    print(" Gradient flow test PASSED!")
-    
-    # ──────────────────────────────────────────────
+    x_g = torch.randn(2, 257, 768, requires_grad=True)
+    block(x_g).sum().backward()
+    assert x_g.grad is not None and not torch.isnan(x_g.grad).any()
+    all_ok = all(
+        p.grad is not None and not torch.isnan(p.grad).any()
+        for p in block.parameters()
+    )
+    print(f"  Input grad norm : {x_g.grad.norm().item():.4f}")
+    print(f"  All param grads : {'valid' if all_ok else 'MISSING'}")
+    print(" PASSED!")
+
+    # ── TEST 5: Stack 12 blocks ───────────────────────────────────────────
     print("\n" + "=" * 60)
-    print("TEST 4: Stacking multiple blocks (like the full ViT)")
+    print("TEST 5: Stacking 12 blocks (ViT-Base depth)")
     print("=" * 60)
-    
-    # Create 6 blocks (default num_layers)
-    blocks = nn.ModuleList([TransformerBlock(config) for _ in range(config.num_layers)])
-    
-    total_block_params = sum(p.numel() for p in blocks.parameters())
-    print(f"Total parameters for {config.num_layers} blocks: {total_block_params:,}")
-    print(f"  ({total_block_params // config.num_layers:,} per block)")
-    
-    # Forward pass through all blocks
-    x = torch.randn(4, 65, 128)
-    all_attn_weights = []
-    
-    for i, block in enumerate(blocks):
-        x, attn_weights = block(x)
-        all_attn_weights.append(attn_weights)
-    
-    print(f"\nAfter {config.num_layers} blocks:")
-    print(f"  Output shape: {x.shape}")
-    print(f"  Attention weights collected: {len(all_attn_weights)}")
-    print(f"  Each attention weight shape: {all_attn_weights[0].shape}")
-    
-    # Stack all attention weights for visualization later
-    stacked_attn = torch.stack(all_attn_weights)
-    print(f"  Stacked attention shape: {stacked_attn.shape}")
-    print(f"    (layers, batch, heads, seq, seq)")
-    
-    assert x.shape == (4, 65, 128)
-    assert stacked_attn.shape == (6, 4, 4, 65, 65)
-    
-    print(" Stacking test PASSED!")
-    
-    # ──────────────────────────────────────────────
+
+    blocks = nn.ModuleList([
+        TransformerEncoderBlock(embed_dim=768, num_heads=12) for _ in range(12)
+    ])
+    total_stack = sum(p.numel() for p in blocks.parameters())
+    print(f"12 blocks total params : {total_stack:,}  ({total_stack//12:,} per block)")
+
+    x = torch.randn(2, 257, 768)
+    for blk in blocks:
+        x = blk(x)
+    assert x.shape == (2, 257, 768)
+    print(f"Output after 12 blocks : {tuple(x.shape)}")
+    print(" PASSED!")
+
+    # ── TEST 6: Ablation variants ─────────────────────────────────────────
     print("\n" + "=" * 60)
-    print("TEST 5: Ablation variants exist and run")
+    print("TEST 6: Ablation variants (Post-Norm, No-Residual)")
     print("=" * 60)
-    
-    # Post-Norm variant
-    post_norm = TransformerBlockPostNorm(config)
-    out_post, _ = post_norm(torch.randn(4, 65, 128))
-    assert out_post.shape == (4, 65, 128)
-    print("  Post-Norm block: ")
-    
-    # No-Residual variant
-    no_res = TransformerBlockNoResidual(config)
-    out_nores, _ = no_res(torch.randn(4, 65, 128))
-    assert out_nores.shape == (4, 65, 128)
-    print("  No-Residual block: ")
-    
-    print(" Ablation variants test PASSED!")
-    
+
+    from configs.config import ViTConfig
+    cfg = ViTConfig()
+
+    pn = TransformerBlockPostNorm(cfg)
+    out_pn, _ = pn(torch.randn(2, 65, 128))
+    assert out_pn.shape == (2, 65, 128)
+    print("  Post-Norm block     : PASSED")
+
+    nr = TransformerBlockNoResidual(cfg)
+    out_nr, _ = nr(torch.randn(2, 65, 128))
+    assert out_nr.shape == (2, 65, 128)
+    print("  No-Residual block   : PASSED")
+
     print("\n" + "=" * 60)
     print("ALL TRANSFORMER BLOCK TESTS PASSED!")
     print("=" * 60)
