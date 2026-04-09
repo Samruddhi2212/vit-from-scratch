@@ -1,0 +1,53 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# Siamese ViT Change Detection — Training Configuration
+# Override any field with a CLI flag: --lr 5e-4
+# ─────────────────────────────────────────────────────────────────────────────
+
+# ── Data ──────────────────────────────────────────────────────────────────────
+data_dir: "./processed_oscd"
+num_workers: 4
+
+# ── Model ─────────────────────────────────────────────────────────────────────
+img_size: 256
+patch_size: 16
+in_channels: 3
+embed_dim: 768
+depth: 12
+num_heads: 12
+mlp_ratio: 4.0
+dropout: 0.1
+attn_dropout: 0.0
+diff_type: "concat_project"   # subtract | concat_project | attention
+diff_out_dim: 256
+decoder_dims: [128, 64, 32, 16]
+
+# ── Loss ──────────────────────────────────────────────────────────────────────
+loss: "bce_dice"              # bce_dice | focal_dice
+bce_weight: 0.5
+dice_weight: 0.5
+pos_weight: 5.0               # up-weight change class (set null to disable)
+focal_alpha: 0.25
+focal_gamma: 2.0
+
+# ── Optimiser ─────────────────────────────────────────────────────────────────
+optimizer: "adamw"
+lr: 1.0e-3
+weight_decay: 0.05
+grad_clip: 1.0
+
+# ── Schedule ──────────────────────────────────────────────────────────────────
+epochs: 200
+warmup_epochs: 10             # linear LR warmup
+min_lr: 1.0e-6                # cosine decay floor
+
+# ── Batch sizes ───────────────────────────────────────────────────────────────
+batch_size: 8
+eval_batch_size: 16
+
+# ── Logging & checkpointing ───────────────────────────────────────────────────
+log_every: 10                 # steps between console/TB log entries
+output_dir: "./outputs/siamese_vit"
+resume: null                  # path to checkpoint to resume from
+
+# ── Early stopping ────────────────────────────────────────────────────────────
+patience: 30                  # epochs without val-F1 improvement before stopping
