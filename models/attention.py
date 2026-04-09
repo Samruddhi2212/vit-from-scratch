@@ -391,3 +391,197 @@ if __name__ == "__main__":
     print("\n" + "=" * 60)
     print("ALL ATTENTION TESTS PASSED!")
     print("=" * 60)
+
+
+# ──────────────────────────────────────────────────────────────────────────────
+# STANDALONE MULTI-HEAD SELF-ATTENTION
+# Explicit constructor args — no ViTConfig dependency.
+# Fused QKV projection for efficiency (standard in modern ViT implementations).
+# ──────────────────────────────────────────────────────────────────────────────
+
+class MultiHeadSelfAttention(nn.Module):
+    """
+    Multi-Head Self-Attention with fused QKV projection.
+
+    Key difference from MultiHeadAttention above:
+      - Single nn.Linear(D, 3D) computes Q, K, V in one matmul instead of three.
+        This is ~1.5x faster in practice because a single large GEMM is more
+        efficient on GPU than three smaller ones.
+      - Explicit constructor args (no ViTConfig dependency).
+      - Returns attention weights for visualization / rollout.
+
+    Args:
+        embed_dim : Token embedding dimension.  Default 768 (ViT-Base).
+        num_heads : Number of attention heads.  Default 12.
+        dropout   : Dropout applied to attention weights and output projection.
+        qkv_bias  : Whether to add bias to the QKV projection. Default True.
+    """
+
+    def __init__(
+        self,
+        embed_dim: int = 768,
+        num_heads: int = 12,
+        dropout: float = 0.0,
+        qkv_bias: bool = True,
+    ) -> None:
+        super().__init__()
+        assert embed_dim % num_heads == 0, (
+            f"embed_dim ({embed_dim}) must be divisible by num_heads ({num_heads})"
+        )
+        self.embed_dim = embed_dim
+        self.num_heads = num_heads
+        self.head_dim  = embed_dim // num_heads          # d_k per head
+        self.scale     = self.head_dim ** -0.5           # 1 / √d_k
+
+        # Fused QKV: one matmul produces Q, K, V concatenated.
+        # Weight shape: (embed_dim, 3 * embed_dim)
+        self.qkv          = nn.Linear(embed_dim, embed_dim * 3, bias=qkv_bias)
+        self.proj         = nn.Linear(embed_dim, embed_dim)
+        self.attn_dropout = nn.Dropout(dropout)
+        self.proj_dropout = nn.Dropout(dropout)
+
+    # ------------------------------------------------------------------
+    def forward(
+        self, x: torch.Tensor
+    ) -> tuple[torch.Tensor, torch.Tensor]:
+        """
+        Args:
+            x: (B, N, embed_dim)  — e.g. (B, 257, 768)
+
+        Returns:
+            out        : (B, N, embed_dim)  — attended output
+            attn_weights: (B, num_heads, N, N) — softmax weights (for viz)
+
+        Step-by-step for B=2, N=257, embed_dim=768, num_heads=12, head_dim=64:
+
+          x           : (B, N, 768)
+          qkv(x)      : (B, N, 2304)   ← 768*3
+          reshape     : (B, N, 3, 12, 64)
+          permute     : (3, B, 12, N, 64)
+          q/k/v each  : (B, 12, N, 64)
+
+          q @ kᵀ      : (B, 12, N, N)  ← raw scores
+          / scale     : (B, 12, N, N)  ← prevent softmax saturation
+          softmax     : (B, 12, N, N)  ← attention weights (rows sum to 1)
+          dropout     : (B, 12, N, N)
+
+          attn @ v    : (B, 12, N, 64)
+          transpose   : (B, N, 12, 64)
+          reshape     : (B, N, 768)    ← concatenate heads
+          proj        : (B, N, 768)    ← output projection
+        """
+        B, N, C = x.shape
+
+        # ── 1. Fused QKV projection ────────────────────────────────────────
+        qkv = self.qkv(x)                              # (B, N, 3*embed_dim)
+        qkv = qkv.reshape(B, N, 3, self.num_heads, self.head_dim)
+        qkv = qkv.permute(2, 0, 3, 1, 4)              # (3, B, h, N, head_dim)
+        q, k, v = qkv.unbind(0)                        # each: (B, h, N, head_dim)
+
+        # ── 2. Scaled dot-product attention ───────────────────────────────
+        attn = (q @ k.transpose(-2, -1)) * self.scale  # (B, h, N, N)
+        attn = attn.softmax(dim=-1)
+        attn_weights = attn                             # save before dropout
+        attn = self.attn_dropout(attn)
+
+        # ── 3. Weighted sum of values ──────────────────────────────────────
+        x = attn @ v                                   # (B, h, N, head_dim)
+        x = x.transpose(1, 2).reshape(B, N, C)        # (B, N, embed_dim)
+
+        # ── 4. Output projection ───────────────────────────────────────────
+        x = self.proj(x)
+        x = self.proj_dropout(x)
+
+        return x, attn_weights
+
+    # ------------------------------------------------------------------
+    @torch.no_grad()
+    def get_attention_map(
+        self,
+        x: torch.Tensor,
+        head: int | None = None,
+    ) -> torch.Tensor:
+        """Return attention weights averaged across heads (or a single head).
+
+        Useful for visualising which patches the model attends to.
+
+        Args:
+            x    : (B, N, embed_dim) input tokens.
+            head : If given, return weights for that head only (0-indexed).
+                   If None, return the mean across all heads.
+
+        Returns:
+            attn_map : (B, N, N) — where attn_map[b, i, j] is how much
+                       token i attends to token j in batch item b.
+        """
+        was_training = self.training
+        self.eval()
+        _, attn_weights = self.forward(x)   # (B, num_heads, N, N)
+        if was_training:
+            self.train()
+
+        if head is not None:
+            return attn_weights[:, head]    # (B, N, N)
+        return attn_weights.mean(dim=1)     # (B, N, N) — mean over heads
+
+
+# ──────────────────────────────────────────────────────
+# TEST — python models/attention.py
+# ──────────────────────────────────────────────────────
+if __name__ == "__main__":
+    print("\n" + "=" * 56)
+    print("MultiHeadSelfAttention  (embed=768, heads=12)")
+    print("=" * 56)
+
+    mhsa = MultiHeadSelfAttention(embed_dim=768, num_heads=12, dropout=0.1)
+
+    qkv_params  = sum(p.numel() for p in mhsa.qkv.parameters())
+    proj_params = sum(p.numel() for p in mhsa.proj.parameters())
+    total       = sum(p.numel() for p in mhsa.parameters())
+    print(f"Parameters:")
+    print(f"  qkv  (Linear 768→2304) : {qkv_params:>10,}")
+    print(f"  proj (Linear 768→768)  : {proj_params:>10,}")
+    print(f"  Total                  : {total:>10,}")
+    print(f"\nhead_dim = {mhsa.head_dim}  (768 / 12)")
+    print(f"scale    = {mhsa.scale:.6f}  (1 / √{mhsa.head_dim})")
+
+    # ── shape test ──────────────────────────────────────────────────────
+    print("\n── Shape test (B=2, N=257, C=768) ──")
+    x = torch.randn(2, 257, 768)
+    out, attn = mhsa(x)
+    print(f"  Input         : {tuple(x.shape)}")
+    print(f"  Output        : {tuple(out.shape)}")
+    print(f"  Attn weights  : {tuple(attn.shape)}")
+    assert out.shape  == (2, 257, 768),       f"Output shape wrong: {out.shape}"
+    assert attn.shape == (2, 12, 257, 257),   f"Attn shape wrong: {attn.shape}"
+
+    # ── attention weights sanity ─────────────────────────────────────────
+    row_sums = attn.sum(dim=-1)
+    assert torch.allclose(row_sums, torch.ones_like(row_sums), atol=1e-5), \
+        "Attention weights must sum to 1 across last dim"
+    assert (attn >= 0).all(), "Attention weights must be non-negative"
+    print("  Attn rows sum to 1 : True")
+    print("  Attn non-negative  : True")
+
+    # ── visualization helper ─────────────────────────────────────────────
+    print("\n── Attention map (mean over heads) ──")
+    attn_map = mhsa.get_attention_map(x)           # (B, N, N)
+    print(f"  Mean-head map shape : {tuple(attn_map.shape)}")
+    attn_head0 = mhsa.get_attention_map(x, head=0) # (B, N, N)
+    print(f"  Head-0    map shape : {tuple(attn_head0.shape)}")
+
+    # ── gradient flow ────────────────────────────────────────────────────
+    print("\n── Gradient flow ──")
+    mhsa.zero_grad()
+    x_g = torch.randn(2, 257, 768, requires_grad=True)
+    out_g, _ = mhsa(x_g)
+    out_g.sum().backward()
+    assert x_g.grad is not None and not torch.isnan(x_g.grad).any()
+    no_nan = all(
+        p.grad is not None and not torch.isnan(p.grad).any()
+        for p in mhsa.parameters()
+    )
+    print(f"  Input grad clean   : True")
+    print(f"  Param grads clean  : {no_nan}")
+
+    print("\nAll MultiHeadSelfAttention tests PASSED!")
