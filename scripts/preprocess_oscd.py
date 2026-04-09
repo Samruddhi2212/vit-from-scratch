@@ -170,9 +170,29 @@ def main() -> None:
     output_root = Path(args.output_dir)
     output_root.mkdir(parents=True, exist_ok=True)
 
-    # read official splits
-    train_regions = (images_root / "train.txt").read_text().strip().split(",")
-    test_regions  = (images_root / "test.txt").read_text().strip().split(",")
+    # read official splits if available, otherwise auto-discover from directories
+    train_txt = images_root / "train.txt"
+    test_txt  = images_root / "test.txt"
+
+    if train_txt.exists() and test_txt.exists():
+        train_regions = train_txt.read_text().strip().split(",")
+        test_regions  = test_txt.read_text().strip().split(",")
+    else:
+        # auto-discover: folders that have a matching label are train, rest are test
+        all_dirs = sorted(
+            d.name for d in images_root.iterdir()
+            if d.is_dir() and (d / "imgs_1_rect").exists()
+        )
+        if labels_root is not None:
+            train_regions = [d for d in all_dirs if (labels_root / d / "cm" / "cm.png").exists()]
+            test_regions  = [d for d in all_dirs if d not in train_regions]
+        else:
+            train_regions = all_dirs
+            test_regions  = []
+        print("  Note: train.txt/test.txt not found — regions auto-discovered from directories.")
+
+    train_regions = [r.strip() for r in train_regions if r.strip()]
+    test_regions  = [r.strip() for r in test_regions  if r.strip()]
 
     all_regions = [(r, "train") for r in train_regions] + \
                   [(r, "test")  for r in test_regions]
