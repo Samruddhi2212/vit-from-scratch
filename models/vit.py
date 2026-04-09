@@ -399,6 +399,78 @@ class ViTEncoder(nn.Module):
         return torch.stack(maps)
 
 
+# ──────────────────────────────────────────────────────────────────────────────
+# SIAMESE VIT ENCODER
+# Wraps a single ViTEncoder and routes both images through it.
+# Weight sharing is automatic — there is only one set of parameters.
+# ──────────────────────────────────────────────────────────────────────────────
+
+class SiameseViTEncoder(nn.Module):
+    """
+    Siamese ViT Encoder for change detection.
+
+    Both images share the SAME ViTEncoder weights, so the model learns
+    a representation that is consistent across time. This is essential for
+    change detection: if the two branches had separate weights, they could
+    learn different feature spaces, making pixel-wise comparison meaningless.
+
+    Usage:
+        siamese = SiameseViTEncoder()
+        feat1, feat2 = siamese(img1, img2)  # both (B, 256, 768)
+        diff = feat1 - feat2                # (B, 256, 768) — change signal
+
+    Args: identical to ViTEncoder.
+    """
+
+    def __init__(
+        self,
+        img_size: int = 256,
+        patch_size: int = 16,
+        in_channels: int = 3,
+        embed_dim: int = 768,
+        depth: int = 12,
+        num_heads: int = 12,
+        mlp_ratio: float = 4.0,
+        dropout: float = 0.1,
+        attn_dropout: float = 0.0,
+    ) -> None:
+        super().__init__()
+
+        self.encoder = ViTEncoder(
+            img_size=img_size,
+            patch_size=patch_size,
+            in_channels=in_channels,
+            embed_dim=embed_dim,
+            depth=depth,
+            num_heads=num_heads,
+            mlp_ratio=mlp_ratio,
+            dropout=dropout,
+            attn_dropout=attn_dropout,
+        )
+
+        self.embed_dim   = embed_dim
+        self.num_patches = (img_size // patch_size) ** 2
+
+    def forward(
+        self, img1: torch.Tensor, img2: torch.Tensor
+    ) -> tuple[torch.Tensor, torch.Tensor]:
+        """
+        Args:
+            img1: (B, C, H, W) — before image
+            img2: (B, C, H, W) — after  image
+        Returns:
+            feat1: (B, num_patches, embed_dim) — before features
+            feat2: (B, num_patches, embed_dim) — after  features
+        """
+        feat1 = self.encoder(img1, return_all_tokens=True)
+        feat2 = self.encoder(img2, return_all_tokens=True)
+        return feat1, feat2
+
+    def get_param_count(self) -> int:
+        """Total trainable parameters (same as a single ViTEncoder)."""
+        return sum(p.numel() for p in self.parameters() if p.requires_grad)
+
+
 # ──────────────────────────────────────────────────────
 # TESTS
 # ──────────────────────────────────────────────────────
@@ -631,3 +703,49 @@ if __name__ == "__main__":
     assert cls_feat.shape    == (2, 768)
     assert attn_maps.shape   == (12, 2, 12, 257, 257)
     print("\n ViTEncoder tests PASSED!")
+
+    # ──────────────────────────────────────────────
+    print("\n" + "=" * 60)
+    print("TEST 8: SiameseViTEncoder")
+    print("=" * 60)
+
+    siamese = SiameseViTEncoder(
+        img_size=256, patch_size=16, embed_dim=768, depth=12, num_heads=12,
+    )
+
+    img1 = torch.randn(2, 3, 256, 256)
+    img2 = torch.randn(2, 3, 256, 256)
+
+    with torch.no_grad():
+        feat1, feat2 = siamese(img1, img2)
+
+    print(f"feat1 shape : {tuple(feat1.shape)}")
+    print(f"feat2 shape : {tuple(feat2.shape)}")
+    assert feat1.shape == (2, 256, 768)
+    assert feat2.shape == (2, 256, 768)
+
+    # Weight sharing: both paths point to the identical encoder object
+    assert siamese.encoder is siamese.encoder, "encoder must be a single shared object"
+    enc_params  = sum(p.numel() for p in siamese.encoder.parameters())
+    siam_params = siamese.get_param_count()
+    print(f"\nViTEncoder params   : {enc_params:,}")
+    print(f"SiameseViTEncoder   : {siam_params:,}  (identical — weights are shared)")
+    assert enc_params == siam_params, "Siamese wrapper must not add extra parameters"
+
+    # Verify both branches really share the same weights
+    enc_param_ids  = {id(p) for p in siamese.encoder.parameters()}
+    siam_param_ids = {id(p) for p in siamese.parameters()}
+    assert enc_param_ids == siam_param_ids, "Parameter sets must be identical"
+    print(f"Shared weight check : PASSED  (same {len(enc_param_ids)} param tensors)")
+
+    # Gradient flows back through both branches
+    siamese.train()
+    feat1, feat2 = siamese(img1, img2)
+    (feat1.sum() + feat2.sum()).backward()
+    all_ok = all(
+        p.grad is not None and not torch.isnan(p.grad).any()
+        for p in siamese.parameters()
+    )
+    print(f"Gradient flow       : {'all valid' if all_ok else 'FAILED'}")
+
+    print("\n SiameseViTEncoder tests PASSED!")
