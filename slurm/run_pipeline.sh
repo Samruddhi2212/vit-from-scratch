@@ -36,15 +36,15 @@ nvidia-smi
 echo ""
 
 # ── Navigate to project ───────────────────────────────────────
-cd $SLURM_SUBMIT_DIR
+cd /home/katoch.aa/ondemand/vit-from-scratch
 
-# ── Paths — edit these before submitting ──────────────────────
-# Your HPC data folder has:  images/  and  train_labels/
-OSCD_IMAGES_DIR="$HOME/data/images"              # Sentinel-2 region folders
-OSCD_LABELS_DIR="$HOME/data/train_labels"        # change masks (cm/cm.png per region)
-PREPROCESSED_DIR="$HOME/data/oscd_preprocessed"  # intermediate .npy files
-PATCHES_DIR="$HOME/data/processed_oscd"          # final 256×256 PNG patches
-OUTPUT_DIR="$HOME/outputs/siamese_vit"           # checkpoints + logs
+# ── Paths ─────────────────────────────────────────────────────
+PROJECT_DIR="/home/katoch.aa/ondemand/vit-from-scratch"
+OSCD_IMAGES_DIR="$PROJECT_DIR/images"              # Sentinel-2 region folders
+OSCD_LABELS_DIR="$PROJECT_DIR/train_labels"        # change masks (cm/cm.png per region)
+PREPROCESSED_DIR="$PROJECT_DIR/oscd_preprocessed"  # intermediate .npy files
+PATCHES_DIR="$PROJECT_DIR/processed_oscd"          # final 256×256 PNG patches
+OUTPUT_DIR="$PROJECT_DIR/outputs/siamese_vit"      # checkpoints + logs
 
 # ── Create output dirs ────────────────────────────────────────
 mkdir -p logs
