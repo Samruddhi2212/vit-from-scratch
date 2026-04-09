@@ -39,7 +39,9 @@ echo ""
 cd $SLURM_SUBMIT_DIR
 
 # ── Paths — edit these before submitting ──────────────────────
-OSCD_RAW_DIR="$HOME/data/OSCD"                   # raw Kaggle/Onera download
+# Your HPC data folder has:  images/  and  train_labels/
+OSCD_IMAGES_DIR="$HOME/data/images"              # Sentinel-2 region folders
+OSCD_LABELS_DIR="$HOME/data/train_labels"        # change masks (cm/cm.png per region)
 PREPROCESSED_DIR="$HOME/data/oscd_preprocessed"  # intermediate .npy files
 PATCHES_DIR="$HOME/data/processed_oscd"          # final 256×256 PNG patches
 OUTPUT_DIR="$HOME/outputs/siamese_vit"           # checkpoints + logs
@@ -62,7 +64,8 @@ if [ -d "$PREPROCESSED_DIR" ] && [ "$(ls -A $PREPROCESSED_DIR 2>/dev/null)" ]; t
 else
     echo "Running preprocess_oscd.py ..."
     python scripts/preprocess_oscd.py \
-        --data_dir    "$OSCD_RAW_DIR" \
+        --images_dir  "$OSCD_IMAGES_DIR" \
+        --labels_dir  "$OSCD_LABELS_DIR" \
         --output_dir  "$PREPROCESSED_DIR"
 
     if [ $? -ne 0 ]; then
