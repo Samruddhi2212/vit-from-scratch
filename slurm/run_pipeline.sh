@@ -22,10 +22,9 @@ echo "========================================"
 
 # ── Load modules ──────────────────────────────────────────────
 module purge
-module load anaconda3/2023.09
+module load anaconda3/2024.06
 
 # ── Activate environment ──────────────────────────────────────
-# Update ENV_NAME to your conda env or venv path
 ENV_NAME="vit-cd"
 source activate $ENV_NAME
 
