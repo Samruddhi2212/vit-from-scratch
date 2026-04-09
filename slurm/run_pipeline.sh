@@ -39,8 +39,8 @@ cd /home/katoch.aa/ondemand/vit-from-scratch-main
 
 # ── Paths ─────────────────────────────────────────────────────
 PROJECT_DIR="/home/katoch.aa/ondemand/vit-from-scratch-main"
-OSCD_IMAGES_DIR="$PROJECT_DIR/images"              # Sentinel-2 region folders
-OSCD_LABELS_DIR="$PROJECT_DIR/train_labels"        # change masks (cm/cm.png per region)
+OSCD_IMAGES_DIR="$PROJECT_DIR/urban_train/images"              # Sentinel-2 region folders
+OSCD_LABELS_DIR="$PROJECT_DIR/urban_train/train_labels"        # change masks (cm/cm.png per region)
 PREPROCESSED_DIR="$PROJECT_DIR/oscd_preprocessed"  # intermediate .npy files
 PATCHES_DIR="$PROJECT_DIR/processed_oscd"          # final 256×256 PNG patches
 OUTPUT_DIR="$PROJECT_DIR/outputs/siamese_vit"      # checkpoints + logs
