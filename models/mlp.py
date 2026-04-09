@@ -359,3 +359,109 @@ if __name__ == "__main__":
     print("\n" + "=" * 60)
     print("ALL LAYERNORM + MLP TESTS PASSED!")
     print("=" * 60)
+
+
+# ──────────────────────────────────────────────────────────────────────────────
+# STANDALONE MLP
+# Explicit constructor args — no ViTConfig dependency.
+# Designed for embed_dim=768 (ViT-Base / OSCD Siamese ViT).
+# ──────────────────────────────────────────────────────────────────────────────
+
+class StandaloneMLP(nn.Module):
+    """
+    Feed-Forward Network (MLP) block used inside each Transformer layer.
+
+    Architecture:
+        x → fc1 (D → 4D) → GELU → Dropout → fc2 (4D → D) → Dropout
+
+    The 4× expansion creates a "bottleneck" that acts as a key-value memory:
+      - fc1 rows are "keys"  — pattern detectors in the input space
+      - fc2 cols are "values" — output directions to activate per pattern
+      - GELU non-linearity selects which patterns are active
+
+    Args:
+        embed_dim : Input and output dimension.           Default 768.
+        mlp_ratio : Hidden layer expansion factor.        Default 4.0 → 3072.
+        dropout   : Dropout applied after each linear.   Default 0.0.
+    """
+
+    def __init__(
+        self,
+        embed_dim: int = 768,
+        mlp_ratio: float = 4.0,
+        dropout: float = 0.0,
+    ) -> None:
+        super().__init__()
+        hidden_dim = int(embed_dim * mlp_ratio)   # 768 * 4 = 3072
+
+        self.fc1     = nn.Linear(embed_dim, hidden_dim)
+        self.act     = nn.GELU()
+        self.fc2     = nn.Linear(hidden_dim, embed_dim)
+        self.dropout = nn.Dropout(dropout)
+
+    def forward(self, x: torch.Tensor) -> torch.Tensor:
+        """
+        Args:
+            x: (B, N, embed_dim)
+
+        Returns:
+            (B, N, embed_dim)  — same shape as input
+
+        For embed_dim=768, mlp_ratio=4:
+            (B, N, 768) → fc1 → (B, N, 3072) → GELU → dropout
+                       → fc2 → (B, N, 768)  → dropout
+        """
+        x = self.fc1(x)       # expand:   D → 4D
+        x = self.act(x)       # GELU non-linearity
+        x = self.dropout(x)
+        x = self.fc2(x)       # compress: 4D → D
+        x = self.dropout(x)
+        return x
+
+
+# ──────────────────────────────────────────────────────
+# TEST — python models/mlp.py
+# ──────────────────────────────────────────────────────
+if __name__ == "__main__":
+    print("\n" + "=" * 52)
+    print("StandaloneMLP  (embed=768, ratio=4.0)")
+    print("=" * 52)
+
+    mlp = StandaloneMLP(embed_dim=768, mlp_ratio=4.0, dropout=0.1)
+
+    hidden_dim  = int(768 * 4.0)
+    fc1_params  = sum(p.numel() for p in mlp.fc1.parameters())
+    fc2_params  = sum(p.numel() for p in mlp.fc2.parameters())
+    total       = sum(p.numel() for p in mlp.parameters())
+
+    print(f"Parameters:")
+    print(f"  fc1 (768 → {hidden_dim}) : {fc1_params:>10,}")
+    print(f"  fc2 ({hidden_dim} → 768) : {fc2_params:>10,}")
+    print(f"  Total               : {total:>10,}")
+
+    # ── shape test ──────────────────────────────────────────────────────
+    print("\n── Shape test (B=2, N=257, embed_dim=768) ──")
+    x = torch.randn(2, 257, 768)
+    out = mlp(x)
+    print(f"  Input  : {tuple(x.shape)}")
+    print(f"  Output : {tuple(out.shape)}")
+    assert out.shape == x.shape, f"Shape mismatch: {out.shape}"
+
+    # ── output is not identity ───────────────────────────────────────────
+    assert not torch.allclose(out, x, atol=1e-3), \
+        "MLP must transform its input"
+
+    # ── gradient flow ────────────────────────────────────────────────────
+    print("\n── Gradient flow ──")
+    mlp_g = StandaloneMLP(embed_dim=768)
+    x_g   = torch.randn(2, 257, 768, requires_grad=True)
+    mlp_g(x_g).sum().backward()
+    assert x_g.grad is not None and not torch.isnan(x_g.grad).any()
+    param_ok = all(
+        p.grad is not None and not torch.isnan(p.grad).any()
+        for p in mlp_g.parameters()
+    )
+    print(f"  Input grad clean : True")
+    print(f"  Param grads clean: {param_ok}")
+
+    print("\nAll StandaloneMLP tests PASSED!")
