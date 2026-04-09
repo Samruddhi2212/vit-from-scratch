@@ -97,7 +97,13 @@ class ViT(nn.Module):
         
         # ─── 1. Patch Embedding ───
         # Converts images → sequence of patch tokens with [CLS] and positions
-        self.patch_embed = PatchEmbedding(config)
+        self.patch_embed = PatchEmbedding(
+            img_size=config.image_size,
+            patch_size=config.patch_size,
+            in_channels=config.in_channels,
+            embed_dim=config.d_model,
+            dropout=config.dropout,
+        )
         
         # ─── 2. Transformer Blocks ───
         # Stack num_layers blocks. Using nn.ModuleList (not a Python list!)

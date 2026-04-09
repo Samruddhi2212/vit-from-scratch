@@ -108,39 +108,26 @@ from models.mlp import LayerNorm, MLP
 class TransformerBlock(nn.Module):
     """
     A single transformer block (Pre-Norm variant).
-    
+
     The full ViT stacks num_layers of these sequentially.
-    
-    Parameter count per block (default config):
-      - LayerNorm 1:          2 × 128 = 256
-      - MultiHeadAttention:   66,048
-      - LayerNorm 2:          2 × 128 = 256
-      - MLP:                  131,712
-      Total per block:        198,272
-      
-    For 6 blocks: 198,272 × 6 = 1,189,632 parameters
     """
-    
+
     def __init__(self, config: ViTConfig, use_scaling: bool = True):
         super().__init__()
-        
-        # ─── Pre-Attention LayerNorm ───
-        # Normalizes input before attention (Pre-Norm architecture)
+
         self.norm1 = LayerNorm(config.d_model)
-        
-        # ─── Multi-Head Self-Attention ───
-        # Lets each token attend to every other token
-        self.attention = MultiHeadAttention(config, use_scaling=use_scaling)
-        
-        # ─── Pre-MLP LayerNorm ───
-        # Normalizes input before the feed-forward network
+        self.attention = MultiHeadAttention(
+            embed_dim=config.d_model,
+            num_heads=config.num_heads,
+            dropout=config.dropout,
+            use_scaling=use_scaling,
+        )
         self.norm2 = LayerNorm(config.d_model)
-        
-        # ─── Feed-Forward Network ───
-        # Processes each token independently
-        self.mlp = MLP(config)
-        
-        # ─── Dropout for residual connections ───
+        self.mlp = MLP(
+            embed_dim=config.d_model,
+            mlp_ratio=config.ffn_hidden / config.d_model,
+            dropout=config.dropout,
+        )
         self.dropout = nn.Dropout(config.dropout)
     
     def forward(
@@ -195,11 +182,19 @@ class TransformerBlockPostNorm(nn.Module):
     def __init__(self, config: ViTConfig):
         super().__init__()
         self.norm1 = LayerNorm(config.d_model)
-        self.attention = MultiHeadAttention(config)
+        self.attention = MultiHeadAttention(
+            embed_dim=config.d_model,
+            num_heads=config.num_heads,
+            dropout=config.dropout,
+        )
         self.norm2 = LayerNorm(config.d_model)
-        self.mlp = MLP(config)
+        self.mlp = MLP(
+            embed_dim=config.d_model,
+            mlp_ratio=config.ffn_hidden / config.d_model,
+            dropout=config.dropout,
+        )
         self.dropout = nn.Dropout(config.dropout)
-    
+
     def forward(
         self, x: torch.Tensor
     ) -> tuple[torch.Tensor, torch.Tensor]:
@@ -225,11 +220,19 @@ class TransformerBlockNoResidual(nn.Module):
     def __init__(self, config: ViTConfig):
         super().__init__()
         self.norm1 = LayerNorm(config.d_model)
-        self.attention = MultiHeadAttention(config)
+        self.attention = MultiHeadAttention(
+            embed_dim=config.d_model,
+            num_heads=config.num_heads,
+            dropout=config.dropout,
+        )
         self.norm2 = LayerNorm(config.d_model)
-        self.mlp = MLP(config)
+        self.mlp = MLP(
+            embed_dim=config.d_model,
+            mlp_ratio=config.ffn_hidden / config.d_model,
+            dropout=config.dropout,
+        )
         self.dropout = nn.Dropout(config.dropout)
-    
+
     def forward(
         self, x: torch.Tensor
     ) -> tuple[torch.Tensor, torch.Tensor]:
