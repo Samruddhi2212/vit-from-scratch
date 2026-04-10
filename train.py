@@ -259,6 +259,15 @@ def _train_epoch(
             logits = model(img1, img2)
             loss   = criterion(logits, target)
 
+        loss_val = float(loss.item())
+        if not math.isfinite(loss_val):
+            logger.warning(
+                f"Epoch {epoch:03d} step {step+1}: non-finite loss={loss_val}, "
+                "skipping optimizer update for this batch."
+            )
+            optimizer.zero_grad(set_to_none=True)
+            continue
+
         if scaler is not None:
             scaler.scale(loss).backward()
             scaler.unscale_(optimizer)
@@ -270,7 +279,6 @@ def _train_epoch(
             nn.utils.clip_grad_norm_(model.parameters(), grad_clip)
             optimizer.step()
 
-        loss_val = loss.item()
         total_loss += loss_val
         global_step[0] += 1
 
