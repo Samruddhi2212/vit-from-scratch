@@ -144,7 +144,7 @@ def process_region(
         "region": region,
         "split": split,
         "shape_10m": (target_h, target_w),
-        "stack_shape": stack1.shape,
+        "stack_shape": rgb1.shape,
         "rgb_shape": rgb1.shape,
         **mask_info,
     }
