@@ -65,8 +65,8 @@ class BCEDiceLoss(nn.Module):
 
         # Soft Dice
         probs = torch.sigmoid(logits)
-        probs_f  = probs.view(-1)
-        target_f = targets.float().view(-1)
+        probs_f  = probs.reshape(-1)
+        target_f = targets.float().reshape(-1)
         intersection = (probs_f * target_f).sum()
         dice_loss = 1.0 - (2.0 * intersection + self.smooth) / (
             probs_f.sum() + target_f.sum() + self.smooth
@@ -124,8 +124,8 @@ class FocalDiceLoss(nn.Module):
         focal_loss = focal.mean()
 
         # Soft Dice
-        probs_f  = probs.view(-1)
-        target_f = targets_f.view(-1)
+        probs_f  = probs.reshape(-1)
+        target_f = targets_f.reshape(-1)
         intersection = (probs_f * target_f).sum()
         dice_loss = 1.0 - (2.0 * intersection + self.smooth) / (
             probs_f.sum() + target_f.sum() + self.smooth

@@ -21,6 +21,7 @@ Outputs (written to --output_dir)
 from __future__ import annotations
 
 import argparse
+from contextlib import nullcontext
 import logging
 import math
 import os
@@ -110,6 +111,9 @@ def _parse_args(argv=None) -> argparse.Namespace:
     p.add_argument("--patience",      type=int)
     p.add_argument("--threshold",     type=float,
                    help="Decision threshold for binary prediction (default 0.5)")
+    p.add_argument("--device",        type=str, default=None,
+                   choices=["cuda", "mps", "cpu"],
+                   help="Force a specific device (default: auto-detect cuda>cpu)")
 
     return p.parse_args(argv)
 
@@ -225,7 +229,7 @@ def _train_epoch(
     loader:     torch.utils.data.DataLoader,
     criterion:  nn.Module,
     optimizer:  AdamW,
-    scaler:     torch.amp.GradScaler,
+    scaler:     torch.amp.GradScaler | None,
     device:     torch.device,
     grad_clip:  float,
     log_every:  int,
@@ -245,22 +249,28 @@ def _train_epoch(
 
         optimizer.zero_grad()
 
-        with torch.amp.autocast(device_type=device.type):
+        # AMP is robust on CUDA; on MPS/CPU use plain FP32.
+        autocast_ctx = (
+            torch.amp.autocast(device_type="cuda")
+            if device.type == "cuda"
+            else nullcontext()
+        )
+        with autocast_ctx:
             logits = model(img1, img2)
             loss   = criterion(logits, target)
 
+        if scaler is not None:
+            scaler.scale(loss).backward()
+            scaler.unscale_(optimizer)
+            nn.utils.clip_grad_norm_(model.parameters(), grad_clip)
+            scaler.step(optimizer)
+            scaler.update()
+        else:
+            loss.backward()
+            nn.utils.clip_grad_norm_(model.parameters(), grad_clip)
+            optimizer.step()
+
         loss_val = loss.item()
-        if not torch.isfinite(loss):
-            logger.warning(f"Epoch {epoch:03d} step {step+1}: non-finite loss={loss_val:.4f}, skipping batch.")
-            optimizer.zero_grad()
-            continue
-
-        scaler.scale(loss).backward()
-        scaler.unscale_(optimizer)
-        nn.utils.clip_grad_norm_(model.parameters(), grad_clip)
-        scaler.step(optimizer)
-        scaler.update()
-
         total_loss += loss_val
         global_step[0] += 1
 
@@ -300,7 +310,12 @@ def _validate(
         img2   = batch["image2"].to(device, non_blocking=True)
         target = batch["mask"].to(device, non_blocking=True)
 
-        with torch.amp.autocast(device_type=device.type):
+        autocast_ctx = (
+            torch.amp.autocast(device_type="cuda")
+            if device.type == "cuda"
+            else nullcontext()
+        )
+        with autocast_ctx:
             logits = model(img1, img2)
             loss   = criterion(logits, target)
 
@@ -326,11 +341,14 @@ def main(argv=None) -> None:
     writer     = SummaryWriter(log_dir=str(output_dir))
 
     # ── device ────────────────────────────────────────────────────────────
-    if torch.cuda.is_available():
+    if cfg.get("device"):
+        device = torch.device(cfg["device"])
+    elif torch.cuda.is_available():
         device = torch.device("cuda")
-    elif torch.backends.mps.is_available():
-        device = torch.device("mps")
     else:
+        # MPS backward has known view-stride bugs with deep autograd
+        # graphs; default to CPU for reliability.  Use --device mps
+        # to override if you want to try it.
         device = torch.device("cpu")
     logger.info(f"Device: {device}")
 
@@ -396,7 +414,7 @@ def main(argv=None) -> None:
         min_lr_ratio   = cfg["min_lr"] / cfg["lr"],
     )
 
-    scaler = torch.amp.GradScaler(device=device.type)
+    scaler = torch.amp.GradScaler(device="cuda") if device.type == "cuda" else None
 
     # ── resume ────────────────────────────────────────────────────────────
     start_epoch = 0

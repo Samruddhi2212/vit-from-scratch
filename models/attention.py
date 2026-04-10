@@ -209,7 +209,7 @@ class MultiHeadAttention(nn.Module):
 
         # ── 3. Weighted sum + concat heads ────────────────────────────────
         x = attn @ v                                   # (B, h, N, head_dim)
-        x = x.transpose(1, 2).reshape(B, N, C)        # (B, N, D)
+        x = x.transpose(1, 2).contiguous().reshape(B, N, C)  # (B, N, D)
 
         # ── 4. Output projection ───────────────────────────────────────────
         x = self.proj(x)

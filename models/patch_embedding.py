@@ -127,7 +127,9 @@ class PatchEmbedding(nn.Module):
         x = self.proj(x)
 
         # 2. Flatten spatial dims, move embed last: → (B, N, D)
-        x = x.flatten(2).transpose(1, 2)
+        # permute → contiguous → reshape so that reshape records a clean
+        # _reshape_alias (not _unsafe_view) in the autograd graph.
+        x = x.permute(0, 2, 3, 1).contiguous().reshape(B, -1, x.shape[1])
 
         # 3. Prepend [CLS] token: (B, 1, D) cat (B, N, D) → (B, N+1, D)
         cls_tokens = self.cls_token.expand(B, -1, -1)

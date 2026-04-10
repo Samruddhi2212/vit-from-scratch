@@ -129,8 +129,8 @@ class ProgressiveDecoder(nn.Module):
         x = self.initial_proj(x)           # (B, N, hidden[0]*4)
 
         # 2. Reshape to 2D spatial grid: (B, N, C) → (B, C, P, P)
-        x = x.transpose(1, 2)             # (B, C, N)
-        x = x.view(B, -1, P, P)           # (B, C, P, P)
+        x = x.transpose(1, 2).contiguous()  # (B, C, N)
+        x = x.reshape(B, -1, P, P)          # (B, C, P, P)
 
         # 3. Progressive upsampling
         for stage in self.up_stages:
@@ -179,7 +179,7 @@ if __name__ == "__main__":
     # manual trace
     _x = decoder.initial_proj(x)
     print(f"  After initial_proj    : {tuple(_x.shape)}")
-    _x = _x.transpose(1, 2).view(B, -1, 16, 16)
+    _x = _x.transpose(1, 2).reshape(B, -1, 16, 16)
     print(f"  After reshape to 2D   : {tuple(_x.shape)}")
     stage_names = ["16→32", "32→64", "64→128", "128→256"]
     for name, stage in zip(stage_names, decoder.up_stages):
