@@ -141,7 +141,7 @@ python train.py \
     --patience       30 \
     --num_workers    $SLURM_CPUS_PER_TASK \
     --loss           bce_dice \
-    --pos_weight     5.0 \
+    --pos_weight     20.0 \
     $RESUME_FLAG
 
 TRAIN_EXIT=$?
