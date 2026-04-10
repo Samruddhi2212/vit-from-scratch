@@ -87,10 +87,13 @@ def _build_train_transform(patch_size: int = 256) -> A.Compose:
     )
 
 
-def _build_val_transform() -> A.Compose:
-    """Normalise only — no augmentation."""
+def _build_val_transform(patch_size: int = 256) -> A.Compose:
+    """Center-crop to patch_size then normalise — no random augmentation."""
     return A.Compose(
-        [A.Normalize(mean=IMAGENET_MEAN, std=IMAGENET_STD)],
+        [
+            A.CenterCrop(height=patch_size, width=patch_size),
+            A.Normalize(mean=IMAGENET_MEAN, std=IMAGENET_STD),
+        ],
         additional_targets={"image2": "image"},
     )
 
@@ -130,10 +133,12 @@ class OSCDDataset(Dataset):
         elif split == "train":
             self.transform = _build_train_transform(patch_size)
         else:
-            self.transform = _build_val_transform()
+            self.transform = _build_val_transform(patch_size)
 
-        # collect file stems in sorted order so A / B / label are aligned
-        a_dir = self.root / "A"
+        # collect stems present in ALL THREE of A/, B/, label/
+        a_dir   = self.root / "A"
+        b_dir   = self.root / "B"
+        lbl_dir = self.root / "label"
         if not a_dir.exists() or not list(a_dir.glob("*.png")):
             import warnings
             warnings.warn(
@@ -142,7 +147,18 @@ class OSCDDataset(Dataset):
             )
             self.stems = []
             return
-        self.stems = sorted(p.stem for p in a_dir.glob("*.png"))
+        a_stems   = set(p.stem for p in a_dir.glob("*.png"))
+        b_stems   = set(p.stem for p in b_dir.glob("*.png")) if b_dir.exists() else set()
+        lbl_stems = set(p.stem for p in lbl_dir.glob("*.png")) if lbl_dir.exists() else a_stems
+        common = a_stems & b_stems & lbl_stems
+        dropped = len(a_stems) - len(common)
+        if dropped:
+            import warnings
+            warnings.warn(
+                f"Split '{split}': dropped {dropped} stems missing from A/B/label. "
+                f"Using {len(common)} complete triplets."
+            )
+        self.stems = sorted(common)
 
     # ------------------------------------------------------------------
     def __len__(self) -> int:
