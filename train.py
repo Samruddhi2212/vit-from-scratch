@@ -108,6 +108,8 @@ def _parse_args(argv=None) -> argparse.Namespace:
     p.add_argument("--output_dir",    type=str)
     p.add_argument("--resume",        type=str, default=None)
     p.add_argument("--patience",      type=int)
+    p.add_argument("--threshold",     type=float,
+                   help="Decision threshold for binary prediction (default 0.5)")
 
     return p.parse_args(argv)
 
@@ -281,10 +283,12 @@ def _validate(
     loader:    torch.utils.data.DataLoader,
     criterion: nn.Module,
     device:    torch.device,
+    threshold: float = 0.5,
 ) -> tuple[float, dict[str, float]]:
     model.eval()
-    metrics   = ChangeDetectionMetrics(threshold=0.5)
+    metrics    = ChangeDetectionMetrics(threshold=threshold)
     total_loss = 0.0
+    max_prob   = 0.0   # diagnostic: highest predicted change probability seen
 
     for batch in loader:
         img1   = batch["image1"].to(device, non_blocking=True)
@@ -297,8 +301,11 @@ def _validate(
 
         total_loss += loss.item()
         metrics.update(logits, target)
+        max_prob = max(max_prob, torch.sigmoid(logits).max().item())
 
-    return total_loss / len(loader), metrics.compute()
+    result = metrics.compute()
+    result["max_prob"] = max_prob
+    return total_loss / len(loader), result
 
 
 # ──────────────────────────────────────────────────────────────────────────────
@@ -433,10 +440,11 @@ def main(argv=None) -> None:
             val_m    = {k: float("nan") for k in ("f1","iou","precision","recall","kappa","accuracy")}
         else:
             val_loss, val_m = _validate(
-                model     = model,
-                loader    = loaders["val"],
-                criterion = criterion,
-                device    = device,
+                model      = model,
+                loader     = loaders["val"],
+                criterion  = criterion,
+                device     = device,
+                threshold  = cfg.get("threshold", 0.5),
             )
 
         logger.info(
@@ -444,7 +452,9 @@ def main(argv=None) -> None:
             f"train_loss={train_loss:.4f}  val_loss={val_loss:.4f}  "
             f"F1={val_m['f1']:.4f}  IoU={val_m['iou']:.4f}  "
             f"P={val_m['precision']:.4f}  R={val_m['recall']:.4f}  "
-            f"Kappa={val_m['kappa']:.4f}  lr={lr_now:.2e}"
+            f"Kappa={val_m['kappa']:.4f}  "
+            f"max_prob={val_m.get('max_prob', float('nan')):.4f}  "
+            f"lr={lr_now:.2e}"
         )
 
         # TensorBoard epoch-level scalars
