@@ -1,13 +1,13 @@
 """
-PyTorch Dataset and DataLoaders for preprocessed OSCD patch pairs.
+PyTorch Dataset and DataLoaders for LEVIR-CD change detection pairs.
 
-Expected directory layout (produced by scripts/extract_patches.py):
+Expected directory layout (LEVIR-CD ships pre-split):
 
-    processed_oscd/
+    LEVIR CD/
     ├── train/
-    │   ├── A/       {region}_{idx:04d}.png  — before image (RGB uint8)
-    │   ├── B/       {region}_{idx:04d}.png  — after  image (RGB uint8)
-    │   └── label/   {region}_{idx:04d}.png  — mask   (0 / 255 grayscale)
+    │   ├── A/       *.png  — before image (RGB uint8, 1024×1024)
+    │   ├── B/       *.png  — after  image (RGB uint8, 1024×1024)
+    │   └── label/   *.png  — mask   (0 / 255 grayscale, 1024×1024)
     ├── val/   ...
     └── test/  ...
 
@@ -103,12 +103,12 @@ def _build_val_transform(patch_size: int = 256) -> A.Compose:
 # ──────────────────────────────────────────────────────────────────────────────
 
 class OSCDDataset(Dataset):
-    """Patch-pair dataset for OSCD change detection.
+    """Patch-pair dataset for LEVIR-CD change detection.
 
     Parameters
     ----------
     root : str | Path
-        Path to the split directory, e.g. ``processed_oscd/train``.
+        Path to the split directory, e.g. ``LEVIR CD/train``.
     split : 'train' | 'val' | 'test'
         Controls which augmentation pipeline is applied.
     patch_size : int
@@ -201,7 +201,7 @@ class OSCDDataset(Dataset):
 # ──────────────────────────────────────────────────────────────────────────────
 
 def get_oscd_dataloaders(
-    data_root: str | Path = "processed_oscd",
+    data_root: str | Path = "LEVIR CD",
     patch_size: int = 256,
     train_batch_size: int = 8,
     eval_batch_size: int = 16,
@@ -213,7 +213,7 @@ def get_oscd_dataloaders(
     Parameters
     ----------
     data_root : path
-        Root of the processed_oscd directory tree.
+        Root of the LEVIR-CD directory tree (contains train/, val/, test/).
     patch_size : int
         Spatial size expected for each patch (default 256).
     train_batch_size : int
@@ -258,7 +258,7 @@ def get_oscd_dataloaders(
     }
 
     # ── print summary ───────────────────────────────────────────────────
-    print("OSCD DataLoaders")
+    print("LEVIR-CD DataLoaders")
     print(f"  data_root  : {data_root.resolve()}")
     for split, ds in datasets.items():
         bs = train_batch_size if split == "train" else eval_batch_size

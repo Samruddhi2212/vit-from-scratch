@@ -136,13 +136,25 @@ The architecture is designed specifically for bi-temporal remote sensing imagery
 
 ## 📊 Dataset
 
-### About:
+### About: LEVIR-CD
 
-This dataset contains registered pairs of **13-band multispectral satellite images obtained by the Sentinel-2 satellites of the Copernicus program**. Pixel-level urban change groundtruth is provided. In case of discrepancies in image size, the older images with resolution of 10m per pixel is used. Images vary in spatial resolution between 10m, 20m and 60m. For more information, please refer to Sentinel-2 documentation.
+The **LEVIR Change Detection (LEVIR-CD)** dataset consists of **637 bi-temporal high-resolution Google Earth image pairs** for building-level change detection in urban areas.
 
-For each location, folders imgs_1_rect and imgs_2_rect contain the same images as imgs_1 and imgs_2 resampled at 10m resolution and cropped accordingly for ease of use.
+- **Resolution:** 0.5m per pixel (very high resolution)
+- **Image size:** 1024 × 1024 RGB
+- **Change types:** New buildings, demolished structures, construction sites
+- **Labels:** Pixel-level binary change masks (0 = no change, 255 = change)
+- **Change ratio:** ~3% of pixels per image (imbalanced)
 
-**The proposed split into train and test images is contained in the train.txt and test.txt files**.
+**Pre-defined splits:**
+
+| Split | Image pairs |
+|-------|------------|
+| Train | 411 |
+| Val   | 62 |
+| Test  | 124 |
+
+During training, random 256×256 crops are sampled from each 1024×1024 image, effectively multiplying the training data diversity each epoch.
 
 ## 📏 Evaluation Metrics
 

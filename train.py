@@ -1,10 +1,10 @@
 """
-Training script for Siamese ViT Change Detection on OSCD.
+Training script for Siamese ViT Change Detection on LEVIR-CD.
 
 Usage
 -----
     python train.py                                   # uses configs/train_config.yaml
-    python train.py --data_dir ./processed_oscd \\
+    python train.py --data_dir "./LEVIR CD" \\
                     --epochs 200 --batch_size 8 --lr 1e-3
 
 Any CLI flag overrides the corresponding YAML key.  Unknown keys are ignored
@@ -58,7 +58,7 @@ def _load_yaml(path: str) -> dict:
 
 def _parse_args(argv=None) -> argparse.Namespace:
     p = argparse.ArgumentParser(
-        description="Train Siamese ViT Change Detection on OSCD",
+        description="Train Siamese ViT Change Detection on LEVIR-CD",
         formatter_class=argparse.ArgumentDefaultsHelpFormatter,
     )
     p.add_argument("--config",        default=_DEFAULT_CONFIG, help="YAML config path")

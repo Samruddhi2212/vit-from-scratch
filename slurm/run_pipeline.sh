@@ -66,7 +66,7 @@ for split in train val test; do
     count=$(ls "$LEVIR_DIR/$split/A/"*.png 2>/dev/null | wc -l)
     echo "  $split: $count images in A/"
 done
-echo "Note: OSCDDataset will automatically filter to complete A/B/label triplets."
+echo "Note: Dataset loader will automatically filter to complete A/B/label triplets."
 
 # ─────────────────────────────────────────────────────────────
 # STEP 2: Train
