@@ -249,13 +249,18 @@ def _train_epoch(
             logits = model(img1, img2)
             loss   = criterion(logits, target)
 
+        loss_val = loss.item()
+        if not torch.isfinite(loss):
+            logger.warning(f"Epoch {epoch:03d} step {step+1}: non-finite loss={loss_val:.4f}, skipping batch.")
+            optimizer.zero_grad()
+            continue
+
         scaler.scale(loss).backward()
         scaler.unscale_(optimizer)
         nn.utils.clip_grad_norm_(model.parameters(), grad_clip)
         scaler.step(optimizer)
         scaler.update()
 
-        loss_val = loss.item()
         total_loss += loss_val
         global_step[0] += 1
 

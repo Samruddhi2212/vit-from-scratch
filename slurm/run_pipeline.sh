@@ -90,9 +90,9 @@ python train.py \
     --epochs          200 \
     --batch_size      8 \
     --eval_batch_size 16 \
-    --lr              1e-3 \
+    --lr              3e-4 \
     --weight_decay    0.05 \
-    --warmup_epochs   10 \
+    --warmup_epochs   20 \
     --min_lr          1e-6 \
     --grad_clip       1.0 \
     --patience        30 \
