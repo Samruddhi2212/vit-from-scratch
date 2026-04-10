@@ -168,6 +168,42 @@ To evaluate change detection performance:
 
 ---
 
+## 📈 Training Results
+
+Best validation performance after 173 epochs on LEVIR-CD:
+
+| Metric    | Score  |
+|-----------|--------|
+| F1        | 0.6655 |
+| IoU       | 0.4987 |
+| Kappa     | 0.6538 |
+| Threshold | 0.35   |
+
+### Training Curves
+
+The figure below shows loss, F1, IoU, Precision/Recall, Cohen's Kappa, learning rate schedule, and Precision-Recall trade-off over training:
+
+![Training Curves](outputs/training_curves.png)
+
+---
+
+## 🔍 Prediction Visualizations
+
+Each row shows 8 randomly sampled val-split images that contain ground-truth change pixels:
+
+| Column | Description |
+|--------|-------------|
+| Before (T1) | Pre-change satellite image |
+| After (T2) | Post-change satellite image |
+| Ground Truth | Binary change mask (white = change) |
+| Prob Heatmap | Model's raw predicted probability (hot = high) |
+| Prediction | Thresholded binary prediction (threshold = 0.35) |
+| TP/FP/FN Overlay | Green = correct detection, Red = false alarm, Yellow = missed change |
+
+![Prediction Visualization](outputs/siamese_vit/predictions.png)
+
+---
+
 ## 🛠️ Tech Stack
 
 - Python
