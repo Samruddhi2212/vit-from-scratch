@@ -50,10 +50,8 @@ EPOCH_PATTERN = re.compile(
 
 
 def parse_log(log_path: Path) -> dict[str, list]:
-    data = {k: [] for k in [
-        "epoch", "train_loss", "val_loss", "f1", "iou",
-        "precision", "recall", "kappa", "max_prob", "lr"
-    ]}
+    """Parse log, keeping only the last training run (restarts from epoch 0)."""
+    all_rows = []
 
     with open(log_path) as f:
         for line in f:
@@ -61,9 +59,27 @@ def parse_log(log_path: Path) -> dict[str, list]:
             if not m:
                 continue
             vals = [float(v) if v != "nan" else float("nan") for v in m.groups()]
-            keys = list(data.keys())
-            for k, v in zip(keys, vals):
-                data[k].append(v)
+            all_rows.append(vals)
+
+    if not all_rows:
+        raise ValueError("No epoch data found in log.")
+
+    # Find the start of the last run — last occurrence where epoch resets to 0
+    keys = ["epoch", "train_loss", "val_loss", "f1", "iou",
+            "precision", "recall", "kappa", "max_prob", "lr"]
+
+    last_start = 0
+    for i in range(1, len(all_rows)):
+        if all_rows[i][0] < all_rows[i - 1][0]:  # epoch decreased → new run
+            last_start = i
+
+    rows = all_rows[last_start:]
+    print(f"Using last run: {len(rows)} epochs (skipped {last_start} entries from prior runs)")
+
+    data = {k: [] for k in keys}
+    for row in rows:
+        for k, v in zip(keys, row):
+            data[k].append(v)
 
     return {k: np.array(v) for k, v in data.items()}
 
