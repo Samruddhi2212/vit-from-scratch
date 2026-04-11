@@ -40,6 +40,7 @@ from torch.utils.tensorboard import SummaryWriter
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 from models.siamese_vit import build_siamese_vit_cd
+from models.siamese_unet import SiameseUNet
 from utils.losses import BCEDiceLoss, FocalDiceLoss
 from utils.metrics import ChangeDetectionMetrics
 from utils.oscd_dataset import get_oscd_dataloaders
@@ -69,6 +70,9 @@ def _parse_args(argv=None) -> argparse.Namespace:
     p.add_argument("--num_workers",   type=int)
 
     # ── model ─────────────────────────────────────────────────────────────
+    p.add_argument("--model",         type=str, default=None,
+                   choices=["vit", "unet"],
+                   help="Architecture: 'vit' (Siamese ViT) or 'unet' (FC-Siam-diff)")
     p.add_argument("--img_size",      type=int)
     p.add_argument("--patch_size",    type=int)
     p.add_argument("--in_channels",   type=int)
@@ -371,13 +375,19 @@ def main(argv=None) -> None:
     )
 
     # ── model ─────────────────────────────────────────────────────────────
-    model_cfg = {k: cfg[k] for k in (
-        "img_size", "patch_size", "in_channels",
-        "embed_dim", "depth", "num_heads", "mlp_ratio",
-        "dropout", "attn_dropout",
-        "diff_type", "diff_out_dim", "decoder_dims",
-    )}
-    model = build_siamese_vit_cd(model_cfg).to(device)
+    model_name = cfg.get("model", "vit")
+    if model_name == "unet":
+        model = SiameseUNet(in_channels=cfg["in_channels"]).to(device)
+        logger.info("Architecture: SiameseUNet (FC-Siam-diff)")
+    else:
+        model_cfg = {k: cfg[k] for k in (
+            "img_size", "patch_size", "in_channels",
+            "embed_dim", "depth", "num_heads", "mlp_ratio",
+            "dropout", "attn_dropout",
+            "diff_type", "diff_out_dim", "decoder_dims",
+        )}
+        model = build_siamese_vit_cd(model_cfg).to(device)
+        logger.info("Architecture: SiameseViTChangeDetection")
 
     counts = model.get_param_count()
     logger.info(
