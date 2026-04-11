@@ -85,21 +85,22 @@ if [ -f "$RESUME_CKPT" ]; then
 fi
 
 python train.py \
-    --data_dir        "$LEVIR_DIR" \
-    --output_dir      "$OUTPUT_DIR" \
-    --epochs          200 \
-    --batch_size      8 \
-    --eval_batch_size 16 \
-    --lr              3e-4 \
-    --weight_decay    0.05 \
-    --warmup_epochs   20 \
-    --min_lr          1e-6 \
-    --grad_clip       1.0 \
-    --patience        30 \
-    --num_workers     $SLURM_CPUS_PER_TASK \
-    --loss            focal_dice \
-    --pos_weight      20.0 \
-    --threshold       0.35 \
+    --data_dir          "$LEVIR_DIR" \
+    --output_dir        "$OUTPUT_DIR" \
+    --epochs            200 \
+    --batch_size        8 \
+    --eval_batch_size   16 \
+    --lr                3e-4 \
+    --weight_decay      0.05 \
+    --warmup_epochs     20 \
+    --min_lr            1e-6 \
+    --grad_clip         1.0 \
+    --patience          50 \
+    --encoder_lr_scale  0.5 \
+    --num_workers       $SLURM_CPUS_PER_TASK \
+    --loss              focal_dice \
+    --pos_weight        20.0 \
+    --threshold         0.35 \
     $RESUME_FLAG
 
 TRAIN_EXIT=$?
