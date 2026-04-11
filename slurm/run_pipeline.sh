@@ -9,7 +9,7 @@
 #SBATCH --cpus-per-task=8
 #SBATCH --mem=64GB
 #SBATCH --time=8:00:00
-#SBATCH --job-name=siamese_vit_cd
+#SBATCH --job-name=svit_multiscale
 #SBATCH --output=logs/train_%j.out
 #SBATCH --error=logs/train_%j.err
 
