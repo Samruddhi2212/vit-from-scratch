@@ -1,5 +1,5 @@
 """
-Siamese ViT Change Detection Model — Full Assembly.
+Siamese ViT Change Detection Model — Full Assembly with Multi-Scale Features.
 
 Brings together every component built from scratch:
 
@@ -7,17 +7,18 @@ Brings together every component built from scratch:
         └─ ViTEncoder × 2       (same weights, two forward passes)
                └─ PatchEmbedding
                └─ TransformerEncoderBlock × depth
-               └─ LayerNorm
-    FeatureDifferenceModule     (combines feat1 / feat2 into a change signal)
+               └─ 4 scale taps at depth*[1/4, 1/2, 3/4, 1]
+    MultiScaleDiffModule        (per-scale diff + fusion)
     ProgressiveDecoder          (16×16 tokens → 256×256 pixel mask)
 
 Full pipeline:
 
     img1 (B, 3, 256, 256) ──┐
-                              ├─→ SiameseViTEncoder ─→ feat1 (B, 256, 768)
-    img2 (B, 3, 256, 256) ──┘                      └─→ feat2 (B, 256, 768)
+                              ├─→ SiameseViTEncoder ─→ feats1  [4 × (B, 256, 768)]
+    img2 (B, 3, 256, 256) ──┘                      └─→ feats2  [4 × (B, 256, 768)]
                                                               │
-                                                  FeatureDifferenceModule
+                                                  MultiScaleDiffModule
+                                                  (diff at each scale → fuse)
                                                               │
                                                     diff_feat (B, 256, 256)
                                                               │
@@ -26,8 +27,8 @@ Full pipeline:
                                                change_logits (B, 1, 256, 256)
 
 No pretrained weights are used anywhere. The entire model — patch projection,
-positional embeddings, 12 transformer blocks, difference module, and decoder —
-is trained from random initialisation on the OSCD dataset.
+positional embeddings, 12 transformer blocks, multi-scale difference module,
+and decoder — is trained from random initialisation on the LEVIR-CD dataset.
 """
 
 import torch
@@ -37,7 +38,7 @@ import sys
 import os
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from models.vit import SiameseViTEncoder
-from models.feature_difference import FeatureDifferenceModule
+from models.feature_difference import FeatureDifferenceModule, MultiScaleDiffModule
 from models.decoder import ProgressiveDecoder
 
 
@@ -96,11 +97,15 @@ class SiameseViTChangeDetection(nn.Module):
             attn_dropout=attn_dropout,
         )
 
-        # ── 2. Feature difference module ──────────────────────────────────
-        self.diff_module = FeatureDifferenceModule(
+        # ── 2. Multi-scale feature difference module ──────────────────────
+        # Applies a diff at each of 4 encoder scales (shallow→deep), then
+        # fuses all 4 into a single change-aware tensor for the decoder.
+        # diff_type is kept as a constructor arg for backward compat but
+        # MultiScaleDiffModule always uses concat_project internally.
+        self.diff_module = MultiScaleDiffModule(
             in_dim=embed_dim,
             out_dim=diff_out_dim,
-            diff_type=diff_type,
+            n_scales=4,
         )
 
         # ── 3. Progressive decoder ────────────────────────────────────────
@@ -123,8 +128,10 @@ class SiameseViTChangeDetection(nn.Module):
             (B, 1, H, W) — change logits (apply sigmoid for probabilities,
                            or pass directly to BCEWithLogitsLoss)
         """
-        feat1, feat2     = self.encoder(img1, img2)   # (B, N, embed_dim) each
-        diff_feat        = self.diff_module(feat1, feat2)  # (B, N, diff_out_dim)
+        # feats1/feats2: each a list of 4 × (B, N, embed_dim)
+        feats1, feats2   = self.encoder(img1, img2)
+        # fuse 4-scale diffs → (B, N, diff_out_dim)
+        diff_feat        = self.diff_module(feats1, feats2)
         change_logits    = self.decoder(diff_feat)    # (B, 1, H, W)
         return change_logits
 

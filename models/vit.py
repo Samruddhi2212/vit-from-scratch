@@ -349,6 +349,23 @@ class ViTEncoder(nn.Module):
 
         self.norm = nn.LayerNorm(embed_dim)
 
+        # ── Multi-scale support ───────────────────────────────────────────
+        # Tap after block indices at depth*[1/4, 1/2, 3/4, 1] (0-indexed).
+        # The 3 intermediate scales each get a dedicated LayerNorm.
+        # The final (deepest) scale reuses self.norm, ensuring it always
+        # receives gradients regardless of which forward path is taken.
+        self._n_scales = 4
+        self._scale_taps: list[int] = [
+            max(0, depth // 4 - 1),
+            max(0, depth // 2 - 1),
+            max(0, 3 * depth // 4 - 1),
+            depth - 1,
+        ]
+        # Only 3 dedicated norms — index 3 (deepest) reuses self.norm
+        self.scale_norms = nn.ModuleList(
+            [nn.LayerNorm(embed_dim) for _ in range(self._n_scales - 1)]
+        )
+
         self.apply(self._init_weights)
 
     # ------------------------------------------------------------------
@@ -383,6 +400,40 @@ class ViTEncoder(nn.Module):
         if return_all_tokens:
             return x[:, 1:]                     # (B, N, D) — drop CLS
         return x[:, 0]                          # (B, D)    — CLS only
+
+    # ------------------------------------------------------------------
+    def forward_multiscale(self, x: torch.Tensor) -> list[torch.Tensor]:
+        """Return patch tokens from 4 evenly-spaced transformer layers.
+
+        Taps after block indices depth*[1/4, 1/2, 3/4, 1] (0-indexed).
+        Each tap is normalised by its own dedicated LayerNorm, so early
+        low-level features and late semantic features are both well-scaled.
+        The CLS token is dropped from every output.
+
+        For ViT-Base (depth=12) this taps after blocks 2, 5, 8, 11:
+          scale 0 → edges / low-level texture
+          scale 1 → mid-level structure
+          scale 2 → high-level building parts
+          scale 3 → semantic / object-level (same as the original forward)
+
+        Returns:
+            list of 4 tensors, each (B, N, embed_dim), shallowest first.
+        """
+        x = self.patch_embed(x)
+        tap_set  = set(self._scale_taps)
+        features: list[torch.Tensor] = []
+
+        for i, block in enumerate(self.blocks):
+            x = block(x)
+            if i in tap_set:
+                scale_idx = self._scale_taps.index(i)
+                # Intermediate scales use dedicated scale_norms;
+                # the deepest scale reuses self.norm so it always has gradients.
+                norm = self.norm if scale_idx == self._n_scales - 1 \
+                       else self.scale_norms[scale_idx]
+                features.append(norm(x[:, 1:]))   # drop CLS token
+
+        return features   # 4 × (B, N, embed_dim)
 
     # ------------------------------------------------------------------
     def get_attention_maps(self, x: torch.Tensor) -> torch.Tensor:
@@ -453,18 +504,18 @@ class SiameseViTEncoder(nn.Module):
 
     def forward(
         self, img1: torch.Tensor, img2: torch.Tensor
-    ) -> tuple[torch.Tensor, torch.Tensor]:
+    ) -> tuple[list[torch.Tensor], list[torch.Tensor]]:
         """
         Args:
             img1: (B, C, H, W) — before image
             img2: (B, C, H, W) — after  image
         Returns:
-            feat1: (B, num_patches, embed_dim) — before features
-            feat2: (B, num_patches, embed_dim) — after  features
+            feats1: list of 4 × (B, num_patches, embed_dim) — before, shallow→deep
+            feats2: list of 4 × (B, num_patches, embed_dim) — after,  shallow→deep
         """
-        feat1 = self.encoder(img1, return_all_tokens=True)
-        feat2 = self.encoder(img2, return_all_tokens=True)
-        return feat1, feat2
+        feats1 = self.encoder.forward_multiscale(img1)
+        feats2 = self.encoder.forward_multiscale(img2)
+        return feats1, feats2
 
     def get_param_count(self) -> int:
         """Total trainable parameters (same as a single ViTEncoder)."""
