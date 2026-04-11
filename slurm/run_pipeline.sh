@@ -97,6 +97,7 @@ python train.py \
     --grad_clip         1.0 \
     --patience          50 \
     --encoder_lr_scale  0.5 \
+    --n_crops           4 \
     --num_workers       $SLURM_CPUS_PER_TASK \
     --loss              focal_dice \
     --pos_weight        20.0 \

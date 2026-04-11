@@ -61,15 +61,30 @@ IMAGENET_STD  = (0.229, 0.224, 0.225)
 # ──────────────────────────────────────────────────────────────────────────────
 
 def _build_train_transform(patch_size: int = 256) -> A.Compose:
-    """Spatial + colour augmentation with synchronised A / B / mask transforms."""
-    pad = patch_size + 32                     # pad to 288 before crop
+    """Spatial + colour augmentation with synchronised A / B / mask transforms.
+
+    Crop strategy — full-image random crop
+    ----------------------------------------
+    Previous approach padded to patch_size+32 (288) then cropped, limiting
+    the crop window to ±32 px around the image centre.  For LEVIR-CD images
+    (1024×1024) that wasted 93 % of each image.
+
+    New approach: PadIfNeeded only guarantees the image is at least patch_size
+    wide/tall (handles rare cases where source images are smaller).  For the
+    normal 1024×1024 case no padding is added and RandomCrop samples freely
+    from the entire 1024×1024 spatial extent — 16× more crop positions than
+    before.
+    """
     return A.Compose(
         [
             # ── spatial (applied to image1, image2, mask) ──────────────────
+            # Pad only if the image is smaller than the desired patch size.
+            # For 1024×1024 LEVIR-CD images this is a no-op.
             A.PadIfNeeded(
-                min_height=pad, min_width=pad,
+                min_height=patch_size, min_width=patch_size,
                 border_mode=cv2.BORDER_REFLECT_101,
             ),
+            # Random crop from the full image extent — not just ±32 px.
             A.RandomCrop(height=patch_size, width=patch_size),
             A.HorizontalFlip(p=0.5),
             A.VerticalFlip(p=0.5),
@@ -115,6 +130,13 @@ class OSCDDataset(Dataset):
         Expected spatial size of patches (default 256).
     transform : A.Compose | None
         Override the default Albumentations pipeline.
+    n_crops : int
+        Number of random crops to sample per image per epoch (train only).
+        Each crop is independently augmented, so the same image yields
+        n_crops distinct training samples.  Default 1 (original behaviour).
+        Val/test always use n_crops=1 (centre crop, no repetition).
+
+        Example: 411 train images × n_crops=4 → 1 644 patches/epoch.
     """
 
     def __init__(
@@ -123,10 +145,13 @@ class OSCDDataset(Dataset):
         split: Literal["train", "val", "test"] = "train",
         patch_size: int = 256,
         transform: A.Compose | None = None,
+        n_crops: int = 1,
     ) -> None:
         self.root = Path(root)
         self.split = split
         self.patch_size = patch_size
+        # Only multiply training data; val/test always use a single crop.
+        self.n_crops = n_crops if split == "train" else 1
 
         if transform is not None:
             self.transform = transform
@@ -162,11 +187,15 @@ class OSCDDataset(Dataset):
 
     # ------------------------------------------------------------------
     def __len__(self) -> int:
-        return len(self.stems)
+        return len(self.stems) * self.n_crops
 
     # ------------------------------------------------------------------
     def __getitem__(self, idx: int) -> dict[str, torch.Tensor]:
-        stem = self.stems[idx]
+        # Map virtual index back to a real image stem.
+        # Indices 0..n_crops-1 all map to stems[0], etc.
+        # Since RandomCrop is stochastic, each call naturally yields a
+        # different crop location — no extra logic needed.
+        stem = self.stems[idx % len(self.stems)]
         fname = stem + ".png"
 
         # ── load images (RGB uint8 H×W×3) ──────────────────────────────
@@ -207,6 +236,7 @@ def get_oscd_dataloaders(
     eval_batch_size: int = 16,
     num_workers: int = 4,
     pin_memory: bool = True,
+    n_crops: int = 1,
 ) -> dict[str, DataLoader]:
     """Return {'train': ..., 'val': ..., 'test': ...} DataLoaders.
 
@@ -224,12 +254,19 @@ def get_oscd_dataloaders(
         Dataloader workers (default 4).
     pin_memory : bool
         Pin memory for faster GPU transfers (default True).
+    n_crops : int
+        Random crops sampled per training image per epoch (default 1).
+        Val/test are unaffected.
     """
     data_root = Path(data_root)
 
     datasets = {
-        split: OSCDDataset(data_root / split, split=split, patch_size=patch_size)
-        for split in ("train", "val", "test")
+        "train": OSCDDataset(
+            data_root / "train", split="train",
+            patch_size=patch_size, n_crops=n_crops,
+        ),
+        "val":  OSCDDataset(data_root / "val",  split="val",  patch_size=patch_size),
+        "test": OSCDDataset(data_root / "test", split="test", patch_size=patch_size),
     }
 
     loaders = {
@@ -263,9 +300,11 @@ def get_oscd_dataloaders(
     for split, ds in datasets.items():
         bs = train_batch_size if split == "train" else eval_batch_size
         n_batches = len(loaders[split])
+        n_imgs = len(ds.stems)
+        crops_str = f"  ×{ds.n_crops} crops" if ds.n_crops > 1 else ""
         print(
-            f"  {split:5s}  patches={len(ds):4d}  "
-            f"batch_size={bs}  batches={n_batches}"
+            f"  {split:5s}  images={n_imgs:4d}{crops_str}  "
+            f"patches={len(ds):4d}  batch_size={bs}  batches={n_batches}"
         )
 
     return loaders

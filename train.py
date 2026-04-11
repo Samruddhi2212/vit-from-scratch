@@ -66,6 +66,9 @@ def _parse_args(argv=None) -> argparse.Namespace:
     # ── data ──────────────────────────────────────────────────────────────
     p.add_argument("--data_dir",      type=str)
     p.add_argument("--num_workers",   type=int)
+    p.add_argument("--n_crops",       type=int,
+                   help="Random crops per training image per epoch (default 1). "
+                        "Multiplies effective training set size without new data.")
 
     # ── model ─────────────────────────────────────────────────────────────
     p.add_argument("--img_size",      type=int)
@@ -346,6 +349,7 @@ def main(argv=None) -> None:
         eval_batch_size  = cfg["eval_batch_size"],
         num_workers      = cfg["num_workers"],
         pin_memory       = device.type == "cuda",
+        n_crops          = cfg.get("n_crops", 1),
     )
 
     # ── model ─────────────────────────────────────────────────────────────
