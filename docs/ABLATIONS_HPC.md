@@ -18,6 +18,10 @@ python3 -m venv .venv_hpc
 source .venv_hpc/bin/activate
 pip install -r requirements.txt
 
+# Same CUDA modules as Slurm — needed so PyTorch can find libnvJitLink.so.12 etc. on login nodes
+module load cuda/12.3.0
+module load cuDNN/9.10.2
+
 # Required for CIFAR loaders (utils/dataset.py); confirms venv matches requirements.txt
 python scripts/verify_pytorch_stack.py
 
@@ -77,25 +81,38 @@ python scripts/run_ablations.py --ablation-epochs 2 --only baseline --num-worker
    cat logs/ablations_A_*.err
    ```
 
-2. **`ModuleNotFoundError: No module named 'torchvision'`** — `requirements.txt` already pins `torchvision`, but the cluster venv may have been created with only `torch`. On the **login node**:
+2. **`libnvJitLink.so.12: cannot open shared object file`** — PyTorch’s CUDA build needs the toolkit on `LD_LIBRARY_PATH`. On Explorer, load the same modules as the Slurm scripts **before** `python`:
+
+   ```bash
+   module load cuda/12.3.0
+   module load cuDNN/9.10.2
+   source .venv_hpc/bin/activate
+   python scripts/verify_pytorch_stack.py
+   ```
+
+   Batch jobs already run `module load` inside the `.sbatch` file; this mainly affects **interactive** checks on the login node.
+
+3. **`ModuleNotFoundError: No module named 'torchvision'`** — `requirements.txt` already pins `torchvision`, but the cluster venv may have been created with only `torch`. On the **login node**:
 
    ```bash
    source .venv_hpc/bin/activate
    cd ~/vit-from-scratch
    pip install -r requirements.txt
+   module load cuda/12.3.0
+   module load cuDNN/9.10.2
    python scripts/verify_pytorch_stack.py
    ```
 
    Then resubmit the chain.
 
-3. Confirm the repo path matches **`slurm/run_swin.sh`** (default `PROJ_DIR=/home/patodia.pa/vit-from-scratch`). Override if your clone lives elsewhere:
+4. Confirm the repo path matches **`slurm/run_swin.sh`** (default `PROJ_DIR=/home/patodia.pa/vit-from-scratch`). Override if your clone lives elsewhere:
 
    ```bash
    export PROJ_DIR=/home/patodia.pa/vit-from-scratch
    bash scripts/submit_ablations_chain.sh
    ```
 
-4. Batch scripts use **`--num-workers 0`** to avoid fork/CUDA + DataLoader issues on Slurm. If training is stable, you may raise to `2` or `4` in the `.sbatch` files.
+5. Batch scripts use **`--num-workers 0`** to avoid fork/CUDA + DataLoader issues on Slurm. If training is stable, you may raise to `2` or `4` in the `.sbatch` files.
 
 ## Copy results to your laptop
 
