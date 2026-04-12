@@ -1,5 +1,7 @@
 checkpoints/
-outputs/
+outputs/**
+!outputs/**/.gitkeep
+!outputs/**/*.png
 logs/
 data/
 __pycache__/

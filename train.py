@@ -68,6 +68,9 @@ def _parse_args(argv=None) -> argparse.Namespace:
     # ── data ──────────────────────────────────────────────────────────────
     p.add_argument("--data_dir",      type=str)
     p.add_argument("--num_workers",   type=int)
+    p.add_argument("--n_crops",       type=int,
+                   help="Random crops per training image per epoch (default 1). "
+                        "Multiplies effective training set size without new data.")
 
     # ── model ─────────────────────────────────────────────────────────────
     p.add_argument("--model",         type=str, default=None,
@@ -112,12 +115,13 @@ def _parse_args(argv=None) -> argparse.Namespace:
     p.add_argument("--log_every",     type=int)
     p.add_argument("--output_dir",    type=str)
     p.add_argument("--resume",        type=str, default=None)
-    p.add_argument("--patience",      type=int)
-    p.add_argument("--threshold",     type=float,
+    p.add_argument("--patience",           type=int)
+    p.add_argument("--threshold",          type=float,
                    help="Decision threshold for binary prediction (default 0.5)")
-    p.add_argument("--device",        type=str, default=None,
-                   choices=["cuda", "mps", "cpu"],
-                   help="Force a specific device (default: auto-detect cuda>cpu)")
+    p.add_argument("--encoder_lr_scale",   type=float,
+                   help="LR multiplier for the encoder (default 0.5). "
+                        "The diff_module and decoder always train at the full --lr. "
+                        "Keeps the large encoder from dominating early gradients.")
 
     return p.parse_args(argv)
 
@@ -288,7 +292,7 @@ def _train_epoch(
 
         if (step + 1) % log_every == 0:
             elapsed = time.time() - t0
-            lr_now  = optimizer.param_groups[0]["lr"]
+            lr_now  = optimizer.param_groups[1]["lr"]   # head LR
             logger.info(
                 f"Epoch {epoch:03d}  step {step+1:4d}/{len(loader)}  "
                 f"loss={loss_val:.4f}  lr={lr_now:.2e}  "
@@ -372,6 +376,7 @@ def main(argv=None) -> None:
         eval_batch_size  = cfg["eval_batch_size"],
         num_workers      = cfg["num_workers"],
         pin_memory       = device.type == "cuda",
+        n_crops          = cfg.get("n_crops", 1),
     )
 
     # ── model ─────────────────────────────────────────────────────────────
@@ -418,10 +423,24 @@ def main(argv=None) -> None:
         )
     criterion = criterion.to(device)
 
-    # ── optimiser ─────────────────────────────────────────────────────────
+    # ── optimiser — differential learning rates ───────────────────────────
+    # The encoder (85M params) gets a lower LR so the task-specific
+    # diff+decoder head (12M params) can learn its multi-scale fusion
+    # patterns without being overwhelmed by encoder gradient magnitude.
+    enc_lr_scale = float(cfg.get("encoder_lr_scale", 0.5))
+    enc_lr  = cfg["lr"] * enc_lr_scale
+    head_lr = cfg["lr"]
+    logger.info(
+        f"LR groups — encoder={enc_lr:.2e} (×{enc_lr_scale})  "
+        f"diff+decoder={head_lr:.2e}"
+    )
     optimizer = AdamW(
-        model.parameters(),
-        lr           = cfg["lr"],
+        [
+            {"params": model.encoder.parameters(),    "lr": enc_lr,  "name": "encoder"},
+            {"params": list(model.diff_module.parameters()) +
+                       list(model.decoder.parameters()),
+             "lr": head_lr, "name": "head"},
+        ],
         weight_decay = cfg["weight_decay"],
     )
 
@@ -474,7 +493,7 @@ def main(argv=None) -> None:
         scheduler.step()
 
         # ── validate ───────────────────────────────────────────────────
-        lr_now = optimizer.param_groups[0]["lr"]
+        lr_now = optimizer.param_groups[1]["lr"]   # head (diff+decoder) LR
         if len(loaders["val"].dataset) == 0:
             logger.warning("Val split is empty — skipping validation this epoch.")
             val_loss = float("nan")

@@ -9,7 +9,7 @@
 #SBATCH --cpus-per-task=8
 #SBATCH --mem=64GB
 #SBATCH --time=8:00:00
-#SBATCH --job-name=siamese_vit_cd
+#SBATCH --job-name=svit_multiscale
 #SBATCH --output=logs/train_%j.out
 #SBATCH --error=logs/train_%j.err
 
@@ -85,21 +85,23 @@ if [ -f "$RESUME_CKPT" ]; then
 fi
 
 python train.py \
-    --data_dir        "$LEVIR_DIR" \
-    --output_dir      "$OUTPUT_DIR" \
-    --epochs          200 \
-    --batch_size      8 \
-    --eval_batch_size 16 \
-    --lr              3e-4 \
-    --weight_decay    0.05 \
-    --warmup_epochs   20 \
-    --min_lr          1e-6 \
-    --grad_clip       1.0 \
-    --patience        30 \
-    --num_workers     $SLURM_CPUS_PER_TASK \
-    --loss            focal_dice \
-    --pos_weight      20.0 \
-    --threshold       0.35 \
+    --data_dir          "$LEVIR_DIR" \
+    --output_dir        "$OUTPUT_DIR" \
+    --epochs            200 \
+    --batch_size        8 \
+    --eval_batch_size   16 \
+    --lr                3e-4 \
+    --weight_decay      0.05 \
+    --warmup_epochs     20 \
+    --min_lr            1e-6 \
+    --grad_clip         1.0 \
+    --patience          50 \
+    --encoder_lr_scale  0.5 \
+    --n_crops           4 \
+    --num_workers       $SLURM_CPUS_PER_TASK \
+    --loss              focal_dice \
+    --pos_weight        20.0 \
+    --threshold         0.35 \
     $RESUME_FLAG
 
 TRAIN_EXIT=$?

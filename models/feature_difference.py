@@ -26,6 +26,7 @@ Three strategies are provided:
 All three output (B, N, out_dim) where N = num_patches.
 """
 
+from __future__ import annotations
 import torch
 import torch.nn as nn
 
@@ -119,6 +120,83 @@ class FeatureDifferenceModule(nn.Module):
             diff = torch.abs(feat1 - feat2)                      # (B, N, D)
             combined = torch.cat([attn_out, diff], dim=-1)       # (B, N, 2D)
             return self.proj(combined)
+
+
+class MultiScaleDiffModule(nn.Module):
+    """Multi-scale feature difference for Siamese ViT change detection.
+
+    Applies a FeatureDifferenceModule at each of the 4 encoder scales
+    (shallow → deep), then fuses all scale outputs into a single
+    change-aware representation fed to the decoder.
+
+    Why per-scale diffs?
+      - Shallow scale  (depth/4)  : edges, colour shift, fine texture changes
+      - Mid scales     (depth/2, 3*depth/4): structural / shape changes
+      - Deep scale     (depth)    : semantic changes ("building appeared")
+    Fusing all four lets the decoder use whichever cue is most reliable
+    for each spatial location.
+
+    Args:
+        in_dim    : Embedding dimension from the ViT encoder.  Default 768.
+        out_dim   : Output channel count (= decoder input dim). Default 256.
+        n_scales  : Number of encoder scales to fuse.          Default 4.
+
+    Input / output
+    --------------
+    forward(feats1_list, feats2_list)
+        feats1_list, feats2_list : each a list of n_scales tensors,
+                                   each (B, N, in_dim)
+    returns : (B, N, out_dim)  — fused multi-scale change feature
+
+    Shape trace (defaults, B=2, N=256):
+        per scale : [f1, f2] → concat_project → (B, 256, out_dim)
+        stack     : 4 × (B, 256, out_dim) → cat dim=-1 → (B, 256, 4*out_dim)
+        fusion    : Linear(4*out_dim, 2*out_dim) → GELU → Linear(2*out_dim, out_dim)
+                  → (B, 256, out_dim)
+    """
+
+    def __init__(
+        self,
+        in_dim:   int = 768,
+        out_dim:  int = 256,
+        n_scales: int = 4,
+    ) -> None:
+        super().__init__()
+        self.n_scales = n_scales
+
+        # One lightweight diff module per scale (concat_project strategy)
+        self.scale_diffs = nn.ModuleList([
+            FeatureDifferenceModule(in_dim, out_dim, diff_type="concat_project")
+            for _ in range(n_scales)
+        ])
+
+        # Fuse the n_scales change features into a single representation
+        self.fusion = nn.Sequential(
+            nn.Linear(n_scales * out_dim, 2 * out_dim),
+            nn.GELU(),
+            nn.Dropout(0.1),
+            nn.Linear(2 * out_dim, out_dim),
+            nn.GELU(),
+        )
+
+    def forward(
+        self,
+        feats1_list: list[torch.Tensor],
+        feats2_list: list[torch.Tensor],
+    ) -> torch.Tensor:
+        """
+        Args:
+            feats1_list : list of n_scales tensors (B, N, in_dim)
+            feats2_list : list of n_scales tensors (B, N, in_dim)
+        Returns:
+            (B, N, out_dim)
+        """
+        scale_outs = [
+            diff(f1, f2)
+            for diff, f1, f2 in zip(self.scale_diffs, feats1_list, feats2_list)
+        ]                                           # n_scales × (B, N, out_dim)
+        combined = torch.cat(scale_outs, dim=-1)   # (B, N, n_scales * out_dim)
+        return self.fusion(combined)               # (B, N, out_dim)
 
 
 # ──────────────────────────────────────────────────────
