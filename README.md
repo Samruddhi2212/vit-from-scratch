@@ -230,6 +230,15 @@ Each row shows 8 randomly sampled val-split images that contain ground-truth cha
 
 ---
 
+## 📁 Results and outputs layout
+
+- **`outputs/`** — LEVIR-CD **change-detection** experiments (training logs, curves, prediction grids) from `train.py` and related scripts. Per-model subfolders keep runs organized.
+- **`results/`** — **CIFAR-10 classification** ViT artifacts (confusion matrix, attention maps, rollout figures) from `scripts/train_cifar10.py` and `utils/evaluation.py`.
+
+See [docs/RESULTS_LAYOUT.md](docs/RESULTS_LAYOUT.md) for the full convention and regeneration commands.
+
+---
+
 ## 🛠️ Tech Stack
 
 - Python
