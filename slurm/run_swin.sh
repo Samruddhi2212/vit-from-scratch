@@ -2,13 +2,18 @@
 #================================================================
 # SLURM Job Script: Siamese Swin Change Detection — LEVIR-CD
 # Matched workflow to slurm/run_unet.sh (Explorer / .venv_hpc)
+#
+# Wall time: Northeastern Explorer gpu partition enforces a max (commonly 8h).
+# Do not raise above your account/partition limit or sbatch will fail with
+# "Requested time limit is invalid". For longer training, chain jobs with
+# RESUME_PATH=.../last_model.pth or ask RC about qos/partitions.
 #================================================================
 #SBATCH --partition=gpu
 #SBATCH --nodes=1
 #SBATCH --gres=gpu:1
 #SBATCH --cpus-per-task=8
 #SBATCH --mem=64GB
-#SBATCH --time=12:00:00
+#SBATCH --time=08:00:00
 #SBATCH --job-name=swin_focal_matched
 #SBATCH --output=logs/swin_%j.out
 #SBATCH --error=logs/swin_%j.err
