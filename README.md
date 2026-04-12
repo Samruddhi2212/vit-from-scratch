@@ -173,32 +173,45 @@ python scripts/run_ablations.py --ablation-epochs 50 --num-workers 4
 
 ## Evaluation metrics (change detection)
 
-We report standard **segmentation** statistics: **IoU**, **F1**, **precision**, **recall**, **Dice**, and **Cohen’s kappa** where applicable—see `utils/metrics.py` for definitions. The decision **threshold** on predicted probabilities is important on imbalanced masks; it can be tuned on validation (example value used in the table below: **0.35**).
+We report standard **segmentation** statistics: **IoU**, **F1**, **precision**, **recall**, **Dice**, and **Cohen’s kappa**—see `utils/metrics.py` for definitions. During training, validation metrics use the configured **probability threshold** (default **0.5** in `train.py` unless your YAML sets `threshold`). For deployment or visualization you may tune the threshold on the validation set to trade precision for recall on rare positive pixels.
 
 ---
 
-## Training results (example LEVIR-CD run)
+## Training results (LEVIR-CD, three backbones)
 
-Best validation performance after **173** epochs (representative run; your numbers will vary with seed and hardware):
+The table below is **validation** performance at the **best epoch by validation F1** (the same criterion used to save `best_model.pth`). Numbers are read from the training logs shipped under `outputs/`:
 
-| Metric    | Score  |
-|-----------|--------|
-| F1        | 0.6655 |
-| IoU       | 0.4987 |
-| Kappa     | 0.6538 |
-| Threshold | 0.35   |
+| Architecture | Log file | Best epoch (val F1) | F1 | IoU | Cohen’s κ | Precision | Recall |
+|--------------|----------|----------------------|-----|-----|-----------|-----------|--------|
+| **Siamese U-Net** (CNN baseline) | `outputs/siamese_unet/train.log` | 187 | **0.8843** | 0.7927 | 0.8805 | 0.8769 | 0.8919 |
+| **Siamese Swin** (windowed attention) | `outputs/siamese_swin/train.log` | 162 | **0.8613** | 0.7564 | 0.8568 | 0.8671 | 0.8556 |
+| **Siamese ViT** (global attention) | `outputs/vit_teammate_train.log` | 195 | **0.8236** | 0.7001 | 0.8176 | 0.8281 | 0.8191 |
 
-### Training curves
+On this benchmark run, the **CNN U-Net** achieves the highest validation F1; **Swin** is second; the **plain ViT** encoder is competitive but slightly lower—consistent with the idea that local inductive bias and stable optimization still matter for high-resolution, imbalanced segmentation. Your own runs will differ with seeds, schedules, and data paths.
 
-Loss, F1, IoU, precision/recall, Cohen’s kappa, learning-rate schedule, and precision–recall trade-offs over training:
+### Training curves (one figure per model)
 
-![Training Curves](outputs/training_curves.png)
+Loss, F1, IoU, precision/recall, Cohen’s kappa, learning-rate schedule, and precision–recall curves (as produced by the training script):
+
+**Siamese U-Net**
+
+![Training curves — U-Net](outputs/siamese_unet/training_curves.png)
+
+**Siamese ViT** (matches `vit_teammate_train.log`)
+
+![Training curves — ViT](outputs/vit_teammate_training_curves.png)
+
+**Siamese Swin**
+
+![Training curves — Swin](outputs/siamese_swin/training_curves.png)
+
+The aggregate figure `outputs/training_curves.png` is an additional export kept at the repo root for reports.
 
 ---
 
 ## Prediction visualizations
 
-Each row shows **8** randomly sampled validation crops that contain at least one positive (change) pixel:
+**Example — Siamese ViT.** Each row shows **8** randomly sampled validation crops that contain at least one positive (change) pixel:
 
 | Column | Description |
 |--------|-------------|
