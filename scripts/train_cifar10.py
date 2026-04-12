@@ -24,6 +24,7 @@ import torch.nn as nn
 from configs.config import ViTConfig
 from models.vit import ViT
 from scripts._paths import default_output_dir
+from utils.cifar_paths import CIFAR10_RESULTS_DIR
 from utils.dataset import get_cifar10_loaders, CIFAR10_CLASSES
 from utils.evaluation import full_evaluation
 from utils.training import train, load_checkpoint
@@ -36,7 +37,7 @@ def parse_args() -> argparse.Namespace:
         "--output-dir",
         type=str,
         default=None,
-        help="Root for checkpoints/ and results/ (default: outputs/train or $VIT_OUTPUT_DIR/train)",
+        help="Root for checkpoints/ and results_cifar10/ (default: outputs/train or $VIT_OUTPUT_DIR/train)",
     )
     p.add_argument("--epochs", type=int, default=None, help="Override config.total_epochs")
     p.add_argument("--batch-size", type=int, default=None, help="Override config.batch_size")
@@ -64,7 +65,7 @@ def main() -> None:
     else:
         out = default_output_dir(root, "train")
     ckpt_dir = out / "checkpoints"
-    res_dir = out / "results"
+    res_dir = out / CIFAR10_RESULTS_DIR
     ckpt_dir.mkdir(parents=True, exist_ok=True)
     res_dir.mkdir(parents=True, exist_ok=True)
 

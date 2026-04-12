@@ -2,11 +2,11 @@
 
 Two folders are used on purpose so classification experiments stay separate from change-detection runs.
 
-## `results/` — CIFAR-10 (classification ViT)
+## `results_cifar10/` — CIFAR-10 (classification ViT)
 
 Contains **static evaluation figures** produced by the **image-classification** path (`models/vit.py`, `configs/config.py`, `scripts/train_cifar10.py`, `utils/evaluation.py`):
 
-- Confusion matrix and attention / rollout visualizations under `results/test_viz/`
+- Confusion matrix and attention / rollout visualizations under `results_cifar10/test_viz/`
 - These are **not** LEVIR-CD outputs; they document the from-scratch ViT on CIFAR-10.
 
 Large binaries (`.pt` / `.pth` checkpoints) stay **gitignored**; regenerate with the training script after downloading CIFAR-10.
@@ -23,4 +23,4 @@ Checkpoints (`best_model.pth`, etc.) are typically **local or cluster-only** and
 ## Scripts
 
 - Regenerate LEVIR training figures from logs: `python scripts/plot_all_training_curves.py`
-- CIFAR training: `python scripts/train_cifar10.py` (writes under `outputs/train/` by default unless `--output-dir` is set)
+- CIFAR training: `python scripts/train_cifar10.py` (writes checkpoints under `outputs/train/checkpoints/` and figures under `outputs/train/results_cifar10/` by default unless `--output-dir` is set)

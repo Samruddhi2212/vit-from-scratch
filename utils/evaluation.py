@@ -20,6 +20,7 @@ import sys
 import os
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from configs.config import ViTConfig
+from utils.cifar_paths import CIFAR10_RESULTS_DIR
 from utils.dataset import CIFAR10_CLASSES
 
 
@@ -246,7 +247,7 @@ def full_evaluation(
     test_loader: torch.utils.data.DataLoader,
     device: torch.device,
     class_names: list[str] = None,
-    save_dir: str = "results",
+    save_dir: str = CIFAR10_RESULTS_DIR,
     experiment_name: str = "vit_cifar10"
 ) -> dict:
     """
@@ -383,12 +384,12 @@ if __name__ == "__main__":
     print(" Confusion matrix PASSED!")
     
     # Test plotting (save to file)
-    os.makedirs("results", exist_ok=True)
+    os.makedirs(CIFAR10_RESULTS_DIR, exist_ok=True)
     plot_confusion_matrix(
         cm, CIFAR10_CLASSES, normalize=True,
-        save_path="results/test_confusion_matrix.png"
+        save_path=os.path.join(CIFAR10_RESULTS_DIR, "test_confusion_matrix.png"),
     )
-    assert os.path.exists("results/test_confusion_matrix.png")
+    assert os.path.exists(os.path.join(CIFAR10_RESULTS_DIR, "test_confusion_matrix.png"))
     print(" Confusion matrix plot PASSED!")
     
     print("\n All evaluation tests PASSED!")

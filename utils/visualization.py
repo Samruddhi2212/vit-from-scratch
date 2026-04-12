@@ -27,6 +27,7 @@ import sys
 import os
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from configs.config import ViTConfig
+from utils.cifar_paths import CIFAR10_RESULTS_DIR
 from utils.dataset import CIFAR10_CLASSES, CIFAR10_MEAN, CIFAR10_STD, denormalize_cifar10
 
 
@@ -573,7 +574,8 @@ if __name__ == "__main__":
     _, _, test_loader = get_cifar10_loaders(config, num_workers=0)
     images, labels = next(iter(test_loader))
     
-    os.makedirs("results/test_viz", exist_ok=True)
+    _cifar_test_viz = os.path.join(CIFAR10_RESULTS_DIR, "test_viz")
+    os.makedirs(_cifar_test_viz, exist_ok=True)
     
     # ──────────────────────────────────────────────
     print("=" * 60)
@@ -583,7 +585,7 @@ if __name__ == "__main__":
     single_image = images[0:1]  # Take one image
     plot_attention_maps(
         model, single_image, device,
-        save_path="results/test_viz/attention_maps.png"
+        save_path=os.path.join(_cifar_test_viz, "attention_maps.png"),
     )
     print(" Attention maps PASSED!")
     
@@ -601,8 +603,8 @@ if __name__ == "__main__":
     
     plot_attention_rollout(
         model, single_image, device,
-        save_path="results/test_viz/attention_rollout.png",
-        title="Test: Attention Rollout (untrained model)"
+        save_path=os.path.join(_cifar_test_viz, "attention_rollout.png"),
+        title="Test: Attention Rollout (untrained model)",
     )
     print(" Attention rollout PASSED!")
     
@@ -613,7 +615,7 @@ if __name__ == "__main__":
     
     plot_positional_embedding_similarity(
         model,
-        save_path="results/test_viz/pos_embed_similarity.png"
+        save_path=os.path.join(_cifar_test_viz, "pos_embed_similarity.png"),
     )
     print(" Positional embedding similarity PASSED!")
     
@@ -625,7 +627,7 @@ if __name__ == "__main__":
     plot_attention_rollout_grid(
         model,
         images[:6], labels[:6], device,
-        save_path="results/test_viz/rollout_grid.png"
+        save_path=os.path.join(_cifar_test_viz, "rollout_grid.png"),
     )
     print(" Attention rollout grid PASSED!")
     
@@ -644,7 +646,7 @@ if __name__ == "__main__":
     
     plot_training_curves(
         dummy_history,
-        save_path="results/test_viz/training_curves.png"
+        save_path=os.path.join(_cifar_test_viz, "training_curves.png"),
     )
     print(" Training curves PASSED!")
     
@@ -657,13 +659,13 @@ if __name__ == "__main__":
     plot_tsne_embeddings(
         model, test_loader, device,
         max_samples=200,  # Small for testing
-        save_path="results/test_viz/tsne.png"
+        save_path=os.path.join(_cifar_test_viz, "tsne.png"),
     )
     print(" t-SNE PASSED!")
     
     print("\n" + "=" * 60)
     print("ALL VISUALIZATION TESTS PASSED!")
     print("=" * 60)
-    print(f"\nCheck results/test_viz/ for all generated plots.")
+    print(f"\nCheck {_cifar_test_viz}/ for all generated plots.")
     print(f"(Note: plots are from an UNTRAINED model, so they won't show")
     print(f" meaningful patterns yet. After training, they'll look great!)")

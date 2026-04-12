@@ -13,6 +13,7 @@ data/
 
 # OS / local clutter
 .DS_Store
+.mplconfig/
 
 # Dataset roots (large; user-specific paths)
 LEVIR CD/
