@@ -1,0 +1,1406 @@
+02:38:47  Device: cuda
+02:38:47  Architecture: SiameseUNet (FC-Siam-diff)
+02:38:47  Model params — encoder=18,847,168  diff=0  decoder=12,190,465  total=31,037,633
+02:38:51  Starting training — epochs=200  bs=8  lr=1.00e-03  loss=bce_dice
+02:38:56  Epoch 000  step   10/55  loss=0.7960  lr=1.00e-04  [4s]
+02:38:56  Epoch 000  step   20/55  loss=0.7542  lr=1.00e-04  [5s]
+02:38:57  Epoch 000  step   30/55  loss=0.7080  lr=1.00e-04  [6s]
+02:38:58  Epoch 000  step   40/55  loss=0.7017  lr=1.00e-04  [7s]
+02:38:59  Epoch 000  step   50/55  loss=0.6904  lr=1.00e-04  [8s]
+02:39:02  Epoch 000  train_loss=0.7489  val_loss=0.7934  F1=0.1823  IoU=0.1003  P=0.1036  R=0.7572  Kappa=0.1341  max_prob=1.0000  lr=2.00e-04
+02:39:03    *** New best F1=0.1823  saved best_model.pth ***
+02:39:05  Epoch 001  step   10/55  loss=0.7146  lr=2.00e-04  [2s]
+02:39:06  Epoch 001  step   20/55  loss=0.6434  lr=2.00e-04  [3s]
+02:39:07  Epoch 001  step   30/55  loss=0.6485  lr=2.00e-04  [4s]
+02:39:08  Epoch 001  step   40/55  loss=0.5967  lr=2.00e-04  [5s]
+02:39:09  Epoch 001  step   50/55  loss=0.7222  lr=2.00e-04  [6s]
+02:39:11  Epoch 001  train_loss=0.6522  val_loss=0.8162  F1=0.2303  IoU=0.1302  P=0.1327  R=0.8708  Kappa=0.1855  max_prob=1.0000  lr=3.00e-04
+02:39:13    *** New best F1=0.2303  saved best_model.pth ***
+02:39:15  Epoch 002  step   10/55  loss=0.5901  lr=3.00e-04  [2s]
+02:39:16  Epoch 002  step   20/55  loss=0.5172  lr=3.00e-04  [3s]
+02:39:17  Epoch 002  step   30/55  loss=0.6713  lr=3.00e-04  [4s]
+02:39:18  Epoch 002  step   40/55  loss=0.5334  lr=3.00e-04  [5s]
+02:39:19  Epoch 002  step   50/55  loss=0.6568  lr=3.00e-04  [6s]
+02:39:21  Epoch 002  train_loss=0.6071  val_loss=0.7981  F1=0.1622  IoU=0.0882  P=0.0896  R=0.8547  Kappa=0.1112  max_prob=1.0000  lr=4.00e-04
+02:39:22    No improvement for 1/30 epochs
+02:39:23  Epoch 003  step   10/55  loss=0.6683  lr=4.00e-04  [2s]
+02:39:24  Epoch 003  step   20/55  loss=0.6202  lr=4.00e-04  [3s]
+02:39:25  Epoch 003  step   30/55  loss=0.5115  lr=4.00e-04  [4s]
+02:39:26  Epoch 003  step   40/55  loss=0.5597  lr=4.00e-04  [5s]
+02:39:27  Epoch 003  step   50/55  loss=0.5206  lr=4.00e-04  [6s]
+02:39:29  Epoch 003  train_loss=0.5678  val_loss=0.7755  F1=0.1868  IoU=0.1030  P=0.1045  R=0.8770  Kappa=0.1380  max_prob=1.0000  lr=5.00e-04
+02:39:30    No improvement for 2/30 epochs
+02:39:32  Epoch 004  step   10/55  loss=0.5180  lr=5.00e-04  [2s]
+02:39:33  Epoch 004  step   20/55  loss=0.6404  lr=5.00e-04  [3s]
+02:39:34  Epoch 004  step   30/55  loss=0.6049  lr=5.00e-04  [4s]
+02:39:35  Epoch 004  step   40/55  loss=0.5598  lr=5.00e-04  [5s]
+02:39:36  Epoch 004  step   50/55  loss=0.5748  lr=5.00e-04  [6s]
+02:39:38  Epoch 004  train_loss=0.5313  val_loss=0.9190  F1=0.1376  IoU=0.0739  P=0.0745  R=0.8946  Kappa=0.0840  max_prob=1.0000  lr=6.00e-04
+02:39:39    No improvement for 3/30 epochs
+02:39:41  Epoch 005  step   10/55  loss=0.4287  lr=6.00e-04  [2s]
+02:39:42  Epoch 005  step   20/55  loss=0.5753  lr=6.00e-04  [3s]
+02:39:43  Epoch 005  step   30/55  loss=0.3591  lr=6.00e-04  [4s]
+02:39:44  Epoch 005  step   40/55  loss=0.3686  lr=6.00e-04  [5s]
+02:39:45  Epoch 005  step   50/55  loss=0.4177  lr=6.00e-04  [6s]
+02:39:47  Epoch 005  train_loss=0.5052  val_loss=0.6191  F1=0.2306  IoU=0.1303  P=0.1400  R=0.6532  Kappa=0.1882  max_prob=1.0000  lr=7.00e-04
+02:39:48    *** New best F1=0.2306  saved best_model.pth ***
+02:39:50  Epoch 006  step   10/55  loss=0.4024  lr=7.00e-04  [2s]
+02:39:51  Epoch 006  step   20/55  loss=0.4167  lr=7.00e-04  [3s]
+02:39:52  Epoch 006  step   30/55  loss=0.5254  lr=7.00e-04  [4s]
+02:39:53  Epoch 006  step   40/55  loss=0.4299  lr=7.00e-04  [5s]
+02:39:54  Epoch 006  step   50/55  loss=0.4456  lr=7.00e-04  [6s]
+02:39:56  Epoch 006  train_loss=0.4725  val_loss=0.3966  F1=0.5606  IoU=0.3895  P=0.4954  R=0.6456  Kappa=0.5443  max_prob=1.0000  lr=8.00e-04
+02:39:58    *** New best F1=0.5606  saved best_model.pth ***
+02:40:00  Epoch 007  step   10/55  loss=0.3762  lr=8.00e-04  [2s]
+02:40:01  Epoch 007  step   20/55  loss=0.3579  lr=8.00e-04  [3s]
+02:40:02  Epoch 007  step   30/55  loss=0.4357  lr=8.00e-04  [4s]
+02:40:03  Epoch 007  step   40/55  loss=0.4550  lr=8.00e-04  [5s]
+02:40:04  Epoch 007  step   50/55  loss=0.5562  lr=8.00e-04  [6s]
+02:40:06  Epoch 007  train_loss=0.4520  val_loss=0.5430  F1=0.3334  IoU=0.2001  P=0.2077  R=0.8442  Kappa=0.2977  max_prob=1.0000  lr=9.00e-04
+02:40:07    No improvement for 1/30 epochs
+02:40:08  Epoch 008  step   10/55  loss=0.3145  lr=9.00e-04  [2s]
+02:40:09  Epoch 008  step   20/55  loss=0.5564  lr=9.00e-04  [3s]
+02:40:10  Epoch 008  step   30/55  loss=0.5812  lr=9.00e-04  [4s]
+02:40:11  Epoch 008  step   40/55  loss=0.6094  lr=9.00e-04  [5s]
+02:40:12  Epoch 008  step   50/55  loss=0.3524  lr=9.00e-04  [6s]
+02:40:15  Epoch 008  train_loss=0.4975  val_loss=0.7547  F1=0.2420  IoU=0.1377  P=0.1396  R=0.9071  Kappa=0.1979  max_prob=1.0000  lr=1.00e-03
+02:40:15    No improvement for 2/30 epochs
+02:40:17  Epoch 009  step   10/55  loss=0.3414  lr=1.00e-03  [2s]
+02:40:18  Epoch 009  step   20/55  loss=0.3568  lr=1.00e-03  [3s]
+02:40:19  Epoch 009  step   30/55  loss=0.3843  lr=1.00e-03  [4s]
+02:40:20  Epoch 009  step   40/55  loss=0.9400  lr=1.00e-03  [5s]
+02:40:21  Epoch 009  step   50/55  loss=0.5244  lr=1.00e-03  [6s]
+02:40:23  Epoch 009  train_loss=0.4541  val_loss=0.3467  F1=0.6338  IoU=0.4640  P=0.5697  R=0.7143  Kappa=0.6205  max_prob=1.0000  lr=1.00e-03
+02:40:25    *** New best F1=0.6338  saved best_model.pth ***
+02:40:27  Epoch 010  step   10/55  loss=0.4576  lr=1.00e-03  [2s]
+02:40:28  Epoch 010  step   20/55  loss=0.3868  lr=1.00e-03  [3s]
+02:40:29  Epoch 010  step   30/55  loss=0.2707  lr=1.00e-03  [4s]
+02:40:30  Epoch 010  step   40/55  loss=0.4797  lr=1.00e-03  [5s]
+02:40:31  Epoch 010  step   50/55  loss=0.5269  lr=1.00e-03  [6s]
+02:40:33  Epoch 010  train_loss=0.4159  val_loss=0.4903  F1=0.4499  IoU=0.2902  P=0.6241  R=0.3517  Kappa=0.4370  max_prob=0.9995  lr=1.00e-03
+02:40:34    No improvement for 1/30 epochs
+02:40:35  Epoch 011  step   10/55  loss=0.3847  lr=1.00e-03  [2s]
+02:40:36  Epoch 011  step   20/55  loss=0.5331  lr=1.00e-03  [3s]
+02:40:37  Epoch 011  step   30/55  loss=0.2751  lr=1.00e-03  [4s]
+02:40:38  Epoch 011  step   40/55  loss=0.2977  lr=1.00e-03  [5s]
+02:40:39  Epoch 011  step   50/55  loss=0.4552  lr=1.00e-03  [6s]
+02:40:41  Epoch 011  train_loss=0.3915  val_loss=0.3923  F1=0.5632  IoU=0.3920  P=0.5916  R=0.5374  Kappa=0.5496  max_prob=1.0000  lr=1.00e-03
+02:40:42    No improvement for 2/30 epochs
+02:40:44  Epoch 012  step   10/55  loss=0.2394  lr=1.00e-03  [2s]
+02:40:45  Epoch 012  step   20/55  loss=0.5356  lr=1.00e-03  [3s]
+02:40:46  Epoch 012  step   30/55  loss=0.2490  lr=1.00e-03  [4s]
+02:40:47  Epoch 012  step   40/55  loss=0.2933  lr=1.00e-03  [5s]
+02:40:48  Epoch 012  step   50/55  loss=0.1870  lr=1.00e-03  [6s]
+02:40:50  Epoch 012  train_loss=0.3740  val_loss=0.3349  F1=0.6012  IoU=0.4298  P=0.4820  R=0.7988  Kappa=0.5848  max_prob=1.0000  lr=9.99e-04
+02:40:51    No improvement for 3/30 epochs
+02:40:53  Epoch 013  step   10/55  loss=0.5800  lr=9.99e-04  [2s]
+02:40:54  Epoch 013  step   20/55  loss=0.3439  lr=9.99e-04  [3s]
+02:40:55  Epoch 013  step   30/55  loss=0.2784  lr=9.99e-04  [4s]
+02:40:56  Epoch 013  step   40/55  loss=0.4005  lr=9.99e-04  [5s]
+02:40:57  Epoch 013  step   50/55  loss=0.3502  lr=9.99e-04  [6s]
+02:40:59  Epoch 013  train_loss=0.3421  val_loss=0.3917  F1=0.5344  IoU=0.3647  P=0.4181  R=0.7405  Kappa=0.5148  max_prob=1.0000  lr=9.99e-04
+02:41:00    No improvement for 4/30 epochs
+02:41:02  Epoch 014  step   10/55  loss=0.2493  lr=9.99e-04  [2s]
+02:41:02  Epoch 014  step   20/55  loss=0.4975  lr=9.99e-04  [3s]
+02:41:03  Epoch 014  step   30/55  loss=0.3539  lr=9.99e-04  [4s]
+02:41:04  Epoch 014  step   40/55  loss=0.2745  lr=9.99e-04  [5s]
+02:41:05  Epoch 014  step   50/55  loss=0.1770  lr=9.99e-04  [6s]
+02:41:08  Epoch 014  train_loss=0.3436  val_loss=0.3486  F1=0.6236  IoU=0.4531  P=0.7165  R=0.5521  Kappa=0.6130  max_prob=1.0000  lr=9.98e-04
+02:41:08    No improvement for 5/30 epochs
+02:41:10  Epoch 015  step   10/55  loss=0.5784  lr=9.98e-04  [2s]
+02:41:11  Epoch 015  step   20/55  loss=0.3892  lr=9.98e-04  [3s]
+02:41:12  Epoch 015  step   30/55  loss=0.2478  lr=9.98e-04  [4s]
+02:41:13  Epoch 015  step   40/55  loss=0.3892  lr=9.98e-04  [5s]
+02:41:14  Epoch 015  step   50/55  loss=0.2991  lr=9.98e-04  [6s]
+02:41:16  Epoch 015  train_loss=0.3574  val_loss=0.3698  F1=0.6171  IoU=0.4462  P=0.8119  R=0.4977  Kappa=0.6076  max_prob=0.9995  lr=9.98e-04
+02:41:17    No improvement for 6/30 epochs
+02:41:19  Epoch 016  step   10/55  loss=0.6006  lr=9.98e-04  [2s]
+02:41:20  Epoch 016  step   20/55  loss=0.2470  lr=9.98e-04  [3s]
+02:41:21  Epoch 016  step   30/55  loss=0.3371  lr=9.98e-04  [4s]
+02:41:22  Epoch 016  step   40/55  loss=0.3485  lr=9.98e-04  [5s]
+02:41:23  Epoch 016  step   50/55  loss=0.2930  lr=9.98e-04  [6s]
+02:41:25  Epoch 016  train_loss=0.3699  val_loss=0.3963  F1=0.5278  IoU=0.3585  P=0.5465  R=0.5103  Kappa=0.5129  max_prob=0.9995  lr=9.97e-04
+02:41:26    No improvement for 7/30 epochs
+02:41:28  Epoch 017  step   10/55  loss=0.4214  lr=9.97e-04  [2s]
+02:41:29  Epoch 017  step   20/55  loss=0.2900  lr=9.97e-04  [3s]
+02:41:29  Epoch 017  step   30/55  loss=0.2400  lr=9.97e-04  [4s]
+02:41:30  Epoch 017  step   40/55  loss=0.4865  lr=9.97e-04  [5s]
+02:41:31  Epoch 017  step   50/55  loss=0.3915  lr=9.97e-04  [6s]
+02:41:34  Epoch 017  train_loss=0.3433  val_loss=0.2982  F1=0.6690  IoU=0.5026  P=0.6054  R=0.7474  Kappa=0.6570  max_prob=1.0000  lr=9.96e-04
+02:41:35    *** New best F1=0.6690  saved best_model.pth ***
+02:41:37  Epoch 018  step   10/55  loss=0.4210  lr=9.96e-04  [2s]
+02:41:38  Epoch 018  step   20/55  loss=0.5435  lr=9.96e-04  [3s]
+02:41:39  Epoch 018  step   30/55  loss=0.5361  lr=9.96e-04  [4s]
+02:41:40  Epoch 018  step   40/55  loss=0.2756  lr=9.96e-04  [5s]
+02:41:41  Epoch 018  step   50/55  loss=0.2620  lr=9.96e-04  [6s]
+02:41:43  Epoch 018  train_loss=0.3357  val_loss=0.2769  F1=0.6790  IoU=0.5140  P=0.6670  R=0.6913  Kappa=0.6683  max_prob=1.0000  lr=9.94e-04
+02:41:45    *** New best F1=0.6790  saved best_model.pth ***
+02:41:46  Epoch 019  step   10/55  loss=0.2278  lr=9.94e-04  [2s]
+02:41:47  Epoch 019  step   20/55  loss=0.2684  lr=9.94e-04  [3s]
+02:41:48  Epoch 019  step   30/55  loss=0.3548  lr=9.94e-04  [4s]
+02:41:49  Epoch 019  step   40/55  loss=0.3363  lr=9.94e-04  [5s]
+02:41:50  Epoch 019  step   50/55  loss=0.2602  lr=9.94e-04  [6s]
+02:41:52  Epoch 019  train_loss=0.3343  val_loss=0.2497  F1=0.6994  IoU=0.5378  P=0.5865  R=0.8663  Kappa=0.6876  max_prob=1.0000  lr=9.93e-04
+02:41:54    *** New best F1=0.6994  saved best_model.pth ***
+02:41:56  Epoch 020  step   10/55  loss=0.2529  lr=9.93e-04  [2s]
+02:41:57  Epoch 020  step   20/55  loss=0.2486  lr=9.93e-04  [3s]
+02:41:58  Epoch 020  step   30/55  loss=0.2795  lr=9.93e-04  [4s]
+02:41:59  Epoch 020  step   40/55  loss=0.5202  lr=9.93e-04  [5s]
+02:42:00  Epoch 020  step   50/55  loss=0.4269  lr=9.93e-04  [6s]
+02:42:02  Epoch 020  train_loss=0.3455  val_loss=0.2664  F1=0.7321  IoU=0.5775  P=0.7448  R=0.7199  Kappa=0.7235  max_prob=1.0000  lr=9.92e-04
+02:42:04    *** New best F1=0.7321  saved best_model.pth ***
+02:42:05  Epoch 021  step   10/55  loss=0.3364  lr=9.92e-04  [2s]
+02:42:06  Epoch 021  step   20/55  loss=0.3266  lr=9.92e-04  [3s]
+02:42:07  Epoch 021  step   30/55  loss=0.1884  lr=9.92e-04  [4s]
+02:42:08  Epoch 021  step   40/55  loss=0.3765  lr=9.92e-04  [5s]
+02:42:09  Epoch 021  step   50/55  loss=0.5365  lr=9.92e-04  [6s]
+02:42:11  Epoch 021  train_loss=0.3621  val_loss=0.2591  F1=0.7462  IoU=0.5952  P=0.7251  R=0.7685  Kappa=0.7376  max_prob=1.0000  lr=9.90e-04
+02:42:13    *** New best F1=0.7462  saved best_model.pth ***
+02:42:15  Epoch 022  step   10/55  loss=0.3033  lr=9.90e-04  [2s]
+02:42:16  Epoch 022  step   20/55  loss=0.3726  lr=9.90e-04  [3s]
+02:42:17  Epoch 022  step   30/55  loss=0.1362  lr=9.90e-04  [4s]
+02:42:18  Epoch 022  step   40/55  loss=0.3343  lr=9.90e-04  [5s]
+02:42:19  Epoch 022  step   50/55  loss=0.3390  lr=9.90e-04  [6s]
+02:42:21  Epoch 022  train_loss=0.3113  val_loss=0.2478  F1=0.7540  IoU=0.6052  P=0.7656  R=0.7428  Kappa=0.7461  max_prob=0.9995  lr=9.89e-04
+02:42:22    *** New best F1=0.7540  saved best_model.pth ***
+02:42:24  Epoch 023  step   10/55  loss=0.2319  lr=9.89e-04  [2s]
+02:42:25  Epoch 023  step   20/55  loss=0.4272  lr=9.89e-04  [3s]
+02:42:26  Epoch 023  step   30/55  loss=0.2800  lr=9.89e-04  [4s]
+02:42:27  Epoch 023  step   40/55  loss=0.1362  lr=9.89e-04  [5s]
+02:42:28  Epoch 023  step   50/55  loss=0.3854  lr=9.89e-04  [6s]
+02:42:30  Epoch 023  train_loss=0.3012  val_loss=0.2684  F1=0.7227  IoU=0.5658  P=0.8157  R=0.6487  Kappa=0.7147  max_prob=1.0000  lr=9.87e-04
+02:42:31    No improvement for 1/30 epochs
+02:42:33  Epoch 024  step   10/55  loss=0.5495  lr=9.87e-04  [2s]
+02:42:34  Epoch 024  step   20/55  loss=0.2084  lr=9.87e-04  [3s]
+02:42:35  Epoch 024  step   30/55  loss=0.2241  lr=9.87e-04  [4s]
+02:42:36  Epoch 024  step   40/55  loss=0.2184  lr=9.87e-04  [5s]
+02:42:37  Epoch 024  step   50/55  loss=0.2238  lr=9.87e-04  [6s]
+02:42:39  Epoch 024  train_loss=0.2605  val_loss=0.1979  F1=0.7806  IoU=0.6402  P=0.7928  R=0.7688  Kappa=0.7736  max_prob=1.0000  lr=9.85e-04
+02:42:41    *** New best F1=0.7806  saved best_model.pth ***
+02:42:42  Epoch 025  step   10/55  loss=0.5873  lr=9.85e-04  [2s]
+02:42:43  Epoch 025  step   20/55  loss=0.2268  lr=9.85e-04  [3s]
+02:42:44  Epoch 025  step   30/55  loss=0.2499  lr=9.85e-04  [4s]
+02:42:45  Epoch 025  step   40/55  loss=0.2027  lr=9.85e-04  [5s]
+02:42:46  Epoch 025  step   50/55  loss=0.1645  lr=9.85e-04  [6s]
+02:42:49  Epoch 025  train_loss=0.3403  val_loss=0.2220  F1=0.7586  IoU=0.6111  P=0.6971  R=0.8320  Kappa=0.7500  max_prob=1.0000  lr=9.83e-04
+02:42:49    No improvement for 1/30 epochs
+02:42:51  Epoch 026  step   10/55  loss=0.2302  lr=9.83e-04  [2s]
+02:42:52  Epoch 026  step   20/55  loss=0.3184  lr=9.83e-04  [3s]
+02:42:53  Epoch 026  step   30/55  loss=0.2402  lr=9.83e-04  [4s]
+02:42:54  Epoch 026  step   40/55  loss=0.3724  lr=9.83e-04  [5s]
+02:42:55  Epoch 026  step   50/55  loss=0.2196  lr=9.83e-04  [6s]
+02:42:57  Epoch 026  train_loss=0.3184  val_loss=0.2361  F1=0.7507  IoU=0.6009  P=0.7530  R=0.7485  Kappa=0.7426  max_prob=1.0000  lr=9.80e-04
+02:42:58    No improvement for 2/30 epochs
+02:43:00  Epoch 027  step   10/55  loss=0.4911  lr=9.80e-04  [2s]
+02:43:01  Epoch 027  step   20/55  loss=0.2017  lr=9.80e-04  [3s]
+02:43:02  Epoch 027  step   30/55  loss=0.9798  lr=9.80e-04  [4s]
+02:43:03  Epoch 027  step   40/55  loss=0.5307  lr=9.80e-04  [5s]
+02:43:04  Epoch 027  step   50/55  loss=0.1781  lr=9.80e-04  [6s]
+02:43:06  Epoch 027  train_loss=0.3206  val_loss=0.2510  F1=0.7038  IoU=0.5429  P=0.5833  R=0.8869  Kappa=0.6920  max_prob=1.0000  lr=9.78e-04
+02:43:07    No improvement for 3/30 epochs
+02:43:09  Epoch 028  step   10/55  loss=0.3537  lr=9.78e-04  [2s]
+02:43:10  Epoch 028  step   20/55  loss=0.6015  lr=9.78e-04  [3s]
+02:43:11  Epoch 028  step   30/55  loss=0.1738  lr=9.78e-04  [4s]
+02:43:12  Epoch 028  step   40/55  loss=0.3063  lr=9.78e-04  [5s]
+02:43:13  Epoch 028  step   50/55  loss=0.2988  lr=9.78e-04  [6s]
+02:43:15  Epoch 028  train_loss=0.3217  val_loss=0.2116  F1=0.7594  IoU=0.6121  P=0.6768  R=0.8651  Kappa=0.7505  max_prob=1.0000  lr=9.76e-04
+02:43:16    No improvement for 4/30 epochs
+02:43:17  Epoch 029  step   10/55  loss=0.3625  lr=9.76e-04  [2s]
+02:43:18  Epoch 029  step   20/55  loss=0.1911  lr=9.76e-04  [3s]
+02:43:19  Epoch 029  step   30/55  loss=0.3455  lr=9.76e-04  [4s]
+02:43:20  Epoch 029  step   40/55  loss=0.3148  lr=9.76e-04  [5s]
+02:43:21  Epoch 029  step   50/55  loss=0.1461  lr=9.76e-04  [6s]
+02:43:23  Epoch 029  train_loss=0.2808  val_loss=0.2283  F1=0.7518  IoU=0.6023  P=0.7534  R=0.7502  Kappa=0.7437  max_prob=1.0000  lr=9.73e-04
+02:43:24    No improvement for 5/30 epochs
+02:43:26  Epoch 030  step   10/55  loss=0.2482  lr=9.73e-04  [2s]
+02:43:27  Epoch 030  step   20/55  loss=0.4156  lr=9.73e-04  [3s]
+02:43:28  Epoch 030  step   30/55  loss=0.3705  lr=9.73e-04  [4s]
+02:43:29  Epoch 030  step   40/55  loss=0.3026  lr=9.73e-04  [5s]
+02:43:30  Epoch 030  step   50/55  loss=0.3644  lr=9.73e-04  [6s]
+02:43:32  Epoch 030  train_loss=0.2844  val_loss=0.2506  F1=0.7594  IoU=0.6122  P=0.8100  R=0.7148  Kappa=0.7521  max_prob=1.0000  lr=9.70e-04
+02:43:33    No improvement for 6/30 epochs
+02:43:35  Epoch 031  step   10/55  loss=0.1569  lr=9.70e-04  [2s]
+02:43:36  Epoch 031  step   20/55  loss=0.5440  lr=9.70e-04  [3s]
+02:43:37  Epoch 031  step   30/55  loss=0.1351  lr=9.70e-04  [4s]
+02:43:38  Epoch 031  step   40/55  loss=0.3193  lr=9.70e-04  [5s]
+02:43:39  Epoch 031  step   50/55  loss=0.2479  lr=9.70e-04  [6s]
+02:43:41  Epoch 031  train_loss=0.2793  val_loss=0.2221  F1=0.7751  IoU=0.6328  P=0.8258  R=0.7302  Kappa=0.7682  max_prob=1.0000  lr=9.67e-04
+02:43:42    No improvement for 7/30 epochs
+02:43:43  Epoch 032  step   10/55  loss=0.2348  lr=9.67e-04  [2s]
+02:43:44  Epoch 032  step   20/55  loss=0.7629  lr=9.67e-04  [3s]
+02:43:45  Epoch 032  step   30/55  loss=0.1550  lr=9.67e-04  [4s]
+02:43:46  Epoch 032  step   40/55  loss=0.2397  lr=9.67e-04  [5s]
+02:43:47  Epoch 032  step   50/55  loss=0.1748  lr=9.67e-04  [6s]
+02:43:50  Epoch 032  train_loss=0.2778  val_loss=0.2103  F1=0.7849  IoU=0.6460  P=0.7886  R=0.7813  Kappa=0.7779  max_prob=1.0000  lr=9.64e-04
+02:43:51    *** New best F1=0.7849  saved best_model.pth ***
+02:43:53  Epoch 033  step   10/55  loss=0.2157  lr=9.64e-04  [2s]
+02:43:54  Epoch 033  step   20/55  loss=0.2335  lr=9.64e-04  [3s]
+02:43:55  Epoch 033  step   30/55  loss=0.1338  lr=9.64e-04  [4s]
+02:43:56  Epoch 033  step   40/55  loss=0.2065  lr=9.64e-04  [5s]
+02:43:57  Epoch 033  step   50/55  loss=0.1874  lr=9.64e-04  [6s]
+02:43:59  Epoch 033  train_loss=0.2057  val_loss=0.1884  F1=0.7841  IoU=0.6449  P=0.7494  R=0.8223  Kappa=0.7767  max_prob=1.0000  lr=9.61e-04
+02:44:00    No improvement for 1/30 epochs
+02:44:02  Epoch 034  step   10/55  loss=0.3028  lr=9.61e-04  [2s]
+02:44:03  Epoch 034  step   20/55  loss=0.2294  lr=9.61e-04  [3s]
+02:44:04  Epoch 034  step   30/55  loss=0.7733  lr=9.61e-04  [4s]
+02:44:05  Epoch 034  step   40/55  loss=0.1361  lr=9.61e-04  [5s]
+02:44:06  Epoch 034  step   50/55  loss=0.2196  lr=9.61e-04  [6s]
+02:44:08  Epoch 034  train_loss=0.2645  val_loss=0.2502  F1=0.7086  IoU=0.5487  P=0.6613  R=0.7631  Kappa=0.6983  max_prob=1.0000  lr=9.58e-04
+02:44:09    No improvement for 2/30 epochs
+02:44:11  Epoch 035  step   10/55  loss=0.2013  lr=9.58e-04  [2s]
+02:44:12  Epoch 035  step   20/55  loss=0.2280  lr=9.58e-04  [3s]
+02:44:13  Epoch 035  step   30/55  loss=0.5796  lr=9.58e-04  [4s]
+02:44:13  Epoch 035  step   40/55  loss=0.1845  lr=9.58e-04  [5s]
+02:44:14  Epoch 035  step   50/55  loss=0.1047  lr=9.58e-04  [6s]
+02:44:17  Epoch 035  train_loss=0.2669  val_loss=0.3686  F1=0.5908  IoU=0.4192  P=0.9020  R=0.4392  Kappa=0.5821  max_prob=0.9995  lr=9.55e-04
+02:44:17    No improvement for 3/30 epochs
+02:44:19  Epoch 036  step   10/55  loss=0.2279  lr=9.55e-04  [2s]
+02:44:20  Epoch 036  step   20/55  loss=0.3352  lr=9.55e-04  [3s]
+02:44:21  Epoch 036  step   30/55  loss=0.1733  lr=9.55e-04  [4s]
+02:44:22  Epoch 036  step   40/55  loss=0.1242  lr=9.55e-04  [5s]
+02:44:23  Epoch 036  step   50/55  loss=0.1869  lr=9.55e-04  [6s]
+02:44:25  Epoch 036  train_loss=0.2872  val_loss=0.2234  F1=0.7546  IoU=0.6059  P=0.8478  R=0.6799  Kappa=0.7475  max_prob=1.0000  lr=9.51e-04
+02:44:26    No improvement for 4/30 epochs
+02:44:28  Epoch 037  step   10/55  loss=0.4780  lr=9.51e-04  [2s]
+02:44:29  Epoch 037  step   20/55  loss=0.3311  lr=9.51e-04  [3s]
+02:44:30  Epoch 037  step   30/55  loss=0.5743  lr=9.51e-04  [4s]
+02:44:31  Epoch 037  step   40/55  loss=0.4674  lr=9.51e-04  [5s]
+02:44:32  Epoch 037  step   50/55  loss=0.2412  lr=9.51e-04  [6s]
+02:44:34  Epoch 037  train_loss=0.2886  val_loss=0.1668  F1=0.8079  IoU=0.6778  P=0.7615  R=0.8604  Kappa=0.8013  max_prob=1.0000  lr=9.47e-04
+02:44:36    *** New best F1=0.8079  saved best_model.pth ***
+02:44:37  Epoch 038  step   10/55  loss=0.1901  lr=9.47e-04  [2s]
+02:44:38  Epoch 038  step   20/55  loss=0.3121  lr=9.47e-04  [3s]
+02:44:39  Epoch 038  step   30/55  loss=0.1119  lr=9.47e-04  [4s]
+02:44:40  Epoch 038  step   40/55  loss=0.2250  lr=9.47e-04  [5s]
+02:44:41  Epoch 038  step   50/55  loss=0.1748  lr=9.47e-04  [6s]
+02:44:43  Epoch 038  train_loss=0.2711  val_loss=0.2147  F1=0.7708  IoU=0.6271  P=0.7400  R=0.8043  Kappa=0.7630  max_prob=1.0000  lr=9.44e-04
+02:44:44    No improvement for 1/30 epochs
+02:44:46  Epoch 039  step   10/55  loss=0.2518  lr=9.44e-04  [2s]
+02:44:47  Epoch 039  step   20/55  loss=0.1499  lr=9.44e-04  [3s]
+02:44:48  Epoch 039  step   30/55  loss=0.2279  lr=9.44e-04  [4s]
+02:44:49  Epoch 039  step   40/55  loss=0.3140  lr=9.44e-04  [5s]
+02:44:50  Epoch 039  step   50/55  loss=0.2696  lr=9.44e-04  [6s]
+02:44:52  Epoch 039  train_loss=0.2736  val_loss=0.3186  F1=0.6582  IoU=0.4905  P=0.8916  R=0.5216  Kappa=0.6500  max_prob=0.9995  lr=9.40e-04
+02:44:53    No improvement for 2/30 epochs
+02:44:55  Epoch 040  step   10/55  loss=0.2423  lr=9.40e-04  [2s]
+02:44:56  Epoch 040  step   20/55  loss=0.1602  lr=9.40e-04  [3s]
+02:44:57  Epoch 040  step   30/55  loss=0.1558  lr=9.40e-04  [4s]
+02:44:58  Epoch 040  step   40/55  loss=0.2363  lr=9.40e-04  [5s]
+02:44:59  Epoch 040  step   50/55  loss=0.1859  lr=9.40e-04  [6s]
+02:45:01  Epoch 040  train_loss=0.2353  val_loss=0.2877  F1=0.6748  IoU=0.5092  P=0.9352  R=0.5278  Kappa=0.6672  max_prob=0.9966  lr=9.36e-04
+02:45:02    No improvement for 3/30 epochs
+02:45:04  Epoch 041  step   10/55  loss=0.4438  lr=9.36e-04  [2s]
+02:45:05  Epoch 041  step   20/55  loss=0.2310  lr=9.36e-04  [3s]
+02:45:06  Epoch 041  step   30/55  loss=0.3142  lr=9.36e-04  [4s]
+02:45:07  Epoch 041  step   40/55  loss=0.1488  lr=9.36e-04  [5s]
+02:45:08  Epoch 041  step   50/55  loss=0.3291  lr=9.36e-04  [6s]
+02:45:10  Epoch 041  train_loss=0.2609  val_loss=0.2583  F1=0.7272  IoU=0.5713  P=0.9125  R=0.6044  Kappa=0.7201  max_prob=0.9995  lr=9.32e-04
+02:45:11    No improvement for 4/30 epochs
+02:45:12  Epoch 042  step   10/55  loss=0.1605  lr=9.32e-04  [2s]
+02:45:13  Epoch 042  step   20/55  loss=0.4471  lr=9.32e-04  [3s]
+02:45:14  Epoch 042  step   30/55  loss=0.5579  lr=9.32e-04  [4s]
+02:45:15  Epoch 042  step   40/55  loss=0.2603  lr=9.32e-04  [5s]
+02:45:16  Epoch 042  step   50/55  loss=0.4572  lr=9.32e-04  [6s]
+02:45:18  Epoch 042  train_loss=0.2409  val_loss=0.1920  F1=0.7861  IoU=0.6476  P=0.7716  R=0.8012  Kappa=0.7790  max_prob=1.0000  lr=9.27e-04
+02:45:19    No improvement for 5/30 epochs
+02:45:21  Epoch 043  step   10/55  loss=0.3473  lr=9.27e-04  [2s]
+02:45:22  Epoch 043  step   20/55  loss=0.1323  lr=9.27e-04  [3s]
+02:45:23  Epoch 043  step   30/55  loss=0.3322  lr=9.27e-04  [4s]
+02:45:24  Epoch 043  step   40/55  loss=0.2710  lr=9.27e-04  [5s]
+02:45:25  Epoch 043  step   50/55  loss=0.1523  lr=9.27e-04  [6s]
+02:45:27  Epoch 043  train_loss=0.2499  val_loss=0.2074  F1=0.7825  IoU=0.6427  P=0.8711  R=0.7102  Kappa=0.7761  max_prob=0.9995  lr=9.23e-04
+02:45:28    No improvement for 6/30 epochs
+02:45:30  Epoch 044  step   10/55  loss=0.2921  lr=9.23e-04  [2s]
+02:45:31  Epoch 044  step   20/55  loss=0.1741  lr=9.23e-04  [3s]
+02:45:32  Epoch 044  step   30/55  loss=0.1087  lr=9.23e-04  [4s]
+02:45:33  Epoch 044  step   40/55  loss=0.1622  lr=9.23e-04  [5s]
+02:45:34  Epoch 044  step   50/55  loss=0.3069  lr=9.23e-04  [6s]
+02:45:36  Epoch 044  train_loss=0.2228  val_loss=0.1621  F1=0.7989  IoU=0.6651  P=0.7199  R=0.8974  Kappa=0.7916  max_prob=1.0000  lr=9.19e-04
+02:45:37    No improvement for 7/30 epochs
+02:45:39  Epoch 045  step   10/55  loss=0.1330  lr=9.19e-04  [2s]
+02:45:40  Epoch 045  step   20/55  loss=0.1104  lr=9.19e-04  [3s]
+02:45:41  Epoch 045  step   30/55  loss=0.1872  lr=9.19e-04  [4s]
+02:45:42  Epoch 045  step   40/55  loss=0.2107  lr=9.19e-04  [5s]
+02:45:42  Epoch 045  step   50/55  loss=0.1128  lr=9.19e-04  [6s]
+02:45:45  Epoch 045  train_loss=0.2055  val_loss=0.1833  F1=0.7977  IoU=0.6634  P=0.8082  R=0.7874  Kappa=0.7911  max_prob=1.0000  lr=9.14e-04
+02:45:45    No improvement for 8/30 epochs
+02:45:47  Epoch 046  step   10/55  loss=0.2308  lr=9.14e-04  [2s]
+02:45:48  Epoch 046  step   20/55  loss=0.2782  lr=9.14e-04  [3s]
+02:45:49  Epoch 046  step   30/55  loss=0.3585  lr=9.14e-04  [4s]
+02:45:50  Epoch 046  step   40/55  loss=0.2299  lr=9.14e-04  [5s]
+02:45:51  Epoch 046  step   50/55  loss=0.1238  lr=9.14e-04  [6s]
+02:45:53  Epoch 046  train_loss=0.2510  val_loss=0.2062  F1=0.7830  IoU=0.6434  P=0.8752  R=0.7084  Kappa=0.7767  max_prob=0.9995  lr=9.09e-04
+02:45:54    No improvement for 9/30 epochs
+02:45:56  Epoch 047  step   10/55  loss=0.1301  lr=9.09e-04  [2s]
+02:45:57  Epoch 047  step   20/55  loss=0.1503  lr=9.09e-04  [3s]
+02:45:58  Epoch 047  step   30/55  loss=0.2913  lr=9.09e-04  [4s]
+02:45:59  Epoch 047  step   40/55  loss=0.2217  lr=9.09e-04  [5s]
+02:46:00  Epoch 047  step   50/55  loss=0.1567  lr=9.09e-04  [6s]
+02:46:02  Epoch 047  train_loss=0.2361  val_loss=0.1576  F1=0.8199  IoU=0.6948  P=0.7908  R=0.8513  Kappa=0.8138  max_prob=1.0000  lr=9.05e-04
+02:46:04    *** New best F1=0.8199  saved best_model.pth ***
+02:46:06  Epoch 048  step   10/55  loss=0.1241  lr=9.05e-04  [2s]
+02:46:07  Epoch 048  step   20/55  loss=0.2171  lr=9.05e-04  [3s]
+02:46:08  Epoch 048  step   30/55  loss=0.2067  lr=9.05e-04  [4s]
+02:46:09  Epoch 048  step   40/55  loss=0.1595  lr=9.05e-04  [5s]
+02:46:10  Epoch 048  step   50/55  loss=0.3595  lr=9.05e-04  [6s]
+02:46:12  Epoch 048  train_loss=0.2345  val_loss=0.2629  F1=0.7657  IoU=0.6204  P=0.7984  R=0.7356  Kappa=0.7584  max_prob=1.0000  lr=9.00e-04
+02:46:13    No improvement for 1/30 epochs
+02:46:14  Epoch 049  step   10/55  loss=0.1455  lr=9.00e-04  [2s]
+02:46:15  Epoch 049  step   20/55  loss=0.2577  lr=9.00e-04  [3s]
+02:46:16  Epoch 049  step   30/55  loss=0.1126  lr=9.00e-04  [4s]
+02:46:17  Epoch 049  step   40/55  loss=0.1887  lr=9.00e-04  [5s]
+02:46:18  Epoch 049  step   50/55  loss=0.1274  lr=9.00e-04  [6s]
+02:46:20  Epoch 049  train_loss=0.2217  val_loss=0.2657  F1=0.7396  IoU=0.5868  P=0.8727  R=0.6418  Kappa=0.7324  max_prob=1.0000  lr=8.95e-04
+02:46:21    No improvement for 2/30 epochs
+02:46:23  Epoch 050  step   10/55  loss=0.1874  lr=8.95e-04  [2s]
+02:46:24  Epoch 050  step   20/55  loss=0.2298  lr=8.95e-04  [3s]
+02:46:25  Epoch 050  step   30/55  loss=0.1455  lr=8.95e-04  [4s]
+02:46:26  Epoch 050  step   40/55  loss=0.2224  lr=8.95e-04  [5s]
+02:46:27  Epoch 050  step   50/55  loss=0.4803  lr=8.95e-04  [6s]
+02:46:29  Epoch 050  train_loss=0.2207  val_loss=0.2075  F1=0.7903  IoU=0.6534  P=0.8795  R=0.7176  Kappa=0.7842  max_prob=0.9990  lr=8.90e-04
+02:46:30    No improvement for 3/30 epochs
+02:46:32  Epoch 051  step   10/55  loss=0.2541  lr=8.90e-04  [2s]
+02:46:33  Epoch 051  step   20/55  loss=0.1117  lr=8.90e-04  [3s]
+02:46:34  Epoch 051  step   30/55  loss=0.1089  lr=8.90e-04  [4s]
+02:46:35  Epoch 051  step   40/55  loss=0.2925  lr=8.90e-04  [5s]
+02:46:36  Epoch 051  step   50/55  loss=0.1310  lr=8.90e-04  [6s]
+02:46:38  Epoch 051  train_loss=0.2573  val_loss=0.2178  F1=0.7622  IoU=0.6157  P=0.8693  R=0.6786  Kappa=0.7554  max_prob=1.0000  lr=8.84e-04
+02:46:39    No improvement for 4/30 epochs
+02:46:41  Epoch 052  step   10/55  loss=0.2282  lr=8.84e-04  [2s]
+02:46:42  Epoch 052  step   20/55  loss=0.2457  lr=8.84e-04  [3s]
+02:46:43  Epoch 052  step   30/55  loss=0.1546  lr=8.84e-04  [4s]
+02:46:44  Epoch 052  step   40/55  loss=0.1058  lr=8.84e-04  [5s]
+02:46:44  Epoch 052  step   50/55  loss=0.1115  lr=8.84e-04  [6s]
+02:46:47  Epoch 052  train_loss=0.2099  val_loss=0.2241  F1=0.7157  IoU=0.5573  P=0.6193  R=0.8475  Kappa=0.7049  max_prob=1.0000  lr=8.79e-04
+02:46:48    No improvement for 5/30 epochs
+02:46:49  Epoch 053  step   10/55  loss=0.1338  lr=8.79e-04  [2s]
+02:46:50  Epoch 053  step   20/55  loss=0.2685  lr=8.79e-04  [3s]
+02:46:51  Epoch 053  step   30/55  loss=0.1162  lr=8.79e-04  [4s]
+02:46:52  Epoch 053  step   40/55  loss=0.2633  lr=8.79e-04  [5s]
+02:46:53  Epoch 053  step   50/55  loss=0.3833  lr=8.79e-04  [6s]
+02:46:55  Epoch 053  train_loss=0.2633  val_loss=0.1825  F1=0.8180  IoU=0.6920  P=0.8432  R=0.7943  Kappa=0.8122  max_prob=0.9995  lr=8.74e-04
+02:46:56    No improvement for 6/30 epochs
+02:46:58  Epoch 054  step   10/55  loss=0.5363  lr=8.74e-04  [2s]
+02:46:59  Epoch 054  step   20/55  loss=0.3476  lr=8.74e-04  [3s]
+02:47:00  Epoch 054  step   30/55  loss=0.3055  lr=8.74e-04  [4s]
+02:47:01  Epoch 054  step   40/55  loss=0.1896  lr=8.74e-04  [5s]
+02:47:02  Epoch 054  step   50/55  loss=0.2334  lr=8.74e-04  [6s]
+02:47:04  Epoch 054  train_loss=0.2489  val_loss=0.1718  F1=0.8157  IoU=0.6888  P=0.8292  R=0.8026  Kappa=0.8098  max_prob=1.0000  lr=8.68e-04
+02:47:05    No improvement for 7/30 epochs
+02:47:07  Epoch 055  step   10/55  loss=0.2425  lr=8.68e-04  [2s]
+02:47:08  Epoch 055  step   20/55  loss=0.2328  lr=8.68e-04  [3s]
+02:47:09  Epoch 055  step   30/55  loss=0.1335  lr=8.68e-04  [4s]
+02:47:10  Epoch 055  step   40/55  loss=0.1182  lr=8.68e-04  [5s]
+02:47:11  Epoch 055  step   50/55  loss=0.5199  lr=8.68e-04  [6s]
+02:47:13  Epoch 055  train_loss=0.2277  val_loss=0.1693  F1=0.8019  IoU=0.6693  P=0.7284  R=0.8919  Kappa=0.7947  max_prob=1.0000  lr=8.62e-04
+02:47:14    No improvement for 8/30 epochs
+02:47:15  Epoch 056  step   10/55  loss=0.1813  lr=8.62e-04  [2s]
+02:47:16  Epoch 056  step   20/55  loss=0.1147  lr=8.62e-04  [3s]
+02:47:17  Epoch 056  step   30/55  loss=0.3823  lr=8.62e-04  [4s]
+02:47:18  Epoch 056  step   40/55  loss=0.2296  lr=8.62e-04  [5s]
+02:47:19  Epoch 056  step   50/55  loss=0.3358  lr=8.62e-04  [6s]
+02:47:22  Epoch 056  train_loss=0.2396  val_loss=0.1938  F1=0.7999  IoU=0.6665  P=0.8940  R=0.7237  Kappa=0.7941  max_prob=1.0000  lr=8.57e-04
+02:47:22    No improvement for 9/30 epochs
+02:47:24  Epoch 057  step   10/55  loss=0.1268  lr=8.57e-04  [2s]
+02:47:25  Epoch 057  step   20/55  loss=0.1514  lr=8.57e-04  [3s]
+02:47:26  Epoch 057  step   30/55  loss=0.1801  lr=8.57e-04  [4s]
+02:47:27  Epoch 057  step   40/55  loss=0.2608  lr=8.57e-04  [5s]
+02:47:28  Epoch 057  step   50/55  loss=0.2713  lr=8.57e-04  [6s]
+02:47:30  Epoch 057  train_loss=0.2146  val_loss=0.3252  F1=0.6218  IoU=0.4512  P=0.8511  R=0.4899  Kappa=0.6128  max_prob=1.0000  lr=8.51e-04
+02:47:31    No improvement for 10/30 epochs
+02:47:33  Epoch 058  step   10/55  loss=0.1575  lr=8.51e-04  [2s]
+02:47:34  Epoch 058  step   20/55  loss=0.1237  lr=8.51e-04  [3s]
+02:47:35  Epoch 058  step   30/55  loss=0.1652  lr=8.51e-04  [4s]
+02:47:36  Epoch 058  step   40/55  loss=0.3044  lr=8.51e-04  [5s]
+02:47:37  Epoch 058  step   50/55  loss=0.0938  lr=8.51e-04  [6s]
+02:47:39  Epoch 058  train_loss=0.1955  val_loss=0.1363  F1=0.8462  IoU=0.7335  P=0.8191  R=0.8752  Kappa=0.8410  max_prob=1.0000  lr=8.45e-04
+02:47:41    *** New best F1=0.8462  saved best_model.pth ***
+02:47:42  Epoch 059  step   10/55  loss=0.2082  lr=8.45e-04  [2s]
+02:47:43  Epoch 059  step   20/55  loss=0.1096  lr=8.45e-04  [3s]
+02:47:44  Epoch 059  step   30/55  loss=0.0877  lr=8.45e-04  [4s]
+02:47:45  Epoch 059  step   40/55  loss=0.1336  lr=8.45e-04  [5s]
+02:47:46  Epoch 059  step   50/55  loss=0.1509  lr=8.45e-04  [6s]
+02:47:49  Epoch 059  train_loss=0.1973  val_loss=0.2363  F1=0.7482  IoU=0.5978  P=0.8969  R=0.6419  Kappa=0.7414  max_prob=0.9995  lr=8.39e-04
+02:47:49    No improvement for 1/30 epochs
+02:47:51  Epoch 060  step   10/55  loss=0.1420  lr=8.39e-04  [2s]
+02:47:52  Epoch 060  step   20/55  loss=0.3220  lr=8.39e-04  [3s]
+02:47:53  Epoch 060  step   30/55  loss=0.1514  lr=8.39e-04  [4s]
+02:47:54  Epoch 060  step   40/55  loss=0.1121  lr=8.39e-04  [5s]
+02:47:55  Epoch 060  step   50/55  loss=0.1630  lr=8.39e-04  [6s]
+02:47:57  Epoch 060  train_loss=0.2080  val_loss=0.1950  F1=0.8005  IoU=0.6673  P=0.8649  R=0.7450  Kappa=0.7945  max_prob=1.0000  lr=8.33e-04
+02:47:58    No improvement for 2/30 epochs
+02:48:00  Epoch 061  step   10/55  loss=0.2016  lr=8.33e-04  [2s]
+02:48:01  Epoch 061  step   20/55  loss=0.2216  lr=8.33e-04  [3s]
+02:48:02  Epoch 061  step   30/55  loss=0.5702  lr=8.33e-04  [4s]
+02:48:03  Epoch 061  step   40/55  loss=0.1758  lr=8.33e-04  [5s]
+02:48:04  Epoch 061  step   50/55  loss=0.1199  lr=8.33e-04  [6s]
+02:48:06  Epoch 061  train_loss=0.2033  val_loss=0.1506  F1=0.8447  IoU=0.7312  P=0.8422  R=0.8473  Kappa=0.8396  max_prob=1.0000  lr=8.26e-04
+02:48:07    No improvement for 3/30 epochs
+02:48:09  Epoch 062  step   10/55  loss=0.1533  lr=8.26e-04  [2s]
+02:48:10  Epoch 062  step   20/55  loss=0.4346  lr=8.26e-04  [3s]
+02:48:11  Epoch 062  step   30/55  loss=0.2850  lr=8.26e-04  [4s]
+02:48:12  Epoch 062  step   40/55  loss=0.1323  lr=8.26e-04  [5s]
+02:48:13  Epoch 062  step   50/55  loss=0.1048  lr=8.26e-04  [6s]
+02:48:15  Epoch 062  train_loss=0.2084  val_loss=0.2083  F1=0.7914  IoU=0.6548  P=0.8463  R=0.7432  Kappa=0.7850  max_prob=1.0000  lr=8.20e-04
+02:48:16    No improvement for 4/30 epochs
+02:48:17  Epoch 063  step   10/55  loss=0.2112  lr=8.20e-04  [2s]
+02:48:18  Epoch 063  step   20/55  loss=0.1325  lr=8.20e-04  [3s]
+02:48:19  Epoch 063  step   30/55  loss=0.2241  lr=8.20e-04  [4s]
+02:48:20  Epoch 063  step   40/55  loss=0.0925  lr=8.20e-04  [5s]
+02:48:21  Epoch 063  step   50/55  loss=0.1480  lr=8.20e-04  [6s]
+02:48:24  Epoch 063  train_loss=0.2424  val_loss=0.1886  F1=0.8092  IoU=0.6795  P=0.9081  R=0.7297  Kappa=0.8036  max_prob=1.0000  lr=8.14e-04
+02:48:24    No improvement for 5/30 epochs
+02:48:26  Epoch 064  step   10/55  loss=0.1441  lr=8.14e-04  [2s]
+02:48:27  Epoch 064  step   20/55  loss=0.0971  lr=8.14e-04  [3s]
+02:48:28  Epoch 064  step   30/55  loss=0.1651  lr=8.14e-04  [4s]
+02:48:29  Epoch 064  step   40/55  loss=0.3553  lr=8.14e-04  [5s]
+02:48:30  Epoch 064  step   50/55  loss=0.0907  lr=8.14e-04  [6s]
+02:48:32  Epoch 064  train_loss=0.2071  val_loss=0.1767  F1=0.8198  IoU=0.6947  P=0.8745  R=0.7716  Kappa=0.8143  max_prob=1.0000  lr=8.07e-04
+02:48:33    No improvement for 6/30 epochs
+02:48:35  Epoch 065  step   10/55  loss=0.2054  lr=8.07e-04  [2s]
+02:48:36  Epoch 065  step   20/55  loss=0.1008  lr=8.07e-04  [3s]
+02:48:37  Epoch 065  step   30/55  loss=0.5210  lr=8.07e-04  [4s]
+02:48:38  Epoch 065  step   40/55  loss=0.1804  lr=8.07e-04  [5s]
+02:48:39  Epoch 065  step   50/55  loss=0.4199  lr=8.07e-04  [6s]
+02:48:41  Epoch 065  train_loss=0.2276  val_loss=0.2145  F1=0.7891  IoU=0.6517  P=0.7775  R=0.8011  Kappa=0.7821  max_prob=1.0000  lr=8.01e-04
+02:48:42    No improvement for 7/30 epochs
+02:48:44  Epoch 066  step   10/55  loss=0.1331  lr=8.01e-04  [2s]
+02:48:45  Epoch 066  step   20/55  loss=0.2000  lr=8.01e-04  [3s]
+02:48:46  Epoch 066  step   30/55  loss=0.1588  lr=8.01e-04  [4s]
+02:48:47  Epoch 066  step   40/55  loss=0.1577  lr=8.01e-04  [5s]
+02:48:47  Epoch 066  step   50/55  loss=0.1533  lr=8.01e-04  [6s]
+02:48:50  Epoch 066  train_loss=0.1723  val_loss=0.1857  F1=0.8103  IoU=0.6811  P=0.8424  R=0.7805  Kappa=0.8043  max_prob=1.0000  lr=7.94e-04
+02:48:50    No improvement for 8/30 epochs
+02:48:52  Epoch 067  step   10/55  loss=0.1668  lr=7.94e-04  [2s]
+02:48:53  Epoch 067  step   20/55  loss=0.1231  lr=7.94e-04  [3s]
+02:48:54  Epoch 067  step   30/55  loss=0.1001  lr=7.94e-04  [4s]
+02:48:55  Epoch 067  step   40/55  loss=0.1128  lr=7.94e-04  [5s]
+02:48:56  Epoch 067  step   50/55  loss=0.1261  lr=7.94e-04  [6s]
+02:48:58  Epoch 067  train_loss=0.1971  val_loss=0.1472  F1=0.8493  IoU=0.7380  P=0.8654  R=0.8337  Kappa=0.8444  max_prob=1.0000  lr=7.87e-04
+02:49:00    *** New best F1=0.8493  saved best_model.pth ***
+02:49:02  Epoch 068  step   10/55  loss=0.5805  lr=7.87e-04  [2s]
+02:49:03  Epoch 068  step   20/55  loss=0.1880  lr=7.87e-04  [3s]
+02:49:04  Epoch 068  step   30/55  loss=0.1296  lr=7.87e-04  [4s]
+02:49:05  Epoch 068  step   40/55  loss=0.1291  lr=7.87e-04  [5s]
+02:49:06  Epoch 068  step   50/55  loss=0.4686  lr=7.87e-04  [6s]
+02:49:08  Epoch 068  train_loss=0.1845  val_loss=0.2910  F1=0.6961  IoU=0.5338  P=0.9313  R=0.5557  Kappa=0.6887  max_prob=0.9995  lr=7.81e-04
+02:49:09    No improvement for 1/30 epochs
+02:49:10  Epoch 069  step   10/55  loss=0.2364  lr=7.81e-04  [2s]
+02:49:11  Epoch 069  step   20/55  loss=0.2029  lr=7.81e-04  [3s]
+02:49:12  Epoch 069  step   30/55  loss=0.1396  lr=7.81e-04  [4s]
+02:49:13  Epoch 069  step   40/55  loss=0.1149  lr=7.81e-04  [5s]
+02:49:14  Epoch 069  step   50/55  loss=0.2538  lr=7.81e-04  [6s]
+02:49:17  Epoch 069  train_loss=0.2016  val_loss=0.2066  F1=0.7831  IoU=0.6436  P=0.7590  R=0.8089  Kappa=0.7758  max_prob=1.0000  lr=7.74e-04
+02:49:17    No improvement for 2/30 epochs
+02:49:19  Epoch 070  step   10/55  loss=0.6612  lr=7.74e-04  [2s]
+02:49:20  Epoch 070  step   20/55  loss=0.5619  lr=7.74e-04  [3s]
+02:49:21  Epoch 070  step   30/55  loss=0.1107  lr=7.74e-04  [4s]
+02:49:22  Epoch 070  step   40/55  loss=0.0998  lr=7.74e-04  [5s]
+02:49:23  Epoch 070  step   50/55  loss=0.5552  lr=7.74e-04  [6s]
+02:49:25  Epoch 070  train_loss=0.2010  val_loss=0.1611  F1=0.8280  IoU=0.7064  P=0.8414  R=0.8150  Kappa=0.8224  max_prob=1.0000  lr=7.67e-04
+02:49:26    No improvement for 3/30 epochs
+02:49:28  Epoch 071  step   10/55  loss=0.1507  lr=7.67e-04  [2s]
+02:49:29  Epoch 071  step   20/55  loss=0.3621  lr=7.67e-04  [3s]
+02:49:30  Epoch 071  step   30/55  loss=0.1116  lr=7.67e-04  [4s]
+02:49:31  Epoch 071  step   40/55  loss=0.2127  lr=7.67e-04  [5s]
+02:49:32  Epoch 071  step   50/55  loss=0.1828  lr=7.67e-04  [6s]
+02:49:34  Epoch 071  train_loss=0.1923  val_loss=0.1624  F1=0.8050  IoU=0.6736  P=0.7110  R=0.9276  Kappa=0.7977  max_prob=1.0000  lr=7.60e-04
+02:49:35    No improvement for 4/30 epochs
+02:49:37  Epoch 072  step   10/55  loss=0.3182  lr=7.60e-04  [2s]
+02:49:38  Epoch 072  step   20/55  loss=0.1859  lr=7.60e-04  [3s]
+02:49:39  Epoch 072  step   30/55  loss=0.1811  lr=7.60e-04  [4s]
+02:49:40  Epoch 072  step   40/55  loss=0.1598  lr=7.60e-04  [5s]
+02:49:40  Epoch 072  step   50/55  loss=0.1923  lr=7.60e-04  [6s]
+02:49:43  Epoch 072  train_loss=0.1879  val_loss=0.1552  F1=0.8437  IoU=0.7296  P=0.8750  R=0.8145  Kappa=0.8387  max_prob=1.0000  lr=7.53e-04
+02:49:43    No improvement for 5/30 epochs
+02:49:45  Epoch 073  step   10/55  loss=0.2494  lr=7.53e-04  [2s]
+02:49:46  Epoch 073  step   20/55  loss=0.1952  lr=7.53e-04  [3s]
+02:49:47  Epoch 073  step   30/55  loss=0.1509  lr=7.53e-04  [4s]
+02:49:48  Epoch 073  step   40/55  loss=0.1803  lr=7.53e-04  [5s]
+02:49:49  Epoch 073  step   50/55  loss=0.1312  lr=7.53e-04  [6s]
+02:49:51  Epoch 073  train_loss=0.1717  val_loss=0.1591  F1=0.8250  IoU=0.7022  P=0.8454  R=0.8056  Kappa=0.8195  max_prob=1.0000  lr=7.45e-04
+02:49:52    No improvement for 6/30 epochs
+02:49:54  Epoch 074  step   10/55  loss=0.0963  lr=7.45e-04  [2s]
+02:49:55  Epoch 074  step   20/55  loss=0.1584  lr=7.45e-04  [3s]
+02:49:56  Epoch 074  step   30/55  loss=0.0957  lr=7.45e-04  [4s]
+02:49:57  Epoch 074  step   40/55  loss=0.1293  lr=7.45e-04  [5s]
+02:49:58  Epoch 074  step   50/55  loss=0.1678  lr=7.45e-04  [6s]
+02:50:00  Epoch 074  train_loss=0.1711  val_loss=0.2107  F1=0.7702  IoU=0.6263  P=0.7934  R=0.7485  Kappa=0.7630  max_prob=1.0000  lr=7.38e-04
+02:50:01    No improvement for 7/30 epochs
+02:50:03  Epoch 075  step   10/55  loss=0.0959  lr=7.38e-04  [2s]
+02:50:04  Epoch 075  step   20/55  loss=0.2881  lr=7.38e-04  [3s]
+02:50:05  Epoch 075  step   30/55  loss=0.2391  lr=7.38e-04  [4s]
+02:50:06  Epoch 075  step   40/55  loss=0.3982  lr=7.38e-04  [5s]
+02:50:07  Epoch 075  step   50/55  loss=0.1152  lr=7.38e-04  [6s]
+02:50:09  Epoch 075  train_loss=0.1726  val_loss=0.1549  F1=0.8234  IoU=0.6998  P=0.8113  R=0.8359  Kappa=0.8175  max_prob=1.0000  lr=7.31e-04
+02:50:10    No improvement for 8/30 epochs
+02:50:11  Epoch 076  step   10/55  loss=0.1607  lr=7.31e-04  [2s]
+02:50:12  Epoch 076  step   20/55  loss=0.1415  lr=7.31e-04  [3s]
+02:50:13  Epoch 076  step   30/55  loss=0.1847  lr=7.31e-04  [4s]
+02:50:14  Epoch 076  step   40/55  loss=0.1986  lr=7.31e-04  [5s]
+02:50:15  Epoch 076  step   50/55  loss=0.1638  lr=7.31e-04  [6s]
+02:50:17  Epoch 076  train_loss=0.1739  val_loss=0.1775  F1=0.8122  IoU=0.6838  P=0.7991  R=0.8258  Kappa=0.8060  max_prob=0.9995  lr=7.24e-04
+02:50:18    No improvement for 9/30 epochs
+02:50:20  Epoch 077  step   10/55  loss=0.3101  lr=7.24e-04  [2s]
+02:50:21  Epoch 077  step   20/55  loss=0.1428  lr=7.24e-04  [3s]
+02:50:22  Epoch 077  step   30/55  loss=0.1756  lr=7.24e-04  [4s]
+02:50:23  Epoch 077  step   40/55  loss=0.2464  lr=7.24e-04  [5s]
+02:50:24  Epoch 077  step   50/55  loss=0.1351  lr=7.24e-04  [6s]
+02:50:26  Epoch 077  train_loss=0.1682  val_loss=0.1992  F1=0.7942  IoU=0.6587  P=0.9242  R=0.6963  Kappa=0.7885  max_prob=1.0000  lr=7.16e-04
+02:50:27    No improvement for 10/30 epochs
+02:50:29  Epoch 078  step   10/55  loss=0.1079  lr=7.16e-04  [2s]
+02:50:30  Epoch 078  step   20/55  loss=0.0945  lr=7.16e-04  [3s]
+02:50:31  Epoch 078  step   30/55  loss=0.0899  lr=7.16e-04  [4s]
+02:50:32  Epoch 078  step   40/55  loss=0.1111  lr=7.16e-04  [5s]
+02:50:33  Epoch 078  step   50/55  loss=0.3642  lr=7.16e-04  [6s]
+02:50:35  Epoch 078  train_loss=0.1792  val_loss=0.1650  F1=0.8238  IoU=0.7004  P=0.8691  R=0.7831  Kappa=0.8184  max_prob=1.0000  lr=7.09e-04
+02:50:36    No improvement for 11/30 epochs
+02:50:38  Epoch 079  step   10/55  loss=0.1079  lr=7.09e-04  [2s]
+02:50:39  Epoch 079  step   20/55  loss=0.2545  lr=7.09e-04  [3s]
+02:50:40  Epoch 079  step   30/55  loss=0.0903  lr=7.09e-04  [4s]
+02:50:41  Epoch 079  step   40/55  loss=0.1310  lr=7.09e-04  [5s]
+02:50:41  Epoch 079  step   50/55  loss=0.1879  lr=7.09e-04  [6s]
+02:50:44  Epoch 079  train_loss=0.1859  val_loss=0.1621  F1=0.8161  IoU=0.6894  P=0.8102  R=0.8222  Kappa=0.8101  max_prob=1.0000  lr=7.01e-04
+02:50:44    No improvement for 12/30 epochs
+02:50:46  Epoch 080  step   10/55  loss=0.1572  lr=7.01e-04  [2s]
+02:50:47  Epoch 080  step   20/55  loss=0.0994  lr=7.01e-04  [3s]
+02:50:48  Epoch 080  step   30/55  loss=0.2225  lr=7.01e-04  [4s]
+02:50:49  Epoch 080  step   40/55  loss=0.1268  lr=7.01e-04  [5s]
+02:50:50  Epoch 080  step   50/55  loss=0.1818  lr=7.01e-04  [6s]
+02:50:52  Epoch 080  train_loss=0.1578  val_loss=0.2600  F1=0.7107  IoU=0.5512  P=0.9160  R=0.5805  Kappa=0.7034  max_prob=1.0000  lr=6.94e-04
+02:50:53    No improvement for 13/30 epochs
+02:50:55  Epoch 081  step   10/55  loss=0.1170  lr=6.94e-04  [2s]
+02:50:56  Epoch 081  step   20/55  loss=0.1677  lr=6.94e-04  [3s]
+02:50:57  Epoch 081  step   30/55  loss=0.1285  lr=6.94e-04  [4s]
+02:50:58  Epoch 081  step   40/55  loss=0.2115  lr=6.94e-04  [5s]
+02:50:59  Epoch 081  step   50/55  loss=0.0962  lr=6.94e-04  [6s]
+02:51:01  Epoch 081  train_loss=0.1781  val_loss=0.1748  F1=0.8233  IoU=0.6996  P=0.9004  R=0.7583  Kappa=0.8180  max_prob=1.0000  lr=6.86e-04
+02:51:02    No improvement for 14/30 epochs
+02:51:04  Epoch 082  step   10/55  loss=0.1057  lr=6.86e-04  [2s]
+02:51:05  Epoch 082  step   20/55  loss=0.1948  lr=6.86e-04  [3s]
+02:51:06  Epoch 082  step   30/55  loss=0.1749  lr=6.86e-04  [4s]
+02:51:07  Epoch 082  step   40/55  loss=0.0879  lr=6.86e-04  [5s]
+02:51:08  Epoch 082  step   50/55  loss=0.1336  lr=6.86e-04  [6s]
+02:51:10  Epoch 082  train_loss=0.1928  val_loss=0.1491  F1=0.8486  IoU=0.7371  P=0.8548  R=0.8426  Kappa=0.8437  max_prob=1.0000  lr=6.78e-04
+02:51:11    No improvement for 15/30 epochs
+02:51:12  Epoch 083  step   10/55  loss=0.3455  lr=6.78e-04  [2s]
+02:51:13  Epoch 083  step   20/55  loss=0.1223  lr=6.78e-04  [3s]
+02:51:14  Epoch 083  step   30/55  loss=0.2025  lr=6.78e-04  [4s]
+02:51:15  Epoch 083  step   40/55  loss=0.5644  lr=6.78e-04  [5s]
+02:51:16  Epoch 083  step   50/55  loss=0.1187  lr=6.78e-04  [6s]
+02:51:18  Epoch 083  train_loss=0.1858  val_loss=0.1488  F1=0.8215  IoU=0.6971  P=0.7822  R=0.8650  Kappa=0.8154  max_prob=1.0000  lr=6.70e-04
+02:51:19    No improvement for 16/30 epochs
+02:51:21  Epoch 084  step   10/55  loss=0.1273  lr=6.70e-04  [2s]
+02:51:22  Epoch 084  step   20/55  loss=0.1708  lr=6.70e-04  [3s]
+02:51:23  Epoch 084  step   30/55  loss=0.1772  lr=6.70e-04  [4s]
+02:51:24  Epoch 084  step   40/55  loss=0.2312  lr=6.70e-04  [5s]
+02:51:25  Epoch 084  step   50/55  loss=0.3774  lr=6.70e-04  [6s]
+02:51:27  Epoch 084  train_loss=0.1722  val_loss=0.1619  F1=0.8292  IoU=0.7082  P=0.8775  R=0.7859  Kappa=0.8239  max_prob=1.0000  lr=6.63e-04
+02:51:28    No improvement for 17/30 epochs
+02:51:30  Epoch 085  step   10/55  loss=0.1158  lr=6.63e-04  [2s]
+02:51:31  Epoch 085  step   20/55  loss=0.5698  lr=6.63e-04  [3s]
+02:51:32  Epoch 085  step   30/55  loss=0.2283  lr=6.63e-04  [4s]
+02:51:33  Epoch 085  step   40/55  loss=0.0931  lr=6.63e-04  [5s]
+02:51:34  Epoch 085  step   50/55  loss=0.1814  lr=6.63e-04  [6s]
+02:51:36  Epoch 085  train_loss=0.1930  val_loss=0.1778  F1=0.8105  IoU=0.6813  P=0.8489  R=0.7753  Kappa=0.8045  max_prob=1.0000  lr=6.55e-04
+02:51:37    No improvement for 18/30 epochs
+02:51:39  Epoch 086  step   10/55  loss=0.1264  lr=6.55e-04  [2s]
+02:51:40  Epoch 086  step   20/55  loss=0.1262  lr=6.55e-04  [3s]
+02:51:41  Epoch 086  step   30/55  loss=0.1560  lr=6.55e-04  [4s]
+02:51:41  Epoch 086  step   40/55  loss=0.1650  lr=6.55e-04  [5s]
+02:51:42  Epoch 086  step   50/55  loss=0.1281  lr=6.55e-04  [6s]
+02:51:45  Epoch 086  train_loss=0.1617  val_loss=0.1585  F1=0.8296  IoU=0.7088  P=0.8889  R=0.7777  Kappa=0.8244  max_prob=1.0000  lr=6.47e-04
+02:51:45    No improvement for 19/30 epochs
+02:51:47  Epoch 087  step   10/55  loss=0.1467  lr=6.47e-04  [2s]
+02:51:48  Epoch 087  step   20/55  loss=0.5315  lr=6.47e-04  [3s]
+02:51:49  Epoch 087  step   30/55  loss=0.1675  lr=6.47e-04  [4s]
+02:51:50  Epoch 087  step   40/55  loss=0.1188  lr=6.47e-04  [5s]
+02:51:51  Epoch 087  step   50/55  loss=0.1598  lr=6.47e-04  [6s]
+02:51:53  Epoch 087  train_loss=0.1819  val_loss=0.1505  F1=0.8346  IoU=0.7161  P=0.8197  R=0.8500  Kappa=0.8290  max_prob=1.0000  lr=6.39e-04
+02:51:54    No improvement for 20/30 epochs
+02:51:56  Epoch 088  step   10/55  loss=0.0938  lr=6.39e-04  [2s]
+02:51:57  Epoch 088  step   20/55  loss=0.1141  lr=6.39e-04  [3s]
+02:51:58  Epoch 088  step   30/55  loss=0.1768  lr=6.39e-04  [4s]
+02:51:59  Epoch 088  step   40/55  loss=0.1455  lr=6.39e-04  [5s]
+02:52:00  Epoch 088  step   50/55  loss=0.1071  lr=6.39e-04  [6s]
+02:52:02  Epoch 088  train_loss=0.1568  val_loss=0.1473  F1=0.8327  IoU=0.7133  P=0.8301  R=0.8352  Kappa=0.8272  max_prob=1.0000  lr=6.31e-04
+02:52:03    No improvement for 21/30 epochs
+02:52:05  Epoch 089  step   10/55  loss=0.1209  lr=6.31e-04  [2s]
+02:52:06  Epoch 089  step   20/55  loss=0.2151  lr=6.31e-04  [3s]
+02:52:07  Epoch 089  step   30/55  loss=0.7308  lr=6.31e-04  [4s]
+02:52:08  Epoch 089  step   40/55  loss=0.2373  lr=6.31e-04  [5s]
+02:52:09  Epoch 089  step   50/55  loss=0.1235  lr=6.31e-04  [6s]
+02:52:11  Epoch 089  train_loss=0.1886  val_loss=0.1521  F1=0.8347  IoU=0.7163  P=0.8427  R=0.8269  Kappa=0.8294  max_prob=1.0000  lr=6.23e-04
+02:52:12    No improvement for 22/30 epochs
+02:52:13  Epoch 090  step   10/55  loss=0.1726  lr=6.23e-04  [2s]
+02:52:14  Epoch 090  step   20/55  loss=0.1601  lr=6.23e-04  [3s]
+02:52:15  Epoch 090  step   30/55  loss=0.0778  lr=6.23e-04  [4s]
+02:52:16  Epoch 090  step   40/55  loss=0.1062  lr=6.23e-04  [5s]
+02:52:17  Epoch 090  step   50/55  loss=0.1920  lr=6.23e-04  [6s]
+02:52:19  Epoch 090  train_loss=0.1407  val_loss=0.1429  F1=0.8353  IoU=0.7173  P=0.7987  R=0.8756  Kappa=0.8297  max_prob=1.0000  lr=6.15e-04
+02:52:20    No improvement for 23/30 epochs
+02:52:22  Epoch 091  step   10/55  loss=0.0954  lr=6.15e-04  [2s]
+02:52:23  Epoch 091  step   20/55  loss=0.2233  lr=6.15e-04  [3s]
+02:52:24  Epoch 091  step   30/55  loss=0.0959  lr=6.15e-04  [4s]
+02:52:25  Epoch 091  step   40/55  loss=0.1314  lr=6.15e-04  [5s]
+02:52:26  Epoch 091  step   50/55  loss=0.0777  lr=6.15e-04  [6s]
+02:52:28  Epoch 091  train_loss=0.1699  val_loss=0.1362  F1=0.8561  IoU=0.7484  P=0.8772  R=0.8359  Kappa=0.8515  max_prob=1.0000  lr=6.07e-04
+02:52:30    *** New best F1=0.8561  saved best_model.pth ***
+02:52:31  Epoch 092  step   10/55  loss=0.0580  lr=6.07e-04  [2s]
+02:52:32  Epoch 092  step   20/55  loss=0.1762  lr=6.07e-04  [3s]
+02:52:33  Epoch 092  step   30/55  loss=0.1062  lr=6.07e-04  [4s]
+02:52:34  Epoch 092  step   40/55  loss=0.1970  lr=6.07e-04  [5s]
+02:52:35  Epoch 092  step   50/55  loss=0.1442  lr=6.07e-04  [6s]
+02:52:38  Epoch 092  train_loss=0.2105  val_loss=0.1680  F1=0.8198  IoU=0.6947  P=0.7872  R=0.8553  Kappa=0.8137  max_prob=1.0000  lr=5.99e-04
+02:52:38    No improvement for 1/30 epochs
+02:52:40  Epoch 093  step   10/55  loss=0.1281  lr=5.99e-04  [2s]
+02:52:41  Epoch 093  step   20/55  loss=0.1220  lr=5.99e-04  [3s]
+02:52:42  Epoch 093  step   30/55  loss=0.1482  lr=5.99e-04  [4s]
+02:52:43  Epoch 093  step   40/55  loss=0.2089  lr=5.99e-04  [5s]
+02:52:44  Epoch 093  step   50/55  loss=0.1680  lr=5.99e-04  [6s]
+02:52:46  Epoch 093  train_loss=0.1883  val_loss=0.1584  F1=0.8317  IoU=0.7119  P=0.8939  R=0.7776  Kappa=0.8266  max_prob=0.9995  lr=5.91e-04
+02:52:47    No improvement for 2/30 epochs
+02:52:49  Epoch 094  step   10/55  loss=0.0918  lr=5.91e-04  [2s]
+02:52:50  Epoch 094  step   20/55  loss=0.1529  lr=5.91e-04  [3s]
+02:52:51  Epoch 094  step   30/55  loss=0.1049  lr=5.91e-04  [4s]
+02:52:52  Epoch 094  step   40/55  loss=0.1372  lr=5.91e-04  [5s]
+02:52:53  Epoch 094  step   50/55  loss=0.1155  lr=5.91e-04  [6s]
+02:52:55  Epoch 094  train_loss=0.1601  val_loss=0.1284  F1=0.8592  IoU=0.7532  P=0.8570  R=0.8615  Kappa=0.8546  max_prob=1.0000  lr=5.83e-04
+02:52:56    *** New best F1=0.8592  saved best_model.pth ***
+02:52:58  Epoch 095  step   10/55  loss=0.1113  lr=5.83e-04  [2s]
+02:52:59  Epoch 095  step   20/55  loss=0.0858  lr=5.83e-04  [3s]
+02:53:00  Epoch 095  step   30/55  loss=0.1046  lr=5.83e-04  [4s]
+02:53:01  Epoch 095  step   40/55  loss=0.1224  lr=5.83e-04  [5s]
+02:53:02  Epoch 095  step   50/55  loss=0.1663  lr=5.83e-04  [6s]
+02:53:04  Epoch 095  train_loss=0.1636  val_loss=0.1379  F1=0.8319  IoU=0.7121  P=0.7569  R=0.9234  Kappa=0.8258  max_prob=1.0000  lr=5.75e-04
+02:53:05    No improvement for 1/30 epochs
+02:53:07  Epoch 096  step   10/55  loss=0.3312  lr=5.75e-04  [2s]
+02:53:08  Epoch 096  step   20/55  loss=0.1382  lr=5.75e-04  [3s]
+02:53:09  Epoch 096  step   30/55  loss=0.1243  lr=5.75e-04  [4s]
+02:53:10  Epoch 096  step   40/55  loss=0.1173  lr=5.75e-04  [5s]
+02:53:11  Epoch 096  step   50/55  loss=0.1819  lr=5.75e-04  [6s]
+02:53:13  Epoch 096  train_loss=0.1352  val_loss=0.1350  F1=0.8553  IoU=0.7472  P=0.8862  R=0.8265  Kappa=0.8507  max_prob=1.0000  lr=5.66e-04
+02:53:14    No improvement for 2/30 epochs
+02:53:16  Epoch 097  step   10/55  loss=0.1813  lr=5.66e-04  [2s]
+02:53:17  Epoch 097  step   20/55  loss=0.0914  lr=5.66e-04  [3s]
+02:53:18  Epoch 097  step   30/55  loss=0.1445  lr=5.66e-04  [4s]
+02:53:19  Epoch 097  step   40/55  loss=0.1582  lr=5.66e-04  [5s]
+02:53:20  Epoch 097  step   50/55  loss=0.1071  lr=5.66e-04  [6s]
+02:53:22  Epoch 097  train_loss=0.1722  val_loss=0.1264  F1=0.8528  IoU=0.7434  P=0.8223  R=0.8857  Kappa=0.8478  max_prob=1.0000  lr=5.58e-04
+02:53:23    No improvement for 3/30 epochs
+02:53:24  Epoch 098  step   10/55  loss=0.0829  lr=5.58e-04  [2s]
+02:53:25  Epoch 098  step   20/55  loss=0.1394  lr=5.58e-04  [3s]
+02:53:26  Epoch 098  step   30/55  loss=0.0862  lr=5.58e-04  [4s]
+02:53:27  Epoch 098  step   40/55  loss=0.0811  lr=5.58e-04  [5s]
+02:53:28  Epoch 098  step   50/55  loss=0.1036  lr=5.58e-04  [6s]
+02:53:31  Epoch 098  train_loss=0.1855  val_loss=0.1381  F1=0.8332  IoU=0.7141  P=0.7896  R=0.8819  Kappa=0.8274  max_prob=1.0000  lr=5.50e-04
+02:53:31    No improvement for 4/30 epochs
+02:53:33  Epoch 099  step   10/55  loss=0.1002  lr=5.50e-04  [2s]
+02:53:34  Epoch 099  step   20/55  loss=0.0663  lr=5.50e-04  [3s]
+02:53:35  Epoch 099  step   30/55  loss=0.0827  lr=5.50e-04  [4s]
+02:53:36  Epoch 099  step   40/55  loss=0.1524  lr=5.50e-04  [5s]
+02:53:37  Epoch 099  step   50/55  loss=0.1313  lr=5.50e-04  [6s]
+02:53:39  Epoch 099  train_loss=0.1449  val_loss=0.1326  F1=0.8511  IoU=0.7408  P=0.8137  R=0.8921  Kappa=0.8460  max_prob=1.0000  lr=5.42e-04
+02:53:40    No improvement for 5/30 epochs
+02:53:42  Epoch 100  step   10/55  loss=0.1217  lr=5.42e-04  [2s]
+02:53:43  Epoch 100  step   20/55  loss=0.1521  lr=5.42e-04  [3s]
+02:53:44  Epoch 100  step   30/55  loss=0.1086  lr=5.42e-04  [4s]
+02:53:45  Epoch 100  step   40/55  loss=0.1402  lr=5.42e-04  [5s]
+02:53:46  Epoch 100  step   50/55  loss=0.1617  lr=5.42e-04  [6s]
+02:53:48  Epoch 100  train_loss=0.1490  val_loss=0.1428  F1=0.8488  IoU=0.7373  P=0.8693  R=0.8292  Kappa=0.8440  max_prob=1.0000  lr=5.34e-04
+02:53:49    No improvement for 6/30 epochs
+02:53:51  Epoch 101  step   10/55  loss=0.0798  lr=5.34e-04  [2s]
+02:53:52  Epoch 101  step   20/55  loss=0.0725  lr=5.34e-04  [3s]
+02:53:53  Epoch 101  step   30/55  loss=0.1416  lr=5.34e-04  [4s]
+02:53:53  Epoch 101  step   40/55  loss=0.0999  lr=5.34e-04  [5s]
+02:53:54  Epoch 101  step   50/55  loss=0.4340  lr=5.34e-04  [6s]
+02:53:57  Epoch 101  train_loss=0.1381  val_loss=0.1464  F1=0.8293  IoU=0.7084  P=0.7923  R=0.8701  Kappa=0.8235  max_prob=1.0000  lr=5.25e-04
+02:53:57    No improvement for 7/30 epochs
+02:53:59  Epoch 102  step   10/55  loss=0.1236  lr=5.25e-04  [2s]
+02:54:00  Epoch 102  step   20/55  loss=0.1013  lr=5.25e-04  [3s]
+02:54:01  Epoch 102  step   30/55  loss=0.1383  lr=5.25e-04  [4s]
+02:54:02  Epoch 102  step   40/55  loss=0.1710  lr=5.25e-04  [5s]
+02:54:03  Epoch 102  step   50/55  loss=0.2074  lr=5.25e-04  [6s]
+02:54:05  Epoch 102  train_loss=0.1664  val_loss=0.1553  F1=0.8392  IoU=0.7229  P=0.8874  R=0.7960  Kappa=0.8342  max_prob=1.0000  lr=5.17e-04
+02:54:06    No improvement for 8/30 epochs
+02:54:08  Epoch 103  step   10/55  loss=0.0969  lr=5.17e-04  [2s]
+02:54:09  Epoch 103  step   20/55  loss=0.2385  lr=5.17e-04  [3s]
+02:54:10  Epoch 103  step   30/55  loss=0.1298  lr=5.17e-04  [4s]
+02:54:11  Epoch 103  step   40/55  loss=0.1182  lr=5.17e-04  [5s]
+02:54:12  Epoch 103  step   50/55  loss=0.0603  lr=5.17e-04  [6s]
+02:54:14  Epoch 103  train_loss=0.1445  val_loss=0.1395  F1=0.8560  IoU=0.7482  P=0.8661  R=0.8461  Kappa=0.8513  max_prob=1.0000  lr=5.09e-04
+02:54:15    No improvement for 9/30 epochs
+02:54:17  Epoch 104  step   10/55  loss=0.1946  lr=5.09e-04  [2s]
+02:54:18  Epoch 104  step   20/55  loss=0.1172  lr=5.09e-04  [3s]
+02:54:19  Epoch 104  step   30/55  loss=0.3506  lr=5.09e-04  [4s]
+02:54:20  Epoch 104  step   40/55  loss=0.1038  lr=5.09e-04  [5s]
+02:54:21  Epoch 104  step   50/55  loss=0.0791  lr=5.09e-04  [6s]
+02:54:23  Epoch 104  train_loss=0.1679  val_loss=0.1955  F1=0.7953  IoU=0.6602  P=0.9168  R=0.7023  Kappa=0.7896  max_prob=0.9995  lr=5.00e-04
+02:54:24    No improvement for 10/30 epochs
+02:54:25  Epoch 105  step   10/55  loss=0.1252  lr=5.00e-04  [2s]
+02:54:26  Epoch 105  step   20/55  loss=0.1071  lr=5.00e-04  [3s]
+02:54:27  Epoch 105  step   30/55  loss=0.1539  lr=5.00e-04  [4s]
+02:54:28  Epoch 105  step   40/55  loss=0.1706  lr=5.00e-04  [5s]
+02:54:29  Epoch 105  step   50/55  loss=0.1173  lr=5.00e-04  [6s]
+02:54:32  Epoch 105  train_loss=0.1404  val_loss=0.1444  F1=0.8313  IoU=0.7112  P=0.8360  R=0.8266  Kappa=0.8258  max_prob=1.0000  lr=4.92e-04
+02:54:32    No improvement for 11/30 epochs
+02:54:34  Epoch 106  step   10/55  loss=0.1123  lr=4.92e-04  [2s]
+02:54:35  Epoch 106  step   20/55  loss=0.0648  lr=4.92e-04  [3s]
+02:54:36  Epoch 106  step   30/55  loss=0.1449  lr=4.92e-04  [4s]
+02:54:37  Epoch 106  step   40/55  loss=0.1284  lr=4.92e-04  [5s]
+02:54:38  Epoch 106  step   50/55  loss=0.1226  lr=4.92e-04  [6s]
+02:54:40  Epoch 106  train_loss=0.1403  val_loss=0.1182  F1=0.8619  IoU=0.7573  P=0.8484  R=0.8758  Kappa=0.8573  max_prob=1.0000  lr=4.84e-04
+02:54:42    *** New best F1=0.8619  saved best_model.pth ***
+02:54:44  Epoch 107  step   10/55  loss=0.1924  lr=4.84e-04  [2s]
+02:54:45  Epoch 107  step   20/55  loss=0.0783  lr=4.84e-04  [3s]
+02:54:46  Epoch 107  step   30/55  loss=0.0989  lr=4.84e-04  [4s]
+02:54:47  Epoch 107  step   40/55  loss=0.1925  lr=4.84e-04  [5s]
+02:54:48  Epoch 107  step   50/55  loss=0.2220  lr=4.84e-04  [6s]
+02:54:50  Epoch 107  train_loss=0.1452  val_loss=0.1407  F1=0.8508  IoU=0.7404  P=0.8943  R=0.8114  Kappa=0.8462  max_prob=1.0000  lr=4.76e-04
+02:54:51    No improvement for 1/30 epochs
+02:54:52  Epoch 108  step   10/55  loss=0.1535  lr=4.76e-04  [2s]
+02:54:53  Epoch 108  step   20/55  loss=0.1629  lr=4.76e-04  [3s]
+02:54:54  Epoch 108  step   30/55  loss=0.1300  lr=4.76e-04  [4s]
+02:54:55  Epoch 108  step   40/55  loss=0.1025  lr=4.76e-04  [5s]
+02:54:56  Epoch 108  step   50/55  loss=0.3015  lr=4.76e-04  [6s]
+02:54:58  Epoch 108  train_loss=0.1482  val_loss=0.1355  F1=0.8515  IoU=0.7415  P=0.8599  R=0.8434  Kappa=0.8467  max_prob=1.0000  lr=4.67e-04
+02:54:59    No improvement for 2/30 epochs
+02:55:01  Epoch 109  step   10/55  loss=0.1680  lr=4.67e-04  [2s]
+02:55:02  Epoch 109  step   20/55  loss=0.0701  lr=4.67e-04  [3s]
+02:55:03  Epoch 109  step   30/55  loss=0.2297  lr=4.67e-04  [4s]
+02:55:04  Epoch 109  step   40/55  loss=0.0929  lr=4.67e-04  [5s]
+02:55:05  Epoch 109  step   50/55  loss=0.0992  lr=4.67e-04  [6s]
+02:55:07  Epoch 109  train_loss=0.1642  val_loss=0.1320  F1=0.8533  IoU=0.7442  P=0.8710  R=0.8364  Kappa=0.8486  max_prob=1.0000  lr=4.59e-04
+02:55:08    No improvement for 3/30 epochs
+02:55:10  Epoch 110  step   10/55  loss=0.1287  lr=4.59e-04  [2s]
+02:55:11  Epoch 110  step   20/55  loss=0.1521  lr=4.59e-04  [3s]
+02:55:12  Epoch 110  step   30/55  loss=0.1237  lr=4.59e-04  [4s]
+02:55:13  Epoch 110  step   40/55  loss=0.1466  lr=4.59e-04  [5s]
+02:55:14  Epoch 110  step   50/55  loss=0.0589  lr=4.59e-04  [6s]
+02:55:16  Epoch 110  train_loss=0.1269  val_loss=0.1366  F1=0.8446  IoU=0.7309  P=0.8652  R=0.8249  Kappa=0.8396  max_prob=1.0000  lr=4.51e-04
+02:55:17    No improvement for 4/30 epochs
+02:55:19  Epoch 111  step   10/55  loss=0.1111  lr=4.51e-04  [2s]
+02:55:20  Epoch 111  step   20/55  loss=0.1163  lr=4.51e-04  [3s]
+02:55:21  Epoch 111  step   30/55  loss=0.1678  lr=4.51e-04  [4s]
+02:55:22  Epoch 111  step   40/55  loss=0.1154  lr=4.51e-04  [5s]
+02:55:22  Epoch 111  step   50/55  loss=0.0534  lr=4.51e-04  [6s]
+02:55:25  Epoch 111  train_loss=0.1384  val_loss=0.1202  F1=0.8661  IoU=0.7638  P=0.8627  R=0.8696  Kappa=0.8617  max_prob=1.0000  lr=4.43e-04
+02:55:26    *** New best F1=0.8661  saved best_model.pth ***
+02:55:28  Epoch 112  step   10/55  loss=0.3933  lr=4.43e-04  [2s]
+02:55:29  Epoch 112  step   20/55  loss=0.0783  lr=4.43e-04  [3s]
+02:55:30  Epoch 112  step   30/55  loss=0.0835  lr=4.43e-04  [4s]
+02:55:31  Epoch 112  step   40/55  loss=0.2966  lr=4.43e-04  [5s]
+02:55:32  Epoch 112  step   50/55  loss=0.1361  lr=4.43e-04  [6s]
+02:55:34  Epoch 112  train_loss=0.1478  val_loss=0.1445  F1=0.8332  IoU=0.7140  P=0.8570  R=0.8106  Kappa=0.8279  max_prob=1.0000  lr=4.35e-04
+02:55:35    No improvement for 1/30 epochs
+02:55:37  Epoch 113  step   10/55  loss=0.1343  lr=4.35e-04  [2s]
+02:55:38  Epoch 113  step   20/55  loss=0.1094  lr=4.35e-04  [3s]
+02:55:39  Epoch 113  step   30/55  loss=0.1031  lr=4.35e-04  [4s]
+02:55:40  Epoch 113  step   40/55  loss=0.1359  lr=4.35e-04  [5s]
+02:55:41  Epoch 113  step   50/55  loss=0.1013  lr=4.35e-04  [6s]
+02:55:43  Epoch 113  train_loss=0.1515  val_loss=0.1541  F1=0.8329  IoU=0.7136  P=0.8158  R=0.8506  Kappa=0.8273  max_prob=1.0000  lr=4.26e-04
+02:55:44    No improvement for 2/30 epochs
+02:55:46  Epoch 114  step   10/55  loss=0.1177  lr=4.26e-04  [2s]
+02:55:46  Epoch 114  step   20/55  loss=0.0948  lr=4.26e-04  [3s]
+02:55:48  Epoch 114  step   30/55  loss=0.3544  lr=4.26e-04  [4s]
+02:55:48  Epoch 114  step   40/55  loss=0.1130  lr=4.26e-04  [5s]
+02:55:49  Epoch 114  step   50/55  loss=0.1464  lr=4.26e-04  [6s]
+02:55:52  Epoch 114  train_loss=0.1280  val_loss=0.1319  F1=0.8530  IoU=0.7437  P=0.8614  R=0.8448  Kappa=0.8483  max_prob=1.0000  lr=4.18e-04
+02:55:52    No improvement for 3/30 epochs
+02:55:54  Epoch 115  step   10/55  loss=0.1093  lr=4.18e-04  [2s]
+02:55:55  Epoch 115  step   20/55  loss=0.1113  lr=4.18e-04  [3s]
+02:55:56  Epoch 115  step   30/55  loss=0.1429  lr=4.18e-04  [4s]
+02:55:57  Epoch 115  step   40/55  loss=0.1919  lr=4.18e-04  [5s]
+02:55:58  Epoch 115  step   50/55  loss=0.1219  lr=4.18e-04  [6s]
+02:56:00  Epoch 115  train_loss=0.1473  val_loss=0.1409  F1=0.8383  IoU=0.7216  P=0.7858  R=0.8983  Kappa=0.8327  max_prob=1.0000  lr=4.10e-04
+02:56:01    No improvement for 4/30 epochs
+02:56:03  Epoch 116  step   10/55  loss=0.2272  lr=4.10e-04  [2s]
+02:56:04  Epoch 116  step   20/55  loss=0.1858  lr=4.10e-04  [3s]
+02:56:05  Epoch 116  step   30/55  loss=0.1193  lr=4.10e-04  [4s]
+02:56:06  Epoch 116  step   40/55  loss=0.5227  lr=4.10e-04  [5s]
+02:56:07  Epoch 116  step   50/55  loss=0.1084  lr=4.10e-04  [6s]
+02:56:09  Epoch 116  train_loss=0.1559  val_loss=0.1490  F1=0.8448  IoU=0.7314  P=0.8819  R=0.8108  Kappa=0.8400  max_prob=0.9995  lr=4.02e-04
+02:56:10    No improvement for 5/30 epochs
+02:56:12  Epoch 117  step   10/55  loss=0.0808  lr=4.02e-04  [2s]
+02:56:13  Epoch 117  step   20/55  loss=0.1216  lr=4.02e-04  [3s]
+02:56:14  Epoch 117  step   30/55  loss=0.0969  lr=4.02e-04  [4s]
+02:56:15  Epoch 117  step   40/55  loss=0.0950  lr=4.02e-04  [5s]
+02:56:16  Epoch 117  step   50/55  loss=0.1401  lr=4.02e-04  [6s]
+02:56:18  Epoch 117  train_loss=0.1335  val_loss=0.1375  F1=0.8422  IoU=0.7274  P=0.8280  R=0.8570  Kappa=0.8370  max_prob=1.0000  lr=3.94e-04
+02:56:19    No improvement for 6/30 epochs
+02:56:20  Epoch 118  step   10/55  loss=0.1483  lr=3.94e-04  [2s]
+02:56:21  Epoch 118  step   20/55  loss=0.0822  lr=3.94e-04  [3s]
+02:56:22  Epoch 118  step   30/55  loss=0.0957  lr=3.94e-04  [4s]
+02:56:23  Epoch 118  step   40/55  loss=0.1017  lr=3.94e-04  [5s]
+02:56:24  Epoch 118  step   50/55  loss=0.1131  lr=3.94e-04  [6s]
+02:56:26  Epoch 118  train_loss=0.1386  val_loss=0.1217  F1=0.8673  IoU=0.7657  P=0.8866  R=0.8489  Kappa=0.8631  max_prob=1.0000  lr=3.86e-04
+02:56:28    *** New best F1=0.8673  saved best_model.pth ***
+02:56:30  Epoch 119  step   10/55  loss=0.0822  lr=3.86e-04  [2s]
+02:56:31  Epoch 119  step   20/55  loss=0.4883  lr=3.86e-04  [3s]
+02:56:32  Epoch 119  step   30/55  loss=0.1129  lr=3.86e-04  [4s]
+02:56:33  Epoch 119  step   40/55  loss=0.1090  lr=3.86e-04  [5s]
+02:56:34  Epoch 119  step   50/55  loss=0.1698  lr=3.86e-04  [6s]
+02:56:36  Epoch 119  train_loss=0.1592  val_loss=0.1359  F1=0.8598  IoU=0.7541  P=0.8962  R=0.8263  Kappa=0.8554  max_prob=1.0000  lr=3.78e-04
+02:56:37    No improvement for 1/30 epochs
+02:56:39  Epoch 120  step   10/55  loss=0.2507  lr=3.78e-04  [2s]
+02:56:40  Epoch 120  step   20/55  loss=0.1050  lr=3.78e-04  [3s]
+02:56:41  Epoch 120  step   30/55  loss=0.1566  lr=3.78e-04  [4s]
+02:56:42  Epoch 120  step   40/55  loss=0.1224  lr=3.78e-04  [5s]
+02:56:43  Epoch 120  step   50/55  loss=0.1582  lr=3.78e-04  [6s]
+02:56:45  Epoch 120  train_loss=0.1421  val_loss=0.1240  F1=0.8610  IoU=0.7559  P=0.8494  R=0.8728  Kappa=0.8564  max_prob=1.0000  lr=3.70e-04
+02:56:45    No improvement for 2/30 epochs
+02:56:47  Epoch 121  step   10/55  loss=0.1263  lr=3.70e-04  [2s]
+02:56:48  Epoch 121  step   20/55  loss=0.0730  lr=3.70e-04  [3s]
+02:56:49  Epoch 121  step   30/55  loss=0.1695  lr=3.70e-04  [4s]
+02:56:50  Epoch 121  step   40/55  loss=0.0932  lr=3.70e-04  [5s]
+02:56:51  Epoch 121  step   50/55  loss=0.1628  lr=3.70e-04  [6s]
+02:56:53  Epoch 121  train_loss=0.1284  val_loss=0.1564  F1=0.8323  IoU=0.7127  P=0.9005  R=0.7736  Kappa=0.8272  max_prob=0.9995  lr=3.62e-04
+02:56:54    No improvement for 3/30 epochs
+02:56:56  Epoch 122  step   10/55  loss=0.1491  lr=3.62e-04  [2s]
+02:56:57  Epoch 122  step   20/55  loss=0.2181  lr=3.62e-04  [3s]
+02:56:58  Epoch 122  step   30/55  loss=0.3411  lr=3.62e-04  [4s]
+02:56:59  Epoch 122  step   40/55  loss=0.1693  lr=3.62e-04  [5s]
+02:57:00  Epoch 122  step   50/55  loss=0.1472  lr=3.62e-04  [6s]
+02:57:02  Epoch 122  train_loss=0.1447  val_loss=0.1272  F1=0.8649  IoU=0.7619  P=0.8785  R=0.8517  Kappa=0.8605  max_prob=1.0000  lr=3.54e-04
+02:57:03    No improvement for 4/30 epochs
+02:57:05  Epoch 123  step   10/55  loss=0.1823  lr=3.54e-04  [2s]
+02:57:06  Epoch 123  step   20/55  loss=0.1499  lr=3.54e-04  [3s]
+02:57:07  Epoch 123  step   30/55  loss=0.1109  lr=3.54e-04  [4s]
+02:57:08  Epoch 123  step   40/55  loss=0.0864  lr=3.54e-04  [5s]
+02:57:09  Epoch 123  step   50/55  loss=0.1426  lr=3.54e-04  [6s]
+02:57:11  Epoch 123  train_loss=0.1236  val_loss=0.1250  F1=0.8643  IoU=0.7610  P=0.8776  R=0.8514  Kappa=0.8599  max_prob=1.0000  lr=3.46e-04
+02:57:12    No improvement for 5/30 epochs
+02:57:13  Epoch 124  step   10/55  loss=0.1508  lr=3.46e-04  [2s]
+02:57:14  Epoch 124  step   20/55  loss=0.5745  lr=3.46e-04  [3s]
+02:57:15  Epoch 124  step   30/55  loss=0.0912  lr=3.46e-04  [4s]
+02:57:16  Epoch 124  step   40/55  loss=0.1244  lr=3.46e-04  [5s]
+02:57:17  Epoch 124  step   50/55  loss=0.1286  lr=3.46e-04  [6s]
+02:57:20  Epoch 124  train_loss=0.1389  val_loss=0.1197  F1=0.8633  IoU=0.7594  P=0.8312  R=0.8979  Kappa=0.8586  max_prob=1.0000  lr=3.38e-04
+02:57:20    No improvement for 6/30 epochs
+02:57:22  Epoch 125  step   10/55  loss=0.0870  lr=3.38e-04  [2s]
+02:57:23  Epoch 125  step   20/55  loss=0.1098  lr=3.38e-04  [3s]
+02:57:24  Epoch 125  step   30/55  loss=0.1162  lr=3.38e-04  [4s]
+02:57:25  Epoch 125  step   40/55  loss=0.1187  lr=3.38e-04  [5s]
+02:57:26  Epoch 125  step   50/55  loss=0.1298  lr=3.38e-04  [6s]
+02:57:28  Epoch 125  train_loss=0.1392  val_loss=0.1108  F1=0.8785  IoU=0.7833  P=0.8740  R=0.8831  Kappa=0.8745  max_prob=1.0000  lr=3.31e-04
+02:57:30    *** New best F1=0.8785  saved best_model.pth ***
+02:57:32  Epoch 126  step   10/55  loss=0.1127  lr=3.31e-04  [2s]
+02:57:33  Epoch 126  step   20/55  loss=0.1031  lr=3.31e-04  [3s]
+02:57:34  Epoch 126  step   30/55  loss=0.1217  lr=3.31e-04  [4s]
+02:57:35  Epoch 126  step   40/55  loss=0.0661  lr=3.31e-04  [5s]
+02:57:36  Epoch 126  step   50/55  loss=0.0842  lr=3.31e-04  [6s]
+02:57:38  Epoch 126  train_loss=0.1409  val_loss=0.1279  F1=0.8596  IoU=0.7538  P=0.8689  R=0.8504  Kappa=0.8550  max_prob=1.0000  lr=3.23e-04
+02:57:38    No improvement for 1/30 epochs
+02:57:40  Epoch 127  step   10/55  loss=0.0795  lr=3.23e-04  [2s]
+02:57:41  Epoch 127  step   20/55  loss=0.1032  lr=3.23e-04  [3s]
+02:57:42  Epoch 127  step   30/55  loss=0.0646  lr=3.23e-04  [4s]
+02:57:43  Epoch 127  step   40/55  loss=0.1796  lr=3.23e-04  [5s]
+02:57:44  Epoch 127  step   50/55  loss=0.1430  lr=3.23e-04  [6s]
+02:57:46  Epoch 127  train_loss=0.1227  val_loss=0.1186  F1=0.8681  IoU=0.7670  P=0.8687  R=0.8676  Kappa=0.8638  max_prob=1.0000  lr=3.15e-04
+02:57:47    No improvement for 2/30 epochs
+02:57:49  Epoch 128  step   10/55  loss=0.1329  lr=3.15e-04  [2s]
+02:57:50  Epoch 128  step   20/55  loss=0.0986  lr=3.15e-04  [3s]
+02:57:51  Epoch 128  step   30/55  loss=0.1377  lr=3.15e-04  [4s]
+02:57:52  Epoch 128  step   40/55  loss=0.1031  lr=3.15e-04  [5s]
+02:57:53  Epoch 128  step   50/55  loss=0.0795  lr=3.15e-04  [6s]
+02:57:55  Epoch 128  train_loss=0.1581  val_loss=0.1130  F1=0.8744  IoU=0.7769  P=0.8610  R=0.8883  Kappa=0.8702  max_prob=1.0000  lr=3.07e-04
+02:57:56    No improvement for 3/30 epochs
+02:57:58  Epoch 129  step   10/55  loss=0.1901  lr=3.07e-04  [2s]
+02:57:59  Epoch 129  step   20/55  loss=0.2731  lr=3.07e-04  [3s]
+02:58:00  Epoch 129  step   30/55  loss=0.1332  lr=3.07e-04  [4s]
+02:58:00  Epoch 129  step   40/55  loss=0.1123  lr=3.07e-04  [5s]
+02:58:01  Epoch 129  step   50/55  loss=0.1020  lr=3.07e-04  [6s]
+02:58:04  Epoch 129  train_loss=0.1407  val_loss=0.1220  F1=0.8685  IoU=0.7676  P=0.8932  R=0.8452  Kappa=0.8643  max_prob=1.0000  lr=3.00e-04
+02:58:04    No improvement for 4/30 epochs
+02:58:06  Epoch 130  step   10/55  loss=0.1275  lr=3.00e-04  [2s]
+02:58:07  Epoch 130  step   20/55  loss=0.1458  lr=3.00e-04  [3s]
+02:58:08  Epoch 130  step   30/55  loss=0.0795  lr=3.00e-04  [4s]
+02:58:09  Epoch 130  step   40/55  loss=0.1151  lr=3.00e-04  [5s]
+02:58:10  Epoch 130  step   50/55  loss=0.1116  lr=3.00e-04  [6s]
+02:58:12  Epoch 130  train_loss=0.1251  val_loss=0.1290  F1=0.8549  IoU=0.7466  P=0.8942  R=0.8190  Kappa=0.8504  max_prob=1.0000  lr=2.92e-04
+02:58:13    No improvement for 5/30 epochs
+02:58:15  Epoch 131  step   10/55  loss=0.1980  lr=2.92e-04  [2s]
+02:58:16  Epoch 131  step   20/55  loss=0.0637  lr=2.92e-04  [3s]
+02:58:17  Epoch 131  step   30/55  loss=0.1639  lr=2.92e-04  [4s]
+02:58:18  Epoch 131  step   40/55  loss=0.0943  lr=2.92e-04  [5s]
+02:58:19  Epoch 131  step   50/55  loss=0.0694  lr=2.92e-04  [6s]
+02:58:21  Epoch 131  train_loss=0.1357  val_loss=0.1306  F1=0.8590  IoU=0.7528  P=0.8952  R=0.8256  Kappa=0.8546  max_prob=1.0000  lr=2.85e-04
+02:58:22    No improvement for 6/30 epochs
+02:58:24  Epoch 132  step   10/55  loss=0.0765  lr=2.85e-04  [2s]
+02:58:25  Epoch 132  step   20/55  loss=0.0964  lr=2.85e-04  [3s]
+02:58:26  Epoch 132  step   30/55  loss=0.1086  lr=2.85e-04  [4s]
+02:58:27  Epoch 132  step   40/55  loss=0.1498  lr=2.85e-04  [5s]
+02:58:28  Epoch 132  step   50/55  loss=0.1762  lr=2.85e-04  [6s]
+02:58:30  Epoch 132  train_loss=0.1474  val_loss=0.1165  F1=0.8698  IoU=0.7696  P=0.8559  R=0.8842  Kappa=0.8655  max_prob=1.0000  lr=2.77e-04
+02:58:31    No improvement for 7/30 epochs
+02:58:32  Epoch 133  step   10/55  loss=0.0960  lr=2.77e-04  [2s]
+02:58:33  Epoch 133  step   20/55  loss=0.1598  lr=2.77e-04  [3s]
+02:58:34  Epoch 133  step   30/55  loss=0.2116  lr=2.77e-04  [4s]
+02:58:35  Epoch 133  step   40/55  loss=0.1093  lr=2.77e-04  [5s]
+02:58:36  Epoch 133  step   50/55  loss=0.1493  lr=2.77e-04  [6s]
+02:58:38  Epoch 133  train_loss=0.1379  val_loss=0.1142  F1=0.8744  IoU=0.7768  P=0.8849  R=0.8640  Kappa=0.8703  max_prob=1.0000  lr=2.70e-04
+02:58:39    No improvement for 8/30 epochs
+02:58:41  Epoch 134  step   10/55  loss=0.0940  lr=2.70e-04  [2s]
+02:58:42  Epoch 134  step   20/55  loss=0.0868  lr=2.70e-04  [3s]
+02:58:43  Epoch 134  step   30/55  loss=0.1203  lr=2.70e-04  [4s]
+02:58:44  Epoch 134  step   40/55  loss=0.0664  lr=2.70e-04  [5s]
+02:58:45  Epoch 134  step   50/55  loss=0.0834  lr=2.70e-04  [6s]
+02:58:47  Epoch 134  train_loss=0.1236  val_loss=0.1143  F1=0.8749  IoU=0.7777  P=0.8675  R=0.8825  Kappa=0.8708  max_prob=1.0000  lr=2.63e-04
+02:58:48    No improvement for 9/30 epochs
+02:58:50  Epoch 135  step   10/55  loss=0.1314  lr=2.63e-04  [2s]
+02:58:51  Epoch 135  step   20/55  loss=0.1374  lr=2.63e-04  [3s]
+02:58:52  Epoch 135  step   30/55  loss=0.0822  lr=2.63e-04  [4s]
+02:58:53  Epoch 135  step   40/55  loss=0.1019  lr=2.63e-04  [5s]
+02:58:54  Epoch 135  step   50/55  loss=0.1468  lr=2.63e-04  [6s]
+02:58:56  Epoch 135  train_loss=0.1428  val_loss=0.1163  F1=0.8685  IoU=0.7676  P=0.8706  R=0.8665  Kappa=0.8642  max_prob=1.0000  lr=2.56e-04
+02:58:57    No improvement for 10/30 epochs
+02:58:58  Epoch 136  step   10/55  loss=0.0915  lr=2.56e-04  [2s]
+02:58:59  Epoch 136  step   20/55  loss=0.1047  lr=2.56e-04  [3s]
+02:59:00  Epoch 136  step   30/55  loss=0.0774  lr=2.56e-04  [4s]
+02:59:01  Epoch 136  step   40/55  loss=0.1096  lr=2.56e-04  [5s]
+02:59:02  Epoch 136  step   50/55  loss=0.1702  lr=2.56e-04  [6s]
+02:59:05  Epoch 136  train_loss=0.1126  val_loss=0.1186  F1=0.8713  IoU=0.7719  P=0.8743  R=0.8683  Kappa=0.8671  max_prob=1.0000  lr=2.48e-04
+02:59:05    No improvement for 11/30 epochs
+02:59:07  Epoch 137  step   10/55  loss=0.1819  lr=2.48e-04  [2s]
+02:59:08  Epoch 137  step   20/55  loss=0.1192  lr=2.48e-04  [3s]
+02:59:09  Epoch 137  step   30/55  loss=0.6894  lr=2.48e-04  [4s]
+02:59:10  Epoch 137  step   40/55  loss=0.1282  lr=2.48e-04  [5s]
+02:59:11  Epoch 137  step   50/55  loss=0.1217  lr=2.48e-04  [6s]
+02:59:13  Epoch 137  train_loss=0.1283  val_loss=0.1124  F1=0.8772  IoU=0.7813  P=0.8682  R=0.8864  Kappa=0.8732  max_prob=1.0000  lr=2.41e-04
+02:59:14    No improvement for 12/30 epochs
+02:59:16  Epoch 138  step   10/55  loss=0.0864  lr=2.41e-04  [2s]
+02:59:17  Epoch 138  step   20/55  loss=0.0601  lr=2.41e-04  [3s]
+02:59:18  Epoch 138  step   30/55  loss=0.2005  lr=2.41e-04  [4s]
+02:59:19  Epoch 138  step   40/55  loss=0.1902  lr=2.41e-04  [5s]
+02:59:20  Epoch 138  step   50/55  loss=0.0769  lr=2.41e-04  [6s]
+02:59:22  Epoch 138  train_loss=0.1287  val_loss=0.1463  F1=0.8460  IoU=0.7331  P=0.8934  R=0.8034  Kappa=0.8413  max_prob=1.0000  lr=2.34e-04
+02:59:23    No improvement for 13/30 epochs
+02:59:25  Epoch 139  step   10/55  loss=0.1160  lr=2.34e-04  [2s]
+02:59:25  Epoch 139  step   20/55  loss=0.0918  lr=2.34e-04  [3s]
+02:59:26  Epoch 139  step   30/55  loss=0.0981  lr=2.34e-04  [4s]
+02:59:27  Epoch 139  step   40/55  loss=0.1594  lr=2.34e-04  [5s]
+02:59:28  Epoch 139  step   50/55  loss=0.0860  lr=2.34e-04  [6s]
+02:59:31  Epoch 139  train_loss=0.1186  val_loss=0.1174  F1=0.8709  IoU=0.7714  P=0.8499  R=0.8930  Kappa=0.8666  max_prob=1.0000  lr=2.27e-04
+02:59:31    No improvement for 14/30 epochs
+02:59:33  Epoch 140  step   10/55  loss=0.1022  lr=2.27e-04  [2s]
+02:59:34  Epoch 140  step   20/55  loss=0.1174  lr=2.27e-04  [3s]
+02:59:35  Epoch 140  step   30/55  loss=0.1298  lr=2.27e-04  [4s]
+02:59:36  Epoch 140  step   40/55  loss=0.0846  lr=2.27e-04  [5s]
+02:59:37  Epoch 140  step   50/55  loss=0.2170  lr=2.27e-04  [6s]
+02:59:39  Epoch 140  train_loss=0.1301  val_loss=0.1231  F1=0.8630  IoU=0.7591  P=0.8781  R=0.8485  Kappa=0.8586  max_prob=1.0000  lr=2.20e-04
+02:59:40    No improvement for 15/30 epochs
+02:59:42  Epoch 141  step   10/55  loss=0.0928  lr=2.20e-04  [2s]
+02:59:43  Epoch 141  step   20/55  loss=0.1012  lr=2.20e-04  [3s]
+02:59:44  Epoch 141  step   30/55  loss=0.1304  lr=2.20e-04  [4s]
+02:59:45  Epoch 141  step   40/55  loss=0.1353  lr=2.20e-04  [5s]
+02:59:46  Epoch 141  step   50/55  loss=0.1007  lr=2.20e-04  [6s]
+02:59:48  Epoch 141  train_loss=0.1155  val_loss=0.1188  F1=0.8644  IoU=0.7612  P=0.8649  R=0.8639  Kappa=0.8600  max_prob=1.0000  lr=2.14e-04
+02:59:49    No improvement for 16/30 epochs
+02:59:50  Epoch 142  step   10/55  loss=0.1087  lr=2.14e-04  [2s]
+02:59:51  Epoch 142  step   20/55  loss=0.1361  lr=2.14e-04  [3s]
+02:59:52  Epoch 142  step   30/55  loss=0.0987  lr=2.14e-04  [4s]
+02:59:53  Epoch 142  step   40/55  loss=0.1092  lr=2.14e-04  [5s]
+02:59:54  Epoch 142  step   50/55  loss=0.0780  lr=2.14e-04  [6s]
+02:59:57  Epoch 142  train_loss=0.1264  val_loss=0.1204  F1=0.8694  IoU=0.7690  P=0.8822  R=0.8570  Kappa=0.8652  max_prob=1.0000  lr=2.07e-04
+02:59:57    No improvement for 17/30 epochs
+02:59:59  Epoch 143  step   10/55  loss=0.0910  lr=2.07e-04  [2s]
+03:00:00  Epoch 143  step   20/55  loss=0.1820  lr=2.07e-04  [3s]
+03:00:01  Epoch 143  step   30/55  loss=0.0888  lr=2.07e-04  [4s]
+03:00:02  Epoch 143  step   40/55  loss=0.1265  lr=2.07e-04  [5s]
+03:00:03  Epoch 143  step   50/55  loss=0.0701  lr=2.07e-04  [6s]
+03:00:05  Epoch 143  train_loss=0.1133  val_loss=0.1161  F1=0.8688  IoU=0.7680  P=0.8814  R=0.8565  Kappa=0.8646  max_prob=1.0000  lr=2.00e-04
+03:00:06    No improvement for 18/30 epochs
+03:00:08  Epoch 144  step   10/55  loss=0.0976  lr=2.00e-04  [2s]
+03:00:09  Epoch 144  step   20/55  loss=0.1133  lr=2.00e-04  [3s]
+03:00:10  Epoch 144  step   30/55  loss=0.0537  lr=2.00e-04  [4s]
+03:00:11  Epoch 144  step   40/55  loss=0.0498  lr=2.00e-04  [5s]
+03:00:12  Epoch 144  step   50/55  loss=0.0820  lr=2.00e-04  [6s]
+03:00:14  Epoch 144  train_loss=0.1168  val_loss=0.1149  F1=0.8699  IoU=0.7698  P=0.8554  R=0.8849  Kappa=0.8656  max_prob=1.0000  lr=1.94e-04
+03:00:15    No improvement for 19/30 epochs
+03:00:17  Epoch 145  step   10/55  loss=0.2295  lr=1.94e-04  [2s]
+03:00:17  Epoch 145  step   20/55  loss=0.0759  lr=1.94e-04  [3s]
+03:00:18  Epoch 145  step   30/55  loss=0.1120  lr=1.94e-04  [4s]
+03:00:19  Epoch 145  step   40/55  loss=0.0511  lr=1.94e-04  [5s]
+03:00:20  Epoch 145  step   50/55  loss=0.1230  lr=1.94e-04  [6s]
+03:00:23  Epoch 145  train_loss=0.1212  val_loss=0.1259  F1=0.8582  IoU=0.7517  P=0.8978  R=0.8220  Kappa=0.8538  max_prob=1.0000  lr=1.87e-04
+03:00:23    No improvement for 20/30 epochs
+03:00:25  Epoch 146  step   10/55  loss=0.0686  lr=1.87e-04  [2s]
+03:00:26  Epoch 146  step   20/55  loss=0.0975  lr=1.87e-04  [3s]
+03:00:27  Epoch 146  step   30/55  loss=0.1785  lr=1.87e-04  [4s]
+03:00:28  Epoch 146  step   40/55  loss=0.0855  lr=1.87e-04  [5s]
+03:00:29  Epoch 146  step   50/55  loss=0.1591  lr=1.87e-04  [6s]
+03:00:31  Epoch 146  train_loss=0.1334  val_loss=0.1064  F1=0.8799  IoU=0.7855  P=0.8566  R=0.9045  Kappa=0.8758  max_prob=1.0000  lr=1.81e-04
+03:00:33    *** New best F1=0.8799  saved best_model.pth ***
+03:00:35  Epoch 147  step   10/55  loss=0.1167  lr=1.81e-04  [2s]
+03:00:36  Epoch 147  step   20/55  loss=0.1013  lr=1.81e-04  [3s]
+03:00:37  Epoch 147  step   30/55  loss=0.2206  lr=1.81e-04  [4s]
+03:00:37  Epoch 147  step   40/55  loss=0.1425  lr=1.81e-04  [5s]
+03:00:38  Epoch 147  step   50/55  loss=0.0628  lr=1.81e-04  [6s]
+03:00:41  Epoch 147  train_loss=0.1425  val_loss=0.1170  F1=0.8704  IoU=0.7705  P=0.8897  R=0.8518  Kappa=0.8662  max_prob=1.0000  lr=1.75e-04
+03:00:41    No improvement for 1/30 epochs
+03:00:43  Epoch 148  step   10/55  loss=0.0744  lr=1.75e-04  [2s]
+03:00:44  Epoch 148  step   20/55  loss=0.1115  lr=1.75e-04  [3s]
+03:00:45  Epoch 148  step   30/55  loss=0.0910  lr=1.75e-04  [4s]
+03:00:46  Epoch 148  step   40/55  loss=0.1073  lr=1.75e-04  [5s]
+03:00:47  Epoch 148  step   50/55  loss=0.1427  lr=1.75e-04  [6s]
+03:00:49  Epoch 148  train_loss=0.1201  val_loss=0.1118  F1=0.8746  IoU=0.7771  P=0.8640  R=0.8855  Kappa=0.8704  max_prob=1.0000  lr=1.68e-04
+03:00:50    No improvement for 2/30 epochs
+03:00:52  Epoch 149  step   10/55  loss=0.0927  lr=1.68e-04  [2s]
+03:00:53  Epoch 149  step   20/55  loss=0.2086  lr=1.68e-04  [3s]
+03:00:54  Epoch 149  step   30/55  loss=0.1035  lr=1.68e-04  [4s]
+03:00:55  Epoch 149  step   40/55  loss=0.1113  lr=1.68e-04  [5s]
+03:00:56  Epoch 149  step   50/55  loss=0.0581  lr=1.68e-04  [6s]
+03:00:58  Epoch 149  train_loss=0.1208  val_loss=0.1187  F1=0.8685  IoU=0.7675  P=0.8809  R=0.8564  Kappa=0.8642  max_prob=1.0000  lr=1.62e-04
+03:00:59    No improvement for 3/30 epochs
+03:01:01  Epoch 150  step   10/55  loss=0.0883  lr=1.62e-04  [2s]
+03:01:02  Epoch 150  step   20/55  loss=0.1330  lr=1.62e-04  [3s]
+03:01:03  Epoch 150  step   30/55  loss=0.2043  lr=1.62e-04  [4s]
+03:01:04  Epoch 150  step   40/55  loss=0.0848  lr=1.62e-04  [5s]
+03:01:05  Epoch 150  step   50/55  loss=0.1416  lr=1.62e-04  [6s]
+03:01:07  Epoch 150  train_loss=0.1235  val_loss=0.1181  F1=0.8630  IoU=0.7590  P=0.8301  R=0.8987  Kappa=0.8583  max_prob=1.0000  lr=1.56e-04
+03:01:08    No improvement for 4/30 epochs
+03:01:09  Epoch 151  step   10/55  loss=0.2973  lr=1.56e-04  [2s]
+03:01:10  Epoch 151  step   20/55  loss=0.0718  lr=1.56e-04  [3s]
+03:01:11  Epoch 151  step   30/55  loss=0.0912  lr=1.56e-04  [4s]
+03:01:12  Epoch 151  step   40/55  loss=0.0957  lr=1.56e-04  [5s]
+03:01:13  Epoch 151  step   50/55  loss=0.0819  lr=1.56e-04  [6s]
+03:01:15  Epoch 151  train_loss=0.1115  val_loss=0.1056  F1=0.8796  IoU=0.7851  P=0.8640  R=0.8958  Kappa=0.8756  max_prob=1.0000  lr=1.50e-04
+03:01:16    No improvement for 5/30 epochs
+03:01:18  Epoch 152  step   10/55  loss=0.1532  lr=1.50e-04  [2s]
+03:01:19  Epoch 152  step   20/55  loss=0.1079  lr=1.50e-04  [3s]
+03:01:20  Epoch 152  step   30/55  loss=0.0959  lr=1.50e-04  [4s]
+03:01:21  Epoch 152  step   40/55  loss=0.1406  lr=1.50e-04  [5s]
+03:01:22  Epoch 152  step   50/55  loss=0.1385  lr=1.50e-04  [6s]
+03:01:24  Epoch 152  train_loss=0.1071  val_loss=0.1045  F1=0.8819  IoU=0.7888  P=0.8792  R=0.8846  Kappa=0.8781  max_prob=1.0000  lr=1.44e-04
+03:01:26    *** New best F1=0.8819  saved best_model.pth ***
+03:01:27  Epoch 153  step   10/55  loss=0.3841  lr=1.44e-04  [2s]
+03:01:28  Epoch 153  step   20/55  loss=0.0957  lr=1.44e-04  [3s]
+03:01:29  Epoch 153  step   30/55  loss=0.1186  lr=1.44e-04  [4s]
+03:01:30  Epoch 153  step   40/55  loss=0.1066  lr=1.44e-04  [5s]
+03:01:31  Epoch 153  step   50/55  loss=0.1063  lr=1.44e-04  [6s]
+03:01:34  Epoch 153  train_loss=0.1316  val_loss=0.1064  F1=0.8776  IoU=0.7819  P=0.8717  R=0.8836  Kappa=0.8735  max_prob=1.0000  lr=1.39e-04
+03:01:34    No improvement for 1/30 epochs
+03:01:36  Epoch 154  step   10/55  loss=0.1198  lr=1.39e-04  [2s]
+03:01:37  Epoch 154  step   20/55  loss=0.1209  lr=1.39e-04  [3s]
+03:01:38  Epoch 154  step   30/55  loss=0.0771  lr=1.39e-04  [4s]
+03:01:39  Epoch 154  step   40/55  loss=0.1020  lr=1.39e-04  [5s]
+03:01:40  Epoch 154  step   50/55  loss=0.0880  lr=1.39e-04  [6s]
+03:01:42  Epoch 154  train_loss=0.1102  val_loss=0.1202  F1=0.8666  IoU=0.7646  P=0.8940  R=0.8408  Kappa=0.8624  max_prob=1.0000  lr=1.33e-04
+03:01:43    No improvement for 2/30 epochs
+03:01:45  Epoch 155  step   10/55  loss=0.0935  lr=1.33e-04  [2s]
+03:01:46  Epoch 155  step   20/55  loss=0.1544  lr=1.33e-04  [3s]
+03:01:47  Epoch 155  step   30/55  loss=0.1378  lr=1.33e-04  [4s]
+03:01:48  Epoch 155  step   40/55  loss=0.1404  lr=1.33e-04  [5s]
+03:01:49  Epoch 155  step   50/55  loss=0.1002  lr=1.33e-04  [6s]
+03:01:51  Epoch 155  train_loss=0.1309  val_loss=0.1163  F1=0.8699  IoU=0.7698  P=0.8826  R=0.8576  Kappa=0.8657  max_prob=1.0000  lr=1.27e-04
+03:01:52    No improvement for 3/30 epochs
+03:01:54  Epoch 156  step   10/55  loss=0.0872  lr=1.27e-04  [2s]
+03:01:55  Epoch 156  step   20/55  loss=0.1062  lr=1.27e-04  [3s]
+03:01:56  Epoch 156  step   30/55  loss=0.1395  lr=1.27e-04  [4s]
+03:01:57  Epoch 156  step   40/55  loss=0.2102  lr=1.27e-04  [5s]
+03:01:58  Epoch 156  step   50/55  loss=0.0892  lr=1.27e-04  [6s]
+03:02:00  Epoch 156  train_loss=0.1210  val_loss=0.1179  F1=0.8716  IoU=0.7724  P=0.8898  R=0.8541  Kappa=0.8675  max_prob=1.0000  lr=1.22e-04
+03:02:01    No improvement for 4/30 epochs
+03:02:02  Epoch 157  step   10/55  loss=0.1149  lr=1.22e-04  [2s]
+03:02:03  Epoch 157  step   20/55  loss=0.1045  lr=1.22e-04  [3s]
+03:02:04  Epoch 157  step   30/55  loss=0.0998  lr=1.22e-04  [4s]
+03:02:05  Epoch 157  step   40/55  loss=0.1516  lr=1.22e-04  [5s]
+03:02:06  Epoch 157  step   50/55  loss=0.1221  lr=1.22e-04  [6s]
+03:02:09  Epoch 157  train_loss=0.1263  val_loss=0.1087  F1=0.8772  IoU=0.7813  P=0.8791  R=0.8753  Kappa=0.8732  max_prob=1.0000  lr=1.17e-04
+03:02:09    No improvement for 5/30 epochs
+03:02:11  Epoch 158  step   10/55  loss=0.0561  lr=1.17e-04  [2s]
+03:02:12  Epoch 158  step   20/55  loss=0.0954  lr=1.17e-04  [3s]
+03:02:13  Epoch 158  step   30/55  loss=0.1251  lr=1.17e-04  [4s]
+03:02:14  Epoch 158  step   40/55  loss=0.1103  lr=1.17e-04  [5s]
+03:02:15  Epoch 158  step   50/55  loss=0.0813  lr=1.17e-04  [6s]
+03:02:17  Epoch 158  train_loss=0.1294  val_loss=0.1175  F1=0.8703  IoU=0.7703  P=0.8863  R=0.8548  Kappa=0.8661  max_prob=1.0000  lr=1.11e-04
+03:02:18    No improvement for 6/30 epochs
+03:02:20  Epoch 159  step   10/55  loss=0.1893  lr=1.11e-04  [2s]
+03:02:21  Epoch 159  step   20/55  loss=0.1407  lr=1.11e-04  [3s]
+03:02:22  Epoch 159  step   30/55  loss=0.0805  lr=1.11e-04  [4s]
+03:02:23  Epoch 159  step   40/55  loss=0.1092  lr=1.11e-04  [5s]
+03:02:24  Epoch 159  step   50/55  loss=0.1094  lr=1.11e-04  [6s]
+03:02:26  Epoch 159  train_loss=0.1102  val_loss=0.1111  F1=0.8752  IoU=0.7781  P=0.8744  R=0.8760  Kappa=0.8711  max_prob=1.0000  lr=1.06e-04
+03:02:27    No improvement for 7/30 epochs
+03:02:29  Epoch 160  step   10/55  loss=0.0713  lr=1.06e-04  [2s]
+03:02:30  Epoch 160  step   20/55  loss=0.0934  lr=1.06e-04  [3s]
+03:02:31  Epoch 160  step   30/55  loss=0.0762  lr=1.06e-04  [4s]
+03:02:32  Epoch 160  step   40/55  loss=0.0946  lr=1.06e-04  [5s]
+03:02:33  Epoch 160  step   50/55  loss=0.0697  lr=1.06e-04  [6s]
+03:02:35  Epoch 160  train_loss=0.1050  val_loss=0.1083  F1=0.8766  IoU=0.7803  P=0.8741  R=0.8791  Kappa=0.8725  max_prob=1.0000  lr=1.01e-04
+03:02:36    No improvement for 8/30 epochs
+03:02:37  Epoch 161  step   10/55  loss=0.1201  lr=1.01e-04  [2s]
+03:02:38  Epoch 161  step   20/55  loss=0.1348  lr=1.01e-04  [3s]
+03:02:39  Epoch 161  step   30/55  loss=0.0889  lr=1.01e-04  [4s]
+03:02:40  Epoch 161  step   40/55  loss=0.0692  lr=1.01e-04  [5s]
+03:02:41  Epoch 161  step   50/55  loss=0.1144  lr=1.01e-04  [6s]
+03:02:44  Epoch 161  train_loss=0.1224  val_loss=0.1076  F1=0.8766  IoU=0.7803  P=0.8710  R=0.8823  Kappa=0.8725  max_prob=1.0000  lr=9.64e-05
+03:02:44    No improvement for 9/30 epochs
+03:02:46  Epoch 162  step   10/55  loss=0.0577  lr=9.64e-05  [2s]
+03:02:47  Epoch 162  step   20/55  loss=0.1101  lr=9.64e-05  [3s]
+03:02:48  Epoch 162  step   30/55  loss=0.0855  lr=9.64e-05  [4s]
+03:02:49  Epoch 162  step   40/55  loss=0.0363  lr=9.64e-05  [5s]
+03:02:50  Epoch 162  step   50/55  loss=0.0937  lr=9.64e-05  [6s]
+03:02:52  Epoch 162  train_loss=0.1087  val_loss=0.1134  F1=0.8725  IoU=0.7738  P=0.8676  R=0.8774  Kappa=0.8683  max_prob=1.0000  lr=9.16e-05
+03:02:53    No improvement for 10/30 epochs
+03:02:55  Epoch 163  step   10/55  loss=0.0889  lr=9.16e-05  [2s]
+03:02:56  Epoch 163  step   20/55  loss=0.0532  lr=9.16e-05  [3s]
+03:02:57  Epoch 163  step   30/55  loss=0.1049  lr=9.16e-05  [4s]
+03:02:58  Epoch 163  step   40/55  loss=0.1046  lr=9.16e-05  [5s]
+03:02:59  Epoch 163  step   50/55  loss=0.2843  lr=9.16e-05  [6s]
+03:03:01  Epoch 163  train_loss=0.0982  val_loss=0.1146  F1=0.8736  IoU=0.7755  P=0.8830  R=0.8643  Kappa=0.8695  max_prob=1.0000  lr=8.69e-05
+03:03:02    No improvement for 11/30 epochs
+03:03:04  Epoch 164  step   10/55  loss=0.1168  lr=8.69e-05  [2s]
+03:03:05  Epoch 164  step   20/55  loss=0.1179  lr=8.69e-05  [3s]
+03:03:05  Epoch 164  step   30/55  loss=0.1357  lr=8.69e-05  [4s]
+03:03:06  Epoch 164  step   40/55  loss=0.0803  lr=8.69e-05  [5s]
+03:03:07  Epoch 164  step   50/55  loss=0.1036  lr=8.69e-05  [6s]
+03:03:10  Epoch 164  train_loss=0.1266  val_loss=0.1144  F1=0.8714  IoU=0.7721  P=0.8837  R=0.8595  Kappa=0.8673  max_prob=1.0000  lr=8.23e-05
+03:03:10    No improvement for 12/30 epochs
+03:03:12  Epoch 165  step   10/55  loss=0.1546  lr=8.23e-05  [2s]
+03:03:13  Epoch 165  step   20/55  loss=0.0611  lr=8.23e-05  [3s]
+03:03:14  Epoch 165  step   30/55  loss=0.1120  lr=8.23e-05  [4s]
+03:03:15  Epoch 165  step   40/55  loss=0.1601  lr=8.23e-05  [5s]
+03:03:16  Epoch 165  step   50/55  loss=0.1333  lr=8.23e-05  [6s]
+03:03:18  Epoch 165  train_loss=0.1369  val_loss=0.1134  F1=0.8720  IoU=0.7730  P=0.8747  R=0.8693  Kappa=0.8678  max_prob=1.0000  lr=7.79e-05
+03:03:19    No improvement for 13/30 epochs
+03:03:21  Epoch 166  step   10/55  loss=0.0661  lr=7.79e-05  [2s]
+03:03:22  Epoch 166  step   20/55  loss=0.1265  lr=7.79e-05  [3s]
+03:03:23  Epoch 166  step   30/55  loss=0.0903  lr=7.79e-05  [4s]
+03:03:24  Epoch 166  step   40/55  loss=0.1010  lr=7.79e-05  [5s]
+03:03:25  Epoch 166  step   50/55  loss=0.1505  lr=7.79e-05  [6s]
+03:03:27  Epoch 166  train_loss=0.1217  val_loss=0.1107  F1=0.8734  IoU=0.7753  P=0.8778  R=0.8691  Kappa=0.8693  max_prob=1.0000  lr=7.35e-05
+03:03:28    No improvement for 14/30 epochs
+03:03:30  Epoch 167  step   10/55  loss=0.1248  lr=7.35e-05  [2s]
+03:03:31  Epoch 167  step   20/55  loss=0.0841  lr=7.35e-05  [3s]
+03:03:32  Epoch 167  step   30/55  loss=0.5023  lr=7.35e-05  [4s]
+03:03:33  Epoch 167  step   40/55  loss=0.0751  lr=7.35e-05  [5s]
+03:03:34  Epoch 167  step   50/55  loss=0.0604  lr=7.35e-05  [6s]
+03:03:36  Epoch 167  train_loss=0.1265  val_loss=0.1145  F1=0.8751  IoU=0.7779  P=0.8706  R=0.8797  Kappa=0.8710  max_prob=1.0000  lr=6.93e-05
+03:03:37    No improvement for 15/30 epochs
+03:03:38  Epoch 168  step   10/55  loss=0.1239  lr=6.93e-05  [2s]
+03:03:39  Epoch 168  step   20/55  loss=0.0917  lr=6.93e-05  [3s]
+03:03:40  Epoch 168  step   30/55  loss=0.1070  lr=6.93e-05  [4s]
+03:03:41  Epoch 168  step   40/55  loss=0.0900  lr=6.93e-05  [5s]
+03:03:42  Epoch 168  step   50/55  loss=0.1004  lr=6.93e-05  [6s]
+03:03:45  Epoch 168  train_loss=0.1288  val_loss=0.1074  F1=0.8798  IoU=0.7854  P=0.8735  R=0.8861  Kappa=0.8758  max_prob=1.0000  lr=6.52e-05
+03:03:45    No improvement for 16/30 epochs
+03:03:47  Epoch 169  step   10/55  loss=0.0936  lr=6.52e-05  [2s]
+03:03:48  Epoch 169  step   20/55  loss=0.1238  lr=6.52e-05  [3s]
+03:03:49  Epoch 169  step   30/55  loss=0.5020  lr=6.52e-05  [4s]
+03:03:50  Epoch 169  step   40/55  loss=0.0567  lr=6.52e-05  [5s]
+03:03:51  Epoch 169  step   50/55  loss=0.1058  lr=6.52e-05  [6s]
+03:03:53  Epoch 169  train_loss=0.1287  val_loss=0.1047  F1=0.8798  IoU=0.7854  P=0.8564  R=0.9045  Kappa=0.8757  max_prob=1.0000  lr=6.12e-05
+03:03:54    No improvement for 17/30 epochs
+03:03:56  Epoch 170  step   10/55  loss=0.0898  lr=6.12e-05  [2s]
+03:03:57  Epoch 170  step   20/55  loss=0.2917  lr=6.12e-05  [3s]
+03:03:58  Epoch 170  step   30/55  loss=0.0882  lr=6.12e-05  [4s]
+03:03:59  Epoch 170  step   40/55  loss=0.0497  lr=6.12e-05  [5s]
+03:04:00  Epoch 170  step   50/55  loss=0.1320  lr=6.12e-05  [6s]
+03:04:02  Epoch 170  train_loss=0.1065  val_loss=0.1084  F1=0.8797  IoU=0.7852  P=0.8794  R=0.8800  Kappa=0.8757  max_prob=1.0000  lr=5.73e-05
+03:04:03    No improvement for 18/30 epochs
+03:04:05  Epoch 171  step   10/55  loss=0.5013  lr=5.73e-05  [2s]
+03:04:05  Epoch 171  step   20/55  loss=0.0867  lr=5.73e-05  [3s]
+03:04:06  Epoch 171  step   30/55  loss=0.0524  lr=5.73e-05  [4s]
+03:04:07  Epoch 171  step   40/55  loss=0.1135  lr=5.73e-05  [5s]
+03:04:08  Epoch 171  step   50/55  loss=0.0887  lr=5.73e-05  [6s]
+03:04:11  Epoch 171  train_loss=0.1177  val_loss=0.1077  F1=0.8773  IoU=0.7814  P=0.8752  R=0.8793  Kappa=0.8733  max_prob=1.0000  lr=5.36e-05
+03:04:11    No improvement for 19/30 epochs
+03:04:13  Epoch 172  step   10/55  loss=0.0991  lr=5.36e-05  [2s]
+03:04:14  Epoch 172  step   20/55  loss=0.1312  lr=5.36e-05  [3s]
+03:04:15  Epoch 172  step   30/55  loss=0.1446  lr=5.36e-05  [4s]
+03:04:16  Epoch 172  step   40/55  loss=0.0757  lr=5.36e-05  [5s]
+03:04:17  Epoch 172  step   50/55  loss=0.1196  lr=5.36e-05  [6s]
+03:04:19  Epoch 172  train_loss=0.1056  val_loss=0.1091  F1=0.8775  IoU=0.7817  P=0.8796  R=0.8754  Kappa=0.8735  max_prob=1.0000  lr=5.00e-05
+03:04:20    No improvement for 20/30 epochs
+03:04:22  Epoch 173  step   10/55  loss=0.0884  lr=5.00e-05  [2s]
+03:04:23  Epoch 173  step   20/55  loss=0.0937  lr=5.00e-05  [3s]
+03:04:24  Epoch 173  step   30/55  loss=0.0708  lr=5.00e-05  [4s]
+03:04:25  Epoch 173  step   40/55  loss=0.1843  lr=5.00e-05  [5s]
+03:04:26  Epoch 173  step   50/55  loss=0.1322  lr=5.00e-05  [6s]
+03:04:28  Epoch 173  train_loss=0.1249  val_loss=0.1036  F1=0.8814  IoU=0.7879  P=0.8695  R=0.8936  Kappa=0.8774  max_prob=1.0000  lr=4.65e-05
+03:04:29    No improvement for 21/30 epochs
+03:04:31  Epoch 174  step   10/55  loss=0.0950  lr=4.65e-05  [2s]
+03:04:32  Epoch 174  step   20/55  loss=0.1054  lr=4.65e-05  [3s]
+03:04:33  Epoch 174  step   30/55  loss=0.0695  lr=4.65e-05  [4s]
+03:04:34  Epoch 174  step   40/55  loss=0.0973  lr=4.65e-05  [5s]
+03:04:34  Epoch 174  step   50/55  loss=0.0814  lr=4.65e-05  [6s]
+03:04:37  Epoch 174  train_loss=0.1102  val_loss=0.1036  F1=0.8811  IoU=0.7874  P=0.8705  R=0.8919  Kappa=0.8771  max_prob=1.0000  lr=4.31e-05
+03:04:37    No improvement for 22/30 epochs
+03:04:39  Epoch 175  step   10/55  loss=0.1126  lr=4.31e-05  [2s]
+03:04:40  Epoch 175  step   20/55  loss=0.1193  lr=4.31e-05  [3s]
+03:04:41  Epoch 175  step   30/55  loss=0.0721  lr=4.31e-05  [4s]
+03:04:42  Epoch 175  step   40/55  loss=0.0837  lr=4.31e-05  [5s]
+03:04:43  Epoch 175  step   50/55  loss=0.0900  lr=4.31e-05  [6s]
+03:04:45  Epoch 175  train_loss=0.1314  val_loss=0.1135  F1=0.8756  IoU=0.7787  P=0.8874  R=0.8642  Kappa=0.8716  max_prob=1.0000  lr=3.98e-05
+03:04:46    No improvement for 23/30 epochs
+03:04:48  Epoch 176  step   10/55  loss=0.0935  lr=3.98e-05  [2s]
+03:04:49  Epoch 176  step   20/55  loss=0.0895  lr=3.98e-05  [3s]
+03:04:50  Epoch 176  step   30/55  loss=0.1343  lr=3.98e-05  [4s]
+03:04:51  Epoch 176  step   40/55  loss=0.0783  lr=3.98e-05  [5s]
+03:04:52  Epoch 176  step   50/55  loss=0.0880  lr=3.98e-05  [6s]
+03:04:54  Epoch 176  train_loss=0.1096  val_loss=0.1083  F1=0.8791  IoU=0.7842  P=0.8818  R=0.8763  Kappa=0.8751  max_prob=1.0000  lr=3.67e-05
+03:04:55    No improvement for 24/30 epochs
+03:04:57  Epoch 177  step   10/55  loss=0.0885  lr=3.67e-05  [2s]
+03:04:58  Epoch 177  step   20/55  loss=0.1699  lr=3.67e-05  [3s]
+03:04:59  Epoch 177  step   30/55  loss=0.0795  lr=3.67e-05  [4s]
+03:05:00  Epoch 177  step   40/55  loss=0.0785  lr=3.67e-05  [5s]
+03:05:00  Epoch 177  step   50/55  loss=0.0581  lr=3.67e-05  [6s]
+03:05:03  Epoch 177  train_loss=0.1147  val_loss=0.1081  F1=0.8791  IoU=0.7843  P=0.8798  R=0.8785  Kappa=0.8751  max_prob=1.0000  lr=3.37e-05
+03:05:03    No improvement for 25/30 epochs
+03:05:05  Epoch 178  step   10/55  loss=0.0684  lr=3.37e-05  [2s]
+03:05:06  Epoch 178  step   20/55  loss=0.1019  lr=3.37e-05  [3s]
+03:05:07  Epoch 178  step   30/55  loss=0.5021  lr=3.37e-05  [4s]
+03:05:08  Epoch 178  step   40/55  loss=0.1050  lr=3.37e-05  [5s]
+03:05:09  Epoch 178  step   50/55  loss=0.3926  lr=3.37e-05  [6s]
+03:05:11  Epoch 178  train_loss=0.1262  val_loss=0.1078  F1=0.8798  IoU=0.7854  P=0.8798  R=0.8799  Kappa=0.8759  max_prob=1.0000  lr=3.08e-05
+03:05:12    No improvement for 26/30 epochs
+03:05:14  Epoch 179  step   10/55  loss=0.0989  lr=3.08e-05  [2s]
+03:05:15  Epoch 179  step   20/55  loss=0.0986  lr=3.08e-05  [3s]
+03:05:16  Epoch 179  step   30/55  loss=0.1061  lr=3.08e-05  [4s]
+03:05:17  Epoch 179  step   40/55  loss=0.1039  lr=3.08e-05  [5s]
+03:05:18  Epoch 179  step   50/55  loss=0.0892  lr=3.08e-05  [6s]
+03:05:20  Epoch 179  train_loss=0.1115  val_loss=0.1064  F1=0.8802  IoU=0.7860  P=0.8755  R=0.8850  Kappa=0.8763  max_prob=1.0000  lr=2.81e-05
+03:05:21    No improvement for 27/30 epochs
+03:05:23  Epoch 180  step   10/55  loss=0.0974  lr=2.81e-05  [2s]
+03:05:24  Epoch 180  step   20/55  loss=0.0779  lr=2.81e-05  [3s]
+03:05:25  Epoch 180  step   30/55  loss=0.1006  lr=2.81e-05  [4s]
+03:05:26  Epoch 180  step   40/55  loss=0.1696  lr=2.81e-05  [5s]
+03:05:26  Epoch 180  step   50/55  loss=0.1038  lr=2.81e-05  [6s]
+03:05:29  Epoch 180  train_loss=0.1258  val_loss=0.1067  F1=0.8812  IoU=0.7877  P=0.8717  R=0.8910  Kappa=0.8773  max_prob=1.0000  lr=2.54e-05
+03:05:29    No improvement for 28/30 epochs
+03:05:31  Epoch 181  step   10/55  loss=0.1516  lr=2.54e-05  [2s]
+03:05:32  Epoch 181  step   20/55  loss=0.0625  lr=2.54e-05  [3s]
+03:05:33  Epoch 181  step   30/55  loss=0.1296  lr=2.54e-05  [4s]
+03:05:34  Epoch 181  step   40/55  loss=0.5171  lr=2.54e-05  [5s]
+03:05:35  Epoch 181  step   50/55  loss=0.0910  lr=2.54e-05  [6s]
+03:05:37  Epoch 181  train_loss=0.1176  val_loss=0.1045  F1=0.8835  IoU=0.7913  P=0.8847  R=0.8823  Kappa=0.8797  max_prob=1.0000  lr=2.30e-05
+03:05:39    *** New best F1=0.8835  saved best_model.pth ***
+03:05:41  Epoch 182  step   10/55  loss=0.0728  lr=2.30e-05  [2s]
+03:05:42  Epoch 182  step   20/55  loss=0.1017  lr=2.30e-05  [3s]
+03:05:43  Epoch 182  step   30/55  loss=0.0877  lr=2.30e-05  [4s]
+03:05:44  Epoch 182  step   40/55  loss=0.1049  lr=2.30e-05  [5s]
+03:05:45  Epoch 182  step   50/55  loss=0.2727  lr=2.30e-05  [6s]
+03:05:47  Epoch 182  train_loss=0.1147  val_loss=0.1094  F1=0.8778  IoU=0.7823  P=0.8780  R=0.8777  Kappa=0.8738  max_prob=1.0000  lr=2.06e-05
+03:05:47    No improvement for 1/30 epochs
+03:05:49  Epoch 183  step   10/55  loss=0.0819  lr=2.06e-05  [2s]
+03:05:50  Epoch 183  step   20/55  loss=0.1550  lr=2.06e-05  [3s]
+03:05:51  Epoch 183  step   30/55  loss=0.1068  lr=2.06e-05  [4s]
+03:05:52  Epoch 183  step   40/55  loss=0.0722  lr=2.06e-05  [5s]
+03:05:53  Epoch 183  step   50/55  loss=0.0637  lr=2.06e-05  [6s]
+03:05:55  Epoch 183  train_loss=0.1173  val_loss=0.1078  F1=0.8797  IoU=0.7853  P=0.8785  R=0.8810  Kappa=0.8758  max_prob=1.0000  lr=1.84e-05
+03:05:56    No improvement for 2/30 epochs
+03:05:58  Epoch 184  step   10/55  loss=0.1437  lr=1.84e-05  [2s]
+03:05:59  Epoch 184  step   20/55  loss=0.0994  lr=1.84e-05  [3s]
+03:06:00  Epoch 184  step   30/55  loss=0.1125  lr=1.84e-05  [4s]
+03:06:01  Epoch 184  step   40/55  loss=0.1046  lr=1.84e-05  [5s]
+03:06:02  Epoch 184  step   50/55  loss=0.1097  lr=1.84e-05  [6s]
+03:06:04  Epoch 184  train_loss=0.1288  val_loss=0.1081  F1=0.8799  IoU=0.7856  P=0.8817  R=0.8782  Kappa=0.8760  max_prob=1.0000  lr=1.63e-05
+03:06:05    No improvement for 3/30 epochs
+03:06:07  Epoch 185  step   10/55  loss=0.0866  lr=1.63e-05  [2s]
+03:06:08  Epoch 185  step   20/55  loss=0.1299  lr=1.63e-05  [3s]
+03:06:09  Epoch 185  step   30/55  loss=0.0453  lr=1.63e-05  [4s]
+03:06:10  Epoch 185  step   40/55  loss=0.0917  lr=1.63e-05  [5s]
+03:06:11  Epoch 185  step   50/55  loss=0.1774  lr=1.63e-05  [6s]
+03:06:13  Epoch 185  train_loss=0.1274  val_loss=0.1085  F1=0.8787  IoU=0.7837  P=0.8753  R=0.8822  Kappa=0.8748  max_prob=1.0000  lr=1.43e-05
+03:06:14    No improvement for 4/30 epochs
+03:06:15  Epoch 186  step   10/55  loss=0.0746  lr=1.43e-05  [2s]
+03:06:16  Epoch 186  step   20/55  loss=0.1014  lr=1.43e-05  [3s]
+03:06:17  Epoch 186  step   30/55  loss=0.1134  lr=1.43e-05  [4s]
+03:06:18  Epoch 186  step   40/55  loss=0.0491  lr=1.43e-05  [5s]
+03:06:19  Epoch 186  step   50/55  loss=0.1236  lr=1.43e-05  [6s]
+03:06:21  Epoch 186  train_loss=0.1108  val_loss=0.1056  F1=0.8833  IoU=0.7910  P=0.8755  R=0.8912  Kappa=0.8794  max_prob=1.0000  lr=1.25e-05
+03:06:22    No improvement for 5/30 epochs
+03:06:24  Epoch 187  step   10/55  loss=0.1061  lr=1.25e-05  [2s]
+03:06:25  Epoch 187  step   20/55  loss=0.0666  lr=1.25e-05  [3s]
+03:06:26  Epoch 187  step   30/55  loss=0.1186  lr=1.25e-05  [4s]
+03:06:27  Epoch 187  step   40/55  loss=0.0812  lr=1.25e-05  [5s]
+03:06:28  Epoch 187  step   50/55  loss=0.0966  lr=1.25e-05  [6s]
+03:06:30  Epoch 187  train_loss=0.1084  val_loss=0.1046  F1=0.8843  IoU=0.7927  P=0.8769  R=0.8919  Kappa=0.8805  max_prob=1.0000  lr=1.08e-05
+03:06:32    *** New best F1=0.8843  saved best_model.pth ***
+03:06:34  Epoch 188  step   10/55  loss=0.0999  lr=1.08e-05  [2s]
+03:06:35  Epoch 188  step   20/55  loss=0.0586  lr=1.08e-05  [3s]
+03:06:35  Epoch 188  step   30/55  loss=0.0829  lr=1.08e-05  [4s]
+03:06:36  Epoch 188  step   40/55  loss=0.0946  lr=1.08e-05  [5s]
+03:06:37  Epoch 188  step   50/55  loss=0.1275  lr=1.08e-05  [6s]
+03:06:40  Epoch 188  train_loss=0.1270  val_loss=0.1076  F1=0.8832  IoU=0.7908  P=0.8798  R=0.8866  Kappa=0.8794  max_prob=1.0000  lr=9.24e-06
+03:06:40    No improvement for 1/30 epochs
+03:06:42  Epoch 189  step   10/55  loss=0.1161  lr=9.24e-06  [2s]
+03:06:43  Epoch 189  step   20/55  loss=0.0902  lr=9.24e-06  [3s]
+03:06:44  Epoch 189  step   30/55  loss=0.1297  lr=9.24e-06  [4s]
+03:06:45  Epoch 189  step   40/55  loss=0.1415  lr=9.24e-06  [5s]
+03:06:46  Epoch 189  step   50/55  loss=0.1016  lr=9.24e-06  [6s]
+03:06:48  Epoch 189  train_loss=0.1224  val_loss=0.1162  F1=0.8797  IoU=0.7852  P=0.8751  R=0.8843  Kappa=0.8757  max_prob=1.0000  lr=7.81e-06
+03:06:49    No improvement for 2/30 epochs
+03:06:51  Epoch 190  step   10/55  loss=0.0643  lr=7.81e-06  [2s]
+03:06:52  Epoch 190  step   20/55  loss=0.1019  lr=7.81e-06  [3s]
+03:06:53  Epoch 190  step   30/55  loss=0.1256  lr=7.81e-06  [4s]
+03:06:54  Epoch 190  step   40/55  loss=0.0789  lr=7.81e-06  [5s]
+03:06:55  Epoch 190  step   50/55  loss=0.0610  lr=7.81e-06  [6s]
+03:06:57  Epoch 190  train_loss=0.1096  val_loss=0.1107  F1=0.8777  IoU=0.7820  P=0.8835  R=0.8719  Kappa=0.8737  max_prob=1.0000  lr=6.52e-06
+03:06:58    No improvement for 3/30 epochs
+03:07:00  Epoch 191  step   10/55  loss=0.1030  lr=6.52e-06  [2s]
+03:07:01  Epoch 191  step   20/55  loss=0.1109  lr=6.52e-06  [3s]
+03:07:01  Epoch 191  step   30/55  loss=0.1017  lr=6.52e-06  [4s]
+03:07:02  Epoch 191  step   40/55  loss=0.1097  lr=6.52e-06  [5s]
+03:07:03  Epoch 191  step   50/55  loss=0.1777  lr=6.52e-06  [6s]
+03:07:06  Epoch 191  train_loss=0.1243  val_loss=0.1081  F1=0.8808  IoU=0.7869  P=0.8776  R=0.8840  Kappa=0.8768  max_prob=1.0000  lr=5.36e-06
+03:07:06    No improvement for 4/30 epochs
+03:07:08  Epoch 192  step   10/55  loss=0.1733  lr=5.36e-06  [2s]
+03:07:09  Epoch 192  step   20/55  loss=0.0608  lr=5.36e-06  [3s]
+03:07:10  Epoch 192  step   30/55  loss=0.0696  lr=5.36e-06  [4s]
+03:07:11  Epoch 192  step   40/55  loss=0.0936  lr=5.36e-06  [5s]
+03:07:12  Epoch 192  step   50/55  loss=0.0917  lr=5.36e-06  [6s]
+03:07:14  Epoch 192  train_loss=0.1099  val_loss=0.1078  F1=0.8792  IoU=0.7845  P=0.8775  R=0.8810  Kappa=0.8753  max_prob=1.0000  lr=4.34e-06
+03:07:15    No improvement for 5/30 epochs
+03:07:17  Epoch 193  step   10/55  loss=0.0651  lr=4.34e-06  [2s]
+03:07:18  Epoch 193  step   20/55  loss=0.0953  lr=4.34e-06  [3s]
+03:07:19  Epoch 193  step   30/55  loss=0.0912  lr=4.34e-06  [4s]
+03:07:20  Epoch 193  step   40/55  loss=0.0933  lr=4.34e-06  [5s]
+03:07:21  Epoch 193  step   50/55  loss=0.1138  lr=4.34e-06  [6s]
+03:07:23  Epoch 193  train_loss=0.1139  val_loss=0.1063  F1=0.8809  IoU=0.7871  P=0.8764  R=0.8853  Kappa=0.8769  max_prob=1.0000  lr=3.46e-06
+03:07:24    No improvement for 6/30 epochs
+03:07:26  Epoch 194  step   10/55  loss=0.1079  lr=3.46e-06  [2s]
+03:07:27  Epoch 194  step   20/55  loss=0.0452  lr=3.46e-06  [3s]
+03:07:27  Epoch 194  step   30/55  loss=0.0916  lr=3.46e-06  [4s]
+03:07:28  Epoch 194  step   40/55  loss=0.1556  lr=3.46e-06  [5s]
+03:07:29  Epoch 194  step   50/55  loss=0.1454  lr=3.46e-06  [6s]
+03:07:32  Epoch 194  train_loss=0.1096  val_loss=0.1090  F1=0.8818  IoU=0.7886  P=0.8825  R=0.8811  Kappa=0.8779  max_prob=1.0000  lr=2.71e-06
+03:07:32    No improvement for 7/30 epochs
+03:07:34  Epoch 195  step   10/55  loss=0.1182  lr=2.71e-06  [2s]
+03:07:35  Epoch 195  step   20/55  loss=0.0489  lr=2.71e-06  [3s]
+03:07:36  Epoch 195  step   30/55  loss=0.0799  lr=2.71e-06  [4s]
+03:07:37  Epoch 195  step   40/55  loss=0.0620  lr=2.71e-06  [5s]
+03:07:38  Epoch 195  step   50/55  loss=0.0931  lr=2.71e-06  [6s]
+03:07:40  Epoch 195  train_loss=0.1088  val_loss=0.1079  F1=0.8802  IoU=0.7861  P=0.8823  R=0.8781  Kappa=0.8763  max_prob=1.0000  lr=2.09e-06
+03:07:41    No improvement for 8/30 epochs
+03:07:43  Epoch 196  step   10/55  loss=0.0673  lr=2.09e-06  [2s]
+03:07:44  Epoch 196  step   20/55  loss=0.0703  lr=2.09e-06  [3s]
+03:07:45  Epoch 196  step   30/55  loss=1.0024  lr=2.09e-06  [4s]
+03:07:46  Epoch 196  step   40/55  loss=0.2472  lr=2.09e-06  [5s]
+03:07:47  Epoch 196  step   50/55  loss=0.0965  lr=2.09e-06  [6s]
+03:07:49  Epoch 196  train_loss=0.1425  val_loss=0.1100  F1=0.8817  IoU=0.7884  P=0.8842  R=0.8792  Kappa=0.8778  max_prob=1.0000  lr=1.61e-06
+03:07:50    No improvement for 9/30 epochs
+03:07:52  Epoch 197  step   10/55  loss=0.1271  lr=1.61e-06  [2s]
+03:07:53  Epoch 197  step   20/55  loss=0.0629  lr=1.61e-06  [3s]
+03:07:53  Epoch 197  step   30/55  loss=0.0916  lr=1.61e-06  [4s]
+03:07:54  Epoch 197  step   40/55  loss=0.1358  lr=1.61e-06  [5s]
+03:07:55  Epoch 197  step   50/55  loss=0.1043  lr=1.61e-06  [6s]
+03:07:58  Epoch 197  train_loss=0.1192  val_loss=0.1073  F1=0.8802  IoU=0.7861  P=0.8762  R=0.8843  Kappa=0.8763  max_prob=1.0000  lr=1.27e-06
+03:07:58    No improvement for 10/30 epochs
+03:08:00  Epoch 198  step   10/55  loss=0.1139  lr=1.27e-06  [2s]
+03:08:01  Epoch 198  step   20/55  loss=0.0589  lr=1.27e-06  [3s]
+03:08:02  Epoch 198  step   30/55  loss=0.1050  lr=1.27e-06  [4s]
+03:08:03  Epoch 198  step   40/55  loss=0.1153  lr=1.27e-06  [5s]
+03:08:04  Epoch 198  step   50/55  loss=0.1463  lr=1.27e-06  [6s]
+03:08:06  Epoch 198  train_loss=0.1016  val_loss=0.1050  F1=0.8839  IoU=0.7919  P=0.8790  R=0.8888  Kappa=0.8801  max_prob=1.0000  lr=1.07e-06
+03:08:07    No improvement for 11/30 epochs
+03:08:09  Epoch 199  step   10/55  loss=0.1711  lr=1.07e-06  [2s]
+03:08:10  Epoch 199  step   20/55  loss=0.0781  lr=1.07e-06  [3s]
+03:08:11  Epoch 199  step   30/55  loss=0.0945  lr=1.07e-06  [4s]
+03:08:12  Epoch 199  step   40/55  loss=0.0863  lr=1.07e-06  [5s]
+03:08:13  Epoch 199  step   50/55  loss=0.0909  lr=1.07e-06  [6s]
+03:08:15  Epoch 199  train_loss=0.1095  val_loss=0.1076  F1=0.8807  IoU=0.7868  P=0.8750  R=0.8865  Kappa=0.8768  max_prob=1.0000  lr=1.00e-06
+03:08:16    No improvement for 12/30 epochs
+03:08:16  Training complete.  Best val-F1 = 0.8843
+03:08:16  Checkpoints saved to: /home/patodia.pa/vit-from-scratch/outputs/siamese_unet

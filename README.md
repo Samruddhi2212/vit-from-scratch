@@ -156,6 +156,32 @@ The **LEVIR Change Detection (LEVIR-CD)** dataset consists of **637 bi-temporal 
 
 During training, random 256×256 crops are sampled from each 1024×1024 image, effectively multiplying the training data diversity each epoch.
 
+### Obtaining LEVIR-CD
+
+The dataset is **not** stored in this repository (it is large and subject to usage terms). Download it separately, then point `--data_dir` at the folder that contains `train/`, `val/`, and `test/` (see layout below). Uncompressed size is typically on the order of **~2–3 GB**.
+
+**Official release (authors):** [LEVIR-CD — dataset page](https://justchenhao.github.io/LEVIR/)
+
+**Kaggle (community mirrors; search “LEVIR-CD” if links move):**
+
+- [LEVIR-CD](https://www.kaggle.com/datasets/mdrifaturrahman33/levir-cd) — original-scale splits (637 pairs total; matches the table above).
+- [LEVIR-CD+ (change detection)](https://www.kaggle.com/datasets/mdrifaturrahman33/levir-cd-change-detection) — extended **LEVIR-CD+** variant (more samples than the classic 637-pair split).
+
+After download, arrange or symlink so this repo sees the **STANet / LEVIR layout** (names must align across `A`, `B`, and `label`):
+
+```text
+LEVIR CD/   (or any path you pass to --data_dir)
+├── train/   A/  B/  label/
+├── val/     A/  B/  label/
+└── test/    A/  B/  label/
+```
+
+Then run training, for example:
+
+```bash
+python train.py --data_dir "./LEVIR CD" --output_dir "./outputs/siamese_vit"
+```
+
 ## 📏 Evaluation Metrics
 
 To evaluate change detection performance:

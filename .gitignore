@@ -1,9 +1,27 @@
 checkpoints/
 outputs/**
+# Allow negated patterns inside outputs/ (parent dirs must be un-ignored first)
+!outputs/**/
 !outputs/**/.gitkeep
 !outputs/**/*.png
+!outputs/**/*.log
+# Keep smoke / scratch runs out of version control (logs would otherwise match above)
+outputs/local_smoke/
+outputs/post_pull_smoke/
 logs/
 data/
+
+# OS / local clutter
+.DS_Store
+
+# Dataset roots (large; user-specific paths)
+LEVIR CD/
+
+# Cluster / SLURM one-off outputs
+train_*.out
+
+# Never commit SSH private key material
+*ssh-copy-id*
 __pycache__/
 *.pyc
 .ipynb_checkpoints/

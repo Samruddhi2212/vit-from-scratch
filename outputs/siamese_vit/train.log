@@ -1,0 +1,1785 @@
+18:37:18  Device: cuda
+18:37:20  Model params — encoder=85,844,736  diff=2,556,928  decoder=1,015,473  total=89,417,137
+18:37:26  Starting training — epochs=200  bs=8  lr=1.00e-03  loss=focal_dice
+18:37:31  Epoch 000  step   10/55  loss=0.5221  lr=1.00e-04  [4s]
+18:37:31  Epoch 000  step   20/55  loss=0.5242  lr=1.00e-04  [5s]
+18:37:32  Epoch 000  step   30/55  loss=0.5121  lr=1.00e-04  [6s]
+18:37:33  Epoch 000  step   40/55  loss=0.5020  lr=1.00e-04  [6s]
+18:37:34  Epoch 000  step   50/55  loss=0.5079  lr=1.00e-04  [7s]
+18:37:36  Epoch 000  train_loss=0.5181  val_loss=0.5148  F1=0.0616  IoU=0.0318  P=0.0318  R=0.9983  Kappa=0.0002  max_prob=0.7544  lr=2.00e-04
+18:37:40    *** New best F1=0.0616  saved best_model.pth ***
+18:37:41  Epoch 001  step   10/55  loss=0.5019  lr=2.00e-04  [1s]
+18:37:42  Epoch 001  step   20/55  loss=0.4856  lr=2.00e-04  [2s]
+18:37:42  Epoch 001  step   30/55  loss=0.4930  lr=2.00e-04  [3s]
+18:37:43  Epoch 001  step   40/55  loss=0.5130  lr=2.00e-04  [3s]
+18:37:44  Epoch 001  step   50/55  loss=0.5191  lr=2.00e-04  [4s]
+18:37:45  Epoch 001  train_loss=0.4998  val_loss=0.5159  F1=0.0624  IoU=0.0322  P=0.0322  R=0.9993  Kappa=0.0010  max_prob=0.8296  lr=3.00e-04
+18:37:49    *** New best F1=0.0624  saved best_model.pth ***
+18:37:51  Epoch 002  step   10/55  loss=0.5191  lr=3.00e-04  [1s]
+18:37:51  Epoch 002  step   20/55  loss=0.4945  lr=3.00e-04  [2s]
+18:37:52  Epoch 002  step   30/55  loss=0.4766  lr=3.00e-04  [3s]
+18:37:53  Epoch 002  step   40/55  loss=0.5083  lr=3.00e-04  [3s]
+18:37:53  Epoch 002  step   50/55  loss=0.4426  lr=3.00e-04  [4s]
+18:37:55  Epoch 002  train_loss=0.4927  val_loss=0.4915  F1=0.0675  IoU=0.0349  P=0.0372  R=0.3663  Kappa=0.0105  max_prob=0.4773  lr=4.00e-04
+18:37:59    *** New best F1=0.0675  saved best_model.pth ***
+18:38:00  Epoch 003  step   10/55  loss=0.5014  lr=4.00e-04  [1s]
+18:38:01  Epoch 003  step   20/55  loss=0.4878  lr=4.00e-04  [2s]
+18:38:02  Epoch 003  step   30/55  loss=0.4763  lr=4.00e-04  [3s]
+18:38:03  Epoch 003  step   40/55  loss=0.5046  lr=4.00e-04  [3s]
+18:38:03  Epoch 003  step   50/55  loss=0.4734  lr=4.00e-04  [4s]
+18:38:05  Epoch 003  train_loss=0.4822  val_loss=0.4906  F1=0.1046  IoU=0.0552  P=0.0553  R=0.9748  Kappa=0.0474  max_prob=0.5620  lr=5.00e-04
+18:38:09    *** New best F1=0.1046  saved best_model.pth ***
+18:38:10  Epoch 004  step   10/55  loss=0.4767  lr=5.00e-04  [1s]
+18:38:11  Epoch 004  step   20/55  loss=0.4766  lr=5.00e-04  [2s]
+18:38:11  Epoch 004  step   30/55  loss=0.4484  lr=5.00e-04  [3s]
+18:38:12  Epoch 004  step   40/55  loss=0.4900  lr=5.00e-04  [3s]
+18:38:13  Epoch 004  step   50/55  loss=0.4833  lr=5.00e-04  [4s]
+18:38:14  Epoch 004  train_loss=0.4777  val_loss=0.4845  F1=0.1334  IoU=0.0715  P=0.0795  R=0.4157  Kappa=0.0847  max_prob=0.4475  lr=6.00e-04
+18:38:19    *** New best F1=0.1334  saved best_model.pth ***
+18:38:20  Epoch 005  step   10/55  loss=0.4553  lr=6.00e-04  [1s]
+18:38:21  Epoch 005  step   20/55  loss=0.5120  lr=6.00e-04  [2s]
+18:38:21  Epoch 005  step   30/55  loss=0.4762  lr=6.00e-04  [3s]
+18:38:22  Epoch 005  step   40/55  loss=0.4606  lr=6.00e-04  [3s]
+18:38:23  Epoch 005  step   50/55  loss=0.4917  lr=6.00e-04  [4s]
+18:38:24  Epoch 005  train_loss=0.4752  val_loss=0.4835  F1=0.1065  IoU=0.0563  P=0.0580  R=0.6472  Kappa=0.0513  max_prob=0.6294  lr=7.00e-04
+18:38:26    No improvement for 1/30 epochs
+18:38:27  Epoch 006  step   10/55  loss=0.4711  lr=7.00e-04  [1s]
+18:38:28  Epoch 006  step   20/55  loss=0.4729  lr=7.00e-04  [2s]
+18:38:29  Epoch 006  step   30/55  loss=0.4799  lr=7.00e-04  [3s]
+18:38:30  Epoch 006  step   40/55  loss=0.4739  lr=7.00e-04  [3s]
+18:38:30  Epoch 006  step   50/55  loss=0.4775  lr=7.00e-04  [4s]
+18:38:32  Epoch 006  train_loss=0.4701  val_loss=0.4761  F1=0.0171  IoU=0.0086  P=0.0842  R=0.0095  Kappa=0.0108  max_prob=0.7827  lr=8.00e-04
+18:38:34    No improvement for 2/30 epochs
+18:38:35  Epoch 007  step   10/55  loss=0.4671  lr=8.00e-04  [1s]
+18:38:36  Epoch 007  step   20/55  loss=0.4391  lr=8.00e-04  [2s]
+18:38:36  Epoch 007  step   30/55  loss=0.4374  lr=8.00e-04  [3s]
+18:38:37  Epoch 007  step   40/55  loss=0.4722  lr=8.00e-04  [3s]
+18:38:38  Epoch 007  step   50/55  loss=0.4631  lr=8.00e-04  [4s]
+18:38:39  Epoch 007  train_loss=0.4690  val_loss=0.4765  F1=0.1588  IoU=0.0863  P=0.1073  R=0.3056  Kappa=0.1174  max_prob=0.4290  lr=9.00e-04
+18:38:43    *** New best F1=0.1588  saved best_model.pth ***
+18:38:45  Epoch 008  step   10/55  loss=0.4808  lr=9.00e-04  [1s]
+18:38:45  Epoch 008  step   20/55  loss=0.4696  lr=9.00e-04  [2s]
+18:38:46  Epoch 008  step   30/55  loss=0.4606  lr=9.00e-04  [3s]
+18:38:47  Epoch 008  step   40/55  loss=0.4465  lr=9.00e-04  [3s]
+18:38:47  Epoch 008  step   50/55  loss=0.4708  lr=9.00e-04  [4s]
+18:38:49  Epoch 008  train_loss=0.4619  val_loss=0.4675  F1=0.1451  IoU=0.0783  P=0.0825  R=0.6021  Kappa=0.0947  max_prob=0.4973  lr=1.00e-03
+18:38:51    No improvement for 1/30 epochs
+18:38:52  Epoch 009  step   10/55  loss=0.4811  lr=1.00e-03  [1s]
+18:38:53  Epoch 009  step   20/55  loss=0.4973  lr=1.00e-03  [2s]
+18:38:54  Epoch 009  step   30/55  loss=0.4391  lr=1.00e-03  [3s]
+18:38:54  Epoch 009  step   40/55  loss=0.4094  lr=1.00e-03  [3s]
+18:38:55  Epoch 009  step   50/55  loss=0.4300  lr=1.00e-03  [4s]
+18:38:57  Epoch 009  train_loss=0.4590  val_loss=0.4693  F1=0.1377  IoU=0.0739  P=0.0796  R=0.5086  Kappa=0.0877  max_prob=0.6284  lr=1.00e-03
+18:38:59    No improvement for 2/30 epochs
+18:39:00  Epoch 010  step   10/55  loss=0.4633  lr=1.00e-03  [1s]
+18:39:01  Epoch 010  step   20/55  loss=0.4663  lr=1.00e-03  [2s]
+18:39:01  Epoch 010  step   30/55  loss=0.4231  lr=1.00e-03  [3s]
+18:39:02  Epoch 010  step   40/55  loss=0.4863  lr=1.00e-03  [3s]
+18:39:03  Epoch 010  step   50/55  loss=0.4590  lr=1.00e-03  [4s]
+18:39:04  Epoch 010  train_loss=0.4602  val_loss=0.4736  F1=0.1590  IoU=0.0864  P=0.0948  R=0.4925  Kappa=0.1118  max_prob=0.6792  lr=1.00e-03
+18:39:08    *** New best F1=0.1590  saved best_model.pth ***
+18:39:10  Epoch 011  step   10/55  loss=0.4926  lr=1.00e-03  [1s]
+18:39:10  Epoch 011  step   20/55  loss=0.4912  lr=1.00e-03  [2s]
+18:39:11  Epoch 011  step   30/55  loss=0.4334  lr=1.00e-03  [3s]
+18:39:12  Epoch 011  step   40/55  loss=0.4994  lr=1.00e-03  [3s]
+18:39:12  Epoch 011  step   50/55  loss=0.4388  lr=1.00e-03  [4s]
+18:39:14  Epoch 011  train_loss=0.4611  val_loss=0.4553  F1=0.1504  IoU=0.0813  P=0.0907  R=0.4396  Kappa=0.1033  max_prob=0.5137  lr=1.00e-03
+18:39:16    No improvement for 1/30 epochs
+18:39:17  Epoch 012  step   10/55  loss=0.4858  lr=1.00e-03  [1s]
+18:39:18  Epoch 012  step   20/55  loss=0.4828  lr=1.00e-03  [2s]
+18:39:19  Epoch 012  step   30/55  loss=0.5100  lr=1.00e-03  [3s]
+18:39:19  Epoch 012  step   40/55  loss=0.4167  lr=1.00e-03  [3s]
+18:39:20  Epoch 012  step   50/55  loss=0.4825  lr=1.00e-03  [4s]
+18:39:22  Epoch 012  train_loss=0.4621  val_loss=0.4639  F1=0.1574  IoU=0.0854  P=0.0925  R=0.5263  Kappa=0.1093  max_prob=0.7998  lr=9.99e-04
+18:39:24    No improvement for 2/30 epochs
+18:39:25  Epoch 013  step   10/55  loss=0.4385  lr=9.99e-04  [1s]
+18:39:26  Epoch 013  step   20/55  loss=0.4953  lr=9.99e-04  [2s]
+18:39:26  Epoch 013  step   30/55  loss=0.4708  lr=9.99e-04  [3s]
+18:39:27  Epoch 013  step   40/55  loss=0.4464  lr=9.99e-04  [3s]
+18:39:28  Epoch 013  step   50/55  loss=0.3937  lr=9.99e-04  [4s]
+18:39:29  Epoch 013  train_loss=0.4505  val_loss=0.4549  F1=0.1734  IoU=0.0949  P=0.1011  R=0.6069  Kappa=0.1259  max_prob=0.7080  lr=9.99e-04
+18:39:33    *** New best F1=0.1734  saved best_model.pth ***
+18:39:35  Epoch 014  step   10/55  loss=0.4619  lr=9.99e-04  [1s]
+18:39:35  Epoch 014  step   20/55  loss=0.4767  lr=9.99e-04  [2s]
+18:39:36  Epoch 014  step   30/55  loss=0.4373  lr=9.99e-04  [3s]
+18:39:37  Epoch 014  step   40/55  loss=0.5044  lr=9.99e-04  [3s]
+18:39:37  Epoch 014  step   50/55  loss=0.4290  lr=9.99e-04  [4s]
+18:39:39  Epoch 014  train_loss=0.4433  val_loss=0.4587  F1=0.1581  IoU=0.0859  P=0.0900  R=0.6532  Kappa=0.1085  max_prob=0.9058  lr=9.98e-04
+18:39:41    No improvement for 1/30 epochs
+18:39:42  Epoch 015  step   10/55  loss=0.4365  lr=9.98e-04  [1s]
+18:39:43  Epoch 015  step   20/55  loss=0.4225  lr=9.98e-04  [2s]
+18:39:44  Epoch 015  step   30/55  loss=0.4548  lr=9.98e-04  [3s]
+18:39:44  Epoch 015  step   40/55  loss=0.4984  lr=9.98e-04  [4s]
+18:39:45  Epoch 015  step   50/55  loss=0.4271  lr=9.98e-04  [4s]
+18:39:47  Epoch 015  train_loss=0.4422  val_loss=0.4525  F1=0.1799  IoU=0.0988  P=0.1043  R=0.6535  Kappa=0.1324  max_prob=0.7080  lr=9.98e-04
+18:39:51    *** New best F1=0.1799  saved best_model.pth ***
+18:39:52  Epoch 016  step   10/55  loss=0.4074  lr=9.98e-04  [1s]
+18:39:53  Epoch 016  step   20/55  loss=0.4317  lr=9.98e-04  [2s]
+18:39:54  Epoch 016  step   30/55  loss=0.4288  lr=9.98e-04  [3s]
+18:39:54  Epoch 016  step   40/55  loss=0.3742  lr=9.98e-04  [3s]
+18:39:55  Epoch 016  step   50/55  loss=0.3994  lr=9.98e-04  [4s]
+18:39:56  Epoch 016  train_loss=0.4397  val_loss=0.4663  F1=0.1087  IoU=0.0575  P=0.0750  R=0.1970  Kappa=0.0658  max_prob=0.6592  lr=9.97e-04
+18:39:58    No improvement for 1/30 epochs
+18:40:00  Epoch 017  step   10/55  loss=0.4120  lr=9.97e-04  [1s]
+18:40:01  Epoch 017  step   20/55  loss=0.4161  lr=9.97e-04  [2s]
+18:40:01  Epoch 017  step   30/55  loss=0.4588  lr=9.97e-04  [3s]
+18:40:02  Epoch 017  step   40/55  loss=0.3723  lr=9.97e-04  [3s]
+18:40:03  Epoch 017  step   50/55  loss=0.4175  lr=9.97e-04  [4s]
+18:40:04  Epoch 017  train_loss=0.4386  val_loss=0.4441  F1=0.1956  IoU=0.1084  P=0.1291  R=0.4040  Kappa=0.1550  max_prob=0.7734  lr=9.96e-04
+18:40:08    *** New best F1=0.1956  saved best_model.pth ***
+18:40:09  Epoch 018  step   10/55  loss=0.3774  lr=9.96e-04  [1s]
+18:40:10  Epoch 018  step   20/55  loss=0.3941  lr=9.96e-04  [2s]
+18:40:11  Epoch 018  step   30/55  loss=0.4461  lr=9.96e-04  [3s]
+18:40:11  Epoch 018  step   40/55  loss=0.4218  lr=9.96e-04  [3s]
+18:40:12  Epoch 018  step   50/55  loss=0.4609  lr=9.96e-04  [4s]
+18:40:14  Epoch 018  train_loss=0.4407  val_loss=0.4436  F1=0.1818  IoU=0.1000  P=0.1099  R=0.5251  Kappa=0.1365  max_prob=0.8003  lr=9.94e-04
+18:40:16    No improvement for 1/30 epochs
+18:40:17  Epoch 019  step   10/55  loss=0.4119  lr=9.94e-04  [1s]
+18:40:18  Epoch 019  step   20/55  loss=0.4855  lr=9.94e-04  [2s]
+18:40:18  Epoch 019  step   30/55  loss=0.4553  lr=9.94e-04  [3s]
+18:40:19  Epoch 019  step   40/55  loss=0.4438  lr=9.94e-04  [3s]
+18:40:20  Epoch 019  step   50/55  loss=0.4353  lr=9.94e-04  [4s]
+18:40:21  Epoch 019  train_loss=0.4468  val_loss=0.4736  F1=0.0596  IoU=0.0307  P=0.1071  R=0.0413  Kappa=0.0427  max_prob=0.5674  lr=9.93e-04
+18:40:23    No improvement for 2/30 epochs
+18:40:25  Epoch 020  step   10/55  loss=0.4732  lr=9.93e-04  [1s]
+18:40:25  Epoch 020  step   20/55  loss=0.4669  lr=9.93e-04  [2s]
+18:40:26  Epoch 020  step   30/55  loss=0.4236  lr=9.93e-04  [3s]
+18:40:27  Epoch 020  step   40/55  loss=0.4084  lr=9.93e-04  [3s]
+18:40:27  Epoch 020  step   50/55  loss=0.4168  lr=9.93e-04  [4s]
+18:40:29  Epoch 020  train_loss=0.4438  val_loss=0.4441  F1=0.1766  IoU=0.0968  P=0.1042  R=0.5768  Kappa=0.1298  max_prob=0.5698  lr=9.92e-04
+18:40:31    No improvement for 3/30 epochs
+18:40:32  Epoch 021  step   10/55  loss=0.4503  lr=9.92e-04  [1s]
+18:40:33  Epoch 021  step   20/55  loss=0.4746  lr=9.92e-04  [2s]
+18:40:34  Epoch 021  step   30/55  loss=0.4534  lr=9.92e-04  [3s]
+18:40:34  Epoch 021  step   40/55  loss=0.5105  lr=9.92e-04  [3s]
+18:40:35  Epoch 021  step   50/55  loss=0.5075  lr=9.92e-04  [4s]
+18:40:37  Epoch 021  train_loss=0.4386  val_loss=0.4448  F1=0.1856  IoU=0.1023  P=0.1106  R=0.5763  Kappa=0.1398  max_prob=0.6699  lr=9.90e-04
+18:40:39    No improvement for 4/30 epochs
+18:40:40  Epoch 022  step   10/55  loss=0.4299  lr=9.90e-04  [1s]
+18:40:41  Epoch 022  step   20/55  loss=0.4971  lr=9.90e-04  [2s]
+18:40:41  Epoch 022  step   30/55  loss=0.4231  lr=9.90e-04  [3s]
+18:40:42  Epoch 022  step   40/55  loss=0.3907  lr=9.90e-04  [3s]
+18:40:43  Epoch 022  step   50/55  loss=0.4195  lr=9.90e-04  [4s]
+18:40:44  Epoch 022  train_loss=0.4290  val_loss=0.4417  F1=0.2179  IoU=0.1223  P=0.1444  R=0.4441  Kappa=0.1787  max_prob=0.9121  lr=9.89e-04
+18:40:48    *** New best F1=0.2179  saved best_model.pth ***
+18:40:50  Epoch 023  step   10/55  loss=0.3841  lr=9.89e-04  [1s]
+18:40:50  Epoch 023  step   20/55  loss=0.4496  lr=9.89e-04  [2s]
+18:40:51  Epoch 023  step   30/55  loss=0.4595  lr=9.89e-04  [3s]
+18:40:52  Epoch 023 step 39: non-finite loss=nan, skipping optimizer update for this batch.
+18:40:52  Epoch 023  step   40/55  loss=0.5018  lr=9.89e-04  [3s]
+18:40:52  Epoch 023 step 50: non-finite loss=nan, skipping optimizer update for this batch.
+18:40:52  Epoch 023 step 51: non-finite loss=nan, skipping optimizer update for this batch.
+18:40:53  Epoch 023 step 55: non-finite loss=nan, skipping optimizer update for this batch.
+18:40:54  Epoch 023  train_loss=0.4044  val_loss=nan  F1=0.0000  IoU=0.0000  P=0.0000  R=0.0000  Kappa=0.0000  max_prob=0.0000  lr=9.87e-04
+18:40:56    No improvement for 1/30 epochs
+18:40:57  Epoch 024 step 2: non-finite loss=nan, skipping optimizer update for this batch.
+18:40:57  Epoch 024 step 8: non-finite loss=nan, skipping optimizer update for this batch.
+18:40:57  Epoch 024  step   10/55  loss=0.4199  lr=9.87e-04  [1s]
+18:40:57  Epoch 024 step 14: non-finite loss=nan, skipping optimizer update for this batch.
+18:40:58  Epoch 024 step 19: non-finite loss=nan, skipping optimizer update for this batch.
+18:40:58  Epoch 024  step   20/55  loss=0.4570  lr=9.87e-04  [2s]
+18:40:58  Epoch 024 step 21: non-finite loss=nan, skipping optimizer update for this batch.
+18:40:58  Epoch 024 step 23: non-finite loss=nan, skipping optimizer update for this batch.
+18:40:58  Epoch 024 step 25: non-finite loss=nan, skipping optimizer update for this batch.
+18:40:58  Epoch 024 step 26: non-finite loss=nan, skipping optimizer update for this batch.
+18:40:59  Epoch 024 step 28: non-finite loss=nan, skipping optimizer update for this batch.
+18:40:59  Epoch 024 step 30: non-finite loss=nan, skipping optimizer update for this batch.
+18:40:59  Epoch 024 step 31: non-finite loss=nan, skipping optimizer update for this batch.
+18:40:59  Epoch 024 step 32: non-finite loss=nan, skipping optimizer update for this batch.
+18:40:59  Epoch 024 step 35: non-finite loss=nan, skipping optimizer update for this batch.
+18:40:59  Epoch 024 step 36: non-finite loss=nan, skipping optimizer update for this batch.
+18:40:59  Epoch 024 step 37: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:00  Epoch 024 step 38: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:00  Epoch 024  step   40/55  loss=0.4335  lr=9.87e-04  [4s]
+18:41:00  Epoch 024 step 41: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:00  Epoch 024 step 42: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:00  Epoch 024 step 43: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:00  Epoch 024 step 44: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:00  Epoch 024 step 46: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:00  Epoch 024 step 47: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:00  Epoch 024 step 48: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:00  Epoch 024 step 50: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:00  Epoch 024 step 51: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:00  Epoch 024 step 53: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:00  Epoch 024 step 54: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:02  Epoch 024  train_loss=0.2237  val_loss=nan  F1=0.0000  IoU=0.0000  P=0.0000  R=0.0000  Kappa=0.0000  max_prob=0.0000  lr=9.85e-04
+18:41:04    No improvement for 2/30 epochs
+18:41:04  Epoch 025 step 1: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:04  Epoch 025 step 2: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:04  Epoch 025 step 3: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:05  Epoch 025 step 6: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:05  Epoch 025 step 7: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:05  Epoch 025 step 10: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:05  Epoch 025 step 11: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:05  Epoch 025 step 15: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:05  Epoch 025 step 17: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:05  Epoch 025 step 19: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:06  Epoch 025 step 20: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:06  Epoch 025 step 21: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:06  Epoch 025 step 22: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:06  Epoch 025 step 23: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:06  Epoch 025 step 24: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:06  Epoch 025 step 27: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:06  Epoch 025 step 28: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:06  Epoch 025 step 29: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:06  Epoch 025  step   30/55  loss=0.4874  lr=9.85e-04  [3s]
+18:41:06  Epoch 025 step 31: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:06  Epoch 025 step 32: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:06  Epoch 025 step 33: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:07  Epoch 025 step 34: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:07  Epoch 025 step 36: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:07  Epoch 025 step 37: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:07  Epoch 025 step 38: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:07  Epoch 025 step 39: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:07  Epoch 025 step 40: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:07  Epoch 025 step 41: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:07  Epoch 025 step 42: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:07  Epoch 025 step 43: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:07  Epoch 025 step 44: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:07  Epoch 025 step 45: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:07  Epoch 025 step 47: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:07  Epoch 025 step 48: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:07  Epoch 025 step 49: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:08  Epoch 025 step 50: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:08  Epoch 025 step 51: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:08  Epoch 025 step 52: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:08  Epoch 025 step 53: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:08  Epoch 025 step 54: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:08  Epoch 025 step 55: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:09  Epoch 025  train_loss=0.1162  val_loss=nan  F1=0.0000  IoU=0.0000  P=0.0000  R=0.0000  Kappa=0.0000  max_prob=0.0000  lr=9.83e-04
+18:41:11    No improvement for 3/30 epochs
+18:41:12  Epoch 026 step 1: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:12  Epoch 026 step 2: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:12  Epoch 026 step 3: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:12  Epoch 026 step 4: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:12  Epoch 026 step 5: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:12  Epoch 026 step 6: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:12  Epoch 026 step 8: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:12  Epoch 026 step 9: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:12  Epoch 026 step 10: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:12  Epoch 026 step 11: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:12  Epoch 026 step 12: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:12  Epoch 026 step 13: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:12  Epoch 026 step 14: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:12  Epoch 026 step 15: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:12  Epoch 026 step 16: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:13  Epoch 026 step 17: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:13  Epoch 026 step 18: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:13  Epoch 026 step 19: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:13  Epoch 026 step 20: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:13  Epoch 026 step 21: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:13  Epoch 026 step 22: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:13  Epoch 026 step 23: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:13  Epoch 026 step 24: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:13  Epoch 026 step 25: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:13  Epoch 026 step 26: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:13  Epoch 026 step 27: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:13  Epoch 026 step 28: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:13  Epoch 026 step 29: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:13  Epoch 026 step 30: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:13  Epoch 026 step 31: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:13  Epoch 026 step 32: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:14  Epoch 026 step 33: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:14  Epoch 026 step 34: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:14  Epoch 026 step 35: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:14  Epoch 026 step 36: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:14  Epoch 026 step 37: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:14  Epoch 026 step 38: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:14  Epoch 026 step 39: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:14  Epoch 026 step 40: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:14  Epoch 026 step 41: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:14  Epoch 026 step 42: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:14  Epoch 026 step 43: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:14  Epoch 026 step 44: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:14  Epoch 026 step 45: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:14  Epoch 026 step 46: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:14  Epoch 026 step 47: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:15  Epoch 026 step 49: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:15  Epoch 026 step 50: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:15  Epoch 026 step 51: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:15  Epoch 026 step 52: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:15  Epoch 026 step 53: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:15  Epoch 026 step 54: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:15  Epoch 026 step 55: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:16  Epoch 026  train_loss=0.0157  val_loss=nan  F1=0.0000  IoU=0.0000  P=0.0000  R=0.0000  Kappa=0.0000  max_prob=0.0000  lr=9.80e-04
+18:41:18    No improvement for 4/30 epochs
+18:41:19  Epoch 027 step 1: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:19  Epoch 027 step 2: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:19  Epoch 027 step 3: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:19  Epoch 027 step 4: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:19  Epoch 027 step 5: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:19  Epoch 027 step 6: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:19  Epoch 027 step 7: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:19  Epoch 027 step 8: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:19  Epoch 027 step 9: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:19  Epoch 027 step 10: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:19  Epoch 027 step 11: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:19  Epoch 027 step 12: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:19  Epoch 027 step 13: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:19  Epoch 027 step 14: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:19  Epoch 027 step 15: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:19  Epoch 027 step 16: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:20  Epoch 027 step 17: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:20  Epoch 027 step 18: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:20  Epoch 027 step 19: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:20  Epoch 027 step 20: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:20  Epoch 027 step 21: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:20  Epoch 027 step 22: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:20  Epoch 027 step 23: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:20  Epoch 027 step 24: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:20  Epoch 027 step 25: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:20  Epoch 027 step 26: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:20  Epoch 027 step 27: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:20  Epoch 027 step 28: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:20  Epoch 027 step 29: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:20  Epoch 027 step 30: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:20  Epoch 027 step 31: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:20  Epoch 027 step 32: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:21  Epoch 027 step 33: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:21  Epoch 027 step 34: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:21  Epoch 027 step 35: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:21  Epoch 027 step 36: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:21  Epoch 027 step 37: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:21  Epoch 027 step 38: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:21  Epoch 027 step 39: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:21  Epoch 027 step 40: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:21  Epoch 027 step 41: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:21  Epoch 027 step 42: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:21  Epoch 027 step 43: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:21  Epoch 027 step 44: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:21  Epoch 027 step 45: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:21  Epoch 027 step 46: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:21  Epoch 027 step 47: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:21  Epoch 027 step 48: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:22  Epoch 027 step 49: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:22  Epoch 027 step 50: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:22  Epoch 027 step 51: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:22  Epoch 027 step 52: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:22  Epoch 027 step 53: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:22  Epoch 027 step 54: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:22  Epoch 027 step 55: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:23  Epoch 027  train_loss=0.0000  val_loss=nan  F1=0.0000  IoU=0.0000  P=0.0000  R=0.0000  Kappa=0.0000  max_prob=0.0000  lr=9.78e-04
+18:41:25    No improvement for 5/30 epochs
+18:41:26  Epoch 028 step 1: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:26  Epoch 028 step 2: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:26  Epoch 028 step 3: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:26  Epoch 028 step 4: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:26  Epoch 028 step 5: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:26  Epoch 028 step 6: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:26  Epoch 028 step 7: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:26  Epoch 028 step 8: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:26  Epoch 028 step 9: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:26  Epoch 028 step 10: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:27  Epoch 028 step 11: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:27  Epoch 028 step 12: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:27  Epoch 028 step 13: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:27  Epoch 028 step 14: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:27  Epoch 028 step 15: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:27  Epoch 028 step 16: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:27  Epoch 028 step 17: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:27  Epoch 028 step 18: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:27  Epoch 028 step 19: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:27  Epoch 028 step 20: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:27  Epoch 028 step 21: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:27  Epoch 028 step 22: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:27  Epoch 028 step 23: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:27  Epoch 028 step 24: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:27  Epoch 028 step 25: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:27  Epoch 028 step 26: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:27  Epoch 028 step 27: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:28  Epoch 028 step 28: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:28  Epoch 028 step 30: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:28  Epoch 028 step 31: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:28  Epoch 028 step 32: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:28  Epoch 028 step 33: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:28  Epoch 028 step 34: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:28  Epoch 028 step 35: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:28  Epoch 028 step 36: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:28  Epoch 028 step 37: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:28  Epoch 028 step 38: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:28  Epoch 028 step 39: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:28  Epoch 028 step 40: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:28  Epoch 028 step 41: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:29  Epoch 028 step 43: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:29  Epoch 028 step 44: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:29  Epoch 028 step 45: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:29  Epoch 028 step 46: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:29  Epoch 028 step 47: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:29  Epoch 028 step 48: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:29  Epoch 028 step 49: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:29  Epoch 028 step 50: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:29  Epoch 028 step 51: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:29  Epoch 028 step 52: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:29  Epoch 028 step 53: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:29  Epoch 028 step 54: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:29  Epoch 028 step 55: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:30  Epoch 028  train_loss=0.0152  val_loss=nan  F1=0.0000  IoU=0.0000  P=0.0000  R=0.0000  Kappa=0.0000  max_prob=0.0000  lr=9.76e-04
+18:41:32    No improvement for 6/30 epochs
+18:41:33  Epoch 029 step 1: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:33  Epoch 029 step 2: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:33  Epoch 029 step 3: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:33  Epoch 029 step 4: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:33  Epoch 029 step 5: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:33  Epoch 029 step 6: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:33  Epoch 029 step 7: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:33  Epoch 029 step 8: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:34  Epoch 029 step 9: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:34  Epoch 029 step 10: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:34  Epoch 029 step 11: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:34  Epoch 029 step 12: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:34  Epoch 029 step 13: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:34  Epoch 029 step 14: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:34  Epoch 029 step 15: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:34  Epoch 029 step 16: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:34  Epoch 029 step 17: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:34  Epoch 029 step 18: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:34  Epoch 029 step 19: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:34  Epoch 029 step 20: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:34  Epoch 029 step 21: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:34  Epoch 029 step 22: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:34  Epoch 029 step 23: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:34  Epoch 029 step 24: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:35  Epoch 029 step 25: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:35  Epoch 029 step 26: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:35  Epoch 029 step 27: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:35  Epoch 029 step 28: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:35  Epoch 029 step 29: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:35  Epoch 029 step 30: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:35  Epoch 029 step 31: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:35  Epoch 029 step 32: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:35  Epoch 029 step 33: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:35  Epoch 029 step 34: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:35  Epoch 029 step 35: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:35  Epoch 029 step 36: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:35  Epoch 029 step 37: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:36  Epoch 029 step 38: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:36  Epoch 029 step 39: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:36  Epoch 029 step 40: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:36  Epoch 029 step 41: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:36  Epoch 029 step 42: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:36  Epoch 029 step 43: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:36  Epoch 029 step 44: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:36  Epoch 029 step 45: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:36  Epoch 029 step 46: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:36  Epoch 029 step 47: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:36  Epoch 029 step 48: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:36  Epoch 029 step 49: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:36  Epoch 029 step 50: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:36  Epoch 029 step 51: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:36  Epoch 029 step 52: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:36  Epoch 029 step 53: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:36  Epoch 029 step 54: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:36  Epoch 029 step 55: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:38  Epoch 029  train_loss=0.0000  val_loss=nan  F1=0.0000  IoU=0.0000  P=0.0000  R=0.0000  Kappa=0.0000  max_prob=0.0000  lr=9.73e-04
+18:41:40    No improvement for 7/30 epochs
+18:41:41  Epoch 030 step 1: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:41  Epoch 030 step 2: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:41  Epoch 030 step 3: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:41  Epoch 030 step 4: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:41  Epoch 030 step 5: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:41  Epoch 030 step 6: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:41  Epoch 030 step 7: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:41  Epoch 030 step 8: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:41  Epoch 030 step 9: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:41  Epoch 030 step 10: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:41  Epoch 030 step 11: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:41  Epoch 030 step 12: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:41  Epoch 030 step 14: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:41  Epoch 030 step 15: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:41  Epoch 030 step 16: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:41  Epoch 030 step 17: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:42  Epoch 030 step 18: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:42  Epoch 030 step 19: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:42  Epoch 030 step 20: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:42  Epoch 030 step 21: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:42  Epoch 030 step 22: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:42  Epoch 030 step 23: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:42  Epoch 030 step 24: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:42  Epoch 030 step 25: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:42  Epoch 030 step 26: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:42  Epoch 030 step 27: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:42  Epoch 030 step 28: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:42  Epoch 030 step 29: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:42  Epoch 030 step 30: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:42  Epoch 030 step 31: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:42  Epoch 030 step 32: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:42  Epoch 030 step 33: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:43  Epoch 030 step 34: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:43  Epoch 030 step 35: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:43  Epoch 030 step 36: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:43  Epoch 030 step 37: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:43  Epoch 030 step 38: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:43  Epoch 030 step 39: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:43  Epoch 030 step 40: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:43  Epoch 030 step 41: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:43  Epoch 030 step 42: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:43  Epoch 030 step 43: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:43  Epoch 030 step 44: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:43  Epoch 030 step 45: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:43  Epoch 030 step 46: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:43  Epoch 030 step 47: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:43  Epoch 030 step 48: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:43  Epoch 030 step 49: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:44  Epoch 030 step 50: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:44  Epoch 030 step 51: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:44  Epoch 030 step 52: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:44  Epoch 030 step 53: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:44  Epoch 030 step 54: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:44  Epoch 030 step 55: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:45  Epoch 030  train_loss=0.0083  val_loss=nan  F1=0.0000  IoU=0.0000  P=0.0000  R=0.0000  Kappa=0.0000  max_prob=0.0000  lr=9.70e-04
+18:41:47    No improvement for 8/30 epochs
+18:41:48  Epoch 031 step 1: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:48  Epoch 031 step 2: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:48  Epoch 031 step 3: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:48  Epoch 031 step 4: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:48  Epoch 031 step 5: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:48  Epoch 031 step 6: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:48  Epoch 031 step 7: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:48  Epoch 031 step 8: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:48  Epoch 031 step 9: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:48  Epoch 031 step 10: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:48  Epoch 031 step 11: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:48  Epoch 031 step 12: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:48  Epoch 031 step 13: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:48  Epoch 031 step 14: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:48  Epoch 031 step 15: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:48  Epoch 031 step 16: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:49  Epoch 031 step 17: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:49  Epoch 031 step 18: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:49  Epoch 031 step 19: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:49  Epoch 031 step 20: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:49  Epoch 031 step 21: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:49  Epoch 031 step 22: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:49  Epoch 031 step 23: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:49  Epoch 031 step 24: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:49  Epoch 031 step 25: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:49  Epoch 031 step 26: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:49  Epoch 031 step 27: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:49  Epoch 031 step 28: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:49  Epoch 031 step 29: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:49  Epoch 031 step 30: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:49  Epoch 031 step 31: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:49  Epoch 031 step 32: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:50  Epoch 031 step 33: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:50  Epoch 031 step 34: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:50  Epoch 031 step 35: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:50  Epoch 031 step 36: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:50  Epoch 031 step 37: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:50  Epoch 031 step 38: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:50  Epoch 031 step 39: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:50  Epoch 031 step 40: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:50  Epoch 031 step 41: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:50  Epoch 031 step 42: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:50  Epoch 031 step 43: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:50  Epoch 031 step 44: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:50  Epoch 031 step 45: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:50  Epoch 031 step 46: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:50  Epoch 031 step 47: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:50  Epoch 031 step 48: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:51  Epoch 031 step 49: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:51  Epoch 031 step 50: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:51  Epoch 031 step 51: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:51  Epoch 031 step 52: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:51  Epoch 031 step 53: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:51  Epoch 031 step 54: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:51  Epoch 031 step 55: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:52  Epoch 031  train_loss=0.0000  val_loss=nan  F1=0.0000  IoU=0.0000  P=0.0000  R=0.0000  Kappa=0.0000  max_prob=0.0000  lr=9.67e-04
+18:41:54    No improvement for 9/30 epochs
+18:41:55  Epoch 032 step 1: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:55  Epoch 032 step 2: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:55  Epoch 032 step 3: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:55  Epoch 032 step 4: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:55  Epoch 032 step 5: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:55  Epoch 032 step 6: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:55  Epoch 032 step 7: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:55  Epoch 032 step 8: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:56  Epoch 032 step 9: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:56  Epoch 032 step 10: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:56  Epoch 032 step 11: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:56  Epoch 032 step 12: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:56  Epoch 032 step 13: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:56  Epoch 032 step 14: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:56  Epoch 032 step 15: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:56  Epoch 032 step 16: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:56  Epoch 032 step 17: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:56  Epoch 032 step 18: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:56  Epoch 032 step 19: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:56  Epoch 032 step 20: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:56  Epoch 032 step 21: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:56  Epoch 032 step 22: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:56  Epoch 032 step 23: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:56  Epoch 032 step 24: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:57  Epoch 032 step 25: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:57  Epoch 032 step 26: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:57  Epoch 032 step 27: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:57  Epoch 032 step 28: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:57  Epoch 032 step 29: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:57  Epoch 032 step 30: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:57  Epoch 032 step 31: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:57  Epoch 032 step 32: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:57  Epoch 032 step 33: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:57  Epoch 032 step 34: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:57  Epoch 032 step 35: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:57  Epoch 032 step 36: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:57  Epoch 032 step 37: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:57  Epoch 032 step 38: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:57  Epoch 032 step 39: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:57  Epoch 032 step 40: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:58  Epoch 032 step 41: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:58  Epoch 032 step 42: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:58  Epoch 032 step 43: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:58  Epoch 032 step 44: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:58  Epoch 032 step 45: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:58  Epoch 032 step 46: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:58  Epoch 032 step 47: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:58  Epoch 032 step 48: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:58  Epoch 032 step 49: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:58  Epoch 032 step 50: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:58  Epoch 032 step 51: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:58  Epoch 032 step 52: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:58  Epoch 032 step 53: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:58  Epoch 032 step 54: non-finite loss=nan, skipping optimizer update for this batch.
+18:41:58  Epoch 032 step 55: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:00  Epoch 032  train_loss=0.0000  val_loss=nan  F1=0.0000  IoU=0.0000  P=0.0000  R=0.0000  Kappa=0.0000  max_prob=0.0000  lr=9.64e-04
+18:42:02    No improvement for 10/30 epochs
+18:42:02  Epoch 033 step 1: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:02  Epoch 033 step 2: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:02  Epoch 033 step 3: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:02  Epoch 033 step 4: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:02  Epoch 033 step 5: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:02  Epoch 033 step 6: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:03  Epoch 033 step 7: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:03  Epoch 033 step 8: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:03  Epoch 033 step 9: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:03  Epoch 033 step 10: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:03  Epoch 033 step 11: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:03  Epoch 033 step 12: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:03  Epoch 033 step 13: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:03  Epoch 033 step 14: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:03  Epoch 033 step 15: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:03  Epoch 033 step 16: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:03  Epoch 033 step 17: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:03  Epoch 033 step 18: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:03  Epoch 033 step 19: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:03  Epoch 033 step 20: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:03  Epoch 033 step 21: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:03  Epoch 033 step 22: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:03  Epoch 033 step 23: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:04  Epoch 033 step 24: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:04  Epoch 033 step 25: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:04  Epoch 033 step 26: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:04  Epoch 033 step 27: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:04  Epoch 033 step 28: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:04  Epoch 033 step 29: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:04  Epoch 033 step 30: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:04  Epoch 033 step 31: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:04  Epoch 033 step 32: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:04  Epoch 033 step 33: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:04  Epoch 033 step 34: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:04  Epoch 033 step 35: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:05  Epoch 033 step 36: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:05  Epoch 033 step 37: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:05  Epoch 033 step 38: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:05  Epoch 033 step 39: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:05  Epoch 033 step 40: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:05  Epoch 033 step 41: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:05  Epoch 033 step 42: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:05  Epoch 033 step 43: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:05  Epoch 033 step 44: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:05  Epoch 033 step 45: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:05  Epoch 033 step 46: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:05  Epoch 033 step 47: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:05  Epoch 033 step 48: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:05  Epoch 033 step 49: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:05  Epoch 033 step 50: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:05  Epoch 033 step 51: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:05  Epoch 033 step 52: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:05  Epoch 033 step 53: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:06  Epoch 033 step 54: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:06  Epoch 033 step 55: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:07  Epoch 033  train_loss=0.0000  val_loss=nan  F1=0.0000  IoU=0.0000  P=0.0000  R=0.0000  Kappa=0.0000  max_prob=0.0000  lr=9.61e-04
+18:42:09    No improvement for 11/30 epochs
+18:42:10  Epoch 034 step 1: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:10  Epoch 034 step 2: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:10  Epoch 034 step 3: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:10  Epoch 034 step 4: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:10  Epoch 034 step 5: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:10  Epoch 034 step 6: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:10  Epoch 034 step 7: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:10  Epoch 034 step 8: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:10  Epoch 034 step 9: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:10  Epoch 034 step 10: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:10  Epoch 034 step 11: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:10  Epoch 034 step 12: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:10  Epoch 034 step 13: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:10  Epoch 034 step 14: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:10  Epoch 034 step 15: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:10  Epoch 034 step 16: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:10  Epoch 034 step 17: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:11  Epoch 034 step 18: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:11  Epoch 034 step 19: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:11  Epoch 034 step 20: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:11  Epoch 034 step 21: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:11  Epoch 034 step 22: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:11  Epoch 034 step 23: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:11  Epoch 034 step 24: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:11  Epoch 034 step 25: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:11  Epoch 034 step 26: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:11  Epoch 034 step 27: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:11  Epoch 034 step 28: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:11  Epoch 034 step 29: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:11  Epoch 034 step 30: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:11  Epoch 034 step 31: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:11  Epoch 034 step 32: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:11  Epoch 034 step 33: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:12  Epoch 034 step 34: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:12  Epoch 034 step 35: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:12  Epoch 034 step 36: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:12  Epoch 034 step 37: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:12  Epoch 034 step 38: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:12  Epoch 034 step 39: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:12  Epoch 034 step 40: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:12  Epoch 034 step 41: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:12  Epoch 034 step 42: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:12  Epoch 034 step 43: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:12  Epoch 034 step 44: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:12  Epoch 034 step 45: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:12  Epoch 034 step 46: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:12  Epoch 034 step 47: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:12  Epoch 034 step 48: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:12  Epoch 034 step 49: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:13  Epoch 034 step 50: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:13  Epoch 034 step 51: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:13  Epoch 034 step 52: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:13  Epoch 034 step 53: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:13  Epoch 034 step 54: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:13  Epoch 034 step 55: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:14  Epoch 034  train_loss=0.0000  val_loss=nan  F1=0.0000  IoU=0.0000  P=0.0000  R=0.0000  Kappa=0.0000  max_prob=0.0000  lr=9.58e-04
+18:42:16    No improvement for 12/30 epochs
+18:42:17  Epoch 035 step 1: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:17  Epoch 035 step 2: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:17  Epoch 035 step 3: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:17  Epoch 035 step 4: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:17  Epoch 035 step 5: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:17  Epoch 035 step 6: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:17  Epoch 035 step 7: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:17  Epoch 035 step 8: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:17  Epoch 035 step 9: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:17  Epoch 035 step 10: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:17  Epoch 035 step 11: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:17  Epoch 035 step 12: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:17  Epoch 035 step 13: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:17  Epoch 035 step 14: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:17  Epoch 035 step 15: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:17  Epoch 035 step 16: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:18  Epoch 035 step 17: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:18  Epoch 035 step 18: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:18  Epoch 035 step 19: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:18  Epoch 035 step 20: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:18  Epoch 035 step 21: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:18  Epoch 035 step 22: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:18  Epoch 035 step 23: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:18  Epoch 035 step 24: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:18  Epoch 035 step 25: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:18  Epoch 035 step 26: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:18  Epoch 035 step 27: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:18  Epoch 035 step 28: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:18  Epoch 035 step 29: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:18  Epoch 035 step 30: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:18  Epoch 035 step 31: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:18  Epoch 035 step 32: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:19  Epoch 035 step 33: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:19  Epoch 035 step 34: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:19  Epoch 035 step 35: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:19  Epoch 035 step 36: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:19  Epoch 035 step 37: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:19  Epoch 035 step 38: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:19  Epoch 035 step 39: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:19  Epoch 035 step 40: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:19  Epoch 035 step 41: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:19  Epoch 035 step 42: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:19  Epoch 035 step 43: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:19  Epoch 035 step 44: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:19  Epoch 035 step 45: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:19  Epoch 035 step 46: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:19  Epoch 035 step 47: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:19  Epoch 035 step 48: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:20  Epoch 035 step 49: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:20  Epoch 035 step 50: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:20  Epoch 035 step 51: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:20  Epoch 035 step 52: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:20  Epoch 035 step 53: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:20  Epoch 035 step 54: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:20  Epoch 035 step 55: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:21  Epoch 035  train_loss=0.0000  val_loss=nan  F1=0.0000  IoU=0.0000  P=0.0000  R=0.0000  Kappa=0.0000  max_prob=0.0000  lr=9.55e-04
+18:42:23    No improvement for 13/30 epochs
+18:42:24  Epoch 036 step 1: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:24  Epoch 036 step 2: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:24  Epoch 036 step 3: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:24  Epoch 036 step 4: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:24  Epoch 036 step 5: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:24  Epoch 036 step 6: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:24  Epoch 036 step 7: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:24  Epoch 036 step 8: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:24  Epoch 036 step 9: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:25  Epoch 036 step 10: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:25  Epoch 036 step 11: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:25  Epoch 036 step 12: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:25  Epoch 036 step 13: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:25  Epoch 036 step 14: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:25  Epoch 036 step 15: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:25  Epoch 036 step 16: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:25  Epoch 036 step 17: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:25  Epoch 036 step 18: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:25  Epoch 036 step 19: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:25  Epoch 036 step 20: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:25  Epoch 036 step 21: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:25  Epoch 036 step 22: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:25  Epoch 036 step 23: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:25  Epoch 036 step 24: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:26  Epoch 036 step 25: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:26  Epoch 036 step 26: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:26  Epoch 036 step 27: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:26  Epoch 036 step 28: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:26  Epoch 036 step 29: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:26  Epoch 036 step 30: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:26  Epoch 036 step 31: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:26  Epoch 036 step 32: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:26  Epoch 036 step 33: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:26  Epoch 036 step 34: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:26  Epoch 036 step 35: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:26  Epoch 036 step 36: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:26  Epoch 036 step 37: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:26  Epoch 036 step 38: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:26  Epoch 036 step 39: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:26  Epoch 036 step 40: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:27  Epoch 036 step 41: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:27  Epoch 036 step 42: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:27  Epoch 036 step 43: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:27  Epoch 036 step 44: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:27  Epoch 036 step 45: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:27  Epoch 036 step 46: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:27  Epoch 036 step 47: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:27  Epoch 036 step 48: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:27  Epoch 036 step 49: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:27  Epoch 036 step 50: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:27  Epoch 036 step 51: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:27  Epoch 036 step 52: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:27  Epoch 036 step 53: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:27  Epoch 036 step 54: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:27  Epoch 036 step 55: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:29  Epoch 036  train_loss=0.0000  val_loss=nan  F1=0.0000  IoU=0.0000  P=0.0000  R=0.0000  Kappa=0.0000  max_prob=0.0000  lr=9.51e-04
+18:42:31    No improvement for 14/30 epochs
+18:42:31  Epoch 037 step 1: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:31  Epoch 037 step 2: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:31  Epoch 037 step 3: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:31  Epoch 037 step 4: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:31  Epoch 037 step 5: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:31  Epoch 037 step 6: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:31  Epoch 037 step 7: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:31  Epoch 037 step 8: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:32  Epoch 037 step 9: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:32  Epoch 037 step 10: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:32  Epoch 037 step 11: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:32  Epoch 037 step 12: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:32  Epoch 037 step 13: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:32  Epoch 037 step 14: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:32  Epoch 037 step 15: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:32  Epoch 037 step 16: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:32  Epoch 037 step 17: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:32  Epoch 037 step 18: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:32  Epoch 037 step 19: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:32  Epoch 037 step 20: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:32  Epoch 037 step 21: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:32  Epoch 037 step 22: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:32  Epoch 037 step 23: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:32  Epoch 037 step 24: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:33  Epoch 037 step 25: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:33  Epoch 037 step 26: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:33  Epoch 037 step 27: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:33  Epoch 037 step 28: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:33  Epoch 037 step 29: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:33  Epoch 037 step 30: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:33  Epoch 037 step 31: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:33  Epoch 037 step 32: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:33  Epoch 037 step 33: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:33  Epoch 037 step 34: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:33  Epoch 037 step 35: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:33  Epoch 037 step 36: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:33  Epoch 037 step 37: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:33  Epoch 037 step 38: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:33  Epoch 037 step 39: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:33  Epoch 037 step 40: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:34  Epoch 037 step 41: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:34  Epoch 037 step 42: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:34  Epoch 037 step 43: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:34  Epoch 037 step 44: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:34  Epoch 037 step 45: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:34  Epoch 037 step 46: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:34  Epoch 037 step 47: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:34  Epoch 037 step 48: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:34  Epoch 037 step 49: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:34  Epoch 037 step 50: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:34  Epoch 037 step 51: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:34  Epoch 037 step 52: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:34  Epoch 037 step 53: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:34  Epoch 037 step 54: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:34  Epoch 037 step 55: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:36  Epoch 037  train_loss=0.0000  val_loss=nan  F1=0.0000  IoU=0.0000  P=0.0000  R=0.0000  Kappa=0.0000  max_prob=0.0000  lr=9.47e-04
+18:42:38    No improvement for 15/30 epochs
+18:42:38  Epoch 038 step 1: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:38  Epoch 038 step 2: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:38  Epoch 038 step 3: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:38  Epoch 038 step 4: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:38  Epoch 038 step 5: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:39  Epoch 038 step 6: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:39  Epoch 038 step 7: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:39  Epoch 038 step 8: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:39  Epoch 038 step 9: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:39  Epoch 038 step 10: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:39  Epoch 038 step 11: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:39  Epoch 038 step 12: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:39  Epoch 038 step 13: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:39  Epoch 038 step 14: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:39  Epoch 038 step 15: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:39  Epoch 038 step 16: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:39  Epoch 038 step 17: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:39  Epoch 038 step 18: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:40  Epoch 038 step 19: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:40  Epoch 038 step 20: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:40  Epoch 038 step 21: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:40  Epoch 038 step 22: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:40  Epoch 038 step 23: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:40  Epoch 038 step 24: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:40  Epoch 038 step 25: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:40  Epoch 038 step 26: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:40  Epoch 038 step 27: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:40  Epoch 038 step 28: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:40  Epoch 038 step 29: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:40  Epoch 038 step 30: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:40  Epoch 038 step 31: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:40  Epoch 038 step 32: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:40  Epoch 038 step 33: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:41  Epoch 038 step 34: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:41  Epoch 038 step 35: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:41  Epoch 038 step 37: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:41  Epoch 038 step 38: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:41  Epoch 038 step 39: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:41  Epoch 038 step 40: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:41  Epoch 038 step 41: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:41  Epoch 038 step 42: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:41  Epoch 038 step 43: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:41  Epoch 038 step 44: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:41  Epoch 038 step 45: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:41  Epoch 038 step 46: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:41  Epoch 038 step 47: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:41  Epoch 038 step 48: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:41  Epoch 038 step 49: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:41  Epoch 038 step 50: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:42  Epoch 038 step 51: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:42  Epoch 038 step 52: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:42  Epoch 038 step 53: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:42  Epoch 038 step 54: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:42  Epoch 038 step 55: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:43  Epoch 038  train_loss=0.0082  val_loss=nan  F1=0.0000  IoU=0.0000  P=0.0000  R=0.0000  Kappa=0.0000  max_prob=0.0000  lr=9.44e-04
+18:42:45    No improvement for 16/30 epochs
+18:42:46  Epoch 039 step 1: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:46  Epoch 039 step 2: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:46  Epoch 039 step 3: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:46  Epoch 039 step 4: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:46  Epoch 039 step 5: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:46  Epoch 039 step 6: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:46  Epoch 039 step 7: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:46  Epoch 039 step 8: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:46  Epoch 039 step 9: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:46  Epoch 039 step 10: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:46  Epoch 039 step 11: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:46  Epoch 039 step 12: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:46  Epoch 039 step 13: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:46  Epoch 039 step 14: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:46  Epoch 039 step 15: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:46  Epoch 039 step 16: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:47  Epoch 039 step 17: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:47  Epoch 039 step 18: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:47  Epoch 039 step 19: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:47  Epoch 039 step 20: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:47  Epoch 039 step 21: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:47  Epoch 039 step 22: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:47  Epoch 039 step 23: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:47  Epoch 039 step 24: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:47  Epoch 039 step 25: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:47  Epoch 039 step 26: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:47  Epoch 039 step 27: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:47  Epoch 039 step 28: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:47  Epoch 039 step 29: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:47  Epoch 039 step 30: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:47  Epoch 039 step 31: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:47  Epoch 039 step 32: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:48  Epoch 039 step 33: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:48  Epoch 039 step 34: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:48  Epoch 039 step 35: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:48  Epoch 039 step 36: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:48  Epoch 039 step 37: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:48  Epoch 039 step 38: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:48  Epoch 039 step 39: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:48  Epoch 039 step 40: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:48  Epoch 039 step 41: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:48  Epoch 039 step 42: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:48  Epoch 039 step 43: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:48  Epoch 039 step 44: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:48  Epoch 039 step 45: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:48  Epoch 039 step 46: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:48  Epoch 039 step 47: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:48  Epoch 039 step 48: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:49  Epoch 039 step 49: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:49  Epoch 039 step 50: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:49  Epoch 039 step 51: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:49  Epoch 039 step 52: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:49  Epoch 039 step 53: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:49  Epoch 039 step 54: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:49  Epoch 039 step 55: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:50  Epoch 039  train_loss=0.0000  val_loss=nan  F1=0.0000  IoU=0.0000  P=0.0000  R=0.0000  Kappa=0.0000  max_prob=0.0000  lr=9.40e-04
+18:42:52    No improvement for 17/30 epochs
+18:42:53  Epoch 040 step 1: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:53  Epoch 040 step 2: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:53  Epoch 040 step 3: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:53  Epoch 040 step 4: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:53  Epoch 040 step 5: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:53  Epoch 040 step 6: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:53  Epoch 040 step 7: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:53  Epoch 040 step 8: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:53  Epoch 040 step 9: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:53  Epoch 040 step 10: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:53  Epoch 040 step 11: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:53  Epoch 040 step 12: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:54  Epoch 040 step 13: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:54  Epoch 040 step 14: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:54  Epoch 040 step 15: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:54  Epoch 040 step 16: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:54  Epoch 040 step 17: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:54  Epoch 040 step 18: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:54  Epoch 040 step 19: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:54  Epoch 040 step 20: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:54  Epoch 040 step 21: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:54  Epoch 040 step 22: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:54  Epoch 040 step 23: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:54  Epoch 040 step 24: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:54  Epoch 040 step 25: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:54  Epoch 040 step 26: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:54  Epoch 040 step 27: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:55  Epoch 040 step 28: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:55  Epoch 040 step 29: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:55  Epoch 040 step 30: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:55  Epoch 040 step 31: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:55  Epoch 040 step 32: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:55  Epoch 040 step 33: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:55  Epoch 040 step 34: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:55  Epoch 040 step 35: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:55  Epoch 040 step 36: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:55  Epoch 040 step 37: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:55  Epoch 040 step 38: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:55  Epoch 040 step 39: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:55  Epoch 040 step 40: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:55  Epoch 040 step 41: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:55  Epoch 040 step 42: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:56  Epoch 040 step 43: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:56  Epoch 040 step 44: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:56  Epoch 040 step 45: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:56  Epoch 040 step 46: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:56  Epoch 040 step 47: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:56  Epoch 040 step 48: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:56  Epoch 040 step 49: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:56  Epoch 040 step 50: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:56  Epoch 040 step 51: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:56  Epoch 040 step 52: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:56  Epoch 040 step 53: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:56  Epoch 040 step 54: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:56  Epoch 040 step 55: non-finite loss=nan, skipping optimizer update for this batch.
+18:42:57  Epoch 040  train_loss=0.0000  val_loss=nan  F1=0.0000  IoU=0.0000  P=0.0000  R=0.0000  Kappa=0.0000  max_prob=0.0000  lr=9.36e-04
+18:42:59    No improvement for 18/30 epochs
+18:43:00  Epoch 041 step 1: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:00  Epoch 041 step 2: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:00  Epoch 041 step 3: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:00  Epoch 041 step 4: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:00  Epoch 041 step 5: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:00  Epoch 041 step 6: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:00  Epoch 041 step 7: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:00  Epoch 041 step 8: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:01  Epoch 041 step 9: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:01  Epoch 041 step 10: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:01  Epoch 041 step 11: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:01  Epoch 041 step 12: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:01  Epoch 041 step 13: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:01  Epoch 041 step 14: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:01  Epoch 041 step 15: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:01  Epoch 041 step 16: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:01  Epoch 041 step 17: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:01  Epoch 041 step 18: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:01  Epoch 041 step 19: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:01  Epoch 041 step 20: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:01  Epoch 041 step 21: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:01  Epoch 041 step 22: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:01  Epoch 041 step 23: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:01  Epoch 041 step 24: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:02  Epoch 041 step 25: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:02  Epoch 041 step 26: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:02  Epoch 041 step 27: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:02  Epoch 041 step 28: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:02  Epoch 041 step 29: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:02  Epoch 041 step 30: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:02  Epoch 041 step 31: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:02  Epoch 041 step 32: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:02  Epoch 041 step 33: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:02  Epoch 041 step 34: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:02  Epoch 041 step 35: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:02  Epoch 041 step 36: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:02  Epoch 041 step 37: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:02  Epoch 041 step 38: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:02  Epoch 041 step 39: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:02  Epoch 041 step 40: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:03  Epoch 041 step 41: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:03  Epoch 041 step 42: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:03  Epoch 041 step 43: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:03  Epoch 041 step 44: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:03  Epoch 041 step 45: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:03  Epoch 041 step 46: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:03  Epoch 041 step 47: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:03  Epoch 041 step 48: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:03  Epoch 041 step 49: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:03  Epoch 041 step 50: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:03  Epoch 041 step 51: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:03  Epoch 041 step 52: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:03  Epoch 041 step 53: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:03  Epoch 041 step 54: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:03  Epoch 041 step 55: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:05  Epoch 041  train_loss=0.0000  val_loss=nan  F1=0.0000  IoU=0.0000  P=0.0000  R=0.0000  Kappa=0.0000  max_prob=0.0000  lr=9.32e-04
+18:43:07    No improvement for 19/30 epochs
+18:43:07  Epoch 042 step 1: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:08  Epoch 042 step 2: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:08  Epoch 042 step 3: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:08  Epoch 042 step 4: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:08  Epoch 042 step 5: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:08  Epoch 042 step 6: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:08  Epoch 042 step 7: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:08  Epoch 042 step 8: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:08  Epoch 042 step 9: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:08  Epoch 042 step 10: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:08  Epoch 042 step 11: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:08  Epoch 042 step 12: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:08  Epoch 042 step 13: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:08  Epoch 042 step 14: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:08  Epoch 042 step 15: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:08  Epoch 042 step 16: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:08  Epoch 042 step 17: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:08  Epoch 042 step 18: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:08  Epoch 042 step 19: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:09  Epoch 042 step 20: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:09  Epoch 042 step 21: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:09  Epoch 042 step 22: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:09  Epoch 042 step 23: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:09  Epoch 042 step 24: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:09  Epoch 042 step 25: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:09  Epoch 042 step 26: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:09  Epoch 042 step 27: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:09  Epoch 042 step 28: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:09  Epoch 042 step 29: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:09  Epoch 042 step 30: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:09  Epoch 042 step 31: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:09  Epoch 042 step 32: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:09  Epoch 042 step 33: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:09  Epoch 042 step 34: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:09  Epoch 042 step 35: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:10  Epoch 042 step 36: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:10  Epoch 042 step 37: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:10  Epoch 042 step 38: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:10  Epoch 042 step 39: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:10  Epoch 042 step 40: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:10  Epoch 042 step 41: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:10  Epoch 042 step 42: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:10  Epoch 042 step 43: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:10  Epoch 042 step 44: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:10  Epoch 042 step 45: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:10  Epoch 042 step 46: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:10  Epoch 042 step 47: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:10  Epoch 042 step 48: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:10  Epoch 042 step 49: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:10  Epoch 042 step 50: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:10  Epoch 042 step 51: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:10  Epoch 042 step 52: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:11  Epoch 042 step 53: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:11  Epoch 042 step 54: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:11  Epoch 042 step 55: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:12  Epoch 042  train_loss=0.0000  val_loss=nan  F1=0.0000  IoU=0.0000  P=0.0000  R=0.0000  Kappa=0.0000  max_prob=0.0000  lr=9.27e-04
+18:43:14    No improvement for 20/30 epochs
+18:43:15  Epoch 043 step 1: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:15  Epoch 043 step 2: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:15  Epoch 043 step 3: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:15  Epoch 043 step 4: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:15  Epoch 043 step 5: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:15  Epoch 043 step 6: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:15  Epoch 043 step 7: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:15  Epoch 043 step 8: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:15  Epoch 043 step 9: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:15  Epoch 043 step 10: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:15  Epoch 043 step 11: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:15  Epoch 043 step 12: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:15  Epoch 043 step 13: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:15  Epoch 043 step 14: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:15  Epoch 043 step 15: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:15  Epoch 043 step 16: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:16  Epoch 043 step 17: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:16  Epoch 043 step 18: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:16  Epoch 043 step 19: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:16  Epoch 043 step 20: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:16  Epoch 043 step 21: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:16  Epoch 043 step 22: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:16  Epoch 043 step 23: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:16  Epoch 043 step 24: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:16  Epoch 043 step 25: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:16  Epoch 043 step 26: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:16  Epoch 043 step 27: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:16  Epoch 043 step 28: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:16  Epoch 043 step 29: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:16  Epoch 043 step 30: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:16  Epoch 043 step 31: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:16  Epoch 043 step 32: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:17  Epoch 043 step 33: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:17  Epoch 043 step 34: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:17  Epoch 043 step 35: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:17  Epoch 043 step 36: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:17  Epoch 043 step 37: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:17  Epoch 043 step 38: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:17  Epoch 043 step 39: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:17  Epoch 043 step 40: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:17  Epoch 043 step 41: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:17  Epoch 043 step 42: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:17  Epoch 043 step 43: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:17  Epoch 043 step 44: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:17  Epoch 043 step 45: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:17  Epoch 043 step 46: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:17  Epoch 043 step 47: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:17  Epoch 043 step 48: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:18  Epoch 043 step 49: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:18  Epoch 043 step 50: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:18  Epoch 043 step 51: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:18  Epoch 043 step 52: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:18  Epoch 043 step 53: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:18  Epoch 043 step 54: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:18  Epoch 043 step 55: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:19  Epoch 043  train_loss=0.0000  val_loss=nan  F1=0.0000  IoU=0.0000  P=0.0000  R=0.0000  Kappa=0.0000  max_prob=0.0000  lr=9.23e-04
+18:43:21    No improvement for 21/30 epochs
+18:43:22  Epoch 044 step 1: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:22  Epoch 044 step 2: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:22  Epoch 044 step 3: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:22  Epoch 044 step 4: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:22  Epoch 044 step 5: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:22  Epoch 044 step 6: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:22  Epoch 044 step 7: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:22  Epoch 044 step 8: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:22  Epoch 044 step 9: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:22  Epoch 044 step 10: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:22  Epoch 044 step 11: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:22  Epoch 044 step 12: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:22  Epoch 044 step 13: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:23  Epoch 044 step 14: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:23  Epoch 044 step 15: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:23  Epoch 044 step 16: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:23  Epoch 044 step 17: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:23  Epoch 044 step 18: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:23  Epoch 044 step 19: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:23  Epoch 044 step 20: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:23  Epoch 044 step 21: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:23  Epoch 044 step 22: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:23  Epoch 044 step 23: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:23  Epoch 044 step 24: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:23  Epoch 044 step 25: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:23  Epoch 044 step 26: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:23  Epoch 044 step 27: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:24  Epoch 044 step 28: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:24  Epoch 044 step 29: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:24  Epoch 044 step 30: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:24  Epoch 044 step 31: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:24  Epoch 044 step 32: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:24  Epoch 044 step 33: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:24  Epoch 044 step 34: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:24  Epoch 044 step 35: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:24  Epoch 044 step 36: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:24  Epoch 044 step 37: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:24  Epoch 044 step 38: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:24  Epoch 044 step 39: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:24  Epoch 044 step 40: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:24  Epoch 044 step 41: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:25  Epoch 044 step 42: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:25  Epoch 044 step 43: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:25  Epoch 044 step 44: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:25  Epoch 044 step 45: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:25  Epoch 044 step 46: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:25  Epoch 044 step 47: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:25  Epoch 044 step 48: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:25  Epoch 044 step 49: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:25  Epoch 044 step 50: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:25  Epoch 044 step 51: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:25  Epoch 044 step 52: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:25  Epoch 044 step 53: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:25  Epoch 044 step 54: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:25  Epoch 044 step 55: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:26  Epoch 044  train_loss=0.0000  val_loss=nan  F1=0.0000  IoU=0.0000  P=0.0000  R=0.0000  Kappa=0.0000  max_prob=0.0000  lr=9.19e-04
+18:43:28    No improvement for 22/30 epochs
+18:43:29  Epoch 045 step 1: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:29  Epoch 045 step 2: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:29  Epoch 045 step 3: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:29  Epoch 045 step 4: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:29  Epoch 045 step 5: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:29  Epoch 045 step 6: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:29  Epoch 045 step 7: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:29  Epoch 045 step 8: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:30  Epoch 045 step 9: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:30  Epoch 045 step 10: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:30  Epoch 045 step 11: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:30  Epoch 045 step 12: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:30  Epoch 045 step 13: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:30  Epoch 045 step 14: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:30  Epoch 045 step 15: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:30  Epoch 045 step 16: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:30  Epoch 045 step 17: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:30  Epoch 045 step 18: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:30  Epoch 045 step 19: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:30  Epoch 045 step 20: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:30  Epoch 045 step 21: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:30  Epoch 045 step 22: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:30  Epoch 045 step 23: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:30  Epoch 045 step 24: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:31  Epoch 045 step 25: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:31  Epoch 045 step 26: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:31  Epoch 045 step 27: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:31  Epoch 045 step 28: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:31  Epoch 045 step 29: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:31  Epoch 045 step 30: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:31  Epoch 045 step 31: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:31  Epoch 045 step 32: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:31  Epoch 045 step 33: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:31  Epoch 045 step 34: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:31  Epoch 045 step 35: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:31  Epoch 045 step 36: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:31  Epoch 045 step 37: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:31  Epoch 045 step 38: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:31  Epoch 045 step 39: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:31  Epoch 045 step 40: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:32  Epoch 045 step 41: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:32  Epoch 045 step 42: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:32  Epoch 045 step 43: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:32  Epoch 045 step 44: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:32  Epoch 045 step 45: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:32  Epoch 045 step 46: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:32  Epoch 045 step 47: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:32  Epoch 045 step 48: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:32  Epoch 045 step 49: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:32  Epoch 045 step 50: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:32  Epoch 045 step 51: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:32  Epoch 045 step 52: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:32  Epoch 045 step 53: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:32  Epoch 045 step 54: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:32  Epoch 045 step 55: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:34  Epoch 045  train_loss=0.0000  val_loss=nan  F1=0.0000  IoU=0.0000  P=0.0000  R=0.0000  Kappa=0.0000  max_prob=0.0000  lr=9.14e-04
+18:43:36    No improvement for 23/30 epochs
+18:43:36  Epoch 046 step 1: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:36  Epoch 046 step 2: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:36  Epoch 046 step 3: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:36  Epoch 046 step 4: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:36  Epoch 046 step 5: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:36  Epoch 046 step 6: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:37  Epoch 046 step 7: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:37  Epoch 046 step 8: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:37  Epoch 046 step 9: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:37  Epoch 046 step 10: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:37  Epoch 046 step 11: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:37  Epoch 046 step 12: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:37  Epoch 046 step 13: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:37  Epoch 046 step 14: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:37  Epoch 046 step 15: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:37  Epoch 046 step 16: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:37  Epoch 046 step 17: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:37  Epoch 046 step 18: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:37  Epoch 046 step 19: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:37  Epoch 046 step 20: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:37  Epoch 046 step 21: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:37  Epoch 046 step 22: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:38  Epoch 046 step 23: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:38  Epoch 046 step 24: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:38  Epoch 046 step 25: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:38  Epoch 046 step 26: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:38  Epoch 046 step 27: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:38  Epoch 046 step 28: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:38  Epoch 046 step 29: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:38  Epoch 046 step 30: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:38  Epoch 046 step 31: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:38  Epoch 046 step 32: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:38  Epoch 046 step 33: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:38  Epoch 046 step 34: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:38  Epoch 046 step 35: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:38  Epoch 046 step 36: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:38  Epoch 046 step 37: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:38  Epoch 046 step 38: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:38  Epoch 046 step 39: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:39  Epoch 046 step 40: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:39  Epoch 046 step 41: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:39  Epoch 046 step 42: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:39  Epoch 046 step 43: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:39  Epoch 046 step 44: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:39  Epoch 046 step 45: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:39  Epoch 046 step 46: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:39  Epoch 046 step 47: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:39  Epoch 046 step 48: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:39  Epoch 046 step 49: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:39  Epoch 046 step 50: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:39  Epoch 046 step 51: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:39  Epoch 046 step 52: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:39  Epoch 046 step 53: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:39  Epoch 046 step 54: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:39  Epoch 046 step 55: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:41  Epoch 046  train_loss=0.0000  val_loss=nan  F1=0.0000  IoU=0.0000  P=0.0000  R=0.0000  Kappa=0.0000  max_prob=0.0000  lr=9.09e-04
+18:43:43    No improvement for 24/30 epochs
+18:43:43  Epoch 047 step 1: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:44  Epoch 047 step 2: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:44  Epoch 047 step 3: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:44  Epoch 047 step 4: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:44  Epoch 047 step 5: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:44  Epoch 047 step 6: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:44  Epoch 047 step 7: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:44  Epoch 047 step 8: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:44  Epoch 047 step 9: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:44  Epoch 047 step 10: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:44  Epoch 047 step 11: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:44  Epoch 047 step 12: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:44  Epoch 047 step 13: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:44  Epoch 047 step 14: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:44  Epoch 047 step 15: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:44  Epoch 047 step 16: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:44  Epoch 047 step 17: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:45  Epoch 047 step 18: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:45  Epoch 047 step 19: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:45  Epoch 047 step 20: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:45  Epoch 047 step 21: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:45  Epoch 047 step 22: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:45  Epoch 047 step 23: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:45  Epoch 047 step 24: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:45  Epoch 047 step 25: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:45  Epoch 047 step 26: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:45  Epoch 047 step 27: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:45  Epoch 047 step 28: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:45  Epoch 047 step 29: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:45  Epoch 047 step 30: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:45  Epoch 047 step 31: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:45  Epoch 047 step 32: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:46  Epoch 047 step 33: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:46  Epoch 047 step 34: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:46  Epoch 047 step 35: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:46  Epoch 047 step 36: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:46  Epoch 047 step 37: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:46  Epoch 047 step 38: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:46  Epoch 047 step 39: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:46  Epoch 047 step 40: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:46  Epoch 047 step 41: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:46  Epoch 047 step 42: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:46  Epoch 047 step 43: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:46  Epoch 047 step 44: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:46  Epoch 047 step 45: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:46  Epoch 047 step 46: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:46  Epoch 047 step 47: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:46  Epoch 047 step 48: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:47  Epoch 047 step 49: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:47  Epoch 047 step 50: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:47  Epoch 047 step 51: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:47  Epoch 047 step 52: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:47  Epoch 047 step 53: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:47  Epoch 047 step 54: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:47  Epoch 047 step 55: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:48  Epoch 047  train_loss=0.0000  val_loss=nan  F1=0.0000  IoU=0.0000  P=0.0000  R=0.0000  Kappa=0.0000  max_prob=0.0000  lr=9.05e-04
+18:43:50    No improvement for 25/30 epochs
+18:43:51  Epoch 048 step 1: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:51  Epoch 048 step 2: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:51  Epoch 048 step 3: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:51  Epoch 048 step 4: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:51  Epoch 048 step 5: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:51  Epoch 048 step 6: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:51  Epoch 048 step 7: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:51  Epoch 048 step 8: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:51  Epoch 048 step 9: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:51  Epoch 048 step 10: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:51  Epoch 048 step 11: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:51  Epoch 048 step 12: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:51  Epoch 048 step 13: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:51  Epoch 048 step 14: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:51  Epoch 048 step 15: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:51  Epoch 048 step 16: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:52  Epoch 048 step 17: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:52  Epoch 048 step 18: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:52  Epoch 048 step 19: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:52  Epoch 048 step 20: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:52  Epoch 048 step 21: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:52  Epoch 048 step 22: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:52  Epoch 048 step 23: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:52  Epoch 048 step 24: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:52  Epoch 048 step 25: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:52  Epoch 048 step 26: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:52  Epoch 048 step 27: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:52  Epoch 048 step 28: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:52  Epoch 048 step 29: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:52  Epoch 048 step 30: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:52  Epoch 048 step 31: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:52  Epoch 048 step 32: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:53  Epoch 048 step 33: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:53  Epoch 048 step 34: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:53  Epoch 048 step 35: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:53  Epoch 048 step 36: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:53  Epoch 048 step 37: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:53  Epoch 048 step 38: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:53  Epoch 048 step 39: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:53  Epoch 048 step 40: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:53  Epoch 048 step 41: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:53  Epoch 048 step 42: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:53  Epoch 048 step 43: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:53  Epoch 048 step 44: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:53  Epoch 048 step 45: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:53  Epoch 048 step 46: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:53  Epoch 048 step 47: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:53  Epoch 048 step 48: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:54  Epoch 048 step 49: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:54  Epoch 048 step 50: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:54  Epoch 048 step 51: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:54  Epoch 048 step 52: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:54  Epoch 048 step 53: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:54  Epoch 048 step 54: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:54  Epoch 048 step 55: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:55  Epoch 048  train_loss=0.0000  val_loss=nan  F1=0.0000  IoU=0.0000  P=0.0000  R=0.0000  Kappa=0.0000  max_prob=0.0000  lr=9.00e-04
+18:43:57    No improvement for 26/30 epochs
+18:43:58  Epoch 049 step 1: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:58  Epoch 049 step 2: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:58  Epoch 049 step 3: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:58  Epoch 049 step 4: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:58  Epoch 049 step 5: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:58  Epoch 049 step 6: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:58  Epoch 049 step 7: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:58  Epoch 049 step 8: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:58  Epoch 049 step 9: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:58  Epoch 049 step 10: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:58  Epoch 049 step 11: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:58  Epoch 049 step 12: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:58  Epoch 049 step 13: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:59  Epoch 049 step 14: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:59  Epoch 049 step 15: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:59  Epoch 049 step 16: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:59  Epoch 049 step 17: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:59  Epoch 049 step 18: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:59  Epoch 049 step 19: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:59  Epoch 049 step 20: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:59  Epoch 049 step 21: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:59  Epoch 049 step 22: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:59  Epoch 049 step 23: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:59  Epoch 049 step 24: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:59  Epoch 049 step 25: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:59  Epoch 049 step 26: non-finite loss=nan, skipping optimizer update for this batch.
+18:43:59  Epoch 049 step 27: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:00  Epoch 049 step 28: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:00  Epoch 049 step 29: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:00  Epoch 049 step 30: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:00  Epoch 049 step 31: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:00  Epoch 049 step 32: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:00  Epoch 049 step 33: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:00  Epoch 049 step 34: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:00  Epoch 049 step 35: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:00  Epoch 049 step 36: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:00  Epoch 049 step 37: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:00  Epoch 049 step 38: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:00  Epoch 049 step 39: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:00  Epoch 049 step 40: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:00  Epoch 049 step 41: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:01  Epoch 049 step 42: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:01  Epoch 049 step 43: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:01  Epoch 049 step 44: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:01  Epoch 049 step 45: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:01  Epoch 049 step 46: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:01  Epoch 049 step 47: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:01  Epoch 049 step 48: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:01  Epoch 049 step 49: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:01  Epoch 049 step 50: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:01  Epoch 049 step 51: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:01  Epoch 049 step 52: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:01  Epoch 049 step 53: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:01  Epoch 049 step 54: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:01  Epoch 049 step 55: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:02  Epoch 049  train_loss=0.0000  val_loss=nan  F1=0.0000  IoU=0.0000  P=0.0000  R=0.0000  Kappa=0.0000  max_prob=0.0000  lr=8.95e-04
+18:44:04    No improvement for 27/30 epochs
+18:44:05  Epoch 050 step 1: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:05  Epoch 050 step 2: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:05  Epoch 050 step 3: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:05  Epoch 050 step 4: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:05  Epoch 050 step 5: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:05  Epoch 050 step 6: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:05  Epoch 050 step 7: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:05  Epoch 050 step 8: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:06  Epoch 050 step 9: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:06  Epoch 050 step 10: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:06  Epoch 050 step 11: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:06  Epoch 050 step 12: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:06  Epoch 050 step 13: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:06  Epoch 050 step 14: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:06  Epoch 050 step 15: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:06  Epoch 050 step 16: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:06  Epoch 050 step 17: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:06  Epoch 050 step 18: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:06  Epoch 050 step 19: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:06  Epoch 050 step 20: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:06  Epoch 050 step 21: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:06  Epoch 050 step 22: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:06  Epoch 050 step 23: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:06  Epoch 050 step 24: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:07  Epoch 050 step 25: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:07  Epoch 050 step 26: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:07  Epoch 050 step 27: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:07  Epoch 050 step 28: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:07  Epoch 050 step 29: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:07  Epoch 050 step 30: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:07  Epoch 050 step 31: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:07  Epoch 050 step 32: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:07  Epoch 050 step 33: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:07  Epoch 050 step 34: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:07  Epoch 050 step 35: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:07  Epoch 050 step 36: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:07  Epoch 050 step 37: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:07  Epoch 050 step 38: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:07  Epoch 050 step 39: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:07  Epoch 050 step 40: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:08  Epoch 050 step 41: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:08  Epoch 050 step 42: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:08  Epoch 050 step 43: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:08  Epoch 050 step 44: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:08  Epoch 050 step 45: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:08  Epoch 050 step 46: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:08  Epoch 050 step 47: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:08  Epoch 050 step 48: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:08  Epoch 050 step 49: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:08  Epoch 050 step 50: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:08  Epoch 050 step 51: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:08  Epoch 050 step 52: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:08  Epoch 050 step 53: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:08  Epoch 050 step 54: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:08  Epoch 050 step 55: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:10  Epoch 050  train_loss=0.0000  val_loss=nan  F1=0.0000  IoU=0.0000  P=0.0000  R=0.0000  Kappa=0.0000  max_prob=0.0000  lr=8.90e-04
+18:44:12    No improvement for 28/30 epochs
+18:44:12  Epoch 051 step 1: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:12  Epoch 051 step 2: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:12  Epoch 051 step 3: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:12  Epoch 051 step 4: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:12  Epoch 051 step 5: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:12  Epoch 051 step 6: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:12  Epoch 051 step 7: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:12  Epoch 051 step 8: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:13  Epoch 051 step 9: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:13  Epoch 051 step 10: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:13  Epoch 051 step 11: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:13  Epoch 051 step 12: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:13  Epoch 051 step 13: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:13  Epoch 051 step 14: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:13  Epoch 051 step 15: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:13  Epoch 051 step 16: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:13  Epoch 051 step 17: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:13  Epoch 051 step 18: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:13  Epoch 051 step 19: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:13  Epoch 051 step 20: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:13  Epoch 051 step 21: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:13  Epoch 051 step 22: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:13  Epoch 051 step 23: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:13  Epoch 051 step 24: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:14  Epoch 051 step 25: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:14  Epoch 051 step 26: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:14  Epoch 051 step 27: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:14  Epoch 051 step 28: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:14  Epoch 051 step 29: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:14  Epoch 051 step 30: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:14  Epoch 051 step 31: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:14  Epoch 051 step 32: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:14  Epoch 051 step 33: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:14  Epoch 051 step 34: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:14  Epoch 051 step 35: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:14  Epoch 051 step 36: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:14  Epoch 051 step 37: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:14  Epoch 051 step 38: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:14  Epoch 051 step 39: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:14  Epoch 051 step 40: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:15  Epoch 051 step 41: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:15  Epoch 051 step 42: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:15  Epoch 051 step 44: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:15  Epoch 051 step 45: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:15  Epoch 051 step 46: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:15  Epoch 051 step 47: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:15  Epoch 051 step 48: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:15  Epoch 051 step 49: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:15  Epoch 051 step 50: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:15  Epoch 051 step 51: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:15  Epoch 051 step 52: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:15  Epoch 051 step 53: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:15  Epoch 051 step 54: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:15  Epoch 051 step 55: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:17  Epoch 051  train_loss=0.0083  val_loss=nan  F1=0.0000  IoU=0.0000  P=0.0000  R=0.0000  Kappa=0.0000  max_prob=0.0000  lr=8.84e-04
+18:44:19    No improvement for 29/30 epochs
+18:44:19  Epoch 052 step 1: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:19  Epoch 052 step 2: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:19  Epoch 052 step 3: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:20  Epoch 052 step 4: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:20  Epoch 052 step 5: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:20  Epoch 052 step 6: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:20  Epoch 052 step 7: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:20  Epoch 052 step 8: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:20  Epoch 052 step 9: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:20  Epoch 052 step 10: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:20  Epoch 052 step 11: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:20  Epoch 052 step 12: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:20  Epoch 052 step 13: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:20  Epoch 052 step 14: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:20  Epoch 052 step 15: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:20  Epoch 052 step 16: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:20  Epoch 052 step 17: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:21  Epoch 052 step 18: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:21  Epoch 052 step 19: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:21  Epoch 052 step 20: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:21  Epoch 052 step 21: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:21  Epoch 052 step 22: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:21  Epoch 052 step 23: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:21  Epoch 052 step 24: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:21  Epoch 052 step 25: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:21  Epoch 052 step 26: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:21  Epoch 052 step 27: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:21  Epoch 052 step 28: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:21  Epoch 052 step 29: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:21  Epoch 052 step 30: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:21  Epoch 052 step 31: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:21  Epoch 052 step 32: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:21  Epoch 052 step 33: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:22  Epoch 052 step 34: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:22  Epoch 052 step 35: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:22  Epoch 052 step 36: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:22  Epoch 052 step 37: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:22  Epoch 052 step 38: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:22  Epoch 052 step 39: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:22  Epoch 052 step 40: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:22  Epoch 052 step 41: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:22  Epoch 052 step 42: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:22  Epoch 052 step 43: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:22  Epoch 052 step 44: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:22  Epoch 052 step 45: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:22  Epoch 052 step 46: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:22  Epoch 052 step 47: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:22  Epoch 052 step 48: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:22  Epoch 052 step 49: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:23  Epoch 052 step 50: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:23  Epoch 052 step 51: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:23  Epoch 052 step 52: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:23  Epoch 052 step 53: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:23  Epoch 052 step 54: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:23  Epoch 052 step 55: non-finite loss=nan, skipping optimizer update for this batch.
+18:44:24  Epoch 052  train_loss=0.0000  val_loss=nan  F1=0.0000  IoU=0.0000  P=0.0000  R=0.0000  Kappa=0.0000  max_prob=0.0000  lr=8.79e-04
+18:44:26    No improvement for 30/30 epochs
+18:44:26  Early stopping triggered after 30 epochs without improvement.
+18:44:26  Training complete.  Best val-F1 = 0.2179
+18:44:26  Checkpoints saved to: /home/patodia.pa/vit-from-scratch/outputs/siamese_vit
