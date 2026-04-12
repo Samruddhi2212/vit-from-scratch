@@ -9,12 +9,12 @@
 #SBATCH --cpus-per-task=8
 #SBATCH --mem=64GB
 #SBATCH --time=08:00:00
-#SBATCH --job-name=siamese_unet_cd
+#SBATCH --job-name=unet_focal_matched
 #SBATCH --output=logs/unet_%j.out
 #SBATCH --error=logs/unet_%j.err
 
 echo "========================================"
-echo "Siamese U-Net Baseline — LEVIR-CD"
+echo "Siamese U-Net — LEVIR-CD (focal_dice + n_crops=4, matched to ViT run)"
 echo "Date:   $(date)"
 echo "Node:   $(hostname)"
 echo "Job ID: $SLURM_JOB_ID"
@@ -42,8 +42,11 @@ echo ""
 cd "$PROJ_DIR"
 
 # ── Paths ─────────────────────────────────────────────────────
-DATA_DIR="$PROJ_DIR/LEVIR"
-OUTPUT_DIR="$PROJ_DIR/outputs/siamese_unet"
+# Dataset root: must contain train/, val/, test/ with A/, B/, label/
+# Override before sbatch if needed:  export DATA_DIR="/path/to/your/LEVIR"
+# If your folder is named "LEVIR CD", set: export DATA_DIR="$PROJ_DIR/LEVIR CD"
+DATA_DIR="${DATA_DIR:-$PROJ_DIR/LEVIR}"
+OUTPUT_DIR="${OUTPUT_DIR:-$PROJ_DIR/outputs/siamese_unet}"
 
 # ── Create output dirs ────────────────────────────────────────
 mkdir -p logs
@@ -76,10 +79,14 @@ echo ""
 echo "========================================"
 echo "STEP 2: Training Siamese U-Net (FC-Siam-diff)"
 echo "========================================"
+echo "DATA_DIR=$DATA_DIR"
+echo "OUTPUT_DIR=$OUTPUT_DIR"
+echo "Hyperparams: see configs/train_unet_config.yaml (focal_dice, lr=3e-4, n_crops=4)"
 
+# Config already sets: focal_dice, lr=3e-4, n_crops=4, warmup=10, patience=30
+# CLI overrides here only if you need to tweak without editing YAML:
 python train.py \
     --config        configs/train_unet_config.yaml \
-    --model         unet \
     --data_dir      "$DATA_DIR" \
     --output_dir    "$OUTPUT_DIR" \
     --device        cuda \

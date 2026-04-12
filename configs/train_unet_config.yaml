@@ -1,18 +1,19 @@
 # ─────────────────────────────────────────────────────────────────────────────
-# Siamese U-Net (FC-Siam-diff) Change Detection — Training Configuration
-# Matched to train_config.yaml for fair ViT vs U-Net comparison.
-# Override any field with a CLI flag: --lr 5e-4
+# Siamese U-Net (FC-Siam-diff) — LEVIR-CD
+# Training hyperparameters MATCHED to the teammate ViT HPC run style:
+#   focal_dice, lr=3e-4, n_crops=4, warmup_epochs=10, cosine to min_lr.
+# U-Net uses a single AdamW LR group (encoder_lr_scale applies only to ViT).
+# Override any field via CLI, e.g. --data_dir /path/to/LEVIR
 # ─────────────────────────────────────────────────────────────────────────────
 
-# ── Model selection ───────────────────────────────────────────────────────────
-model: "unet"                 # vit | unet
+model: "unet"
 
-# ── Data ──────────────────────────────────────────────────────────────────────
+# ── Data (same pipeline as ViT: utils/oscd_dataset.py) ───────────────────────
 data_dir: "./LEVIR CD"
 num_workers: 4
+n_crops: 4                    # same as ViT teammate run — 4 random crops / image / epoch
 
-# ── Model (U-Net does not use these ViT keys, but they are kept for
-#    compatibility so the same train.py can load either config) ────────────────
+# ── Unused for U-Net but kept so train.py YAML merge stays compatible ────────
 img_size: 256
 patch_size: 16
 in_channels: 3
@@ -26,26 +27,26 @@ diff_type: "concat_project"
 diff_out_dim: 256
 decoder_dims: [128, 64, 32, 16]
 
-# ── Loss (IDENTICAL to ViT config) ───────────────────────────────────────────
-loss: "bce_dice"
-bce_weight: 0.5
+# ── Loss: focal + dice (same family as ViT run) ─────────────────────────────
+loss: "focal_dice"
+bce_weight: 0.5               # used as focal_weight in FocalDiceLoss (train.py)
 dice_weight: 0.5
-pos_weight: 5.0
+pos_weight: 5.0               # only used if loss=bce_dice; ignored for focal_dice
 focal_alpha: 0.25
 focal_gamma: 2.0
 
-# ── Optimiser (IDENTICAL to ViT config) ──────────────────────────────────────
+# ── Optimiser (single LR for all U-Net params) ───────────────────────────────
 optimizer: "adamw"
-lr: 1.0e-3
+lr: 3.0e-4                    # matches ViT head LR; ViT encoder uses lr × encoder_lr_scale
 weight_decay: 0.05
 grad_clip: 1.0
 
-# ── Schedule (IDENTICAL to ViT config) ───────────────────────────────────────
+# ── Schedule (match ViT train_config / teammate run) ─────────────────────────
 epochs: 200
 warmup_epochs: 10
 min_lr: 1.0e-6
 
-# ── Batch sizes (IDENTICAL to ViT config) ────────────────────────────────────
+# ── Batch sizes ──────────────────────────────────────────────────────────────
 batch_size: 8
 eval_batch_size: 16
 
@@ -54,5 +55,7 @@ log_every: 10
 output_dir: "./outputs/siamese_unet"
 resume: null
 
-# ── Early stopping (IDENTICAL to ViT config) ─────────────────────────────────
 patience: 30
+
+# Val metrics threshold (binary mask); default 0.5
+threshold: 0.5

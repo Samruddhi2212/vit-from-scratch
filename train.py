@@ -122,6 +122,9 @@ def _parse_args(argv=None) -> argparse.Namespace:
                    help="LR multiplier for the encoder (default 0.5). "
                         "The diff_module and decoder always train at the full --lr. "
                         "Keeps the large encoder from dominating early gradients.")
+    p.add_argument("--device", type=str, default=None,
+                   help="Force torch device: cuda | cpu | mps. "
+                        "Default: cuda if available, else cpu (skips MPS by default).")
 
     return p.parse_args(argv)
 
@@ -292,7 +295,7 @@ def _train_epoch(
 
         if (step + 1) % log_every == 0:
             elapsed = time.time() - t0
-            lr_now  = optimizer.param_groups[1]["lr"]   # head LR
+            lr_now  = optimizer.param_groups[-1]["lr"]
             logger.info(
                 f"Epoch {epoch:03d}  step {step+1:4d}/{len(loader)}  "
                 f"loss={loss_val:.4f}  lr={lr_now:.2e}  "
@@ -424,25 +427,35 @@ def main(argv=None) -> None:
     criterion = criterion.to(device)
 
     # ── optimiser — differential learning rates ───────────────────────────
-    # The encoder (85M params) gets a lower LR so the task-specific
-    # diff+decoder head (12M params) can learn its multi-scale fusion
-    # patterns without being overwhelmed by encoder gradient magnitude.
     enc_lr_scale = float(cfg.get("encoder_lr_scale", 0.5))
     enc_lr  = cfg["lr"] * enc_lr_scale
     head_lr = cfg["lr"]
-    logger.info(
-        f"LR groups — encoder={enc_lr:.2e} (×{enc_lr_scale})  "
-        f"diff+decoder={head_lr:.2e}"
-    )
-    optimizer = AdamW(
-        [
-            {"params": model.encoder.parameters(),    "lr": enc_lr,  "name": "encoder"},
-            {"params": list(model.diff_module.parameters()) +
-                       list(model.decoder.parameters()),
-             "lr": head_lr, "name": "head"},
-        ],
-        weight_decay = cfg["weight_decay"],
-    )
+
+    if model_name == "unet":
+        # U-Net: single LR group (no diff_module; differencing is param-free)
+        logger.info(f"LR — all params at {head_lr:.2e} (U-Net, no differential LR)")
+        optimizer = AdamW(
+            model.parameters(),
+            lr           = head_lr,
+            weight_decay = cfg["weight_decay"],
+        )
+    else:
+        # ViT: encoder gets lower LR so the task-specific diff+decoder head
+        # can learn multi-scale fusion without being overwhelmed by encoder
+        # gradient magnitude.
+        logger.info(
+            f"LR groups — encoder={enc_lr:.2e} (×{enc_lr_scale})  "
+            f"diff+decoder={head_lr:.2e}"
+        )
+        optimizer = AdamW(
+            [
+                {"params": model.encoder.parameters(),    "lr": enc_lr,  "name": "encoder"},
+                {"params": list(model.diff_module.parameters()) +
+                           list(model.decoder.parameters()),
+                 "lr": head_lr, "name": "head"},
+            ],
+            weight_decay = cfg["weight_decay"],
+        )
 
     scheduler = _cosine_schedule_with_warmup(
         optimizer      = optimizer,
@@ -493,7 +506,7 @@ def main(argv=None) -> None:
         scheduler.step()
 
         # ── validate ───────────────────────────────────────────────────
-        lr_now = optimizer.param_groups[1]["lr"]   # head (diff+decoder) LR
+        lr_now = optimizer.param_groups[-1]["lr"]
         if len(loaders["val"].dataset) == 0:
             logger.warning("Val split is empty — skipping validation this epoch.")
             val_loss = float("nan")
