@@ -1,5 +1,5 @@
 """
-Visualize training metrics from train.log for Siamese ViT Change Detection.
+Visualize training metrics from train.log (Siamese ViT / Swin / U-Net — same epoch line format).
 
 Parses the log file and produces a multi-panel figure covering:
   - Train / Val Loss
@@ -13,9 +13,13 @@ Parses the log file and produces a multi-panel figure covering:
   - Max predicted probability over epochs
 
 Usage:
-    python scripts/visualize_training.py \
-        --log outputs/siamese_vit/train.log \
-        --out outputs/siamese_vit/training_curves.png
+    python scripts/visualize_training.py \\
+        --log outputs/siamese_swin/train.log \\
+        --out outputs/siamese_swin/training_curves.png \\
+        --title "Siamese Swin (LEVIR-CD)"
+
+    # Regenerate all best-run figures:
+    python scripts/plot_all_training_curves.py
 """
 
 from __future__ import annotations
@@ -110,7 +114,11 @@ def smooth(x: np.ndarray, window: int = 5) -> np.ndarray:
     return np.convolve(padded, kernel, mode="valid")[:len(x)]
 
 
-def plot_training(data: dict[str, np.ndarray], out_path: Path) -> None:
+def plot_training(
+    data: dict[str, np.ndarray],
+    out_path: Path,
+    arch_title: str = "Siamese Change Detection — LEVIR-CD",
+) -> None:
     epochs = data["epoch"]
 
     # mask out NaN epochs for clean lines
@@ -254,7 +262,7 @@ def plot_training(data: dict[str, np.ndarray], out_path: Path) -> None:
 
     # ── Title ─────────────────────────────────────────────────────────────────
     fig.suptitle(
-        f"Siamese ViT Change Detection — LEVIR-CD Training\n"
+        f"{arch_title} — Training\n"
         f"Best Val F1 = {best_f1:.4f}  |  Best IoU = {best_iou:.4f}  |  Best Kappa = {best_kappa:.4f}  |  Total Epochs = {int(e[-1])+1}",
         color="white", fontsize=15, fontweight="bold", y=0.98
     )
@@ -275,6 +283,11 @@ def main() -> None:
                    help="Path to train.log")
     p.add_argument("--out", default="outputs/siamese_vit/training_curves.png",
                    help="Output PNG path")
+    p.add_argument(
+        "--title",
+        default="Siamese Change Detection — LEVIR-CD",
+        help="Architecture line in figure title (e.g. 'Siamese Swin-Tiny')",
+    )
     args = p.parse_args()
 
     log_path = Path(args.log)
@@ -287,7 +300,7 @@ def main() -> None:
     print(f"  Best IoU   : {np.nanmax(data['iou']):.4f}")
     print(f"  Best Kappa : {np.nanmax(data['kappa']):.4f}")
 
-    plot_training(data, Path(args.out))
+    plot_training(data, Path(args.out), arch_title=args.title)
 
 
 if __name__ == "__main__":
