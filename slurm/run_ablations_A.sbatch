@@ -51,10 +51,7 @@ which python
 python -V
 
 nvidia-smi
-python -c "import torch; print('CUDA:', torch.cuda.is_available())"
-
-# Smoke: imports + argparse (fails fast with a clear error in .err)
-python scripts/run_ablations.py --help >/dev/null
+python scripts/verify_pytorch_stack.py
 
 # num-workers 0 avoids fork/CUDA DataLoader issues on many Slurm nodes; increase to 2–4 if stable.
 python scripts/run_ablations.py \

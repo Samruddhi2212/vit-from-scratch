@@ -37,6 +37,7 @@ export MKL_NUM_THREADS=1
 echo "=== Ablation C — $(date) — $(hostname) — Job ${SLURM_JOB_ID:-local} ==="
 echo "PROJ_DIR=$PROJ_DIR"
 nvidia-smi
+python scripts/verify_pytorch_stack.py
 
 python scripts/run_ablations.py \
   --ablation-epochs 50 \
