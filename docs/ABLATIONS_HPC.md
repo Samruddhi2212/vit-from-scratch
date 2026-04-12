@@ -18,6 +18,8 @@ python3 -m venv .venv_hpc
 source .venv_hpc/bin/activate
 pip install -r requirements.txt
 
+The ablation `.sbatch` scripts run `slurm/ablation_venv_bootstrap.sh` after activating the venv: if **`torchvision`** is still missing (common when only `torch` was installed), the job installs **`torchvision>=0.15.0`** into `.venv_hpc` before training. If your cluster blocks `pip` on compute nodes, run **`pip install -r requirements.txt`** once on the **login node** so the shared venv is complete.
+
 # Same CUDA modules as Slurm — needed so PyTorch can find libnvJitLink.so.12 etc. on login nodes
 module load cuda/12.3.0
 module load cuDNN/9.10.2
