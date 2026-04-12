@@ -1,0 +1,73 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# Siamese Swin-Tiny — LEVIR-CD
+# Training hyperparameters matched to teammate ViT / U-Net HPC runs:
+#   focal_dice, lr=3e-4, n_crops=4, warmup_epochs=10, cosine to min_lr.
+#
+# patch_size: 16 is the decoder token grid (img_size/16 = 16); NOT Swin stem patch.
+# Swin stem uses swin_patch_size: 4.
+# ─────────────────────────────────────────────────────────────────────────────
+
+model: "swin"
+
+# ── Data (same pipeline as ViT: utils/oscd_dataset.py) ───────────────────────
+data_dir: "./LEVIR CD"
+num_workers: 4
+n_crops: 4
+
+# ── Decoder / fusion (ViT-compatible names) ───────────────────────────────────
+img_size: 256
+patch_size: 16              # semantic grid: num_patches_side = img_size / patch_size
+in_channels: 3
+embed_dim: 768              # fusion token dim → MultiScaleDiffModule (match ViT-B width)
+diff_type: "concat_project" # unused by MultiScaleDiffModule (always concat_project)
+diff_out_dim: 256
+decoder_dims: [128, 64, 32, 16]
+
+# ViT keys unused by Swin backbone but kept for train.py / YAML merge compatibility
+depth: 12
+num_heads: 12
+mlp_ratio: 4.0
+
+# ── Swin backbone (Swin-Tiny–style) ───────────────────────────────────────────
+swin_patch_size: 4
+swin_embed_dim: 96
+swin_depths: [2, 2, 6, 2]
+swin_num_heads: [3, 6, 12, 24]
+swin_window_size: [7, 7]
+swin_mlp_ratio: 4.0
+drop_path_rate: 0.0
+
+# ── Loss ─────────────────────────────────────────────────────────────────────
+loss: "focal_dice"
+bce_weight: 0.5
+dice_weight: 0.5
+pos_weight: 5.0
+focal_alpha: 0.25
+focal_gamma: 2.0
+
+# ── Optimiser (encoder vs adapters+head) ───────────────────────────────────────
+optimizer: "adamw"
+lr: 3.0e-4
+encoder_lr_scale: 0.5
+weight_decay: 0.05
+grad_clip: 1.0
+
+# ── Schedule ─────────────────────────────────────────────────────────────────
+epochs: 200
+warmup_epochs: 10
+min_lr: 1.0e-6
+
+# ── Batch sizes ──────────────────────────────────────────────────────────────
+batch_size: 8
+eval_batch_size: 16
+
+# ── Logging & checkpointing ──────────────────────────────────────────────────
+log_every: 10
+output_dir: "./outputs/siamese_swin"
+resume: null
+
+patience: 30
+threshold: 0.5
+
+dropout: 0.1
+attn_dropout: 0.0

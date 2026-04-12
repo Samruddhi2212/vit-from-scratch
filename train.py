@@ -41,6 +41,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 from models.siamese_vit import build_siamese_vit_cd
 from models.siamese_unet import SiameseUNet
+from models.siamese_swin import build_siamese_swin_cd
 from utils.losses import BCEDiceLoss, FocalDiceLoss
 from utils.metrics import ChangeDetectionMetrics
 from utils.oscd_dataset import get_oscd_dataloaders
@@ -74,8 +75,8 @@ def _parse_args(argv=None) -> argparse.Namespace:
 
     # ── model ─────────────────────────────────────────────────────────────
     p.add_argument("--model",         type=str, default=None,
-                   choices=["vit", "unet"],
-                   help="Architecture: 'vit' (Siamese ViT) or 'unet' (FC-Siam-diff)")
+                   choices=["vit", "unet", "swin"],
+                   help="Architecture: 'vit' | 'unet' | 'swin' (Siamese Swin-T + adapters)")
     p.add_argument("--img_size",      type=int)
     p.add_argument("--patch_size",    type=int)
     p.add_argument("--in_channels",   type=int)
@@ -387,6 +388,9 @@ def main(argv=None) -> None:
     if model_name == "unet":
         model = SiameseUNet(in_channels=cfg["in_channels"]).to(device)
         logger.info("Architecture: SiameseUNet (FC-Siam-diff)")
+    elif model_name == "swin":
+        model = build_siamese_swin_cd(cfg).to(device)
+        logger.info("Architecture: SiameseSwinChangeDetection")
     else:
         model_cfg = {k: cfg[k] for k in (
             "img_size", "patch_size", "in_channels",
@@ -398,12 +402,21 @@ def main(argv=None) -> None:
         logger.info("Architecture: SiameseViTChangeDetection")
 
     counts = model.get_param_count()
-    logger.info(
-        f"Model params — encoder={counts['encoder']:,}  "
-        f"diff={counts['diff_module']:,}  "
-        f"decoder={counts['decoder']:,}  "
-        f"total={counts['total']:,}"
-    )
+    if model_name == "swin":
+        logger.info(
+            f"Model params — encoder={counts['encoder']:,}  "
+            f"adapters={counts['adapters']:,}  "
+            f"diff={counts['diff_module']:,}  "
+            f"decoder={counts['decoder']:,}  "
+            f"total={counts['total']:,}"
+        )
+    else:
+        logger.info(
+            f"Model params — encoder={counts['encoder']:,}  "
+            f"diff={counts['diff_module']:,}  "
+            f"decoder={counts['decoder']:,}  "
+            f"total={counts['total']:,}"
+        )
 
     # ── loss ──────────────────────────────────────────────────────────────
     pw_val = cfg.get("pos_weight")
@@ -438,6 +451,25 @@ def main(argv=None) -> None:
             model.parameters(),
             lr           = head_lr,
             weight_decay = cfg["weight_decay"],
+        )
+    elif model_name == "swin":
+        # Swin backbone (encoder) vs adapters + diff + decoder (head LR)
+        logger.info(
+            f"LR groups — encoder={enc_lr:.2e} (×{enc_lr_scale})  "
+            f"adapters+diff+decoder={head_lr:.2e}"
+        )
+        optimizer = AdamW(
+            [
+                {"params": model.encoder.parameters(), "lr": enc_lr, "name": "encoder"},
+                {
+                    "params": list(model.scale_adapters.parameters())
+                    + list(model.diff_module.parameters())
+                    + list(model.decoder.parameters()),
+                    "lr": head_lr,
+                    "name": "head",
+                },
+            ],
+            weight_decay=cfg["weight_decay"],
         )
     else:
         # ViT: encoder gets lower LR so the task-specific diff+decoder head
@@ -481,7 +513,7 @@ def main(argv=None) -> None:
 
     # ── training loop ─────────────────────────────────────────────────────
     logger.info(
-        f"Starting training — epochs={cfg['epochs']}  "
+        f"Starting training — model={model_name}  epochs={cfg['epochs']}  "
         f"bs={cfg['batch_size']}  lr={cfg['lr']:.2e}  "
         f"loss={cfg['loss']}"
     )

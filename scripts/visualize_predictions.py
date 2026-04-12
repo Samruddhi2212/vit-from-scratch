@@ -37,8 +37,17 @@ from PIL import Image
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
+import yaml
+
 from utils.oscd_dataset import OSCDDataset, IMAGENET_MEAN, IMAGENET_STD
 from models.siamese_vit import build_siamese_vit_cd
+from models.siamese_swin import build_siamese_swin_cd
+from models.siamese_unet import SiameseUNet
+
+
+def _load_yaml(path: str) -> dict:
+    with open(path) as f:
+        return yaml.safe_load(f) or {}
 
 
 # ──────────────────────────────────────────────────────────────────────────────
@@ -98,6 +107,17 @@ def compute_metrics(pred: np.ndarray, gt: np.ndarray) -> dict[str, float]:
 def main() -> None:
     p = argparse.ArgumentParser()
     p.add_argument("--checkpoint",  default="outputs/siamese_vit/best_model.pth")
+    p.add_argument(
+        "--config",
+        default=None,
+        help="Optional YAML merged under checkpoint cfg (useful if ckpt lacks keys)",
+    )
+    p.add_argument(
+        "--model",
+        default=None,
+        choices=["vit", "unet", "swin"],
+        help="Override architecture; default is ckpt['cfg']['model'] or 'vit'",
+    )
     p.add_argument("--data_dir",    default="LEVIR CD")
     p.add_argument("--split",       default="val", choices=["train", "val", "test"])
     p.add_argument("--n_samples",   type=int, default=8)
@@ -121,26 +141,39 @@ def main() -> None:
         raise FileNotFoundError(f"Checkpoint not found: {ckpt_path}")
 
     ckpt = torch.load(ckpt_path, map_location=device, weights_only=False)
-    cfg  = ckpt.get("cfg", {})
+    cfg  = dict(ckpt.get("cfg", {}))
+    if args.config:
+        cfg = {**_load_yaml(args.config), **cfg}
 
-    model_cfg = {
-        "img_size":    cfg.get("img_size",    args.patch_size),
-        "patch_size":  cfg.get("patch_size",  16),
-        "in_channels": cfg.get("in_channels", 3),
-        "embed_dim":   cfg.get("embed_dim",   768),
-        "depth":       cfg.get("depth",       12),
-        "num_heads":   cfg.get("num_heads",   12),
-        "mlp_ratio":   cfg.get("mlp_ratio",   4.0),
-        "dropout":     cfg.get("dropout",     0.1),
-        "attn_dropout":cfg.get("attn_dropout",0.0),
-        "diff_type":   cfg.get("diff_type",   "concat_project"),
-        "diff_out_dim":cfg.get("diff_out_dim", 256),
-        "decoder_dims":cfg.get("decoder_dims", [128, 64, 32, 16]),
-    }
-    model = build_siamese_vit_cd(model_cfg).to(device)
+    model_name = args.model or cfg.get("model", "vit")
+
+    if model_name == "unet":
+        model = SiameseUNet(in_channels=cfg.get("in_channels", 3)).to(device)
+    elif model_name == "swin":
+        model = build_siamese_swin_cd(cfg).to(device)
+    else:
+        model_cfg = {
+            "img_size":    cfg.get("img_size",    args.patch_size),
+            "patch_size":  cfg.get("patch_size",  16),
+            "in_channels": cfg.get("in_channels", 3),
+            "embed_dim":   cfg.get("embed_dim",   768),
+            "depth":       cfg.get("depth",       12),
+            "num_heads":   cfg.get("num_heads",   12),
+            "mlp_ratio":   cfg.get("mlp_ratio",   4.0),
+            "dropout":     cfg.get("dropout",     0.1),
+            "attn_dropout":cfg.get("attn_dropout",0.0),
+            "diff_type":   cfg.get("diff_type",   "concat_project"),
+            "diff_out_dim":cfg.get("diff_out_dim", 256),
+            "decoder_dims":cfg.get("decoder_dims", [128, 64, 32, 16]),
+        }
+        model = build_siamese_vit_cd(model_cfg).to(device)
+
     model.load_state_dict(ckpt["model"])
     model.eval()
-    print(f"Loaded checkpoint: epoch={ckpt.get('epoch')}, best_f1={ckpt.get('best_f1', 0):.4f}")
+    print(
+        f"Loaded checkpoint: model={model_name}  "
+        f"epoch={ckpt.get('epoch')}  best_f1={ckpt.get('best_f1', 0):.4f}"
+    )
 
     # ── dataset ───────────────────────────────────────────────────────────────
     dataset = OSCDDataset(
@@ -252,9 +285,13 @@ def main() -> None:
                facecolor="#1A1A2E", labelcolor="white", fontsize=10,
                bbox_to_anchor=(0.5, 0.01), framealpha=0.9)
 
+    title_arch = {"vit": "Siamese ViT", "unet": "Siamese U-Net", "swin": "Siamese Swin"}[
+        model_name
+    ]
     fig.suptitle(
-        f"Siamese ViT Change Detection — LEVIR-CD  |  Split: {args.split}  |  Threshold: {args.threshold}",
-        color="white", fontsize=14, fontweight="bold", y=1.001
+        f"{title_arch} Change Detection — LEVIR-CD  |  Split: {args.split}  |  "
+        f"Threshold: {args.threshold}",
+        color="white", fontsize=14, fontweight="bold", y=1.001,
     )
 
     plt.tight_layout(rect=[0, 0.04, 1, 1])
