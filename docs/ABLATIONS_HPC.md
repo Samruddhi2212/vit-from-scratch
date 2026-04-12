@@ -66,6 +66,23 @@ cd ~/vit-from-scratch
 python scripts/run_ablations.py --ablation-epochs 2 --only baseline --num-workers 4
 ```
 
+## If job A fails in seconds (ExitCode `1:0`)
+
+1. Read the Slurm stderr (this is where Python tracebacks go):
+
+   ```bash
+   cat logs/ablations_A_*.err
+   ```
+
+2. Confirm the repo path matches **`slurm/run_swin.sh`** (default `PROJ_DIR=/home/patodia.pa/vit-from-scratch`). Override if your clone lives elsewhere:
+
+   ```bash
+   export PROJ_DIR=/home/patodia.pa/vit-from-scratch
+   bash scripts/submit_ablations_chain.sh
+   ```
+
+3. Batch scripts use **`--num-workers 0`** to avoid fork/CUDA + DataLoader issues on Slurm. If training is stable, you may raise to `2` or `4` in the `.sbatch` files.
+
 ## Copy results to your laptop
 
 ```bash
