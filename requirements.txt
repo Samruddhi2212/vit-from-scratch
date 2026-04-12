@@ -1,4 +1,5 @@
 torch>=2.0.0
+# torchvision: required for satellite V_Dataset / build_loaders; CIFAR ablations use utils/cifar10_standalone (no torchvision)
 torchvision>=0.15.0
 numpy>=1.24.0
 matplotlib>=3.7.0

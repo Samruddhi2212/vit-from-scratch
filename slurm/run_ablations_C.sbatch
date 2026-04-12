@@ -34,8 +34,6 @@ export PYTHONUNBUFFERED=1
 export OMP_NUM_THREADS=1
 export MKL_NUM_THREADS=1
 
-bash "$PROJ_DIR/slurm/ablation_venv_bootstrap.sh"
-
 echo "=== Ablation C — $(date) — $(hostname) — Job ${SLURM_JOB_ID:-local} ==="
 echo "PROJ_DIR=$PROJ_DIR"
 nvidia-smi

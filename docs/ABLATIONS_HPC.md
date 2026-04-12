@@ -18,7 +18,15 @@ python3 -m venv .venv_hpc
 source .venv_hpc/bin/activate
 pip install -r requirements.txt
 
-The ablation `.sbatch` scripts run `slurm/ablation_venv_bootstrap.sh` after activating the venv: if **`torchvision`** is still missing (common when only `torch` was installed), the job installs **`torchvision>=0.15.0`** into `.venv_hpc` before training. If your cluster blocks `pip` on compute nodes, run **`pip install -r requirements.txt`** once on the **login node** so the shared venv is complete.
+CIFAR ablations **do not require torchvision** (data loading is in `utils/cifar10_standalone.py`). You still need **`torch`** and the usual deps (e.g. **rasterio** via `requirements.txt` because `utils/dataset.py` imports it).
+
+**Prefetch CIFAR-10 once on the login node** (HTTPS download; compute jobs may have no network):
+
+```bash
+cd ~/vit-from-scratch
+source .venv_hpc/bin/activate
+python -c "from utils.cifar10_standalone import ensure_cifar10_downloaded; import os; ensure_cifar10_downloaded(os.path.join(os.getcwd(),'data','cifar10'))"
+```
 
 # Same CUDA modules as Slurm — needed so PyTorch can find libnvJitLink.so.12 etc. on login nodes
 module load cuda/12.3.0
@@ -94,18 +102,7 @@ python scripts/run_ablations.py --ablation-epochs 2 --only baseline --num-worker
 
    Batch jobs already run `module load` inside the `.sbatch` file; this mainly affects **interactive** checks on the login node.
 
-3. **`ModuleNotFoundError: No module named 'torchvision'`** — `requirements.txt` already pins `torchvision`, but the cluster venv may have been created with only `torch`. On the **login node**:
-
-   ```bash
-   source .venv_hpc/bin/activate
-   cd ~/vit-from-scratch
-   pip install -r requirements.txt
-   module load cuda/12.3.0
-   module load cuDNN/9.10.2
-   python scripts/verify_pytorch_stack.py
-   ```
-
-   Then resubmit the chain.
+3. **Dataset download failures on compute** — if the job cannot download CIFAR-10 (no HTTPS on compute nodes), run the **Prefetch CIFAR-10** command from the one-time setup section on the **login node**, then resubmit.
 
 4. Confirm the repo path matches **`slurm/run_swin.sh`** (default `PROJ_DIR=/home/patodia.pa/vit-from-scratch`). Override if your clone lives elsewhere:
 
@@ -115,6 +112,8 @@ python scripts/run_ablations.py --ablation-epochs 2 --only baseline --num-worker
    ```
 
 5. Batch scripts use **`--num-workers 0`** to avoid fork/CUDA + DataLoader issues on Slurm. If training is stable, you may raise to `2` or `4` in the `.sbatch` files.
+
+6. **`torchvision` optional** — ablations use the standalone CIFAR loader. Install **`pip install torchvision`** only if you use satellite / `V_Dataset` training paths.
 
 ## Copy results to your laptop
 

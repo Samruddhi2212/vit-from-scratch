@@ -29,15 +29,25 @@ from PIL import Image
 
 import torch
 from torch.utils.data import Dataset, DataLoader
-import torchvision
-import torchvision.transforms as T
 import rasterio
+
+try:
+    import torchvision
+    import torchvision.transforms as T
+except ImportError:  # satellite / raster paths only; CIFAR uses utils/cifar10_standalone
+    torchvision = None
+    T = None
 #─────────────────────────────────────────────
 # DATASET
 # ─────────────────────────────────────────────
 class V_Dataset(Dataset):
 
     def __init__(self, image_dir_list, image_size=(224, 224), transform=None):
+        if T is None:
+            raise ImportError(
+                "torchvision is required for satellite/raster loading (V_Dataset). "
+                "Install: pip install torchvision"
+            )
         self.image_dir_list = image_dir_list
         self.image_size     = image_size
 
@@ -98,6 +108,10 @@ class V_Dataset(Dataset):
 # ─────────────────────────────────────────────
 def build_loaders(train_file_list, val_file_list, test_file_list,
                   image_size=(224, 224), batch_size=16, num_workers=4):
+    if T is None:
+        raise ImportError(
+            "torchvision is required for build_loaders. Install: pip install torchvision"
+        )
 
     # Augmentation for training only
     train_transform = T.Compose([
@@ -163,88 +177,20 @@ def denormalize_cifar10(tensor: torch.Tensor) -> torch.Tensor:
     return (tensor * std + mean).clamp(0, 1)
 
 
-class _CIFARSubset(Dataset):
-    """CIFAR-10 train split with per-split transforms."""
-
-    def __init__(self, root, indices, transform, download=True):
-        self.ds = torchvision.datasets.CIFAR10(
-            root=root, train=True, download=download, transform=None
-        )
-        self.indices = list(indices)
-        self.transform = transform
-
-    def __len__(self):
-        return len(self.indices)
-
-    def __getitem__(self, i):
-        img, y = self.ds[self.indices[i]]
-        if self.transform is not None:
-            img = self.transform(img)
-        return img, y
-
-
 def get_cifar10_loaders(config, num_workers=2, val_fraction=0.1, seed=42):
     """
     Train / val split from official CIFAR-10 train (50k); test = official test (10k).
 
     ``config`` must provide ``batch_size`` and ``image_size`` (e.g. ``ViTConfig`` for 32×32).
-    Downloads to ``<repo>/data/cifar10/`` (ignored by git).
+    Data download to ``<repo>/data/cifar10/`` uses only stdlib + torch + NumPy + PIL — **no
+    torchvision** — so HPC compute nodes without pip can still run ablations after the
+    tarball is fetched once (typically on the login node).
     """
-    root = os.path.join(os.path.dirname(os.path.dirname(__file__)), "data", "cifar10")
-    os.makedirs(root, exist_ok=True)
+    from utils.cifar10_standalone import get_cifar10_loaders_standalone
 
-    mean, std = CIFAR10_MEAN, CIFAR10_STD
-
-    train_tf = T.Compose(
-        [
-            T.RandomCrop(config.image_size, padding=4),
-            T.RandomHorizontalFlip(),
-            T.RandAugment(num_ops=2, magnitude=9),
-            T.ToTensor(),
-            T.Normalize(mean, std),
-            T.RandomErasing(p=0.25),
-        ]
-    )
-    eval_tf = T.Compose(
-        [
-            T.ToTensor(),
-            T.Normalize(mean, std),
-        ]
-    )
-
-    n_train = 50000
-    n_val = int(n_train * val_fraction)
-    g = torch.Generator().manual_seed(seed)
-    perm = torch.randperm(n_train, generator=g).tolist()
-    val_idx = perm[:n_val]
-    train_idx = perm[n_val:]
-
-    train_set = _CIFARSubset(root, train_idx, train_tf)
-    val_set = _CIFARSubset(root, val_idx, eval_tf)
-    test_set = torchvision.datasets.CIFAR10(
-        root=root, train=False, download=True, transform=eval_tf
-    )
-
-    pin = torch.cuda.is_available()
-    train_loader = DataLoader(
-        train_set,
-        batch_size=config.batch_size,
-        shuffle=True,
+    return get_cifar10_loaders_standalone(
+        config,
         num_workers=num_workers,
-        pin_memory=pin,
+        val_fraction=val_fraction,
+        seed=seed,
     )
-    val_loader = DataLoader(
-        val_set,
-        batch_size=config.batch_size,
-        shuffle=False,
-        num_workers=num_workers,
-        pin_memory=pin,
-    )
-    test_loader = DataLoader(
-        test_set,
-        batch_size=config.batch_size,
-        shuffle=False,
-        num_workers=num_workers,
-        pin_memory=pin,
-    )
-    return train_loader, val_loader, test_loader
