@@ -3,7 +3,16 @@
 Outputs go to **`outputs/ablations/`** by default:
 
 - **`all_ablation_results.pt`** — merged metrics dict (this path is allowed in `.gitignore` for commits)
-- **`ablation_bar_chart.png`**, **`all_ablations_curves.png`**
+- **`all_ablations_curves.png`** — train loss / val acc vs epoch for every run
+- **`ablation_bar_chart.png`** — best val vs test accuracy by experiment
+- **`ablation_delta_vs_baseline.png`** — Δ val acc vs baseline (effect of each change)
+- **`ablation_summary.csv`** — same numbers in table form for papers / Excel
+
+Regenerate figures from the checkpoint only (no GPU):
+
+```bash
+python scripts/plot_ablation_results.py --input outputs/ablations/all_ablation_results.pt
+```
 - Per-run checkpoints: `*_best.pt` (still ignored by `*.pt`; keep on disk or use `git add -f` if you must track one)
 
 ## One-time setup (login node)

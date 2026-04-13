@@ -18,17 +18,13 @@ _REPO = Path(__file__).resolve().parent.parent
 if str(_REPO) not in sys.path:
     sys.path.insert(0, str(_REPO))
 
-import matplotlib
-
-matplotlib.use("Agg")
-import matplotlib.pyplot as plt
-import numpy as np
 import torch
 
 from configs.config import ViTConfig
 from models.ablation_variants import ViTNoPosition
 from scripts._paths import default_output_dir
 from utils.ablation import run_ablation
+from utils.ablation_plots import save_all_ablation_figures
 from utils.dataset import get_cifar10_loaders
 
 
@@ -66,79 +62,6 @@ def _want(key: str, only: set[str] | None) -> bool:
     if only is None:
         return True
     return key in only
-
-
-def plot_ablation_curves(all_results: dict, ablation_dir: Path) -> None:
-    colors_by_name = {
-        "baseline_50ep": "black",
-        "no_scaling": "red",
-        "no_position": "orange",
-        "patch_size_2": "cyan",
-        "patch_size_8": "blue",
-        "patch_size_16": "navy",
-        "heads_1": "green",
-        "heads_2": "lime",
-        "heads_8": "darkgreen",
-        "no_residual": "magenta",
-        "post_norm": "purple",
-        "global_avg_pool": "brown",
-    }
-    fig, axes = plt.subplots(1, 2, figsize=(16, 6))
-    for _key, result in all_results.items():
-        h = result["history"]
-        epochs = range(1, len(h["val_acc"]) + 1)
-        exp = result["name"]
-        color = colors_by_name.get(exp, "gray")
-        label = result["description"][:35]
-        axes[0].plot(epochs, h["train_loss"], color=color, alpha=0.7, label=label)
-        axes[1].plot(epochs, h["val_acc"], color=color, alpha=0.7, label=label)
-    axes[0].set_xlabel("Epoch")
-    axes[0].set_ylabel("Training Loss")
-    axes[0].set_title("Training Loss — All Ablations")
-    axes[0].legend(fontsize=7, loc="upper right")
-    axes[0].grid(True, alpha=0.3)
-    axes[1].set_xlabel("Epoch")
-    axes[1].set_ylabel("Validation Accuracy (%)")
-    axes[1].set_title("Validation Accuracy — All Ablations")
-    axes[1].legend(fontsize=7, loc="lower right")
-    axes[1].grid(True, alpha=0.3)
-    plt.tight_layout()
-    out = ablation_dir / "all_ablations_curves.png"
-    plt.savefig(out, dpi=150, bbox_inches="tight")
-    plt.close()
-    print(f"Saved {out}")
-
-
-def plot_bar_chart(all_results: dict, ablation_dir: Path, baseline_acc: float) -> None:
-    sorted_results = sorted(
-        all_results.values(), key=lambda x: x["best_val_acc"], reverse=True
-    )
-    fig, ax = plt.subplots(figsize=(14, 6))
-    names = [r["description"][:25] for r in sorted_results]
-    val_accs = [r["best_val_acc"] for r in sorted_results]
-    test_accs = [r["test_acc"] for r in sorted_results]
-    x = np.arange(len(names))
-    width = 0.35
-    ax.bar(x - width / 2, val_accs, width, label="Val Accuracy", color="steelblue", alpha=0.8)
-    ax.bar(x + width / 2, test_accs, width, label="Test Accuracy", color="coral", alpha=0.8)
-    ax.axhline(
-        y=baseline_acc,
-        color="black",
-        linestyle="--",
-        alpha=0.5,
-        label=f"Baseline ({baseline_acc:.1f}%)",
-    )
-    ax.set_ylabel("Accuracy (%)")
-    ax.set_title("Ablation Study: Accuracy Comparison")
-    ax.set_xticks(x)
-    ax.set_xticklabels(names, rotation=45, ha="right", fontsize=8)
-    ax.legend()
-    ax.grid(True, axis="y", alpha=0.3)
-    plt.tight_layout()
-    out = ablation_dir / "ablation_bar_chart.png"
-    plt.savefig(out, dpi=150, bbox_inches="tight")
-    plt.close()
-    print(f"Saved {out}")
 
 
 def main() -> None:
@@ -298,9 +221,11 @@ def main() -> None:
         print("Nothing to run (--only filter excluded everything).")
         return
 
-    baseline_acc = all_results["baseline"]["best_val_acc"] if "baseline" in all_results else next(
-        iter(all_results.values())
-    )["best_val_acc"]
+    baseline_acc = (
+        all_results["baseline"]["best_val_acc"]
+        if "baseline" in all_results
+        else next(iter(all_results.values()))["best_val_acc"]
+    )
 
     print("\n" + "=" * 90)
     print("ABLATION STUDY RESULTS")
@@ -318,9 +243,8 @@ def main() -> None:
         )
     print("=" * 90)
 
-    if len(all_results) > 1 or "baseline" in all_results:
-        plot_ablation_curves(all_results, ablation_dir)
-        plot_bar_chart(all_results, ablation_dir, baseline_acc)
+    for p in save_all_ablation_figures(all_results, ablation_dir):
+        print(f"Saved {p}")
 
     torch.save(all_results, ablation_dir / "all_ablation_results.pt")
     print(f"Saved combined results to {ablation_dir / 'all_ablation_results.pt'}")

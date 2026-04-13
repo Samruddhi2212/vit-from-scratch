@@ -28,5 +28,8 @@ __pycache__/
 .ipynb_checkpoints/
 *.pt
 *.pth
+# Allow merged CIFAR ablation summary to be versioned (small dict checkpoint)
+!outputs/ablations/all_ablation_results.pt
+!outputs/ablations/ablation_summary.csv
 venv/
 processed_oscd/
