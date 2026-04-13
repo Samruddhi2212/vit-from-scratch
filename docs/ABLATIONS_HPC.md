@@ -117,10 +117,20 @@ python scripts/run_ablations.py --ablation-epochs 2 --only baseline --num-worker
 
 ## Copy results to your laptop
 
+From your **local machine** (same place your SSH key works — often Terminal.app or iTerm, not always the agent inside the IDE):
+
 ```bash
-# From your Mac:
-scp -r YOUR_NETID@login.explorer.northeastern.edu:~/vit-from-scratch/outputs/ablations/ \
-  ./outputs/
+cd /path/to/vit-from-scratch
+./scripts/sync_ablations_from_hpc.sh
+```
+
+Override defaults if needed: `HPC_USER` `HPC_HOST` `HPC_PROJ` (e.g. `HPC_PROJ=/home/patodia.pa/vit-from-scratch`).
+
+Equivalent manual `rsync`:
+
+```bash
+rsync -avz YOUR_NETID@login.explorer.northeastern.edu:~/vit-from-scratch/outputs/ablations/ \
+  ./outputs/ablations/
 ```
 
 ## Commit the merged results
@@ -128,6 +138,9 @@ scp -r YOUR_NETID@login.explorer.northeastern.edu:~/vit-from-scratch/outputs/abl
 ```bash
 git add outputs/ablations/all_ablation_results.pt outputs/ablations/*.png
 git commit -m "Add CIFAR ablation merged results and plots"
+git push origin main
 ```
+
+Use the **`parvpatodia`** GitHub remote (`origin` should be `https://github.com/parvpatodia/vit-from-scratch.git` or SSH `git@github.com:parvpatodia/vit-from-scratch.git`).
 
 Per-experiment `*_best.pt` files remain ignored unless you force-add them (large).
