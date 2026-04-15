@@ -1,5 +1,5 @@
 """
-Shared ablation experiment runner (mirrors the training+ablation_studies notebook).
+Shared ablation experiment runner (mirrors ``notebooks/training_and_ablation_studies.ipynb``).
 """
 
 from __future__ import annotations

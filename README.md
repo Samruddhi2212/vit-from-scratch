@@ -1,5 +1,18 @@
 # Vision Transformer from Scratch for Urban Change Detection
 
+## Documentation map (for reviewers)
+
+| Resource | Description |
+|----------|-------------|
+| [docs/REPOSITORY_LAYOUT.md](docs/REPOSITORY_LAYOUT.md) | **Start here:** folders, scripts, and how pieces connect. |
+| [docs/PROJECT_ABSTRACT.md](docs/PROJECT_ABSTRACT.md) | Short formal abstract and scope. |
+| [docs/RESULTS_LAYOUT.md](docs/RESULTS_LAYOUT.md) | Where logs, checkpoints, and figures are written. |
+| [docs/ABLATIONS_HPC.md](docs/ABLATIONS_HPC.md) | Running CIFAR ablations on a Slurm cluster. |
+| [notebooks/README.md](notebooks/README.md) | What each notebook contains. |
+| [CHANGELOG.md](CHANGELOG.md) | Notable repo-level changes (incl. organization for submission). |
+
+---
+
 ## Project overview
 
 This repository is a **hands-on study of Vision Transformers (ViTs)** built **from scratch in PyTorch**—patch embedding, multi-head self-attention, transformer blocks, and training loops—**without loading pretrained ViT weights**. The same building blocks are used in two settings:
@@ -105,7 +118,7 @@ High-level diagram (LEVIR pipeline):
 | `outputs/` | **Change-detection** runs (logs, curves, figures); checkpoints are usually gitignored. |
 | `results_cifar10/` | **CIFAR-10** figures (confusion matrix, attention tests); CLI runs also write under `outputs/train/results_cifar10/` by default. |
 
-More detail: [docs/RESULTS_LAYOUT.md](docs/RESULTS_LAYOUT.md).
+More detail: [docs/RESULTS_LAYOUT.md](docs/RESULTS_LAYOUT.md). Full tree: [docs/REPOSITORY_LAYOUT.md](docs/REPOSITORY_LAYOUT.md).
 
 ---
 

@@ -7,7 +7,7 @@ prints the forward-pass stack trace that *created* the failing node —
 pinpointing the exact line of model code responsible.
 
 Usage:
-    python diagnose_mps.py
+    python scripts/diagnose_mps.py
 """
 
 import torch
