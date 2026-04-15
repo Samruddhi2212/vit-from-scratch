@@ -23,9 +23,6 @@ import matplotlib.gridspec as gridspec
 from sklearn.manifold import TSNE
 from tqdm import tqdm
 
-import sys
-import os
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from configs.config import ViTConfig
 from utils.cifar_paths import CIFAR10_RESULTS_DIR
 from utils.dataset import CIFAR10_CLASSES, CIFAR10_MEAN, CIFAR10_STD, denormalize_cifar10

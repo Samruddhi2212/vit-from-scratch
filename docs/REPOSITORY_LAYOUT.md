@@ -9,6 +9,7 @@ Run all CLI commands from the **repository root** unless a script says otherwise
 | `train.py` | Main **LEVIR-CD change-detection** entry point: `--model vit\|unet\|swin`, YAML configs, checkpoints under `--output_dir`. |
 | `README.md` | Project overview, math, how to train, where outputs go. |
 | `requirements.txt` | Pinned Python dependencies (`pip install -r requirements.txt`). |
+| `pyproject.toml` | Project metadata and `pip install -e .` (editable install). |
 | `configs/` | YAML for CD training; `config.py` defines **CIFAR ViT** `ViTConfig` (used by classification / ablations). |
 | `models/` | Attention, embeddings, transformer blocks, decoders, Siamese assemblies, Swin backbone. |
 | `utils/` | Metrics, losses, LEVIR dataset (`oscd_dataset.py`), CIFAR loaders (`dataset.py`, `cifar10_standalone.py`), training loop, evaluation, visualization. |
@@ -40,14 +41,21 @@ Run all CLI commands from the **repository root** unless a script says otherwise
 
 - `vit.py` — CIFAR-scale ViT and building blocks used pedagogically.
 - `siamese_vit.py`, `siamese_unet.py`, `siamese_swin.py` — **Siamese** change-detection models for `train.py`.
-- `swin/` — Swin-style backbone (`SwinBackbone`, blocks, window attention). `swin_attention.py` re-exports with a **deprecation** notice; new code should import from `models.swin`.
+- `swin/` — Swin-style backbone (`SwinBackbone`, blocks, window attention). Import from `models.swin`, not legacy paths.
 
 ## Tests
 
-There is **no** `pytest` suite in this repository; correctness is validated by training scripts and course experiments. For a quick import check from the repo root:
+Smoke tests live under `tests/` (`pytest`). They check imports and small forward passes without datasets:
 
 ```bash
-python -c "import train; from models.siamese_vit import SiameseViTChangeDetection; print('OK')"
+pip install -e ".[dev]"
+pytest
+```
+
+For a manual import check (requires dependencies such as `tensorboard` for `train.py`):
+
+```bash
+python -c "from models.siamese_vit import SiameseViTChangeDetection; print('OK')"
 ```
 
 ## See also

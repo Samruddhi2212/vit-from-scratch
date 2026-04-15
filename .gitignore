@@ -24,6 +24,9 @@ train_*.out
 # Never commit SSH private key material
 *ssh-copy-id*
 __pycache__/
+.pytest_cache/
+*.egg-info/
+.venv/
 *.pyc
 .ipynb_checkpoints/
 *.pt

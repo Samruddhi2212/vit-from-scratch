@@ -29,7 +29,8 @@ from PIL import Image
 
 # ── project root on path ───────────────────────────────────────────────────────
 ROOT = Path(__file__).resolve().parent.parent
-sys.path.insert(0, str(ROOT))
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
 
 from utils.oscd_dataset import OSCDDataset, IMAGENET_MEAN, IMAGENET_STD  # noqa: E402
 

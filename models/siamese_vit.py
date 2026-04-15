@@ -34,9 +34,6 @@ and decoder — is trained from random initialisation on the LEVIR-CD dataset.
 import torch
 import torch.nn as nn
 
-import sys
-import os
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from models.vit import SiameseViTEncoder
 from models.feature_difference import FeatureDifferenceModule, MultiScaleDiffModule
 from models.decoder import ProgressiveDecoder

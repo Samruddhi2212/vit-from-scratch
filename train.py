@@ -36,8 +36,10 @@ from torch.optim import AdamW
 from torch.optim.lr_scheduler import LambdaLR
 from torch.utils.tensorboard import SummaryWriter
 
-# ── local imports ──────────────────────────────────────────────────────────────
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+# ── local imports (repo root must be on sys.path) ─────────────────────────────
+_REPO_ROOT = Path(__file__).resolve().parent
+if str(_REPO_ROOT) not in sys.path:
+    sys.path.insert(0, str(_REPO_ROOT))
 
 from models.siamese_vit import build_siamese_vit_cd
 from models.siamese_unet import SiameseUNet

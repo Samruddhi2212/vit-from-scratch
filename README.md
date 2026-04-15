@@ -13,6 +13,24 @@
 
 ---
 
+## Environment setup
+
+```bash
+python -m venv .venv
+source .venv/bin/activate          # Windows: .venv\Scripts\activate
+pip install -U pip
+pip install -r requirements.txt
+```
+
+**Editable install (recommended for development and tests):** installs `models`, `utils`, and `configs` as packages so imports work from any working directory.
+
+```bash
+pip install -e ".[dev]"            # includes pytest
+pytest
+```
+
+---
+
 ## Project overview
 
 This repository is a **hands-on study of Vision Transformers (ViTs)** built **from scratch in PyTorch**—patch embedding, multi-head self-attention, transformer blocks, and training loops—**without loading pretrained ViT weights**. The same building blocks are used in two settings:

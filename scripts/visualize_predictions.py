@@ -23,7 +23,6 @@ from __future__ import annotations
 import argparse
 import random
 import sys
-import os
 from pathlib import Path
 
 import numpy as np
@@ -35,7 +34,9 @@ import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
 from PIL import Image
 
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+_REPO_ROOT = Path(__file__).resolve().parent.parent
+if str(_REPO_ROOT) not in sys.path:
+    sys.path.insert(0, str(_REPO_ROOT))
 
 import yaml
 

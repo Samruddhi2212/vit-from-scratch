@@ -185,10 +185,12 @@ def build_siamese_swin_cd(config: dict | None = None) -> SiameseSwinChangeDetect
 
 
 if __name__ == "__main__":
-    import os
+    from pathlib import Path
     import sys
 
-    sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+    _root = Path(__file__).resolve().parents[1]
+    if str(_root) not in sys.path:
+        sys.path.insert(0, str(_root))
 
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     m = build_siamese_swin_cd().to(device)
