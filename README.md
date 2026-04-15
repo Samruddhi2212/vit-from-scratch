@@ -10,6 +10,7 @@
 | [docs/ABLATIONS_HPC.md](docs/ABLATIONS_HPC.md) | Running CIFAR ablations on a Slurm cluster. |
 | [notebooks/README.md](notebooks/README.md) | What each notebook contains. |
 | [CHANGELOG.md](CHANGELOG.md) | Notable repo-level changes (incl. organization for submission). |
+| [pyproject.toml](pyproject.toml) | Package metadata and `pip install -e .` (see **Environment setup** below). |
 
 ---
 
