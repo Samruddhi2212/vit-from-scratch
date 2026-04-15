@@ -1,1 +1,1 @@
-# Marks `models` as a regular package.
+"""Neural network modules: ViT building blocks, Siamese CD models, Swin backbone."""

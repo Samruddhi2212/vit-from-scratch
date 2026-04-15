@@ -1,1 +1,1 @@
-# Marks `configs` as a regular package.
+"""YAML training configs and ``ViTConfig`` for CIFAR / ablations."""
