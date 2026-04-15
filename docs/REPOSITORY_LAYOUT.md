@@ -63,3 +63,4 @@ python -c "from models.siamese_vit import SiameseViTChangeDetection; print('OK')
 - [RESULTS_LAYOUT.md](RESULTS_LAYOUT.md) — where logs and figures land.
 - [ABLATIONS_HPC.md](ABLATIONS_HPC.md) — running CIFAR ablations on a cluster.
 - [PROJECT_ABSTRACT.md](PROJECT_ABSTRACT.md) — short formal abstract.
+- [SECURITY.md](SECURITY.md) — credentials, SSH, and what not to commit.

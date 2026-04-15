@@ -21,8 +21,11 @@ LEVIR CD/
 # Cluster / SLURM one-off outputs
 train_*.out
 
-# Never commit SSH private key material
+# Never commit SSH / key material (see docs/SECURITY.md)
+ssh-copy-id*
 *ssh-copy-id*
+*.pem
+*.key
 __pycache__/
 .pytest_cache/
 *.egg-info/

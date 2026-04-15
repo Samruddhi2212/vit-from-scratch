@@ -19,3 +19,8 @@ No training logic or model definitions were intentionally changed as part of thi
 - Removed redundant `sys.path` manipulation from library modules (`models/`, `utils/`); use editable install or ensure repo root is on `sys.path` before imports (see `scripts/_paths.py`).
 - Removed unused files: empty `models/positional_encoding.py`, deprecated stub `models/swin_attention.py`, empty `tests/test_components.py`.
 - Standardized script path bootstrap (`scripts/visualize_predictions.py`, `scripts/visualize_oscd.py`, `train.py`).
+
+## 2026-04 — Secrets and stray artifacts
+
+- Removed mistaken `ssh-copy-id*` files and a root-level Slurm `train_*.out` from the working tree (never belong in the repo).
+- Added `docs/SECURITY.md` and expanded `.gitignore` patterns for keys / PEM / `ssh-copy-id` filenames.
