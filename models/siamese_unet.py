@@ -159,7 +159,7 @@ class SiameseUNet(nn.Module):
         """Parameter counts broken down by component.
 
         Matches the interface of SiameseViTChangeDetection.get_param_count()
-        so train.py can log counts uniformly.
+        so training scripts can log counts uniformly.
         """
         enc_p = sum(p.numel() for p in self.encoders.parameters())
         enc_p += sum(p.numel() for p in self.bottleneck.parameters())

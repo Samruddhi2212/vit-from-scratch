@@ -85,7 +85,7 @@ echo "Hyperparams: see configs/train_unet_config.yaml (focal_dice, lr=3e-4, n_cr
 
 # Config already sets: focal_dice, lr=3e-4, n_crops=4, warmup=10, patience=30
 # CLI overrides here only if you need to tweak without editing YAML:
-python train.py \
+python scripts/train_change_detection.py \
     --config        configs/train_unet_config.yaml \
     --data_dir      "$DATA_DIR" \
     --output_dir    "$OUTPUT_DIR" \

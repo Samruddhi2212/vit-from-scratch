@@ -95,7 +95,7 @@ if [ -n "$RESUME_PATH" ] && [ -f "$RESUME_PATH" ]; then
     RESUME_ARGS=(--resume "$RESUME_PATH")
 fi
 
-python train.py \
+python scripts/train_change_detection.py \
     --config        configs/train_swin_config.yaml \
     --data_dir      "$DATA_DIR" \
     --output_dir    "$OUTPUT_DIR" \

@@ -84,7 +84,7 @@ if [ -f "$RESUME_CKPT" ]; then
     RESUME_FLAG="--resume $RESUME_CKPT"
 fi
 
-python train.py \
+python scripts/train_change_detection.py \
     --data_dir          "$LEVIR_DIR" \
     --output_dir        "$OUTPUT_DIR" \
     --epochs            200 \

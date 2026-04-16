@@ -31,7 +31,7 @@ from utils.training import train, load_checkpoint
 from utils.visualization import plot_training_curves
 
 
-def parse_args() -> argparse.Namespace:
+def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     p = argparse.ArgumentParser(description="Train ViT on CIFAR-10")
     p.add_argument(
         "--output-dir",
@@ -50,7 +50,7 @@ def parse_args() -> argparse.Namespace:
         action="store_true",
         help="Wrap model in nn.DataParallel when 2+ GPUs are visible (see slurm comments for Explorer limits)",
     )
-    return p.parse_args()
+    return p.parse_args(argv)
 
 
 def main() -> None:

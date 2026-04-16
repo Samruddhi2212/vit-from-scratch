@@ -32,6 +32,9 @@ dev = [
     "pytest>=7.0",
 ]
 
+[project.scripts]
+train-change-detection = "scripts.train_change_detection:main"
+
 [tool.setuptools.packages.find]
 where = ["."]
-include = ["models*", "utils*", "configs*"]
+include = ["models*", "utils*", "configs*", "scripts*"]

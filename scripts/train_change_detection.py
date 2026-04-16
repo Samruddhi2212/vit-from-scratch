@@ -1,11 +1,13 @@
 """
-Training script for Siamese ViT Change Detection on LEVIR-CD.
+LEVIR-CD change-detection training (Siamese ViT / U-Net / Swin).
 
 Usage
 -----
-    python train.py                                   # uses configs/train_config.yaml
-    python train.py --data_dir "./LEVIR CD" \\
-                    --epochs 200 --batch_size 8 --lr 1e-3
+    python scripts/train_change_detection.py          # uses configs/train_config.yaml
+    train-change-detection                            # same, after ``pip install -e .``
+
+    python scripts/train_change_detection.py --data_dir "./LEVIR CD" \\
+        --epochs 200 --batch_size 8 --lr 1e-3
 
 Any CLI flag overrides the corresponding YAML key.  Unknown keys are ignored
 so that the YAML can hold extra documentation fields.
@@ -37,7 +39,7 @@ from torch.optim.lr_scheduler import LambdaLR
 from torch.utils.tensorboard import SummaryWriter
 
 # ── local imports (repo root must be on sys.path) ─────────────────────────────
-_REPO_ROOT = Path(__file__).resolve().parent
+_REPO_ROOT = Path(__file__).resolve().parents[1]
 if str(_REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(_REPO_ROOT))
 

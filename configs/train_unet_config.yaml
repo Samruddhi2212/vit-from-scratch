@@ -13,7 +13,7 @@ data_dir: "./LEVIR CD"
 num_workers: 4
 n_crops: 4                    # same as ViT teammate run — 4 random crops / image / epoch
 
-# ── Unused for U-Net but kept so train.py YAML merge stays compatible ────────
+# ── Unused for U-Net but kept so train_change_detection.py YAML merge stays compatible ────────
 img_size: 256
 patch_size: 16
 in_channels: 3
@@ -29,7 +29,7 @@ decoder_dims: [128, 64, 32, 16]
 
 # ── Loss: focal + dice (same family as ViT run) ─────────────────────────────
 loss: "focal_dice"
-bce_weight: 0.5               # used as focal_weight in FocalDiceLoss (train.py)
+bce_weight: 0.5               # used as focal_weight in FocalDiceLoss (train_change_detection.py)
 dice_weight: 0.5
 pos_weight: 5.0               # only used if loss=bce_dice; ignored for focal_dice
 focal_alpha: 0.25

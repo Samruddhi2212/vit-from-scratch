@@ -28,7 +28,7 @@ from utils.ablation_plots import save_all_ablation_figures
 from utils.dataset import get_cifar10_loaders
 
 
-def parse_args() -> argparse.Namespace:
+def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     p = argparse.ArgumentParser(description="Run ViT ablation studies on CIFAR-10")
     p.add_argument(
         "--output-dir",
@@ -55,7 +55,7 @@ def parse_args() -> argparse.Namespace:
         help="Do not load existing all_ablation_results.pt (default: merge for chained Slurm jobs)",
     )
     p.add_argument("--seed", type=int, default=42)
-    return p.parse_args()
+    return p.parse_args(argv)
 
 
 def _want(key: str, only: set[str] | None) -> bool:
@@ -65,7 +65,7 @@ def _want(key: str, only: set[str] | None) -> bool:
 
 
 def main() -> None:
-    args = parse_args()
+    args = parse_args(None)
     torch.manual_seed(args.seed)
     if torch.cuda.is_available():
         torch.cuda.manual_seed_all(args.seed)

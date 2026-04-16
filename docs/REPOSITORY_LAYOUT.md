@@ -6,7 +6,7 @@ Run all CLI commands from the **repository root** unless a script says otherwise
 
 | Path | Purpose |
 |------|---------|
-| `train.py` | Main **LEVIR-CD change-detection** entry point: `--model vit\|unet\|swin`, YAML configs, checkpoints under `--output_dir`. |
+| `scripts/train_change_detection.py` | Main **LEVIR-CD change-detection** entry point: `--model vit\|unet\|swin`, YAML configs, checkpoints under `--output_dir`. After `pip install -e .`, the **`train-change-detection`** command is the same program. |
 | `README.md` | Project overview, math, how to train, where outputs go. |
 | `requirements.txt` | Pinned Python dependencies (`pip install -r requirements.txt`). |
 | `pyproject.toml` | Project metadata and `pip install -e .` (editable install). |
@@ -23,6 +23,7 @@ Run all CLI commands from the **repository root** unless a script says otherwise
 
 | Script | Role |
 |--------|------|
+| `train_change_detection.py` | **LEVIR-CD** Siamese training (ViT / U-Net / Swin); primary entry point for change detection. |
 | `train_cifar10.py` | CIFAR-10 classification ViT (instruction / analysis). |
 | `run_ablations.py` | Full CIFAR ablation sweep; writes `outputs/ablations/` and merged `all_ablation_results.pt`. |
 | `plot_ablation_results.py` | Regenerate ablation **figures** from `all_ablation_results.pt` only (no GPU). |
@@ -40,19 +41,19 @@ Run all CLI commands from the **repository root** unless a script says otherwise
 ## `models/` (notable modules)
 
 - `vit.py` — CIFAR-scale ViT and building blocks used pedagogically.
-- `siamese_vit.py`, `siamese_unet.py`, `siamese_swin.py` — **Siamese** change-detection models for `train.py`.
+- `siamese_vit.py`, `siamese_unet.py`, `siamese_swin.py` — **Siamese** change-detection models for `scripts/train_change_detection.py`.
 - `swin/` — Swin-style backbone (`SwinBackbone`, blocks, window attention). Import from `models.swin`, not legacy paths.
 
 ## Tests
 
-Smoke tests live under `tests/` (`pytest`). They check imports and small forward passes without datasets:
+Smoke tests live in `tests/test_smoke.py` (`pytest`). They check imports, small forward passes, merged LEVIR YAML for each change-detection backbone, CIFAR/ablation CLI parsing, and `scripts/* --help`—without downloading datasets or running training loops:
 
 ```bash
 pip install -e ".[dev]"
 pytest
 ```
 
-For a manual import check (requires dependencies such as `tensorboard` for `train.py`):
+For a manual import check (requires dependencies such as `tensorboard` for `scripts/train_change_detection.py`):
 
 ```bash
 python -c "from models.siamese_vit import SiameseViTChangeDetection; print('OK')"

@@ -24,12 +24,16 @@ pip install -U pip
 pip install -r requirements.txt
 ```
 
-**Editable install (recommended for development and tests):** installs `models`, `utils`, and `configs` as packages so imports work from any working directory.
+**Editable install (recommended for development and tests):** installs `models`, `utils`, `configs`, and `scripts` as packages so imports work from any working directory.
 
 ```bash
 pip install -e ".[dev]"            # includes pytest
 pytest
 ```
+
+`pytest` runs `tests/test_smoke.py`: model forwards, merged LEVIR YAML for each CD backbone, CIFAR/ablation CLI parsing, and script `--help` / lightweight checks (no dataset downloads, no training loops).
+
+The editable install also registers the **`train-change-detection`** console command (LEVIR-CD), equivalent to `python scripts/train_change_detection.py`.
 
 ---
 
@@ -107,7 +111,7 @@ This **pre-norm** arrangement stabilizes training in deep stacks (the exact orde
 
 ## Architecture (how pieces map to folders)
 
-**Change detection (`train.py`, `configs/train_*.yaml`):**
+**Change detection (`scripts/train_change_detection.py` or `train-change-detection` after editable install, `configs/train_*.yaml`):**
 
 - **Siamese encoders** share weights: same backbone on $X_{T1}$ and $X_{T2}$.
 - **Difference / fusion** combines multi-scale features (`models/feature_difference.py`).
@@ -129,7 +133,7 @@ High-level diagram (LEVIR pipeline):
 
 | Path | Role |
 |------|------|
-| `train.py` | LEVIR-CD training: YAML + CLI; TensorBoard + checkpoints under `--output_dir`. |
+| `scripts/train_change_detection.py` | LEVIR-CD training: YAML + CLI; TensorBoard + checkpoints under `--output_dir`. |
 | `configs/` | `train_config.yaml` (ViT CD), `train_unet_config.yaml`, `train_swin_config.yaml`; `config.py` holds **CIFAR ViT** hyperparameters (`ViTConfig`). |
 | `models/` | Attention, patch embed, transformer blocks, decoders, Siamese assemblies, Swin building blocks. |
 | `utils/` | Metrics, losses, **LEVIR-CD** dataloaders (`oscd_dataset.py`), **CIFAR-10** loaders and constants (`dataset.py`), training loop, evaluation, visualization. |
@@ -181,10 +185,10 @@ LEVIR CD/   (or any path you pass to --data_dir)
 Example:
 
 ```bash
-python train.py --data_dir "./LEVIR CD" --output_dir "./outputs/siamese_vit"
+python scripts/train_change_detection.py --data_dir "./LEVIR CD" --output_dir "./outputs/siamese_vit"
 ```
 
-Use `--model vit|unet|swin` and a matching config file as needed; see `train.py --help` and the YAML files for defaults (image size, patch size, loss, schedule, etc.).
+After `pip install -e .`, you can also run `train-change-detection ...` (same arguments as the script). Use `--model vit|unet|swin` and a matching config file as needed; see `python scripts/train_change_detection.py --help` and the YAML files for defaults (image size, patch size, loss, schedule, etc.).
 
 ---
 
@@ -206,7 +210,7 @@ python scripts/run_ablations.py --ablation-epochs 50 --num-workers 4
 
 ## Evaluation metrics (change detection)
 
-We report standard **segmentation** statistics: **IoU**, **F1**, **precision**, **recall**, **Dice**, and **Cohen’s kappa**—see `utils/metrics.py` for definitions. During training, validation metrics use the configured **probability threshold** (default **0.5** in `train.py` unless your YAML sets `threshold`). For deployment or visualization you may tune the threshold on the validation set to trade precision for recall on rare positive pixels.
+We report standard **segmentation** statistics: **IoU**, **F1**, **precision**, **recall**, **Dice**, and **Cohen’s kappa**—see `utils/metrics.py` for definitions. During training, validation metrics use the configured **probability threshold** (default **0.5** in `scripts/train_change_detection.py` unless your YAML sets `threshold`). For deployment or visualization you may tune the threshold on the validation set to trade precision for recall on rare positive pixels.
 
 ---
 
@@ -261,7 +265,7 @@ The aggregate figure `outputs/training_curves.png` is an additional export kept 
 
 ## Results and outputs layout
 
-- **`outputs/`** — LEVIR-CD **change-detection** experiments from `train.py` (TensorBoard events, `train.log`, curves, prediction grids). Subfolders such as `outputs/siamese_vit/`, `outputs/siamese_unet/`, `outputs/siamese_swin/` keep runs separated.
+- **`outputs/`** — LEVIR-CD **change-detection** experiments from `scripts/train_change_detection.py` (TensorBoard events, `train.log`, curves, prediction grids). Subfolders such as `outputs/siamese_vit/`, `outputs/siamese_unet/`, `outputs/siamese_swin/` keep runs separated.
 - **`results_cifar10/`** — **CIFAR-10 classification** artifacts (confusion matrices, attention / rollout figures from `scripts/train_cifar10.py` and `utils/evaluation.py`). The same directory name appears under `outputs/train/` when using the CLI (constant `CIFAR10_RESULTS_DIR` in `utils/cifar_paths.py`).
 
 See [docs/RESULTS_LAYOUT.md](docs/RESULTS_LAYOUT.md) for regeneration commands.

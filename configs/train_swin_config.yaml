@@ -23,7 +23,7 @@ diff_type: "concat_project" # unused by MultiScaleDiffModule (always concat_proj
 diff_out_dim: 256
 decoder_dims: [128, 64, 32, 16]
 
-# ViT keys unused by Swin backbone but kept for train.py / YAML merge compatibility
+# ViT keys unused by Swin backbone but kept for train_change_detection.py / YAML merge compatibility
 depth: 12
 num_heads: 12
 mlp_ratio: 4.0

@@ -13,7 +13,7 @@ Large binaries (`.pt` / `.pth` checkpoints) stay **gitignored**; regenerate with
 
 ## `outputs/` — LEVIR-CD change detection
 
-Contains **experiment logs and plots** for **siamese** models trained with `train.py` (ViT, U-Net, Swin), e.g.:
+Contains **experiment logs and plots** for **siamese** models trained with `scripts/train_change_detection.py` (ViT, U-Net, Swin), e.g.:
 
 - `outputs/siamese_vit/`, `outputs/siamese_unet/`, `outputs/siamese_swin/`
 - Teammate / comparison logs such as `vit_teammate_train.log` and matching `*_training_curves.png` at the `outputs/` root when checked in
@@ -22,5 +22,6 @@ Checkpoints (`best_model.pth`, etc.) are typically **local or cluster-only** and
 
 ## Scripts
 
+- LEVIR-CD training: `python scripts/train_change_detection.py` (or `train-change-detection` after `pip install -e .`)
 - Regenerate LEVIR training figures from logs: `python scripts/plot_all_training_curves.py`
 - CIFAR training: `python scripts/train_cifar10.py` (writes checkpoints under `outputs/train/checkpoints/` and figures under `outputs/train/results_cifar10/` by default unless `--output-dir` is set)
